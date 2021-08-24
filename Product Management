@@ -1,0 +1,103 @@
+Shalong  - 	We'll style while you smile!
+
+Requirement:
+
+* To check  the saloon shop is available or not
+* To know , the barber is busy or not
+
+Competitor Analysis:
+
+*  MySalon App
+* Salon Iris App
+* MyCuts
+* Vagaro
+* Square
+* SimplyBook.me
+
+Product Management:
+
+Splash Screen module:
+* Splash Screen module
+
+User Registration/Authentication module:
+* Get Email from user.
+* Get Password from user
+* Via firebase authentication
+* If uid exists in Database push to Dashboard  
+* If not,Create New Registration
+* For new Registration
+* Get Some mandatory data from user
+* If registration push to Dashboard
+
+After Registration module:
+
+* User wants to select Barber/Customer
+
+If Barber:
+
+* Get barber shop name
+* Get barber shop location url 
+* Get barber shop Address 
+* Get barber phone number
+
+If Customer:
+
+* Push to Dashboard
+
+Dashboard module:
+
+If Barber:
+
+* Get Barber Schedule with break time
+* Get the number of customer in awaiting lively and book your appointment
+* Barber wants to select check Box(For active or In active)
+* Show the booked slots 
+* Get offers details from barber
+
+If Customer:
+
+* Customer wants to select location
+* Want to check whether the application is available in customers location
+* If not , show alert message that is “Oops! The app is currently not available in your area , stay tuned ”
+* Wants to show the list of shops whether open or not
+* Wants to show the review of the shop
+* Wants to show the barber is on duty or off duty
+* If on duty customer can see the booked slot for hair grooming
+* If off duty customer can reach shop Or Can book the time for hair grooming
+* If the customer finishes the hair cut
+* Get review from customer
+* After that customer can add the shop in favourite list
+
+Favorite module:
+
+* When customer add the shop favourite list after that
+* The shop details is want appear  in favourite module
+* Thus, the customer can see the shop list for next time easily
+
+
+Settings module:
+
+1.Profile module:
+
+* Can See user/Barber Details from database via firebase
+* User/Barber can update his details via firebase
+
+2.Setting Dashboard:
+
+* Barber can add another shop
+* User can change to barber/Customer mode
+* Terms and condition of the developer
+* User/Barber can read About for application
+* User/Barber can give Review for application
+* User/Barber can get some Help for application developer
+
+3.End of the app:
+
+* User/Barber can log in to another mail 
+* For that logout module
+* When the user is logout his mail 
+* Push to Splash Screen module
+
+
+
+
