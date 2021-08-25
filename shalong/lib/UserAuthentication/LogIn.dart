@@ -19,8 +19,16 @@ class _LogInState extends State<LogIn> {
     FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
       print(value);
     }).catchError((onError) {
-      print(onError);
+      FirebaseAuthException exp = onError;
+      if (exp.message != null) {
+
+      showDialog(context: context, builder: (BuildContext context) {
+        return AlertDialog(title: Text(exp.message!));
+      });
+      }
     });
+
+
   }
 
   @override
