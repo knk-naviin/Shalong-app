@@ -17,54 +17,30 @@ class _LogInState extends State<LogIn> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Form(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          body: Form(
             key: formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Stack(
-
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 100.0),
-                      child: Image.asset("images/Logo.jpeg"),
-                    ),
-                    Container(
-                      width: 123,
-                      height: 124,
-                      decoration: BoxDecoration(
-                        gradient:  LinearGradient(
-                            colors: [
-                              Colors.red,
-                              Colors.blue
-                            ]
-                        ),
-                      ),
-
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 200.0),
-                      child: SizedBox(
-                          child: Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: CupertinoColors.systemRed,
-                                    fontSize: 67,
-                                    fontWeight: FontWeight.bold),
-                              ))),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: Text("Login",style: TextStyle(
+                    fontSize: 66,
+                    fontFamily: 'SourceCodePro',
+                    color: CupertinoColors.systemBlue,
+                    fontWeight: FontWeight.w600
+                  )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
+                  padding: const EdgeInsets.only(left: 38.0,right: 38),
                   child: SizedBox(
-                    width: 350,
+                    width: 375,
+                    height: 90,
                     child: TextFormField(
                       onSaved: (value) {
                         email = value!;
@@ -76,22 +52,19 @@ class _LogInState extends State<LogIn> {
                         return null;
                       },
                       decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: CupertinoColors.systemBlue)),
-                          border: OutlineInputBorder(),
+                        border: OutlineInputBorder(),
                           labelText: "Enter Your Email Address",
                           prefixIcon: Icon(
                             CupertinoIcons.mail_solid,
-                            color: CupertinoColors.systemRed,
+                            color: CupertinoColors.systemBlue,
                           )),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 25.0),
+                  padding: const EdgeInsets.only(left: 38.0,right: 38.0),
                   child: SizedBox(
-                    width: 350,
+                    width: 375,
                     child: TextFormField(
                       onSaved: (value) {
                         password = value!;
@@ -107,48 +80,41 @@ class _LogInState extends State<LogIn> {
                       obscureText: true,
                       scrollPhysics: ScrollPhysics(),
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: CupertinoColors.systemBlue)),
+                          border: OutlineInputBorder(),
                           labelText: "Enter Your Password",
                           prefixIcon: Icon(
                             CupertinoIcons.lock_fill,
-                            color: CupertinoColors.systemRed,
+                            color: CupertinoColors.systemBlue,
                           )),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
+                  padding: const EdgeInsets.only(top: 35.0),
                   child: CupertinoButton(
                       child: Text(
                         'Continue',
                         style: TextStyle(fontSize: 23),
                       ),
-                      color: CupertinoColors.systemRed,
+                      color: CupertinoColors.systemBlue,
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           (formKey.currentState!.save());
                         }
                       }
-                      //color: CupertinoColors.systemBlue,
-                      ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => SignUp()),
-                            );
-                          },
-                          child: Text("New Registration")),
-                    ],
+                    //color: CupertinoColors.systemBlue,
                   ),
                 ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUp()),
+                      );
+                    },
+                    child: Text("New Registration",style: TextStyle(
+                      color: CupertinoColors.systemBlue
+                    ),)),
               ],
             ),
           ),
