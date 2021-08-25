@@ -4,6 +4,7 @@ import 'package:shalong/UserAuthentication/LogIn.dart';
 
 void main(){
   runApp(new MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: ShalongApp(),
   ));
 }
