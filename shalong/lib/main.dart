@@ -21,10 +21,7 @@ class _ShalongAppState extends State<ShalongApp> {
     return Scaffold(
       body: AnimatedSplashScreen(
         nextScreen: LogIn(),
-        splash: Image.asset("images/Logo.jpeg",
-          height: MediaQuery.of(context).size.width / 2.5,
-          width: MediaQuery.of(context).size.width / 2.5,
-        )
+        splash: Text("Shalong App")
       ),
     );
   }
