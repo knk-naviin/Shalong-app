@@ -123,18 +123,7 @@ class _LogInState extends State<LogIn> {
                           );
                         },
                         child: Text("New Registration")),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: CupertinoButton(
-                          child: Text(
-                            'Guest User',
-                            style: TextStyle(fontSize: 23),
-                          ),
-                          color: CupertinoColors.systemBlue,
-                          onPressed: () {}
-                          //color: CupertinoColors.systemBlue,
-                          ),
-                    ),
+                    
                   ],
                 ),
               ),
