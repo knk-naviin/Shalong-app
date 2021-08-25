@@ -24,7 +24,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New Registration"),
+        title: Text("New User Registration"),
         backgroundColor: CupertinoColors.systemBlue,
       ),
       body: GestureDetector(
