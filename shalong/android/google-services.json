@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "59614233225",
+    "project_id": "shalong-4b19b",
+    "storage_bucket": "shalong-4b19b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59614233225:android:83ca3d56078444c539fc58",
+        "android_client_info": {
+          "package_name": "com.example.shalong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59614233225-rs88uc375ho88ccj8ptbgserlltuhc91.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpPNBfxQTZvvr1inHFhlcktRPrTbp9Efs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59614233225-rs88uc375ho88ccj8ptbgserlltuhc91.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'SignUp.dart';
@@ -14,6 +15,13 @@ class _LogInState extends State<LogIn> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String email, password;
 
+  void login() {
+    FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
+      print(value);
+    }).catchError((onError) {
+      print(onError);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +108,7 @@ class _LogInState extends State<LogIn> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           (formKey.currentState!.save());
+                          login();
                         }
                       }
                     //color: CupertinoColors.systemBlue,
