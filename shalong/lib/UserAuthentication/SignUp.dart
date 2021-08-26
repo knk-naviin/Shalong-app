@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -16,9 +18,40 @@ class _SignUpState extends State<SignUp> {
   final _emailController = TextEditingController();
   late String firstname, lastname, email, password, confirmpassword, phone;
   bool switchState = false;
+  CollectionReference userRef = FirebaseFirestore.instance.collection("user");
 
+  void signin() {
+    FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: confirmpassword).then((value) {
+      print(value);
+      addUser(value.user!.uid);
+    }).catchError((onError) {
+      FirebaseAuthException exp = onError;
+      if (exp.message != null) {
 
+        showDialog(context: context, builder: (BuildContext context) {
+          return AlertDialog(title: Text(exp.message!));
+        });
+      }
+    });
+  }
 
+  Future<void> addUser(String uid) async {
+    userRef.add({
+      "uid": uid,
+      "firstname":firstname,
+      "lastname":lastname,
+      "email": email,
+      "password":confirmpassword,
+      "phone":phone
+    }).then((value) {
+      Navigator.of(context).pushReplacementNamed("/launch");
+    }).catchError((onError) {
+      showDialog(context: context, builder: (BuildContext context) {
+        return AlertDialog(title: Text(onError.toString()));
+      });
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -270,6 +303,7 @@ class _SignUpState extends State<SignUp> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           (formKey.currentState!.save());
+                          signin();
                           print(firstname);
                           print(lastname);
                           print(_emailController);
