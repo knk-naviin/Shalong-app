@@ -1,3 +1,6 @@
+
+import 'dart:html';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +11,13 @@ class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
   @override
+
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
+  late File _image;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  ImagePicker picker = ImagePicker();
   final _passwordController = TextEditingController();
   final _ConfirmpasswordController = TextEditingController();
   final _phonenumber = TextEditingController();
@@ -58,6 +62,7 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,9 +103,15 @@ class _SignUpState extends State<SignUp> {
                                         ListTile(
                                           leading:  Icon(CupertinoIcons.camera_fill),
                                           title:  Text('Camera'),
-                                          onTap: () async {
-                                            XFile? image = await picker.pickImage(source: ImageSource.camera);
-                                          },
+                                          onTap: () {_imgFromCamera() async {
+                                            File image = await ImagePicker.pickImage(
+                                                source: ImageSource.camera, imageQuality: 50
+                                            );
+
+                                            setState(() {
+                                              _image = image;
+                                            });
+                                          }}
                                         ),
                                         ListTile(
                                           leading:  Icon(CupertinoIcons.photo_fill),
