@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -79,34 +80,6 @@ class _SignUpState extends State<SignUp> {
                               "https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg"),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 110.0, top: 125, bottom: 0),
-                        child: IconButton(
-                            onPressed: () {
-                              CupertinoActionSheet(
-                                actions: [
-                                  CupertinoActionSheetAction(
-                                    child: Text("Gallery"),
-                                    onPressed: () => {},
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: Text("Camera"),
-                                    onPressed: () => {},
-                                  ),
-                                ],
-                                cancelButton: CupertinoActionSheetAction(
-                                  child: Text("Cancel"),
-                                  onPressed: () => {},
-                                ),
-                              );
-                            },
-                            icon: Icon(CupertinoIcons.photo_camera_solid),
-                            iconSize: 40,
-                            color: CupertinoColors.systemBlue,
-                            splashRadius: 30,
-                            splashColor: Colors.grey),
-                      )
                     ],
                   ),
                   Padding(
