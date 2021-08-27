@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+=======
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'ForgotPasswordScreen.dart';
+>>>>>>> 22f598864d6b468f1979c7806bede4d573260e88
 import 'SignUp.dart';
 
 class LogIn extends StatefulWidget {
