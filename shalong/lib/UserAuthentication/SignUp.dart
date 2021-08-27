@@ -1,8 +1,13 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -98,6 +103,7 @@ class _SignUpState extends State<SignUp> {
                             left: 110.0, top: 125, bottom: 0),
                         child: IconButton(
                             onPressed: () {
+<<<<<<< Updated upstream
                              showModalBottomSheet(context: context, builder: (context)=> CupertinoActionSheet(
                                actions: [
 
@@ -117,7 +123,11 @@ class _SignUpState extends State<SignUp> {
                                  onPressed: () => {},
                                ),
                              ));
+=======
+
+>>>>>>> Stashed changes
                             },
+
                             icon: Icon(CupertinoIcons.photo_camera_solid),
                             iconSize: 40,
                             color: CupertinoColors.systemBlue,
