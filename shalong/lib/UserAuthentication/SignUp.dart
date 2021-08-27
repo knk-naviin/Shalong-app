@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  ImagePicker picker = ImagePicker();
   final _passwordController = TextEditingController();
   final _ConfirmpasswordController = TextEditingController();
   final _phonenumber = TextEditingController();
@@ -21,16 +23,19 @@ class _SignUpState extends State<SignUp> {
   CollectionReference userRef = FirebaseFirestore.instance.collection("user");
 
   void signin() {
-    FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: confirmpassword).then((value) {
+    FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: confirmpassword)
+        .then((value) {
       print(value);
       addUser(value.user!.uid);
     }).catchError((onError) {
       FirebaseAuthException exp = onError;
       if (exp.message != null) {
-
-        showDialog(context: context, builder: (BuildContext context) {
-          return AlertDialog(title: Text(exp.message!));
-        });
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(title: Text(exp.message!));
+            });
       }
     });
   }
@@ -38,19 +43,19 @@ class _SignUpState extends State<SignUp> {
   Future<void> addUser(String uid) async {
     userRef.add({
       "uid": uid,
-      "firstname":firstname,
-      "lastname":lastname,
+      "firstname": firstname,
+      "lastname": lastname,
       "email": email,
-      "password":confirmpassword,
-      "phone":phone
+      "phone": phone
     }).then((value) {
       Navigator.of(context).pushReplacementNamed("/launch");
     }).catchError((onError) {
-      showDialog(context: context, builder: (BuildContext context) {
-        return AlertDialog(title: Text(onError.toString()));
-      });
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(title: Text(onError.toString()));
+          });
     });
-
   }
 
   @override
@@ -84,22 +89,30 @@ class _SignUpState extends State<SignUp> {
                             left: 110.0, top: 125, bottom: 0),
                         child: IconButton(
                             onPressed: () {
-                              CupertinoActionSheet(
-                                actions: [
-                                  CupertinoActionSheetAction(
-                                    child: Text("Gallery"),
-                                    onPressed: () => {},
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: Text("Camera"),
-                                    onPressed: () => {},
-                                  ),
-                                ],
-                                cancelButton: CupertinoActionSheetAction(
-                                  child: Text("Cancel"),
-                                  onPressed: () => {},
-                                ),
-                              );
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        ListTile(
+                                          leading:  Icon(CupertinoIcons.camera_fill),
+                                          title:  Text('Camera'),
+                                          onTap: () async {
+                                            XFile? image = await picker.pickImage(source: ImageSource.camera);
+                                          },
+                                        ),
+                                        ListTile(
+                                          leading:  Icon(CupertinoIcons.photo_fill),
+                                          title:  Text('Gallery'),
+                                          onTap: () async {
+                                            XFile? image = await picker.pickImage(source: ImageSource.gallery);
+                                          },
+                                        ),
+
+                                      ],
+                                    );
+                                  });
                             },
                             icon: Icon(CupertinoIcons.photo_camera_solid),
                             iconSize: 40,

@@ -13,7 +13,7 @@ class LogIn extends StatefulWidget {
 
 class _LogInState extends State<LogIn> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late String email, password,forgotemail;
+  late String email, password, forgotemail;
 
   void login() {
     FirebaseAuth.instance
@@ -112,9 +112,8 @@ class _LogInState extends State<LogIn> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context)  =>ForgotPasswordScreen(),
+                          builder: (context) => ForgotPasswordScreen(),
                         ),
-
                       );
                     },
                     child: Text(

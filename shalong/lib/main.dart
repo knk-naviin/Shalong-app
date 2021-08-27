@@ -1,4 +1,3 @@
-
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -64,7 +63,6 @@ class LaunchScreen extends StatefulWidget {
 }
 
 class _LaunchScreenState extends State<LaunchScreen> {
-
   @override
   Widget build(BuildContext context) {
     var uid = FirebaseAuth.instance.currentUser?.uid;
@@ -73,8 +71,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
     } else {
       return FutureBuilder(
         future: profile(),
-        builder: (BuildContext context,
-            AsyncSnapshot<Profile?> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<Profile?> snapshot) {
           if (snapshot.hasData) {
             var profile = snapshot.data;
             if (profile == null) {
