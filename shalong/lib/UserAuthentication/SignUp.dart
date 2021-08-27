@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class SignUp extends StatefulWidget {
@@ -54,6 +55,19 @@ class _SignUpState extends State<SignUp> {
 
   }
 
+  _getFromGallery() async {
+    XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        // imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +94,40 @@ class _SignUpState extends State<SignUp> {
                               "https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg"),
                         ),
                       ),
+<<<<<<< HEAD
+=======
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 110.0, top: 125, bottom: 0),
+                        child: IconButton(
+                            onPressed: () {
+                             showModalBottomSheet(context: context, builder: (context)=> CupertinoActionSheet(
+                               actions: [
+
+                                 CupertinoActionSheetAction(
+                                   child: Text("Gallery"),
+                                   onPressed: () => {
+                                     _getFromGallery()
+                                   },
+                                 ),
+                                 CupertinoActionSheetAction(
+                                   child: Text("Camera"),
+                                   onPressed: () => {},
+                                 ),
+                               ],
+                               cancelButton: CupertinoActionSheetAction(
+                                 child: Text("Cancel"),
+                                 onPressed: () => {},
+                               ),
+                             ));
+                            },
+                            icon: Icon(CupertinoIcons.photo_camera_solid),
+                            iconSize: 40,
+                            color: CupertinoColors.systemBlue,
+                            splashRadius: 30,
+                            splashColor: Colors.grey),
+                      )
+>>>>>>> 4937b2426a53d7bdead0b7fdc4c5b26256da474a
                     ],
                   ),
                   Padding(
@@ -295,3 +343,6 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
+
+
+
