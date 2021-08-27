@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+=======
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'ForgotPasswordScreen.dart';
+>>>>>>> 22f598864d6b468f1979c7806bede4d573260e88
 import 'SignUp.dart';
-
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -14,23 +20,23 @@ class LogIn extends StatefulWidget {
 
 class _LogInState extends State<LogIn> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late String email, password;
+  late String email, password,forgotemail;
 
   void login() {
-
-    FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) {
       Navigator.of(context).pushReplacementNamed("/launch");
     }).catchError((onError) {
       FirebaseAuthException exp = onError;
       if (exp.message != null) {
-
-      showDialog(context: context, builder: (BuildContext context) {
-        return AlertDialog(title: Text(exp.message!));
-      });
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(title: Text(exp.message!));
+            });
       }
     });
-
-
   }
 
   @override
@@ -46,15 +52,15 @@ class _LogInState extends State<LogIn> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
-                child: Text("Login",style: TextStyle(
-                  fontSize: 66,
-                  fontFamily: 'SourceCodePro',
-                  color: CupertinoColors.systemBlue,
-                  fontWeight: FontWeight.w600
-                )),
+                child: Text("Login",
+                    style: TextStyle(
+                        fontSize: 66,
+                        fontFamily: 'SourceCodePro',
+                        color: CupertinoColors.systemBlue,
+                        fontWeight: FontWeight.w600)),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 38.0,right: 38),
+                padding: const EdgeInsets.only(left: 38.0, right: 38),
                 child: SizedBox(
                   width: 375,
                   height: 90,
@@ -69,7 +75,7 @@ class _LogInState extends State<LogIn> {
                       return null;
                     },
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                        border: OutlineInputBorder(),
                         labelText: "Enter Your Email Address",
                         prefixIcon: Icon(
                           CupertinoIcons.mail_solid,
@@ -79,7 +85,7 @@ class _LogInState extends State<LogIn> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 38.0,right: 38.0),
+                padding: const EdgeInsets.only(left: 38.0, right: 38.0),
                 child: SizedBox(
                   width: 375,
                   child: TextFormField(
@@ -107,7 +113,22 @@ class _LogInState extends State<LogIn> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 35.0),
+                padding: const EdgeInsets.only(top: 8.0, left: 250, right: 8.0),
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ForgotPasswordScreen()),
+                      );
+
+                    },
+                    child: Text(
+                      "Forgot password?",
+                      style: TextStyle(color: CupertinoColors.systemRed),
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
                 child: CupertinoButton(
                     child: Text(
                       'Continue',
@@ -116,12 +137,10 @@ class _LogInState extends State<LogIn> {
                     color: CupertinoColors.systemBlue,
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        (formKey.currentState!.save());
-                       login();
+                     (formKey.currentState!.save());
+                        login();
                       }
-                    }
-                  //color: CupertinoColors.systemBlue,
-                ),
+                    }),
               ),
               TextButton(
                   onPressed: () {
@@ -130,9 +149,10 @@ class _LogInState extends State<LogIn> {
                       MaterialPageRoute(builder: (context) => SignUp()),
                     );
                   },
-                  child: Text("New Registration",style: TextStyle(
-                    color: CupertinoColors.systemBlue
-                  ),)),
+                  child: Text(
+                    "New Registration",
+                    style: TextStyle(color: CupertinoColors.systemBlue),
+                  )),
             ],
           ),
         ),
