@@ -19,7 +19,7 @@ class _SignUpState extends State<SignUp> {
   late String firstname, lastname, email, password, confirmpassword, phone;
   bool switchState = false;
   CollectionReference userRef = FirebaseFirestore.instance.collection("user");
-         //Firebase auth
+
   void signin() {
     FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: confirmpassword).then((value) {
       print(value);
@@ -34,7 +34,7 @@ class _SignUpState extends State<SignUp> {
       }
     });
   }
-       //Firebase Firestore(Database)
+
   Future<void> addUser(String uid) async {
     userRef.add({
       "uid": uid,
@@ -50,6 +50,7 @@ class _SignUpState extends State<SignUp> {
         return AlertDialog(title: Text(onError.toString()));
       });
     });
+
   }
 
   @override

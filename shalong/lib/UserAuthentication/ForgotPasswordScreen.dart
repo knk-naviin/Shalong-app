@@ -35,7 +35,7 @@ void forgotmail(){
           });
     }
   });
-    };
+    }
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(

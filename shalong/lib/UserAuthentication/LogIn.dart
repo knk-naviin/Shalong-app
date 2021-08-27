@@ -111,9 +111,11 @@ class _LogInState extends State<LogIn> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ForgotPasswordScreen()),
-                      );
+                        MaterialPageRoute(
+                            builder: (context)  =>ForgotPasswordScreen(),
+                        ),
 
+                      );
                     },
                     child: Text(
                       "Forgot password?",
@@ -130,7 +132,7 @@ class _LogInState extends State<LogIn> {
                     color: CupertinoColors.systemBlue,
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                     (formKey.currentState!.save());
+                        (formKey.currentState!.save());
                         login();
                       }
                     }),

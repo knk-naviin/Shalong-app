@@ -14,6 +14,10 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
+    // var email = FirebaseAuth.instance.currentUser?.email;
+    // if (email == null) {
+    //   email = "Guest";
+    // }
     return Scaffold(
       appBar: AppBar(title: Text("Shalong"), actions: [IconButton(onPressed: (){
         FirebaseAuth.instance.signOut();
