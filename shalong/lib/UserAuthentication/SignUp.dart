@@ -75,8 +75,7 @@ class _SignUpState extends State<SignUp> {
                         padding: const EdgeInsets.all(8.0),
                         child: CircleAvatar(
                           radius: 70,
-                          backgroundImage: NetworkImage(
-                              "https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg"),
+                          backgroundImage: AssetImage("images/Logo.jpeg"),
                         ),
                       ),
                       Padding(
@@ -140,7 +139,7 @@ class _SignUpState extends State<SignUp> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
                           child: SizedBox(
-                            width: 190,
+                            width: 162,
                             child: TextFormField(
                               onSaved: (value) {
                                 lastname = value!;
