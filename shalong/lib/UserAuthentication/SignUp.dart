@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 >>>>>>> Stashed changes
 
+
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -98,6 +99,8 @@ class _SignUpState extends State<SignUp> {
                               "https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg"),
                         ),
                       ),
+<<<<<<< HEAD
+=======
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 110.0, top: 125, bottom: 0),
@@ -134,6 +137,7 @@ class _SignUpState extends State<SignUp> {
                             splashRadius: 30,
                             splashColor: Colors.grey),
                       )
+>>>>>>> 4937b2426a53d7bdead0b7fdc4c5b26256da474a
                     ],
                   ),
                   Padding(
