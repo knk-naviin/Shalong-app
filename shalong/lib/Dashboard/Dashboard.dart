@@ -17,20 +17,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          elevation: 10.0,
-          child: ListView(
-            children: <Widget>[
-              UserAccountsDrawerHeader(
-                accountName: Text("Welcome " +
-                    widget.profile.firstName +
-                    " " +
-                    widget.profile.lastName),
-                accountEmail: Text(widget.profile.email),
-              ),
-            ],
-          ),
-        ),
+        // drawer: Drawer(
+        //   elevation: 10.0,
+        //   child: ListView(
+        //     children: <Widget>[
+        //       UserAccountsDrawerHeader(
+        //         accountName: Text("Welcome " +
+        //             widget.profile.firstName +
+        //             " " +
+        //             widget.profile.lastName),
+        //         accountEmail: Text(widget.profile.email),
+        //       ),
+        //     ],
+        //   ),
+        // ),
         appBar: AppBar(
           toolbarHeight: 80,
           title: Text("Shalong"),

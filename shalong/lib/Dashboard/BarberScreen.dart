@@ -26,7 +26,7 @@ class _BarberScreenState extends State<BarberScreen> {
                   child: TextFormField(
                     onSaved: (value) {},
                     keyboardType: TextInputType.text,
-                    obscureText: true,
+                    obscureText: false,
                     scrollPhysics: ScrollPhysics(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -43,11 +43,11 @@ class _BarberScreenState extends State<BarberScreen> {
               SizedBox(
                 width: 400,
                 child: Center(
-                  heightFactor: 1,
+                  heightFactor: 0,
                   child: TextFormField(
                     onSaved: (value) {},
                     keyboardType: TextInputType.text,
-                    obscureText: true,
+                    obscureText: false,
                     scrollPhysics: ScrollPhysics(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -62,13 +62,14 @@ class _BarberScreenState extends State<BarberScreen> {
 
               // address
               SizedBox(
+                //height:600,
                 width: 400,
                 child: Center(
                   heightFactor: 4,
                   child: TextFormField(
                     onSaved: (value) {},
-                    keyboardType: TextInputType.text,
-                    obscureText: true,
+                    keyboardType: TextInputType.streetAddress,
+                    obscureText: false,
                     scrollPhysics: ScrollPhysics(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -85,11 +86,11 @@ class _BarberScreenState extends State<BarberScreen> {
               SizedBox(
                 width: 400,
                 child: Center(
-                  heightFactor: 1.3,
+                  heightFactor: 0,
                   child: TextFormField(
                     onSaved: (value) {},
                     keyboardType: TextInputType.text,
-                    obscureText: true,
+                    obscureText: false,
                     scrollPhysics: ScrollPhysics(),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -103,7 +104,7 @@ class _BarberScreenState extends State<BarberScreen> {
               ),
 
               Center(
-                heightFactor: 3,
+                heightFactor: 4,
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text("Next"),

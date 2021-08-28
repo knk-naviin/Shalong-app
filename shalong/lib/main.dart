@@ -33,20 +33,14 @@ class _ShalongAppState extends State<ShalongApp> {
               return AnimatedSplashScreen(
                   nextScreen: LaunchScreen(), splash: Text("Shalong App"));
             } else {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    child: CircularProgressIndicator(
-                      color: Colors.red,
-                      backgroundColor: Colors.green,
+              return Center(
+                    child: SizedBox(
+                      child: CircularProgressIndicator(
+                      ),
+                      width: 30,
+                      height: 30,
                     ),
-                    width: 60,
-                    height: 60,
-                  ),
-                ],
-              );
+                  );
             }
           }),
       // body: LogIn(),
