@@ -44,18 +44,10 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
-<<<<<<< Updated upstream
-      <string>Upload images for screen background</string>
-      <key>NSCameraUsageDescription</key>
-      <string>Upload image from camera for screen background</string>
-      <key>NSMicrophoneUsageDescription</key>
-      <string>Post videos to profile</string>
-=======
     <string>Need to upload image</string>
     <key>NSCameraUsageDescription</key>
     <string>Need to upload image</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Need to upload image</string>
->>>>>>> Stashed changes
 </dict>
 </plist>

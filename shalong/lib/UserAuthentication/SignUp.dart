@@ -3,12 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -61,16 +55,16 @@ class _SignUpState extends State<SignUp> {
   }
 
   _getFromGallery() async {
-    XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-      maxWidth: 1800,
-      maxHeight: 1800,
-    );
-    if (pickedFile != null) {
-      setState(() {
-        // imageFile = File(pickedFile.path);
-      });
-    }
+    // XFile? pickedFile = await ImagePicker().pickImage(
+    //   source: ImageSource.gallery,
+    //   maxWidth: 1800,
+    //   maxHeight: 1800,
+    // );
+    // if (pickedFile != null) {
+    //   setState(() {
+    //     // imageFile = File(pickedFile.path);
+    //   });
+    // }
   }
 
   @override
@@ -99,14 +93,11 @@ class _SignUpState extends State<SignUp> {
                               "https://assets.turbologo.com/blog/en/2019/11/19084834/gaming-logo-cover.jpg"),
                         ),
                       ),
-<<<<<<< HEAD
-=======
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 110.0, top: 125, bottom: 0),
                         child: IconButton(
                             onPressed: () {
-<<<<<<< Updated upstream
                              showModalBottomSheet(context: context, builder: (context)=> CupertinoActionSheet(
                                actions: [
 
@@ -126,9 +117,6 @@ class _SignUpState extends State<SignUp> {
                                  onPressed: () => {},
                                ),
                              ));
-=======
-
->>>>>>> Stashed changes
                             },
 
                             icon: Icon(CupertinoIcons.photo_camera_solid),
@@ -137,7 +125,6 @@ class _SignUpState extends State<SignUp> {
                             splashRadius: 30,
                             splashColor: Colors.grey),
                       )
->>>>>>> 4937b2426a53d7bdead0b7fdc4c5b26256da474a
                     ],
                   ),
                   Padding(
