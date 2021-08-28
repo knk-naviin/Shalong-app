@@ -6,9 +6,9 @@ class Profile {
   String lastName;
   String phone;
   String email;
-  bool userType;
+  bool isBarber;
 
-  Profile(this.firstName, this.lastName, this.phone, this.email,this.userType);
+  Profile(this.firstName, this.lastName, this.phone, this.email, this.isBarber);
 }
 
 Future<Profile?> profile() async {
@@ -19,15 +19,12 @@ Future<Profile?> profile() async {
 
     var doc = queryInfo.docs.first;
     if (doc.exists) {
-      print("$profile");
-
-      print(doc["userType"]);
       var firstName = doc["firstname"];
       var lastName = doc["lastname"];
       var email = doc["email"];
       var phone = doc["phone"];
-      var userType = doc["userType"];
-      return Profile(firstName, lastName, phone, email,userType);
+      var isBarber = doc["is_barber"];
+      return Profile(firstName, lastName, phone, email, isBarber);
     }
   }
 

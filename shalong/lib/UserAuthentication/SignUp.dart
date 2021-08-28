@@ -23,12 +23,11 @@ class _SignUpState extends State<SignUp> {
   final _ConfirmpasswordController = TextEditingController();
   final _phonenumber = TextEditingController();
   final _emailController = TextEditingController();
-  late String firstname, lastname, email, password, confirmpassword, phone;
+  late String firstname, lastname, email, password, confirmpassword, phone,shopname,shopno;
   bool switchState = false;
   CollectionReference userRef = FirebaseFirestore.instance.collection("user");
 
   Future getImage(int type) async {
-    print("getImage klklk");
     PickedFile pickedImage = await ImagePicker.platform
         .getImage(source: ImageSource.gallery) as PickedFile;
     return pickedImage;
@@ -38,8 +37,6 @@ class _SignUpState extends State<SignUp> {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: confirmpassword)
         .then((value) {
-      print(value);
-      print("ajdkjkjksjfkdjfkdjfk");
       addUser(value.user!.uid);
     }).catchError((onError) {
       FirebaseAuthException exp = onError;
@@ -72,18 +69,6 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
-  _getFromGallery() async {
-    // XFile? pickedFile = await ImagePicker().pickImage(
-    //   source: ImageSource.gallery,
-    //   maxWidth: 1800,
-    //   maxHeight: 1800,
-    // );
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     // imageFile = File(pickedFile.path);
-    //   });
-    // }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,76 +86,7 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          radius: 55,
-                          backgroundColor: Color(0xffFDCF09),
-                          child: _image != null
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.file(
-                                    _image!,
-                                    width: 100,
-                                    height: 100,
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                )
-                              : Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey[200],
-                                      borderRadius: BorderRadius.circular(50)),
-                                  width: 100,
-                                  height: 100,
-                                  child: Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.grey[800],
-                                  ),
-                                ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 110.0, top: 125, bottom: 0),
-                        child: IconButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => CupertinoActionSheet(
-                                        actions: [
-                                          CupertinoActionSheetAction(
-                                              child: Text("Gallery"),
-                                              onPressed: () async {
-                                                final tmpFile =
-                                                    await getImage(0);
-                                                print(tmpFile);
-                                                setState(() {
-                                                  imageFile = tmpFile;
-                                                });
-                                              }),
-                                          CupertinoActionSheetAction(
-                                            child: Text("Camera"),
-                                            onPressed: () => {_imgFromCamera()},
-                                          ),
-                                        ],
-                                        cancelButton:
-                                            CupertinoActionSheetAction(
-                                          child: Text("Cancel"),
-                                          onPressed: () =>
-                                              {Navigator.pop(context)},
-                                        ),
-                                      ));
-                            },
-                            icon: Icon(CupertinoIcons.photo_camera_solid),
-                            iconSize: 40,
-                            color: CupertinoColors.systemBlue,
-                            splashRadius: 30,
-                            splashColor: Colors.grey),
-                      )
-                    ],
-                  ),
+                  
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 8, bottom: 15.0, top: 20),
@@ -344,6 +260,7 @@ class _SignUpState extends State<SignUp> {
                         child: SizedBox(child: Text("Are you barber?")),
                       ),
                       CupertinoSwitch(
+
                           activeColor: CupertinoColors.systemBlue,
                           value: switchState,
                           onChanged: (bool value) {
@@ -353,6 +270,59 @@ class _SignUpState extends State<SignUp> {
                           }),
                     ],
                   ),
+                  Visibility(
+                    visible: switchState == true ? true : false,
+                      child:Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: SizedBox(
+                              width: 400,
+                              child: TextFormField(
+                                onSaved: (value) {
+                                  shopname = value!;
+                                },
+                                validator: (value) {
+                                  if (value!.isNotEmpty){
+                                    return "Enter your shop name";
+                                  }
+                                },
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: "Enter Shop Password",
+                                    prefixIcon: Icon(
+                                      CupertinoIcons.home,
+                                      color: CupertinoColors.systemBlue,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: SizedBox(
+                              width: 400,
+                              child: TextFormField(
+                                onSaved: (value) {
+                                  shopno = value!;
+                                },
+                                validator: (value) {
+                                  if (value!.isNotEmpty){
+                                    return "Enter your Shop phone number";
+                                  }
+                                },
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: "Enter Shop phone number",
+                                    prefixIcon: Icon(
+                                      CupertinoIcons.phone_fill,
+                                      color: CupertinoColors.systemBlue,
+                                    )),
+                              ),
+                            ),
+                          ),
+                        ],
+
+                  )),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: CupertinoButton(

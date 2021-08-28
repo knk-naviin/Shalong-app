@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'ForgotPasswordScreen.dart';
 import 'SignUp.dart';
 import 'package:shalong/UserAuthentication/SignUp.dart';
@@ -26,31 +27,17 @@ class _LogInState extends State<LogIn> {
   void login() {
 
     FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password)
-        .then((value) {
+        .signInWithEmailAndPassword(email: email, password: password).then((value) {
 
-          print("user credentials  $value");
+          profile().then((profile) {
+            if (profile?.isBarber ?? false) {
+              Navigator.of(context).pushReplacementNamed("/barber");
+            } else {
+              Navigator.of(context).pushReplacementNamed("/customer");
+            }
+          }).catchError((onError) {
 
-          final firestoreInstance = FirebaseFirestore.instance;
-
-          firestoreInstance.collection("user").get().then((querySnapshot) {
-            querySnapshot.docs.forEach((result) {
-              print(result.data());
-
-              if(result.data()["userType"] == true)
-              {
-                print(result.data()["userType"]);
-
-                Navigator.of(context).pushReplacementNamed("/barber");
-
-              }
-              else
-              {
-                Navigator.of(context).pushReplacementNamed("/customer");
-              }
-            });
           });
-          print(value.additionalUserInfo!.profile!["userType"]);
 
     }).catchError((onError) {
       FirebaseAuthException exp = onError;
