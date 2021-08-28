@@ -39,24 +39,12 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="137" y="0" width="1092" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1629979827051">
-      <screen x="0" y="0" width="1366" height="720" />
-    </state>
-    <state x="137" y="0" width="1092" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.720@0.0.1366.720" timestamp="1629979827051" />
-    <state x="412" y="152" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1629979813930">
-      <screen x="0" y="0" width="1366" height="720" />
-    </state>
-    <state x="412" y="152" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1366.720@0.0.1366.720" timestamp="1629979813930" />
-    <state x="463" y="114" key="FileChooserDialogImpl" timestamp="1629979911466">
-      <screen x="0" y="0" width="1366" height="720" />
-    </state>
-    <state x="463" y="114" key="FileChooserDialogImpl/0.0.1366.720@0.0.1366.720" timestamp="1629979911466" />
-    <state width="1306" height="173" key="GridCell.Tab.0.bottom" timestamp="1629903689201">
-      <screen x="0" y="0" width="1366" height="720" />
-    </state>
-    <state width="1306" height="173" key="GridCell.Tab.0.bottom/0.0.1366.720@0.0.1366.720" timestamp="1629903689201" />
-    <state width="1306" height="173" key="GridCell.Tab.0.center" timestamp="1629903689200">
+
+    <state x="137" y="5" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1629879403081">
       <screen x="0" y="0" width="1366" height="720" />
     </state>
     <state width="1306" height="173" key="GridCell.Tab.0.center/0.0.1366.720@0.0.1366.720" timestamp="1629903689200" />
@@ -70,7 +58,41 @@
     <state width="1306" height="173" key="GridCell.Tab.0.right/0.0.1366.720@0.0.1366.720" timestamp="1629903689200" />
     <state x="184" y="4" key="SettingsEditor" timestamp="1629879556553">
       <screen x="0" y="0" width="1366" height="720" />
+    <state x="128" y="0" width="1024" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630033881350">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state x="128" y="0" width="1024" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1630033881350" />
+    <state x="137" y="5" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.720@0.0.1366.720" timestamp="1629879403081" />
+    <state x="386" y="152" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1630033879625">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="386" y="152" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1280.720@0.0.1280.720" timestamp="1630033879625" />
+    <state x="412" y="152" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1366.720@0.0.1366.720" timestamp="1629879399487" />
+    <state x="434" y="114" key="FileChooserDialogImpl" timestamp="1630033962940">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="434" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1630033962940" />
+    <state x="463" y="114" key="FileChooserDialogImpl/0.0.1366.720@0.0.1366.720" timestamp="1629879553647" />
+    <state width="595" height="472" key="GridCell.Tab.0.bottom" timestamp="1630033964307">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="595" height="472" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1630033964307" />
+    <state width="595" height="472" key="GridCell.Tab.0.center" timestamp="1630033964307">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="595" height="472" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1630033964307" />
+    <state width="595" height="472" key="GridCell.Tab.0.left" timestamp="1630033964307">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="595" height="472" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1630033964307" />
+    <state width="595" height="472" key="GridCell.Tab.0.right" timestamp="1630033964307">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="595" height="472" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1630033964307" />
+    <state x="172" y="4" key="SettingsEditor" timestamp="1630033893789">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="172" y="4" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1630033893789" />
     <state x="184" y="4" key="SettingsEditor/0.0.1366.720@0.0.1366.720" timestamp="1629879556553" />
   </component>
 </project>

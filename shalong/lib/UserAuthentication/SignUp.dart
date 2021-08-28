@@ -1,11 +1,9 @@
 
-import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -16,7 +14,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  late File _image;
+  // late File _image;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
   final _ConfirmpasswordController = TextEditingController();
@@ -62,6 +60,18 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
+  _getFromGallery() async {
+    // XFile? pickedFile = await ImagePicker().pickImage(
+    //   source: ImageSource.gallery,
+    //   maxWidth: 1800,
+    //   maxHeight: 1800,
+    // );
+    // if (pickedFile != null) {
+    //   setState(() {
+    //     // imageFile = File(pickedFile.path);
+    //   });
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,37 +103,28 @@ class _SignUpState extends State<SignUp> {
                             left: 110.0, top: 125, bottom: 0),
                         child: IconButton(
                             onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        ListTile(
-                                          leading:  Icon(CupertinoIcons.camera_fill),
-                                          title:  Text('Camera'),
-                                          onTap: () {_imgFromCamera() async {
-                                            File image = await ImagePicker.pickImage(
-                                                source: ImageSource.camera, imageQuality: 50
-                                            );
 
-                                            setState(() {
-                                              _image = image;
-                                            });
-                                          }}
-                                        ),
-                                        ListTile(
-                                          leading:  Icon(CupertinoIcons.photo_fill),
-                                          title:  Text('Gallery'),
-                                          onTap: () async {
-                                            XFile? image = await picker.pickImage(source: ImageSource.gallery);
-                                          },
-                                        ),
+                             showModalBottomSheet(context: context, builder: (context)=> CupertinoActionSheet(
+                               actions: [
 
-                                      ],
-                                    );
-                                  });
+                                 CupertinoActionSheetAction(
+                                   child: Text("Gallery"),
+                                   onPressed: () => {
+                                     _getFromGallery()
+                                   },
+                                 ),
+                                 CupertinoActionSheetAction(
+                                   child: Text("Camera"),
+                                   onPressed: () => {},
+                                 ),
+                               ],
+                               cancelButton: CupertinoActionSheetAction(
+                                 child: Text("Cancel"),
+                                 onPressed: () => {},
+                               ),
+                             ));
                             },
+
                             icon: Icon(CupertinoIcons.photo_camera_solid),
                             iconSize: 40,
                             color: CupertinoColors.systemBlue,
@@ -345,3 +346,6 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
+
+
+
