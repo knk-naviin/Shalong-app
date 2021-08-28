@@ -6,8 +6,9 @@ class Profile {
   String lastName;
   String phone;
   String email;
+  bool userType;
 
-  Profile(this.firstName, this.lastName, this.phone, this.email);
+  Profile(this.firstName, this.lastName, this.phone, this.email,this.userType);
 }
 
 Future<Profile?> profile() async {
@@ -15,13 +16,18 @@ Future<Profile?> profile() async {
   if (uid != null) {
     CollectionReference userRef = FirebaseFirestore.instance.collection("user");
     var queryInfo = (await userRef.where("uid", isEqualTo: uid).get());
+
     var doc = queryInfo.docs.first;
     if (doc.exists) {
+      print("$profile");
+
+      print(doc["userType"]);
       var firstName = doc["firstname"];
       var lastName = doc["lastname"];
       var email = doc["email"];
       var phone = doc["phone"];
-      return Profile(firstName, lastName, phone, email);
+      var userType = doc["userType"];
+      return Profile(firstName, lastName, phone, email,userType);
     }
   }
 

@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/BarberScreen.dart';
-import 'package:shalong/Dashboard/CustomerScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -17,20 +16,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // drawer: Drawer(
-        //   elevation: 10.0,
-        //   child: ListView(
-        //     children: <Widget>[
-        //       UserAccountsDrawerHeader(
-        //         accountName: Text("Welcome " +
-        //             widget.profile.firstName +
-        //             " " +
-        //             widget.profile.lastName),
-        //         accountEmail: Text(widget.profile.email),
-        //       ),
-        //     ],
-        //   ),
-        // ),
         appBar: AppBar(
           toolbarHeight: 80,
           title: Text("Shalong"),
@@ -85,10 +70,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               heightFactor: 3,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CustomerScreen()),
-                  );
+
                 },
                 child: Text("I am a Customer"),
                 style: ElevatedButton.styleFrom(

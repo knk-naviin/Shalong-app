@@ -1,20 +1,23 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
   @override
-
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  // late File _image;
+  File? _image;
+  PickedFile? pickedFile;
+
+  late PickedFile imageFile;
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
   final _ConfirmpasswordController = TextEditingController();
@@ -24,11 +27,19 @@ class _SignUpState extends State<SignUp> {
   bool switchState = false;
   CollectionReference userRef = FirebaseFirestore.instance.collection("user");
 
+  Future getImage(int type) async {
+    print("getImage klklk");
+    PickedFile pickedImage = await ImagePicker.platform
+        .getImage(source: ImageSource.gallery) as PickedFile;
+    return pickedImage;
+  }
+
   void signin() {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: confirmpassword)
         .then((value) {
       print(value);
+      print("ajdkjkjksjfkdjfkdjfk");
       addUser(value.user!.uid);
     }).catchError((onError) {
       FirebaseAuthException exp = onError;
@@ -48,7 +59,8 @@ class _SignUpState extends State<SignUp> {
       "firstname": firstname,
       "lastname": lastname,
       "email": email,
-      "phone": phone
+      "phone": phone,
+      "userType": switchState
     }).then((value) {
       Navigator.of(context).pushReplacementNamed("/launch");
     }).catchError((onError) {
@@ -94,8 +106,29 @@ class _SignUpState extends State<SignUp> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CircleAvatar(
-                          radius: 70,
-                          backgroundImage: AssetImage("images/Logo.jpeg"),
+                          radius: 55,
+                          backgroundColor: Color(0xffFDCF09),
+                          child: _image != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.file(
+                                    _image!,
+                                    width: 100,
+                                    height: 100,
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.circular(50)),
+                                  width: 100,
+                                  height: 100,
+                                  child: Icon(
+                                    Icons.camera_alt,
+                                    color: Colors.grey[800],
+                                  ),
+                                ),
                         ),
                       ),
                       Padding(
@@ -103,28 +136,33 @@ class _SignUpState extends State<SignUp> {
                             left: 110.0, top: 125, bottom: 0),
                         child: IconButton(
                             onPressed: () {
-
-                             showModalBottomSheet(context: context, builder: (context)=> CupertinoActionSheet(
-                               actions: [
-
-                                 CupertinoActionSheetAction(
-                                   child: Text("Gallery"),
-                                   onPressed: () => {
-                                     _getFromGallery()
-                                   },
-                                 ),
-                                 CupertinoActionSheetAction(
-                                   child: Text("Camera"),
-                                   onPressed: () => {},
-                                 ),
-                               ],
-                               cancelButton: CupertinoActionSheetAction(
-                                 child: Text("Cancel"),
-                                 onPressed: () => {},
-                               ),
-                             ));
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => CupertinoActionSheet(
+                                        actions: [
+                                          CupertinoActionSheetAction(
+                                              child: Text("Gallery"),
+                                              onPressed: () async {
+                                                final tmpFile =
+                                                    await getImage(0);
+                                                print(tmpFile);
+                                                setState(() {
+                                                  imageFile = tmpFile;
+                                                });
+                                              }),
+                                          CupertinoActionSheetAction(
+                                            child: Text("Camera"),
+                                            onPressed: () => {_imgFromCamera()},
+                                          ),
+                                        ],
+                                        cancelButton:
+                                            CupertinoActionSheetAction(
+                                          child: Text("Cancel"),
+                                          onPressed: () =>
+                                              {Navigator.pop(context)},
+                                        ),
+                                      ));
                             },
-
                             icon: Icon(CupertinoIcons.photo_camera_solid),
                             iconSize: 40,
                             color: CupertinoColors.systemBlue,
@@ -303,8 +341,7 @@ class _SignUpState extends State<SignUp> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child:
-                            SizedBox(child: Text("Accept Terms & Conditions ")),
+                        child: SizedBox(child: Text("Are you barber?")),
                       ),
                       CupertinoSwitch(
                           activeColor: CupertinoColors.systemBlue,
@@ -333,6 +370,7 @@ class _SignUpState extends State<SignUp> {
                           print(_emailController);
                           print(_passwordController);
                           print(_phonenumber);
+                          print("usertype saved $switchState");
                         }
                       },
                     ),
@@ -345,7 +383,33 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
+  _imgFromGallery() async {
+    print("wewe ioioio");
+
+    var images =
+        await ImagePicker.platform.getImage(source: ImageSource.gallery);
+
+    print("wewe $images");
+
+    File image = (await ImagePicker.platform
+        .pickImage(source: ImageSource.gallery, imageQuality: 50)) as File;
+    print("wewe $image");
+
+    setState(() {
+      print(_image!.path);
+
+      print(image.path);
+      _image = image;
+    });
+  }
+
+  _imgFromCamera() async {
+    File image = (await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50)) as File;
+
+    setState(() {
+      _image = image;
+    });
+  }
 }
-
-
-

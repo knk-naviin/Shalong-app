@@ -121,10 +121,7 @@ class _BarberScreenState extends State<BarberScreen> {
                 ),
               )
             ]
-
-              // Text("Welcome " + widget.profile.firstName + " " + widget.profile.lastName),
-              // Text(widget.profile.email),
-              // Text(widget.profile.phone),
+                
 
             ),
           ),

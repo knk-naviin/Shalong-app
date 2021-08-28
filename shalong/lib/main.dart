@@ -2,6 +2,8 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shalong/Dashboard/BarberScreen.dart';
+import 'package:shalong/Dashboard/CustomerScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'package:shalong/UserAuthentication/LogIn.dart';
 import 'Dashboard/Dashboard.dart';
@@ -11,7 +13,10 @@ void main() {
       debugShowCheckedModeBanner: false,
       home: ShalongApp(),
       routes: <String, WidgetBuilder>{
-        '/launch': (BuildContext context) => LaunchScreen()
+        '/launch': (BuildContext context) => LaunchScreen(),
+        '/barber': (BuildContext context) => BarberScreen(),
+        '/customer': (BuildContext context) => CustomerScreen(),
+
       }));
 }
 

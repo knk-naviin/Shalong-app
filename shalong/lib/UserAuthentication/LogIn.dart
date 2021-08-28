@@ -1,10 +1,13 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'ForgotPasswordScreen.dart';
 import 'SignUp.dart';
 import 'package:shalong/UserAuthentication/SignUp.dart';
+
+
 
 
 class LogIn extends StatefulWidget {
@@ -14,15 +17,41 @@ class LogIn extends StatefulWidget {
   _LogInState createState() => _LogInState();
 }
 
+
 class _LogInState extends State<LogIn> {
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String email, password, forgotemail;
 
   void login() {
+
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      Navigator.of(context).pushReplacementNamed("/launch");
+
+          print("user credentials  $value");
+
+          final firestoreInstance = FirebaseFirestore.instance;
+
+          firestoreInstance.collection("user").get().then((querySnapshot) {
+            querySnapshot.docs.forEach((result) {
+              print(result.data());
+
+              if(result.data()["userType"] == true)
+              {
+                print(result.data()["userType"]);
+
+                Navigator.of(context).pushReplacementNamed("/barber");
+
+              }
+              else
+              {
+                Navigator.of(context).pushReplacementNamed("/customer");
+              }
+            });
+          });
+          print(value.additionalUserInfo!.profile!["userType"]);
+
     }).catchError((onError) {
       FirebaseAuthException exp = onError;
       if (exp.message != null) {
