@@ -9,7 +9,6 @@ import 'Dashboard/Dashboard.dart';
 import 'UserAuthentication/GoogleSignIn/GoogleSignIn.dart';
 import 'UserAuthentication/UserAuth.dart';
 
-
 void main() {
   runApp(new MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -40,13 +39,12 @@ class _ShalongAppState extends State<ShalongApp> {
                   nextScreen: LaunchScreen(), splash: Text("Shalong App"));
             } else {
               return Center(
-                    child: SizedBox(
-                      child: CircularProgressIndicator(
-                      ),
-                      width: 30,
-                      height: 30,
-                    ),
-                  );
+                child: SizedBox(
+                  child: CircularProgressIndicator(),
+                  width: 30,
+                  height: 30,
+                ),
+              );
             }
           }),
       // body: LogIn(),
@@ -79,7 +77,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
             } else {
               return DashboardScreen(profile);
             }
-          } else if (snapshot.hasError) {
+          } else if (snapshot.hasError || (snapshot.connectionState == ConnectionState.done && snapshot.data == null)) {
             return UserAuth();
           } else {
             return Column(

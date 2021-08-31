@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class BarberScreen extends StatefulWidget {
   const BarberScreen({Key? key}) : super(key: key);
@@ -7,6 +8,7 @@ class BarberScreen extends StatefulWidget {
   @override
   _BarberScreenState createState() => _BarberScreenState();
 }
+
 
 class _BarberScreenState extends State<BarberScreen> {
   @override
@@ -88,6 +90,9 @@ class _BarberScreenState extends State<BarberScreen> {
                 child: Center(
                   heightFactor: 0,
                   child: TextFormField(
+                    onTap: (){
+
+                    },
                     onSaved: (value) {},
                     keyboardType: TextInputType.text,
                     obscureText: false,

@@ -1,14 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:shalong/Dashboard/BarberScreen.dart';
-import 'package:shalong/UserAuthentication/AuthManager.dart';
-
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
+
 
 class DashboardScreen extends StatefulWidget {
 
@@ -20,11 +14,13 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
 
+
   bool showBarberWidget = false;
   bool showCxWidget = false;
 
+
   Widget barberWidget() {
-    return Flexible(child: Container(color: Colors.white,child: Column(
+    return Flexible(child: Container(color: Colors.white, child: Column(
       children: [
         SizedBox(
           height: 100,
@@ -92,7 +88,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Center(
             heightFactor: 1,
             child: TextFormField(
-              onTap: (){
+              onTap: () {
+                FocusScopeNode currentFocus = FocusScope.of(context);
 
               },
               onSaved: (value) {},
@@ -115,11 +112,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             onPrimary: Colors.white,
             primary: Colors.blue,
             elevation: 2,
-            minimumSize: Size(150,50),
+            minimumSize: Size(150, 50),
             shadowColor: Colors.teal,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30)),
           ),
-          onPressed:() {
+          onPressed: () {
 
           },
         )
@@ -138,7 +136,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Center(
                 heightFactor: 10,
                 child: TextFormField(
-                  onTap: (){
+                  onTap: () {
 
                   },
                   onSaved: (value) {},
@@ -161,14 +159,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onPrimary: Colors.white,
                 primary: Colors.blue,
                 elevation: 2,
-                minimumSize: Size(150,50),
+                minimumSize: Size(150, 50),
                 shadowColor: Colors.teal,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
               ),
-              onPressed:() {
+              onPressed: () {
 
               },
-            )
+            ),
+
 
           ],
         )
@@ -188,7 +188,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       bottomWidget = barberWidget();
     } else if (showCxWidget) {
       bottomWidget = customerWidget();
-    }  else {
+    } else {
       bottomWidget = Container();
     }
 
@@ -199,15 +199,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
           actions: [
             IconButton(
                 onPressed: () {
-
-                  showDialog(context: context, builder: (ctx)=>
-                      AlertDialog(content: Text("Are you sure want to Logout? \n"+ widget.profile.email),actions: [
-                        TextButton(onPressed: (){
+                  showDialog(context: context, builder: (ctx) =>
+                      AlertDialog(content: Text(
+                          "Are you sure want to Logout? \n" +
+                              widget.profile.email), actions: [
+                        TextButton(onPressed: () {
                           Navigator.of(ctx).pop();
                         }, child: Text("Cancel")),
-                        TextButton(onPressed: (){
+                        TextButton(onPressed: () {
                           Navigator.of(ctx).pop();
-                          signout().then((value) => Navigator.pushReplacementNamed(context, "/launch"));
+                          signout().then((value) =>
+                              Navigator.pushReplacementNamed(
+                                  context, "/launch"));
                         }, child: Text("Logout")),
                       ],));
                   // FirebaseAuth.instance.signOut();
@@ -232,7 +235,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       },
                       child: Text("I am a Barber"),
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(60)),
                         onPrimary: Colors.white,
                         primary: Colors.blue,
                         onSurface: Colors.grey,
@@ -251,12 +255,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         setState(() {
                           showBarberWidget = false;
                           showCxWidget = true;
-
                         });
                       },
                       child: Text("I am a Customer"),
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(60)),
                         onPrimary: Colors.white,
                         primary: Colors.blue,
                         onSurface: Colors.grey,
@@ -266,6 +270,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                   ),
+
                 ],
               ),
               bottomWidget
@@ -276,7 +281,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 }
-
 /*
 class DashboardScreen extends StatefulWidget {
   Profile profile;
