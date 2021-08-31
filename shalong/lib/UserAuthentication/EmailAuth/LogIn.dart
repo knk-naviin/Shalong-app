@@ -1,12 +1,11 @@
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
-import 'ForgotPasswordScreen.dart';
+import 'package:shalong/UserAuthentication/EmailAuth/ForgotPasswordScreen.dart';
+
 import 'SignUp.dart';
-import 'package:shalong/UserAuthentication/SignUp.dart';
+
 
 
 
@@ -29,15 +28,15 @@ class _LogInState extends State<LogIn> {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password).then((value) {
 
-          profile().then((profile) {
-            if (profile?.isBarber ?? false) {
-              Navigator.of(context).pushReplacementNamed("/barber");
-            } else {
-              Navigator.of(context).pushReplacementNamed("/customer");
-            }
-          }).catchError((onError) {
+      profile().then((profile) {
+        if (profile?.isBarber ?? false) {
+          Navigator.of(context).pushReplacementNamed("/barber");
+        } else {
+          Navigator.of(context).pushReplacementNamed("/customer");
+        }
+      }).catchError((onError) {
 
-          });
+      });
 
     }).catchError((onError) {
       FirebaseAuthException exp = onError;

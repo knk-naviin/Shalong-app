@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/BarberScreen.dart';
 import 'package:shalong/Dashboard/CustomerScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
-import 'package:shalong/UserAuthentication/LogIn.dart';
 import 'Dashboard/Dashboard.dart';
+import 'UserAuthentication/OTPAuth/OtpMain.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -16,7 +16,6 @@ void main() {
         '/launch': (BuildContext context) => LaunchScreen(),
         '/barber': (BuildContext context) => BarberScreen(),
         '/customer': (BuildContext context) => CustomerScreen(),
-
       }));
 }
 
@@ -36,7 +35,7 @@ class _ShalongAppState extends State<ShalongApp> {
           builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
             if (snapshot.hasData || snapshot.hasError) {
               return AnimatedSplashScreen(
-                  nextScreen: LaunchScreen(), splash: Text("Shalong App"));
+                  nextScreen: OtpLogin(), splash: Text("Shalong App"));
             } else {
               return Center(
                     child: SizedBox(
@@ -64,8 +63,9 @@ class _LaunchScreenState extends State<LaunchScreen> {
   @override
   Widget build(BuildContext context) {
     var uid = FirebaseAuth.instance.currentUser?.uid;
+    print("uid null $uid");
     if (uid == null) {
-      return LogIn();
+      return OtpLogin();
     } else {
       return FutureBuilder(
         future: profile(),
@@ -73,12 +73,12 @@ class _LaunchScreenState extends State<LaunchScreen> {
           if (snapshot.hasData) {
             var profile = snapshot.data;
             if (profile == null) {
-              return LogIn();
+              return OtpLogin();
             } else {
               return DashboardScreen(profile);
             }
           } else if (snapshot.hasError) {
-            return LogIn();
+            return OtpLogin();
           } else {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -36,11 +36,12 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.shalong"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+        buildToolsVersion "23.0.3"
     }
     lintOptions {
         disable 'InvalidPackage'

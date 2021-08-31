@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -13,25 +12,14 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  File? _image;
-  PickedFile? pickedFile;
-
-  late PickedFile imageFile;
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
   final _ConfirmpasswordController = TextEditingController();
   final _phonenumber = TextEditingController();
   final _emailController = TextEditingController();
-  late String firstname, lastname, email, password, confirmpassword, phone,shopname,shopno;
+  late String firstname, lastname, email, password, confirmpassword, phone,shopName = "",shopno = "";
   bool switchState = false;
   CollectionReference userRef = FirebaseFirestore.instance.collection("user");
-
-  Future getImage(int type) async {
-    PickedFile pickedImage = await ImagePicker.platform
-        .getImage(source: ImageSource.gallery) as PickedFile;
-    return pickedImage;
-  }
 
   void signin() {
     FirebaseAuth.instance
@@ -57,7 +45,9 @@ class _SignUpState extends State<SignUp> {
       "lastname": lastname,
       "email": email,
       "phone": phone,
-      "userType": switchState
+      "usertype": switchState,
+      "shopname":shopName,
+      "shopno":shopno
     }).then((value) {
       Navigator.of(context).pushReplacementNamed("/launch");
     }).catchError((onError) {
@@ -86,7 +76,7 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  
+
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 8, bottom: 15.0, top: 20),
@@ -247,7 +237,7 @@ class _SignUpState extends State<SignUp> {
                             border: OutlineInputBorder(),
                             labelText: "Enter phone number",
                             prefixIcon: Icon(
-                              CupertinoIcons.lock,
+                              CupertinoIcons.phone_fill,
                               color: CupertinoColors.systemBlue,
                             )),
                       ),
@@ -280,16 +270,16 @@ class _SignUpState extends State<SignUp> {
                               width: 400,
                               child: TextFormField(
                                 onSaved: (value) {
-                                  shopname = value!;
+                                  shopName = value!;
                                 },
                                 validator: (value) {
-                                  if (value!.isNotEmpty){
+                                  if (value!.isEmpty){
                                     return "Enter your shop name";
                                   }
                                 },
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: "Enter Shop Password",
+                                    labelText: "Enter Shop Name",
                                     prefixIcon: Icon(
                                       CupertinoIcons.home,
                                       color: CupertinoColors.systemBlue,
@@ -306,7 +296,7 @@ class _SignUpState extends State<SignUp> {
                                   shopno = value!;
                                 },
                                 validator: (value) {
-                                  if (value!.isNotEmpty){
+                                  if (value!.isEmpty){
                                     return "Enter your Shop phone number";
                                   }
                                 },
@@ -352,34 +342,5 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-  }
-
-  _imgFromGallery() async {
-    print("wewe ioioio");
-
-    var images =
-        await ImagePicker.platform.getImage(source: ImageSource.gallery);
-
-    print("wewe $images");
-
-    File image = (await ImagePicker.platform
-        .pickImage(source: ImageSource.gallery, imageQuality: 50)) as File;
-    print("wewe $image");
-
-    setState(() {
-      print(_image!.path);
-
-      print(image.path);
-      _image = image;
-    });
-  }
-
-  _imgFromCamera() async {
-    File image = (await ImagePicker.platform
-        .pickImage(source: ImageSource.camera, imageQuality: 50)) as File;
-
-    setState(() {
-      _image = image;
-    });
   }
 }
