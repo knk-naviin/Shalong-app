@@ -30,8 +30,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         }, child: Text("Cancel")),
                         TextButton(onPressed: (){
                           Navigator.of(ctx).pop();
-                          FirebaseAuth.instance.signOut();
-                          Navigator.of(context).pushReplacementNamed("/launch");
+                          signout().then((value) => Navigator.pushReplacementNamed(context, "/launch"));
                         }, child: Text("Logout")),
                       ],));
                   // FirebaseAuth.instance.signOut();

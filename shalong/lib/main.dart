@@ -6,7 +6,9 @@ import 'package:shalong/Dashboard/BarberScreen.dart';
 import 'package:shalong/Dashboard/CustomerScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'Dashboard/Dashboard.dart';
-import 'UserAuthentication/OTPAuth/OtpMain.dart';
+import 'UserAuthentication/GoogleSignIn/GoogleSignIn.dart';
+import 'UserAuthentication/UserAuth.dart';
+
 
 void main() {
   runApp(new MaterialApp(
@@ -35,7 +37,7 @@ class _ShalongAppState extends State<ShalongApp> {
           builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
             if (snapshot.hasData || snapshot.hasError) {
               return AnimatedSplashScreen(
-                  nextScreen: OtpLogin(), splash: Text("Shalong App"));
+                  nextScreen: LaunchScreen(), splash: Text("Shalong App"));
             } else {
               return Center(
                     child: SizedBox(
@@ -65,7 +67,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
     var uid = FirebaseAuth.instance.currentUser?.uid;
     print("uid null $uid");
     if (uid == null) {
-      return OtpLogin();
+      return UserAuth();
     } else {
       return FutureBuilder(
         future: profile(),
@@ -73,12 +75,12 @@ class _LaunchScreenState extends State<LaunchScreen> {
           if (snapshot.hasData) {
             var profile = snapshot.data;
             if (profile == null) {
-              return OtpLogin();
+              return UserAuth();
             } else {
               return DashboardScreen(profile);
             }
           } else if (snapshot.hasError) {
-            return OtpLogin();
+            return UserAuth();
           } else {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,

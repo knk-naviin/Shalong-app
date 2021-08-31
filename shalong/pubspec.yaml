@@ -36,6 +36,7 @@ dependencies:
   font_awesome_flutter: ^9.0.0
   provider: ^5.0.0
   pinput: ^1.2.0
+  http:
 
 
 

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shalong/UserAuthentication/GoogleSignIn/GoogleSignIn.dart';
 
-import '../UserAuthentication/OTPAuth/PhoneAuth.dart';
 
 
 class NextScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _NextScreenState extends State<NextScreen> {
               await FirebaseAuth.instance.signOut();
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => PhoneAuth()),
+                  MaterialPageRoute(builder: (context) => GoogleSignIn()),
                       (route) => false);
             },
           )
