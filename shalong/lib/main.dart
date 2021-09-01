@@ -1,12 +1,15 @@
+import 'dart:io';
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/BarberScreen.dart';
 import 'package:shalong/Dashboard/CustomerScreen.dart';
+import 'package:shalong/Dashboard/ProfileUpdateScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'Dashboard/Dashboard.dart';
-import 'UserAuthentication/GoogleSignIn/GoogleSignIn.dart';
 import 'UserAuthentication/UserAuth.dart';
 
 void main() {
@@ -17,6 +20,7 @@ void main() {
         '/launch': (BuildContext context) => LaunchScreen(),
         '/barber': (BuildContext context) => BarberScreen(),
         '/customer': (BuildContext context) => CustomerScreen(),
+        '/profileUpdateScreen': (BuildContext context) => ProfileUpdateScreen(),
       }));
 }
 
@@ -85,7 +89,9 @@ class _LaunchScreenState extends State<LaunchScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  child: CircularProgressIndicator(),
+                  child: Platform.isAndroid
+                  ? CircularProgressIndicator()
+                  : CupertinoActivityIndicator(),
                   width: 30,
                   height: 30,
                 ),

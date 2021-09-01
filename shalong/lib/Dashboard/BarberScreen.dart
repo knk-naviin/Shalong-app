@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+
 
 class BarberScreen extends StatefulWidget {
   const BarberScreen({Key? key}) : super(key: key);

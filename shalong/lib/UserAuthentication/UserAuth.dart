@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:pinput/pin_put/pin_put.dart';
-
 import 'GoogleSignIn/GoogleSignIn.dart';
 
 class UserAuth extends StatefulWidget {
@@ -24,7 +21,7 @@ class _UserAuthState extends State<UserAuth> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 25.0),
-                child: Text("Registartion",style: TextStyle(color: Colors.blue,fontSize: 38),),
+                child: Text("Regisrtion",style: TextStyle(color: Colors.blue,fontSize: 38),),
               ),
               SizedBox(
                 width: 320,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shalong/Dashboard/Dashboard.dart';
+import 'package:shalong/Dashboard/ProfileUpdateScreen.dart';
 
 import '../AuthManager.dart';
 
@@ -28,10 +29,8 @@ class _GoogleSignInState extends State<GoogleSignIn> {
           onPressed: () async {
            var profile = await signInWithGoogleAndGetProfile();
            if (profile == null) {
-             //profile update
-             showDialog(context: (context), builder: (build)=>AlertDialog(
-               title: Text("Info is not available"),
-             ));
+             Navigator.of(context).pushReplacementNamed("/profileUpdateScreen");
+
            } else {
              Navigator.of(context).pushReplacementNamed("/launch");
 
