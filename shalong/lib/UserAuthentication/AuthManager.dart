@@ -1,23 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Profile {
-  String firstName;
-  String lastName;
-  String phone;
+  String name;
   String email;
+  String phone;
   bool isBarber;
-
-  Profile(this.firstName, this.lastName, this.phone, this.email, this.isBarber);
+  // String barbershopname;
+  // String barbershopaddress;
+  // String barberlocationurl;
+  Profile(this.name, this.email, this.phone, this.isBarber);
 }
-
 
 Future<void> signout() async {
   (await GoogleSignIn().signOut());
   return FirebaseAuth.instance.signOut();
 }
-
 
 Future<Profile?> profile() async {
   var uid = FirebaseAuth.instance.currentUser?.uid;
@@ -28,12 +28,15 @@ Future<Profile?> profile() async {
 
     if (docs.length > 0) {
       var doc = queryInfo.docs.first;
-      var firstName = doc["firstname"];
-      var lastName = doc["lastname"];
+      var name = doc["name"];
       var email = doc["email"];
-      var phone = doc["phone"];
+      var phonenumber = doc["phone"];
       var isBarber = doc["is_barber"];
-      return Profile(firstName, lastName, phone, email, isBarber);
+      // var barbershopname = doc["barbershopname"];
+      // var barbershopaddress = doc["barbershopaddress"];
+      // var barberlocationurl = doc["barberlocationurl"];
+
+      return Profile(name, email, phonenumber, isBarber);
     }
   }
   return null;
@@ -44,16 +47,16 @@ Future<Profile?> signInWithGoogleAndGetProfile() async {
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
   // Obtain the auth details from the request
-  final GoogleSignInAuthentication? googleAuth = await googleUser
-      ?.authentication;
+  final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
   if (googleAuth != null) {
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-    var userCredentials = await FirebaseAuth.instance.signInWithCredential(
-        credential);
+    var userCredentials =
+        await FirebaseAuth.instance.signInWithCredential(credential);
     // Once signed in, return the UserCredential
     if (userCredentials != null) {
       return profile();
@@ -61,4 +64,3 @@ Future<Profile?> signInWithGoogleAndGetProfile() async {
   }
   return null;
 }
-

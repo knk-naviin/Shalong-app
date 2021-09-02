@@ -1,16 +1,13 @@
 import 'dart:io';
-
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shalong/Dashboard/BarberScreen.dart';
-import 'package:shalong/Dashboard/CustomerScreen.dart';
-import 'package:shalong/Dashboard/ProfileUpdateScreen.dart';
+import 'package:shalong/Dashboard/BarberDashBoardScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
-import 'Dashboard/Dashboard.dart';
-import 'UserAuthentication/UserAuth.dart';
+import 'AfterRegistration/ProfileUpdateScreen.dart';
+import 'UserAuthentication/UserAuthScreen.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -18,9 +15,9 @@ void main() {
       home: ShalongApp(),
       routes: <String, WidgetBuilder>{
         '/launch': (BuildContext context) => LaunchScreen(),
-        '/barber': (BuildContext context) => BarberScreen(),
-        '/customer': (BuildContext context) => CustomerScreen(),
-        '/profileUpdateScreen': (BuildContext context) => ProfileUpdateScreen(),
+        '/barberdashboardscreen': (BuildContext context) =>
+            BarberDashboardScreen(),
+        '/profileupdatescreen': (BuildContext context) => ProfileUpdateScreen()
       }));
 }
 
@@ -67,36 +64,38 @@ class _LaunchScreenState extends State<LaunchScreen> {
   @override
   Widget build(BuildContext context) {
     var uid = FirebaseAuth.instance.currentUser?.uid;
-    print("uid null $uid");
     if (uid == null) {
-      return UserAuth();
+      return UserAuthScreen();
     } else {
       return FutureBuilder(
         future: profile(),
         builder: (BuildContext context, AsyncSnapshot<Profile?> snapshot) {
-          if (snapshot.hasData) {
-            var profile = snapshot.data;
-            if (profile == null) {
-              return UserAuth();
-            } else {
-              return DashboardScreen(profile);
-            }
-          } else if (snapshot.hasError || (snapshot.connectionState == ConnectionState.done && snapshot.data == null)) {
-            return UserAuth();
-          } else {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   child: Platform.isAndroid
-                  ? CircularProgressIndicator()
-                  : CupertinoActivityIndicator(),
+                      ? CircularProgressIndicator()
+                      : CupertinoActivityIndicator(),
                   width: 30,
                   height: 30,
                 ),
               ],
             );
+          } else if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.hasData) {
+            var profile = snapshot.data;
+            if (profile == null) {
+              return ProfileUpdateScreen();
+            } else if (profile.isBarber) {
+              return BarberDashboardScreen();
+            } else {
+              return BarberDashboardScreen();
+            }
+          } else {
+            return UserAuthScreen();
           }
         },
       );

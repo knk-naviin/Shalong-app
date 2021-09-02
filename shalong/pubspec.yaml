@@ -39,7 +39,7 @@ dependencies:
   provider: ^5.0.0
   pinput: ^1.2.0
   http:
-
+  email_validator: ^2.0.1
 
 
 
