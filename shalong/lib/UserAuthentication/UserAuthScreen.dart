@@ -32,15 +32,25 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
               _isLoading = true;
             });
 
-            var profile = signInWithGoogleAndGetProfile().then((value) {
-              setState(() {
-                _isLoading = false;
-              });
+            signInWithGoogle().then((value) {
               if (value == null) {
-                Navigator.of(context)
-                    .pushReplacementNamed("/profileupdatescreen");
+                setState(() {
+                  _isLoading = false;
+                });
               } else {
-                Navigator.of(context).pushReplacementNamed("/launch");
+                profile().then((value) {
+                  setState(() {
+                    _isLoading = false;
+                  });
+                  if (value == null) {
+                    Navigator.of(context)
+                        .pushReplacementNamed("/profileupdatescreen");
+                  }
+                  else {
+                    Navigator.of(context).pushReplacementNamed("/launch");
+                  }
+                });
+
               }
             }).catchError((onError) {
               setState(() {

@@ -42,13 +42,13 @@ Future<Profile?> profile() async {
   return null;
 }
 
-Future<Profile?> signInWithGoogleAndGetProfile() async {
+Future<UserCredential?> signInWithGoogle() async {
   // Trigger the authentication flow
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
   // Obtain the auth details from the request
   final GoogleSignInAuthentication? googleAuth =
-      await googleUser?.authentication;
+  await googleUser?.authentication;
   if (googleAuth != null) {
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -56,11 +56,8 @@ Future<Profile?> signInWithGoogleAndGetProfile() async {
       idToken: googleAuth.idToken,
     );
     var userCredentials =
-        await FirebaseAuth.instance.signInWithCredential(credential);
+    await FirebaseAuth.instance.signInWithCredential(credential);
     // Once signed in, return the UserCredential
-    if (userCredentials != null) {
-      return profile();
-    }
+    return userCredentials;
   }
-  return null;
 }

@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/BarberDashBoardScreen.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/CustomerDashboardScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'AfterRegistration/ProfileUpdateScreen.dart';
 import 'UserAuthentication/UserAuthScreen.dart';
@@ -92,7 +93,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
             } else if (profile.isBarber) {
               return BarberDashboardScreen();
             } else {
-              return BarberDashboardScreen();
+              return CustomerDashboardScreen();
             }
           } else {
             return UserAuthScreen();
