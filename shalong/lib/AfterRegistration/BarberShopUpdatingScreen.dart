@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -86,16 +85,9 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                     },
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter phone number";
-                      } else if (value.length != 10) {
-                        return "Enter Valid Phone Number";
+                        return "Enter Shop Name";
                       }
                     },
-                    inputFormatters: [
-                      new WhitelistingTextInputFormatter(
-                          new RegExp(r'^[0-9]*$')),
-                      new LengthLimitingTextInputFormatter(10)
-                    ],
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Enter Shop Name",
@@ -155,6 +147,11 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                         return "Enter Shop contact number";
                       }
                     },
+                    inputFormatters: [
+                      new WhitelistingTextInputFormatter(
+                          new RegExp(r'^[0-9]*$')),
+                      new LengthLimitingTextInputFormatter(10)
+                    ],
                     keyboardType: TextInputType.number,
                     autocorrect: false,
                     scrollPhysics: ScrollPhysics(),
@@ -205,7 +202,11 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
               SizedBox(
                 width: 140,
                   height: 55,
-                  child: ElevatedButton.icon(onPressed: (){}, icon: FaIcon(FontAwesomeIcons.save), label: Text("Submit")))
+                  child: ElevatedButton.icon(onPressed: (){
+                    if(formkey.currentState!.validate()){
+                      (formkey.currentState!.save());
+                    }
+                  }, icon: FaIcon(FontAwesomeIcons.save), label: Text("Submit")))
             ],
           ),
         ),
