@@ -8,11 +8,18 @@ class Profile {
   String email;
   String phone;
   bool isBarber;
+  List<ShopInfo> shops = [];
   // String barbershopname;
   // String barbershopaddress;
   // String barberlocationurl;
-  Profile(this.name, this.email, this.phone, this.isBarber);
+  Profile(this.name, this.email, this.phone, this.isBarber, this.shops);
 }
+
+class ShopInfo {
+  String name;
+  ShopInfo(this.name);
+}
+
 
 Future<void> signout() async {
   (await GoogleSignIn().signOut());
@@ -32,11 +39,12 @@ Future<Profile?> profile() async {
       var email = doc["email"];
       var phonenumber = doc["phone"];
       var isBarber = doc["is_barber"];
+      List<ShopInfo> shops = [];
       // var barbershopname = doc["barbershopname"];
       // var barbershopaddress = doc["barbershopaddress"];
       // var barberlocationurl = doc["barberlocationurl"];
 
-      return Profile(name, email, phonenumber, isBarber);
+      return Profile(name, email, phonenumber, isBarber, shops);
     }
   }
   return null;

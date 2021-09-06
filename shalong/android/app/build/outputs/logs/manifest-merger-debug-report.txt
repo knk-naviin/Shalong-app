@@ -1,10 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-44:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-44:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-44:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-44:12
-MERGED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-44:12
+ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
+MERGED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
 MERGED from [:firebase_auth] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:cloud_firestore] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
@@ -72,20 +72,20 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/naveenkumar/.gradl
 MERGED from [androidx.print:print:1.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/d0b282c14c660cbf3a3b0bae42fa21a0/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [io.grpc:grpc-android:1.28.0] /Users/naveenkumar/.gradle/caches/transforms-3/da41332fa1a877a032cba05ccb1a079f/transformed/jetified-grpc-android-1.28.0/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/e9b84d56670c6c6320c09b35e81c1c51/transformed/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-8:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-8:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-8:12
 	package
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:2:5-34
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-44:12
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-44:12
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -102,7 +102,7 @@ ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/a
 	android:name
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:5:22-82
 application
-ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:6:4-43:19
+ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:6:4-45:18
 MERGED from [:firebase_auth] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_auth] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
@@ -209,6 +209,12 @@ ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/a
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:42:13-30
 	android:name
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:41:13-44
+meta-data#com.google.android.geo.API_KEY
+ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:43:8-44:69
+	android:value
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:44:12-67
+	android:name
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:43:19-64
 uses-sdk
 INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml

@@ -3,20 +3,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shalong/AfterRegistration/Map.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class BarberShopUpdatingScreen extends StatefulWidget {
-  const BarberShopUpdatingScreen({Key? key}) : super(key: key);
-
+  // const BarberShopUpdatingScreen({Key? key}) : super(key: key);
+  ShopInfo? shopInfo = null;
+  BarberShopUpdatingScreen({this.shopInfo = null});
   @override
-  _BarberShopUpdatingScreenState createState() => _BarberShopUpdatingScreenState();
+  _BarberShopUpdatingScreenState createState() =>
+      _BarberShopUpdatingScreenState();
 }
 
 class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  late String shopname, shopaddress,shopcontact,location;
+  late String shopaddress, shopcontact, location;
+  ShopInfo shopInfo = ShopInfo("");
+
   @override
   Widget build(BuildContext context) {
+
+    if (widget.shopInfo != null) {
+      shopInfo = widget.shopInfo!;
+    }
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -32,46 +42,46 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                   context: context,
                   builder: (ctx) => Platform.isIOS
                       ? CupertinoAlertDialog(
-                    content: Text("Are you sure want to Logout? \n" + ""),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(ctx).pop();
-                          },
-                          child: Text("Cancel")),
-                      TextButton(
-                          onPressed: () {
-                            signout().then((value) =>
-                                Navigator.of(context)
-                                    .pushReplacementNamed("/launch"));
-                          },
-                          child: Text("Logout")),
-                    ],
-                  )
+                          content: Text("Are you sure want to Logout? \n" + ""),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: Text("Cancel")),
+                            TextButton(
+                                onPressed: () {
+                                  signout().then((value) =>
+                                      Navigator.of(context)
+                                          .pushReplacementNamed("/launch"));
+                                },
+                                child: Text("Logout")),
+                          ],
+                        )
                       : AlertDialog(
-                    title: Text('Are you sure want to Logout?'),
-                    content: const Text('AlertDialog description'),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(ctx).pop();
-                          },
-                          child: Text("Cancel")),
-                      TextButton(
-                          onPressed: () {
-                            signout().then((value) =>
-                                Navigator.of(context)
-                                    .pushReplacementNamed("/launch"));
-                          },
-                          child: Text("Logout")),
-                    ],
-                  ),
+                          title: Text('Are you sure want to Logout?'),
+                          content: const Text('AlertDialog description'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: Text("Cancel")),
+                            TextButton(
+                                onPressed: () {
+                                  signout().then((value) =>
+                                      Navigator.of(context)
+                                          .pushReplacementNamed("/launch"));
+                                },
+                                child: Text("Logout")),
+                          ],
+                        ),
                 );
               },
             )
           ],
         ),
-        body:  Form(
+        body: Form(
           key: formkey,
           child: Column(
             children: [
@@ -80,13 +90,13 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                 child: SizedBox(
                   width: 400,
                   child: TextFormField(
-                    onSaved: (value) {
-                      shopname = value!;
-                    },
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Enter Shop Name";
                       }
+                    },
+                    onSaved: (value) {
+                      shopInfo.name = value!;
                     },
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -106,8 +116,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                   heightFactor: 1,
                   child: TextFormField(
                     onTap: () {
-                      FocusScopeNode currentFocus =
-                      FocusScope.of(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (builder) => MapScreen()));
                     },
                     onSaved: (value) {
                       location = value!;
@@ -148,7 +157,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                       }
                     },
                     inputFormatters: [
-                      new WhitelistingTextInputFormatter(
+                      new FilteringTextInputFormatter.allow(
                           new RegExp(r'^[0-9]*$')),
                       new LengthLimitingTextInputFormatter(10)
                     ],
@@ -158,8 +167,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Enter Contact Number",
-                        hintText:
-                        "1234567890",
+                        hintText: "1234567890",
                         prefixIcon: Icon(
                           CupertinoIcons.phone_fill,
                           color: CupertinoColors.systemBlue,
@@ -189,8 +197,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Enter Shop Address",
-                        hintText:
-                        "Eg.Yaash school,234 A,Seetharamdos Nagar "
+                        hintText: "Eg.Yaash school,234 A,Seetharamdos Nagar "
                             "Jakkampatti,BSNL Office,Theni,Tamilnadu,625512,India",
                         prefixIcon: Icon(
                           CupertinoIcons.house,
@@ -200,13 +207,17 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                 ),
               ),
               SizedBox(
-                width: 140,
+                  width: 140,
                   height: 55,
-                  child: ElevatedButton.icon(onPressed: (){
-                    if(formkey.currentState!.validate()){
-                      (formkey.currentState!.save());
-                    }
-                  }, icon: FaIcon(FontAwesomeIcons.save), label: Text("Submit")))
+                  child: ElevatedButton.icon(
+                      icon: FaIcon(FontAwesomeIcons.save),
+                      label: Text("Submit"),
+                      onPressed: () {
+                        if (formkey.currentState!.validate()) {
+                          (formkey.currentState!.save());
+                          Navigator.pop(context, shopInfo);
+                        }
+                      }))
             ],
           ),
         ),

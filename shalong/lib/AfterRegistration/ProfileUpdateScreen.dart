@@ -19,23 +19,33 @@ class ProfileUpdateScreen extends StatefulWidget {
 
 class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  late String shopname, shopaddress, location, name, phone, email;
-  bool isBarber = false;
+  Profile profile = Profile("", "", "", false, []);
+  var currentUser = FirebaseAuth.instance.currentUser!;
   CollectionReference userRef = FirebaseFirestore.instance.collection("user");
-  Future<void> addUser() async {
-    var uid = FirebaseAuth.instance.currentUser?.uid;
-    if (uid != null)
+  CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
+  Future<void> addUserToFirestore() async {
+    var uid = currentUser.uid;
+      List<String> shopIds = [];
+      if (profile.isBarber) {
+        for (var aShop in profile.shops) {
+          var shop = await shopRef.add({
+            "uid": uid,
+            "name": aShop.name,
+          });
+          shopIds.add(shop.id);
+        }
+      }
+
       return userRef.add({
         "uid": uid,
-        "name": name,
-        "email": email,
-        "phone": phone,
-        "is_barber": isBarber,
+        "name": profile.name,
+        "email": profile.email,
+        "phone": profile.phone,
+        "is_barber": profile.isBarber,
+        "shops": shopIds
       }).then((value) {
         Navigator.of(context).pushReplacementNamed("/barberdashboardscreen");
       }).catchError((onError) {
-
-
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -43,6 +53,32 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
             });
       });
   }
+
+  Widget shopsWidget() {
+    if (profile.shops.length > 0) {
+      List<Widget> list = [];
+      for (var aShop in profile.shops) {
+        list.add(Card(
+          elevation: 0.5,
+          child: ListTile(
+            leading: Icon(Icons.home_outlined,size: 52,color: CupertinoColors.activeBlue,),
+            title:Text(aShop.name, style: TextStyle(fontWeight: FontWeight.w600,fontSize: 25),),
+            subtitle: Text("Shop Contact"),
+            trailing: IconButton(icon: Icon(Icons.cancel),color: Colors.red,onPressed: (){
+              setState(() {
+                profile.shops.remove(aShop);
+              });
+            },),
+          ),
+        ));
+      }
+      return Container(
+          // color: Colors.red,
+          child: Column(children: list,));
+    }
+     return Container();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,13 +146,14 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                 child: Center(
                   heightFactor: 1,
                   child: TextFormField(
-                    onSaved: (value) {
-                      name = value!;
-                    },
+                    initialValue: currentUser.displayName,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Enter Your Name";
                       }
+                    },
+                    onSaved: (value) {
+                      profile.name = value!;
                     },
                     keyboardType: TextInputType.text,
                     scrollPhysics: ScrollPhysics(),
@@ -137,12 +174,13 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                 child: Center(
                   heightFactor: 1,
                   child: TextFormField(
-                    onSaved: (value) {
-                      email = value!;
-                    },
+                    initialValue: currentUser.email,
                     validator: (value) => EmailValidator.validate(value!)
                         ? null
                         : "Please enter a valid email",
+                    onSaved: (value) {
+                      profile.email = value!;
+                    },
                     keyboardType: TextInputType.emailAddress,
                     scrollPhysics: ScrollPhysics(),
                     decoration: InputDecoration(
@@ -162,9 +200,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                 child: Center(
                   heightFactor: 1,
                   child: TextFormField(
-                    onSaved: (value) {
-                      phone = value!;
-                    },
+                    initialValue: currentUser.phoneNumber,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Enter phone number";
@@ -173,10 +209,13 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                       }
                     },
                     inputFormatters: [
-                      new WhitelistingTextInputFormatter(
+                      new FilteringTextInputFormatter.allow(
                           new RegExp(r'^[0-9]*$')),
                       new LengthLimitingTextInputFormatter(10)
                     ],
+                    onSaved: (value) {
+                      profile.phone = value!;
+                    },
                     keyboardType: TextInputType.phone,
                     scrollPhysics: ScrollPhysics(),
                     decoration: InputDecoration(
@@ -198,29 +237,41 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                   ),
                   CupertinoSwitch(
                       activeColor: CupertinoColors.systemBlue,
-                      value: isBarber,
+                      value: profile.isBarber,
                       onChanged: (bool value) {
                         setState(() {
-                          isBarber = value;
+                          profile.isBarber = value;
                         });
                       }),
                 ],
               ),
               Visibility(
-                  visible: isBarber == true ? true : false,
-                  child: SizedBox(
-                    width: 200,
-                    height: 55,
-                    child: ElevatedButton.icon(
-                      onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => BarberShopUpdatingScreen()),
-                        );
-                      },
-                        icon: FaIcon(FontAwesomeIcons.file),
-                      label: Text("Add Shop Details"),
-                    ),
+                  visible: profile.isBarber,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: SizedBox(child: Text("Shop Information")),
+                          ),
+                          CupertinoButton(
+                            onPressed: () async {
+                               ShopInfo shopInfo = await Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => BarberShopUpdatingScreen()),
+                              );
+                               setState(() {
+                                 profile.shops.add(shopInfo);
+                               });
+                            },
+                              // icon: FaIcon(FontAwesomeIcons.file),
+                            child: Text("Add Shop Details"),
+                          ),
+                        ],
+                      ),
+                      shopsWidget()
+                    ],
                   )),
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -233,9 +284,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                   onPressed: () {
                     if (formkey.currentState!.validate()) {
                       (formkey.currentState!.save());
-                      print("usertype saved $isBarber");
-                      addUser();
-                    }
+                      addUserToFirestore();
+                     }
                   },
                 ),
               ),
