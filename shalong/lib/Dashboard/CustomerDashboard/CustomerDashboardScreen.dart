@@ -32,7 +32,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
         centerTitle: true,
         backgroundColor: Colors.blue,
         actions: [
-          IconButton(
+          ElevatedButton.icon(
             icon: Icon(Icons.exit_to_app_rounded),
             onPressed: () {
               showDialog(
@@ -75,6 +75,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
                 ),
               );
             },
+            label: Text("Logout"),
           )
         ],
       ),

@@ -42,11 +42,12 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Shalong"),
+          title: Text("Shalonng"),
           centerTitle: true,
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.blue,
           actions: [
-            IconButton(
+            ElevatedButton.icon(
+              label: Text("Logout"),
               icon: Icon(Icons.exit_to_app_rounded),
               onPressed: () {
                 showDialog(
@@ -107,8 +108,8 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
                 label: "Notification",
                 backgroundColor: Colors.blue),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: "Settings",
+                icon: Icon(Icons.person),
+                label: "Profile",
                 backgroundColor: Colors.blue)
           ],
           currentIndex: _currentIndex,

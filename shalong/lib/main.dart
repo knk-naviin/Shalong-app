@@ -38,7 +38,20 @@ class _ShalongAppState extends State<ShalongApp> {
           builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
             if (snapshot.hasData || snapshot.hasError) {
               return AnimatedSplashScreen(
-                  nextScreen: LaunchScreen(), splash: Text("Shalong App"));
+                  nextScreen: LaunchScreen(), splash: Stack(
+                children: [
+                  Center(
+                    child: Text(
+                      "Shalong",
+                      style: TextStyle(fontFamily: "SourceCodePro", fontSize: 60),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 60.0,right: 25),
+                    child: Center(child: Text("We'll style while you smile!",style: TextStyle(fontSize: 17,color: Colors.red),)),
+                  )
+                ],
+              ),);
             } else {
               return Center(
                 child: SizedBox(

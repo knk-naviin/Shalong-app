@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/AccountInfoScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 class Settings extends StatefulWidget {
@@ -15,146 +17,176 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            primary: Colors.blue,
+            padding: EdgeInsets.all(20),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            backgroundColor: Colors.blue.shade50,
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AccountInfoScreen()),
+            );
+          },
+          child: Row(
             children: [
-          ListTile(
-        title: Text(
-          "Profile",
-          style: TextStyle(fontSize: 25, color: Colors.black),
+              Icon(CupertinoIcons.profile_circled),
+              SizedBox(width: 20),
+              Expanded(child: Text("Account Info")),
+              Icon(Icons.arrow_forward_ios),
+            ],
+          ),
         ),
-        trailing: Icon(
-          Icons.person,
-          size: 25,
-          color: Colors.blue,
-        ),
-        onTap: (){},
       ),
-          Divider(
-           color: Colors.grey,
+          Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            primary: Colors.blue,
+            padding: EdgeInsets.all(20),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            backgroundColor: Colors.blue.shade50,
           ),
-          ListTile(
-            title: Text(
-              "Report",
-              style: TextStyle(fontSize: 25, color: Colors.black),
-            ),
-            trailing: Icon(
-              Icons.message,
-              size: 25,
-              color: Colors.blue,
-            ),
-            onTap: (){},
-            autofocus: true,
+          onPressed: () {},
+          child: Row(
+            children: [
+              FaIcon(FontAwesomeIcons.clipboard),
+              SizedBox(width: 20),
+              Expanded(child: Text("Terms & Conditions")),
+              Icon(Icons.arrow_forward_ios),
+            ],
           ),
-          Divider(
-            color: Colors.grey,
+        ),
+      ),
+          Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            primary: Colors.blue,
+            padding: EdgeInsets.all(20),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            backgroundColor: Colors.blue.shade50,
           ),
-          ListTile(
-            title: Text(
-              "Terms & Conditions",
-              style: TextStyle(fontSize: 25, color: Colors.black),
-            ),
-            trailing: Icon(
-              Icons.developer_board_outlined,
-              size: 25,
-              color: Colors.blue,
-            ),
-            onTap: (){},
+          onPressed: () {},
+          child: Row(
+            children: [
+              Icon(Icons.rate_review),
+              SizedBox(width: 20),
+              Expanded(child: Text("Ratings")),
+              Icon(Icons.arrow_forward_ios),
+            ],
           ),
-          Divider(
-            color: Colors.grey,
+        ),
+      ),
+          Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            primary: Colors.blue,
+            padding: EdgeInsets.all(20),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            backgroundColor: Colors.blue.shade50,
           ),
-          ListTile(
-            title: Text(
-              "About",
-              style: TextStyle(fontSize: 25, color: Colors.black),
-            ),
-            trailing: Icon(
-              Icons.details,
-              size: 25,
-              color: Colors.blue,
-            ),
-            onTap: (){},
+          onPressed: () {},
+          child: Row(
+            children: [
+              Icon(Icons.help),
+              SizedBox(width: 20),
+              Expanded(child: Text("Help")),
+              Icon(Icons.arrow_forward_ios),
+            ],
           ),
-          Divider(
-            color: Colors.grey,
+        ),
+      ),
+          Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            primary: Colors.blue,
+            padding: EdgeInsets.all(20),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            backgroundColor: Colors.blue.shade50,
           ),
-          ListTile(
-            title: Text(
-              "Review",
-              style: TextStyle(fontSize: 25, color: Colors.black),
-            ),
-            trailing: Icon(
-              Icons.rate_review,
-              size: 25,
-              color: Colors.blue,
-            ),
-            onTap: (){},
-            autofocus: true,
+          onPressed: () {},
+          child: Row(
+            children: [
+              FaIcon(FontAwesomeIcons.facebookMessenger),
+              SizedBox(width: 20),
+              Expanded(child: Text("About")),
+              Icon(Icons.arrow_forward_ios),
+            ],
           ),
-          Divider(
-            color: Colors.grey,
+        ),
+      ),
+          Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            primary: Colors.blue,
+            padding: EdgeInsets.all(20),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            backgroundColor: Colors.blue.shade50,
           ),
-          ListTile(
-            title: Text(
-              "Logout",
-              style: TextStyle(fontSize: 25, color: Colors.black),
-            ),
-            trailing: Icon(
-              Icons.logout_outlined,
-              size: 25,
-              color: Colors.blue,
-            ),
-            onTap: (){
-              showDialog(
-                context: context,
-                builder: (ctx) => Platform.isIOS
-                    ? CupertinoAlertDialog(
-                  content: Text("Are you sure want to Logout? \n" + ""),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Cancel")),
-                    TextButton(
-                        onPressed: () {
-                          signout().then((value) =>
-                              Navigator.of(context)
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (ctx) => Platform.isIOS
+                  ? CupertinoAlertDialog(
+                      content: Text("Are you sure want to Logout? \n" + ""),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                            },
+                            child: Text("Cancel")),
+                        TextButton(
+                            onPressed: () {
+                              signout().then((value) => Navigator.of(context)
                                   .pushReplacementNamed("/launch"));
-                        },
-                        child: Text("Logout")),
-                  ],
-                )
-                    : AlertDialog(
-                  title: Text('Are you sure want to Logout?'),
-                  content: const Text('AlertDialog description'),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Cancel")),
-                    TextButton(
-                        onPressed: () {
-                          signout().then((value) =>
-                              Navigator.of(context)
+                            },
+                            child: Text("Logout")),
+                      ],
+                    )
+                  : AlertDialog(
+                      title: Text('Are you sure want to Logout?'),
+                      content: const Text('AlertDialog description'),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                            },
+                            child: Text("Cancel")),
+                        TextButton(
+                            onPressed: () {
+                              signout().then((value) => Navigator.of(context)
                                   .pushReplacementNamed("/launch"));
-                        },
-                        child: Text("Logout")),
-                  ],
-                ),
-              );
-            },
+                            },
+                            child: Text("Logout")),
+                      ],
+                    ),
+            );
+          },
+          child: Row(
+            children: [
+              FaIcon(FontAwesomeIcons.signOutAlt),
+              SizedBox(width: 20),
+              Expanded(child: Text("Logout")),
+              Icon(Icons.arrow_forward_ios),
+            ],
           ),
-          Divider(
-            color: Colors.blue,
-    
-          ),
-                  Text("This App © Copyright to shalong Team",style: TextStyle(color: CupertinoColors.systemGrey),),
-                  Text("Version 1.0.0",style: TextStyle(color: CupertinoColors.systemGrey))
-
-
+        ),
+      )
     ]));
   }
 }
