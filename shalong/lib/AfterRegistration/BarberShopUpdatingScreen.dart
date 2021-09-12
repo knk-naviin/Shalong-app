@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shalong/AfterRegistration/Map.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 
 class BarberShopUpdatingScreen extends StatefulWidget {
   // const BarberShopUpdatingScreen({Key? key}) : super(key: key);
@@ -115,9 +115,9 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                 child: Center(
                   heightFactor: 1,
                   child: TextFormField(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (builder) => MapScreen()));
-                    },
+                    // onTap: () {
+                    //   Navigator.push(context, MaterialPageRoute(builder: (builder) => MapScreen()));
+                    // },
                     onSaved: (value) {
                       location = value!;
                     },
