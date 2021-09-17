@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shalong/Dashboard/CustomerDashboard/CustomerAccountInfoScreen.dart';
+
 import 'package:shalong/UserAuthentication/AuthManager.dart';
+
+import 'BarberAccountInfoScreen.dart';
 
 class BarberSettingScreen extends StatefulWidget {
   const BarberSettingScreen({Key? key}) : super(key: key);
@@ -30,7 +32,7 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CustomerAccountInfoScreen()),
+              MaterialPageRoute(builder: (context) => ProfilePage()),
             );
           },
           child: Row(

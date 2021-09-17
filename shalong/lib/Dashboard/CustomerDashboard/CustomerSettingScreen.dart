@@ -30,7 +30,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CustomerAccountInfoScreen()),
+              MaterialPageRoute(builder: (context) => ProfilePage()),
             );
           },
           child: Row(
