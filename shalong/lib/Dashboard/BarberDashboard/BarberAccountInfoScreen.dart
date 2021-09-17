@@ -23,6 +23,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
         appBar: AppBar(
           title: Text('Account Information',
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontSize: 20.0,
                 fontFamily: 'sans-serif-light',
               )),
