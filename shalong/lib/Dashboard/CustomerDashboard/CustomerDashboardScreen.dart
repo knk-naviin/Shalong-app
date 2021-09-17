@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shalong/Dashboard/CustomerDashboard/Settings.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/CustomerSettingScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
+
+import 'CustomerHomeScreen.dart';
 
 class CustomerDashboardScreen extends StatefulWidget {
 
@@ -13,10 +15,10 @@ class CustomerDashboardScreen extends StatefulWidget {
 class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
   int _currentIndex = 0;
   static const List<Widget> _widgetOptions = [
-    Center(child: Text("Home",style: TextStyle(fontSize: 32),)),
+    CustomerHomeScreen(),
     Center(child: Text("Favorites",style: TextStyle(fontSize: 32),)),
     Center(child: Text("Notifications",style: TextStyle(fontSize: 32),)),
-    Settings()
+    CustomerSettingScreen()
     ];
   void _onItemTapped(int index) {
     setState(() {
@@ -28,7 +30,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Shalong"),
+        title: Text("Customer Screen"),
         centerTitle: true,
         backgroundColor: Colors.blue,
         actions: [

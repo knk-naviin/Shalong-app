@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shalong/UserAuthentication/PhoneVerificationScreen.dart';
 import 'AuthManager.dart';
 
 class UserAuthScreen extends StatefulWidget {
@@ -112,26 +112,31 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                           decoration: TextDecoration.underline),
                     ),
                   ),
-                  SizedBox(
-                    width: 270,
-                    child: TextField(
-                      keyboardType: TextInputType.phone,
-                      cursorColor: Colors.black12,
-                      decoration: InputDecoration(
-                          hintText: "         +91 Enter Phone Number",
-                          // hintStyle: TextStyle(fontSize: 25),
-                          // prefixText: "+91",
-                          // prefixStyle: TextStyle(fontSize: 25),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0))),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  // SizedBox(
+                  //   width: 270,
+                  //   child: TextField(
+                  //     keyboardType: TextInputType.phone,
+                  //     cursorColor: Colors.black12,
+                  //     decoration: InputDecoration(
+                  //         hintText: "         +91 Enter Phone Number",
+                  //         // hintStyle: TextStyle(fontSize: 25),
+                  //         // prefixText: "+91",
+                  //         // prefixStyle: TextStyle(fontSize: 25),
+                  //         border: OutlineInputBorder(
+                  //             borderRadius: BorderRadius.circular(10.0))),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
                   CupertinoButton(
-                    child: Text("Get Otp"),
-                    onPressed: () {},
+                    child: Text("Phone Verfication"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PhoneVerificationScreen()),
+                      );
+                    },
                     color: CupertinoColors.systemBlue,
                   ),
                   Padding(

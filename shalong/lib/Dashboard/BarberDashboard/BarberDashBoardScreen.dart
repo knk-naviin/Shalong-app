@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/CustomerSettingScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
-import 'CustomerDashboard/Settings.dart';
 
 class BarberDashboardScreen extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
       "Notifications",
       style: TextStyle(fontSize: 32),
     )),
-    Settings()
+    CustomerSettingScreen()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -42,7 +42,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Shalonng"),
+          title: Text("Barber Screen"),
           centerTitle: true,
           backgroundColor: Colors.blue,
           actions: [

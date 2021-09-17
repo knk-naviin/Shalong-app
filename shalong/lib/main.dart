@@ -4,10 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shalong/Dashboard/BarberDashBoardScreen.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/CustomerDashboardScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'AfterRegistration/ProfileUpdateScreen.dart';
+import 'Dashboard/BarberDashboard/BarberDashBoardScreen.dart';
 import 'UserAuthentication/UserAuthScreen.dart';
 
 void main() {

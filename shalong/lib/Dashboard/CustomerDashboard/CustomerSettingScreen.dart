@@ -1,24 +1,23 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shalong/Dashboard/CustomerDashboard/AccountInfoScreen.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/CustomerAccountInfoScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+class CustomerSettingScreen extends StatefulWidget {
+  const CustomerSettingScreen({Key? key}) : super(key: key);
 
   @override
-  _SettingsState createState() => _SettingsState();
+  _CustomerSettingScreenState createState() => _CustomerSettingScreenState();
 }
 
-class _SettingsState extends State<Settings> {
+class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Padding(
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: TextButton(
           style: TextButton.styleFrom(
@@ -31,7 +30,7 @@ class _SettingsState extends State<Settings> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AccountInfoScreen()),
+              MaterialPageRoute(builder: (context) => CustomerAccountInfoScreen()),
             );
           },
           child: Row(
@@ -44,7 +43,7 @@ class _SettingsState extends State<Settings> {
           ),
         ),
       ),
-          Padding(
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: TextButton(
           style: TextButton.styleFrom(
@@ -65,7 +64,7 @@ class _SettingsState extends State<Settings> {
           ),
         ),
       ),
-          Padding(
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: TextButton(
           style: TextButton.styleFrom(
@@ -86,7 +85,7 @@ class _SettingsState extends State<Settings> {
           ),
         ),
       ),
-          Padding(
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: TextButton(
           style: TextButton.styleFrom(
@@ -107,7 +106,7 @@ class _SettingsState extends State<Settings> {
           ),
         ),
       ),
-          Padding(
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: TextButton(
           style: TextButton.styleFrom(
@@ -128,7 +127,7 @@ class _SettingsState extends State<Settings> {
           ),
         ),
       ),
-          Padding(
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: TextButton(
           style: TextButton.styleFrom(
@@ -186,6 +185,17 @@ class _SettingsState extends State<Settings> {
             ],
           ),
         ),
+      ),
+      Divider(
+        color: Colors.grey,
+      ),
+      Text(
+        "This App is Copyright© under YAASH School Of Technology",
+        style: TextStyle(color: CupertinoColors.systemGrey),
+      ),
+      Text(
+        "Version: 1.0.0",
+        style: TextStyle(color: CupertinoColors.systemGrey, fontSize: 21),
       )
     ]));
   }

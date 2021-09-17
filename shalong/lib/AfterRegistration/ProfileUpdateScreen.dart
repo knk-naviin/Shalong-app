@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shalong/AfterRegistration/BarberShopUpdatingScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
@@ -257,13 +256,27 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                           ),
                           CupertinoButton(
                             onPressed: () async {
-                               ShopInfo shopInfo = await Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => BarberShopUpdatingScreen()),
-                              );
-                               setState(() {
-                                 profile.shops.add(shopInfo);
-                               });
+                              if (profile.shops.length == 0) {
+                                ShopInfo shopInfo = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => BarberShopUpdatingScreen()),
+                                );
+                                setState(() {
+                                  profile.shops.add(shopInfo);
+                                });
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (ctx) => Platform.isIOS
+                                      ? CupertinoAlertDialog(
+                                    title: Text("Sorry!",style: TextStyle(color: CupertinoColors.systemRed)),
+                                    content: Text("You can add only one shop at this moment"),
+                                  )
+                                      : AlertDialog(
+                                    content: Text("You can add only one shop at this moment"),
+                                  ),
+                                );
+                              }
                             },
                               // icon: FaIcon(FontAwesomeIcons.file),
                             child: Text("Add Shop Details"),
