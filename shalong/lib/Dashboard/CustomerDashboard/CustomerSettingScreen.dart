@@ -2,8 +2,9 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shalong/Dashboard/CustomerDashboard/CustomerAccountInfoScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
+
+import 'CustomerAccountInfoScreen.dart';
 
 class CustomerSettingScreen extends StatefulWidget {
   const CustomerSettingScreen({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
+              MaterialPageRoute(builder: (context) => CustomerAccountInfoScreen()),
             );
           },
           child: Row(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class ProfilePage extends StatefulWidget {
+class BarberAccountInfoScreen extends StatefulWidget {
   @override
   MapScreenState createState() => MapScreenState();
 }
 
-class MapScreenState extends State<ProfilePage>
+class MapScreenState extends State<BarberAccountInfoScreen>
     with SingleTickerProviderStateMixin {
   bool _status = true;
   final FocusNode myFocusNode = FocusNode();
@@ -20,79 +20,21 @@ class MapScreenState extends State<ProfilePage>
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        appBar: AppBar(
+          title: Text('Account Information',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontFamily: 'sans-serif-light',
+              )),
+        ),
         body: new Container(
           color: Colors.white,
           child: new ListView(
+            scrollDirection: Axis.vertical,
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  new Container(
-                    height: 250.0,
-                    color: Colors.white,
-                    child: new Column(
-                      children: <Widget>[
-                        Padding(
-                            padding: EdgeInsets.only(left: 20.0, top: 20.0),
-                            child: new Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                new Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.black,
-                                  size: 22.0,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 25.0),
-                                  child: new Text('PROFILE',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20.0,
-                                          fontFamily: 'sans-serif-light',
-                                          color: Colors.black)),
-                                )
-                              ],
-                            )),
-                        Padding(
-                          padding: EdgeInsets.only(top: 20.0),
-                          child: new Stack(fit: StackFit.loose, children: <Widget>[
-                            new Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                new Container(
-                                    width: 140.0,
-                                    height: 140.0,
-                                    decoration: new BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: new DecorationImage(
-                                        image: new ExactAssetImage(
-                                            'assets/images/as.png'),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    )),
-                              ],
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(top: 90.0, right: 100.0),
-                                child: new Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    new CircleAvatar(
-                                      backgroundColor: Colors.red,
-                                      radius: 25.0,
-                                      child: new Icon(
-                                        Icons.camera_alt,
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          ]),
-                        )
-                      ],
-                    ),
-                  ),
-                  new Container(
+                  Container(
                     color: Color(0xffFFFFFF),
                     child: Padding(
                       padding: EdgeInsets.only(bottom: 25.0),
@@ -107,19 +49,19 @@ class MapScreenState extends State<ProfilePage>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
-                                  new Column(
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       new Text(
-                                        'Parsonal Information',
+                                        'Personal Information',
                                         style: TextStyle(
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
-                                  new Column(
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
@@ -161,7 +103,6 @@ class MapScreenState extends State<ProfilePage>
                                       ),
                                       enabled: !_status,
                                       autofocus: !_status,
-
                                     ),
                                   ),
                                 ],
@@ -221,6 +162,7 @@ class MapScreenState extends State<ProfilePage>
                                   ),
                                 ],
                               )),
+
                           Padding(
                               padding: EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 2.0),
@@ -239,62 +181,123 @@ class MapScreenState extends State<ProfilePage>
                           Padding(
                               padding: EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 25.0),
-                              child: new Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Container(
-                                      child: new Text(
-                                        'Pin Code',
-                                        style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    flex: 2,
+                              child: Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Address',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Expanded(
-                                    child: Container(
-                                      child: new Text(
-                                        'State',
+                                ),
+                                flex: 2,
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextField(
+                                    decoration: const InputDecoration(
+                                        hintText: "Enter Address"),
+                                    enabled: !_status,
+                                  ),
+                                ),
+                                flex: 2,
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: new Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      new Text(
+                                        'Shop Information',
                                         style: TextStyle(
-                                            fontSize: 16.0,
+                                            fontSize: 18.0,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                    ),
-                                    flex: 2,
+                                    ],
                                   ),
                                 ],
                               )),
                           Padding(
                               padding: EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 2.0),
-                              child: new Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Flexible(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(right: 10.0),
-                                      child: new TextField(
-                                        decoration: const InputDecoration(
-                                            hintText: "Enter Pin Code"),
-                                        enabled: !_status,
-                                      ),
-                                    ),
-                                    flex: 2,
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Shop Name',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Flexible(
-                                    child: new TextField(
-                                      decoration: const InputDecoration(
-                                          hintText: "Enter State"),
-                                      enabled: !_status,
-                                    ),
-                                    flex: 2,
-                                  ),
-                                ],
+                                ),
+                                flex: 2,
                               )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextField(
+                                    decoration: const InputDecoration(
+                                        hintText: "Enter Shop Name"),
+                                    enabled: !_status,
+                                  ),
+                                ),
+                                flex: 2,
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Shop Location',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextField(
+                                    decoration: const InputDecoration(
+                                        hintText: "Enter Shop Location url"),
+                                    enabled: !_status,
+                                  ),
+                                ),
+                                flex: 2,
+                              )),
+                          // Padding(
+                          //     padding: EdgeInsets.only(
+                          //         left: 25.0, right: 25.0, top: 2.0),
+                          //     child: new Row(
+                          //       mainAxisSize: MainAxisSize.max,
+                          //       children: <Widget>[
+                          //         new Flexible(
+                          //           child: new TextField(
+                          //             decoration: const InputDecoration(
+                          //                 hintText: "Address"),
+                          //             enabled: !_status,
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     )),
                           !_status ? _getActionButtons() : new Container(),
                         ],
                       ),

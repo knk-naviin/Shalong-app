@@ -32,7 +32,7 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
+              MaterialPageRoute(builder: (context) => BarberAccountInfoScreen()),
             );
           },
           child: Row(
