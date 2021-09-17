@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shalong/Dashboard/BarberDashboard/BarberSettingScreen.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/CustomerSettingScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
@@ -29,7 +30,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
       "Notifications",
       style: TextStyle(fontSize: 32),
     )),
-    CustomerSettingScreen()
+    BarberSettingScreen()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -45,53 +46,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
           title: Text("Barber Screen"),
           centerTitle: true,
           backgroundColor: Colors.blue,
-          actions: [
-            ElevatedButton.icon(
-              label: Text("Logout"),
-              icon: Icon(Icons.exit_to_app_rounded),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (ctx) => Platform.isIOS
-                      ? CupertinoAlertDialog(
-                          content: Text("Are you sure want to Logout? \n" + ""),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text("Cancel")),
-                            TextButton(
-                                onPressed: () {
-                                  signout().then((value) =>
-                                      Navigator.of(context)
-                                          .pushReplacementNamed("/launch"));
-                                },
-                                child: Text("Logout")),
-                          ],
-                        )
-                      : AlertDialog(
-                          title: Text('Are you sure want to Logout?'),
-                          content: const Text('AlertDialog description'),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text("Cancel")),
-                            TextButton(
-                                onPressed: () {
-                                  signout().then((value) =>
-                                      Navigator.of(context)
-                                          .pushReplacementNamed("/launch"));
-                                },
-                                child: Text("Logout")),
-                          ],
-                        ),
-                );
-              },
-            )
-          ],
+
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: [

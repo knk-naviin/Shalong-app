@@ -33,53 +33,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
         title: Text("Customer Screen"),
         centerTitle: true,
         backgroundColor: Colors.blue,
-        actions: [
-          ElevatedButton.icon(
-            icon: Icon(Icons.exit_to_app_rounded),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (ctx) => Platform.isIOS
-                    ? CupertinoAlertDialog(
-                  content: Text("Are you sure want to Logout? \n" + ""),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Cancel")),
-                    TextButton(
-                        onPressed: () {
-                          signout().then((value) =>
-                              Navigator.of(context)
-                                  .pushReplacementNamed("/launch"));
-                        },
-                        child: Text("Logout")),
-                  ],
-                )
-                    : AlertDialog(
-                  title: Text('Are you sure want to Logout?'),
-                  content: const Text('AlertDialog description'),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Cancel")),
-                    TextButton(
-                        onPressed: () {
-                          signout().then((value) =>
-                              Navigator.of(context)
-                                  .pushReplacementNamed("/launch"));
-                        },
-                        child: Text("Logout")),
-                  ],
-                ),
-              );
-            },
-            label: Text("Logout"),
-          )
-        ],
+
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
