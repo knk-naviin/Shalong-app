@@ -1,10 +1,9 @@
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/BarberDashboard/BarberSettingScreen.dart';
-import 'package:shalong/Dashboard/CustomerDashboard/CustomerSettingScreen.dart';
-import 'package:shalong/UserAuthentication/AuthManager.dart';
+
+import 'BarberHomeScreen.dart';
 
 
 class BarberDashboardScreen extends StatefulWidget {
@@ -15,11 +14,7 @@ class BarberDashboardScreen extends StatefulWidget {
 class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   int _currentIndex = 0;
   static const List<Widget> _widgetOptions = [
-    Center(
-        child: Text(
-      "Home",
-      style: TextStyle(fontSize: 32),
-    )),
+    BarberHomeScreen(),
     Center(
         child: Text(
       "Favorites",

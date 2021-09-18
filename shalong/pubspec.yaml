@@ -42,6 +42,7 @@ dependencies:
   http:
   email_validator: ^2.0.1
   google_maps_flutter: ^2.0.8
+  time_range: ^1.0.0
 
 
 
