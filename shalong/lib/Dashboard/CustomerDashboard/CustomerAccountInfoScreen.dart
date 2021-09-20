@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -8,6 +10,10 @@ class CustomerAccountInfoScreen extends StatefulWidget {
 
 class MapScreenState extends State<CustomerAccountInfoScreen>
     with SingleTickerProviderStateMixin {
+  String email = "";
+  String phone = "";
+  String name = "";
+  String useraddress ="";
   bool _status = true;
   final FocusNode myFocusNode = FocusNode();
 
@@ -17,6 +23,28 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
     super.initState();
   }
 
+  void getUserInfo() async {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid != null) {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      firestore
+          .collection("user")
+          .where('uid', isEqualTo: uid)
+          .get()
+          .then((value) {
+        var userprofile = value.docs.first;
+        setState(() {
+          name = userprofile["name"];
+          phone = userprofile["phone"];
+          email = userprofile["email"];
+          useraddress = userprofile["useraddress"];
+        });
+        // print(value.docs.first["email"]);
+      }).catchError((onError) {
+        print(onError);
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

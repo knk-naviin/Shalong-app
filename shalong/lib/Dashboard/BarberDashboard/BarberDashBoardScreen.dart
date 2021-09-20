@@ -44,6 +44,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
 
         ),
         bottomNavigationBar: BottomNavigationBar(
+          showUnselectedLabels: true,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -63,7 +64,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
                 backgroundColor: Colors.blue)
           ],
           currentIndex: _currentIndex,
-          showUnselectedLabels: false,
+
           onTap: _onItemTapped,
           elevation: 5,
         ),

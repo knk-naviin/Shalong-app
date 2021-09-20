@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:time_range/time_range.dart';
+
 
 class BarberHomeScreen extends StatefulWidget {
   const BarberHomeScreen({Key? key}) : super(key: key);
@@ -38,9 +38,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                                   // return object of type Dialog
                                   return AlertDialog(
                                     title:  Text("Pick Shop Opening Time"),
-                                  actions: [
-
-                                  ],
+                                  actions: [],
                                   );
                                 },
                               );

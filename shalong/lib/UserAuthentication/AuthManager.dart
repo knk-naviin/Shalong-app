@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Profile {
+  String docId;
   String name;
   String email;
   String phone;
@@ -12,12 +13,15 @@ class Profile {
   // String barbershopname;
   // String barbershopaddress;
   // String barberlocationurl;
-  Profile(this.name, this.email, this.phone, this.isBarber, this.shops);
+  Profile(this.docId, this.name, this.email, this.phone, this.isBarber, this.shops);
 }
 
 class ShopInfo {
+  String docId;
   String name;
-  ShopInfo(this.name);
+  String address;
+  String phone;
+  ShopInfo(this.docId, this.name,this.address,this.phone);
 }
 
 
@@ -39,12 +43,18 @@ Future<Profile?> profile() async {
       var email = doc["email"];
       var phonenumber = doc["phone"];
       var isBarber = doc["is_barber"];
+      var docId = doc.id;
       List<ShopInfo> shops = [];
-      // var barbershopname = doc["barbershopname"];
-      // var barbershopaddress = doc["barbershopaddress"];
-      // var barberlocationurl = doc["barberlocationurl"];
 
-      return Profile(name, email, phonenumber, isBarber, shops);
+      CollectionReference userRef = FirebaseFirestore.instance.collection("shop");
+      var shopQueryInfo = (await userRef.where("uid", isEqualTo: uid).get());
+      var docs = shopQueryInfo.docs;
+      if (docs.length > 0) {
+        for (doc in docs) {
+          shops.add(ShopInfo(doc.id, doc["name"], doc["address"], doc["phone"]));
+        }
+      }
+      return Profile(docId, name, email, phonenumber, isBarber, shops);
     }
   }
   return null;

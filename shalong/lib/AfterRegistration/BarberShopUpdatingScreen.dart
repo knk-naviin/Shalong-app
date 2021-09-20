@@ -18,8 +18,7 @@ class BarberShopUpdatingScreen extends StatefulWidget {
 
 class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  late String shopaddress, shopcontact, location;
-  ShopInfo shopInfo = ShopInfo("");
+  ShopInfo shopInfo = ShopInfo("","","","");
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +118,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                     //   Navigator.push(context, MaterialPageRoute(builder: (builder) => MapScreen()));
                     // },
                     onSaved: (value) {
-                      location = value!;
+                      // location = value!;
                     },
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -149,7 +148,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                   heightFactor: 1,
                   child: TextFormField(
                     onSaved: (value) {
-                      shopcontact = value!;
+                      shopInfo.phone = value!;
                     },
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -184,7 +183,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                     maxLines: 140,
                     minLines: 1,
                     onSaved: (value) {
-                      shopaddress = value!;
+                      shopInfo.address = value!;
                     },
                     validator: (value) {
                       if (value!.isEmpty) {

@@ -18,7 +18,7 @@ class ProfileUpdateScreen extends StatefulWidget {
 
 class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  Profile profile = Profile("", "", "", false, []);
+  Profile profile = Profile("", "", "", "", false, []);
   var currentUser = FirebaseAuth.instance.currentUser!;
   CollectionReference userRef = FirebaseFirestore.instance.collection("user");
   CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
@@ -30,6 +30,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
           var shop = await shopRef.add({
             "uid": uid,
             "name": aShop.name,
+            "address": aShop.address,
+            "phone": aShop.phone
           });
           shopIds.add(shop.id);
         }
