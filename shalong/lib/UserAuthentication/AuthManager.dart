@@ -3,27 +3,29 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class Profile {
-  String docId;
-  String name;
-  String email;
-  String phone;
-  bool isBarber;
-  List<ShopInfo> shops = [];
-  // String barbershopname;
-  // String barbershopaddress;
-  // String barberlocationurl;
-  Profile(this.docId, this.name, this.email, this.phone, this.isBarber, this.shops);
-}
 
 class ShopInfo {
   String docId;
   String name;
   String address;
   String phone;
-  ShopInfo(this.docId, this.name,this.address,this.phone);
+  bool isOpen;
+  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen);
 }
 
+
+class Profile {
+  String docId;
+  String name;
+  String email;
+  String phone;
+  bool isBarber = false;
+  List<ShopInfo> shops = [];
+  // String barbershopname;
+  // String barbershopaddress;
+  // String barberlocationurl;
+  Profile(this.docId, this.name, this.email, this.phone, this.isBarber, this.shops);
+}
 
 Future<void> signout() async {
   (await GoogleSignIn().signOut());
@@ -51,13 +53,36 @@ Future<Profile?> profile() async {
       var docs = shopQueryInfo.docs;
       if (docs.length > 0) {
         for (doc in docs) {
-          shops.add(ShopInfo(doc.id, doc["name"], doc["address"], doc["phone"]));
+          shops.add(ShopInfo(doc.id, doc["name"], doc["address"], doc["phone"], doc["is_open"]));
         }
       }
       return Profile(docId, name, email, phonenumber, isBarber, shops);
     }
   }
   return null;
+}
+
+Future<List<ShopInfo>?> fetchShops() async {
+  CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
+  var shopQueryInfo = (await shopRef.get());
+  var docs = shopQueryInfo.docs;
+  List<ShopInfo> shops = [];
+  if (docs.length > 0) {
+    for (var doc in docs) {
+      var name = doc["name"] ?? "";
+      var address = doc["address"] ?? "";
+      var phonenumber = doc["phone"] ?? "";
+      var isOpen = doc["is_open"];
+
+      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen));
+    }
+  }
+  return shops;
+}
+
+setShopStatus(ShopInfo shop) {
+  CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
+   shopRef.doc(shop.docId).update({"is_open": shop.isOpen});
 }
 
 Future<UserCredential?> signInWithGoogle() async {

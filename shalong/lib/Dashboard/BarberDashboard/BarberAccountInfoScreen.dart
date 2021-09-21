@@ -169,7 +169,7 @@ late Profile? profileInfo;
                                     new Flexible(
                                       child: new TextFormField(
                                         initialValue:  profileInfo?.email,
-                                        enabled: !isViewMode,
+                                        enabled: false,
                                       ),
                                     ),
                                   ],
@@ -204,7 +204,7 @@ late Profile? profileInfo;
                                     new Flexible(
                                       child: new TextFormField(
                                         initialValue:  profileInfo?.phone,
-                                        enabled: !isViewMode,
+                                        enabled: false
                                       ),
                                     ),
                                   ],

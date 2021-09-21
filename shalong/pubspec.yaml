@@ -43,6 +43,7 @@ dependencies:
   email_validator: ^2.0.1
   google_maps_flutter: ^2.0.8
   time_range: ^1.0.0
+  flare_flutter: ^3.0.2
 
 
 
@@ -62,8 +63,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-#  assets:
-#    - assets/images/user_icon.png
+  assets:
+    - images/tick.flr.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

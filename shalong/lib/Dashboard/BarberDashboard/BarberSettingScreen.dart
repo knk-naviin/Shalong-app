@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shalong/AfterRegistration/animation.dart';
 
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
@@ -55,7 +56,12 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AnimationScreen()),
+            );
+          },
           child: Row(
             children: [
               FaIcon(FontAwesomeIcons.clipboard),

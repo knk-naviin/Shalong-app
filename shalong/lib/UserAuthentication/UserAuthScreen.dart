@@ -56,11 +56,6 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
               setState(() {
                 _isLoading = false;
               });
-              // PlatformException exp = onError;
-              // String? message = exp.message;
-              // if (message == null) {
-              //   message = ;
-              // }
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -105,30 +100,13 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 25.0),
                     child: Text(
-                      "Registration",
+                      "Welcome To ShalonG",
                       style: TextStyle(
                           color: Colors.blue,
                           fontSize: 38,
-                          decoration: TextDecoration.underline),
+                          ),
                     ),
                   ),
-                  // SizedBox(
-                  //   width: 270,
-                  //   child: TextField(
-                  //     keyboardType: TextInputType.phone,
-                  //     cursorColor: Colors.black12,
-                  //     decoration: InputDecoration(
-                  //         hintText: "         +91 Enter Phone Number",
-                  //         // hintStyle: TextStyle(fontSize: 25),
-                  //         // prefixText: "+91",
-                  //         // prefixStyle: TextStyle(fontSize: 25),
-                  //         border: OutlineInputBorder(
-                  //             borderRadius: BorderRadius.circular(10.0))),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
                   CupertinoButton(
                     child: Text("Phone Verfication"),
                     onPressed: () {
@@ -153,8 +131,7 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                     color: Colors.black.withOpacity(.5),
                     child: Center(
                         child: Platform.isAndroid
-                            ? CircularProgressIndicator(
-                        )
+                            ? CircularProgressIndicator()
                             : CupertinoActivityIndicator(
                                 radius: 34,
                               )))
