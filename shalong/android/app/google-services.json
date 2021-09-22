@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "59614233225",
+    "firebase_url": "https://shalong-4b19b-default-rtdb.firebaseio.com",
     "project_id": "shalong-4b19b",
     "storage_bucket": "shalong-4b19b.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "59614233225-6ibps2qdkt5nl0d3smnorsqj7kim3tbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shalong",
+            "certificate_hash": "d8530df018fb58daf5c9bc0768398328afb3c3ba"
+          }
+        },
         {
           "client_id": "59614233225-rs88uc375ho88ccj8ptbgserlltuhc91.apps.googleusercontent.com",
           "client_type": 3
@@ -29,6 +38,13 @@
             {
               "client_id": "59614233225-rs88uc375ho88ccj8ptbgserlltuhc91.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "59614233225-3cb51qebqqgque4igqcp9tqtv6vmq7k5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "shalong"
+              }
             }
           ]
         }

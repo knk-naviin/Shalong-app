@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/CustomerSettingScreen.dart';
-import 'package:shalong/UserAuthentication/AuthManager.dart';
+
 
 import 'CustomerHomeScreen.dart';
 
