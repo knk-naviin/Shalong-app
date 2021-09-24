@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 
 class ShopInfo {
+
   String docId;
   String name;
   String address;
@@ -20,6 +22,14 @@ class Profile {
   String email;
   String phone;
   bool isBarber = false;
+  getProfile(){
+    var dp=FirebaseAuth.instance.currentUser!.photoURL;
+    if(dp !=null){
+      return Image.network(dp,height: 100 , width: 100,);
+    }else{
+      return Icon(Icons.account_circle,size: 100,);
+    }
+  }
   List<ShopInfo> shops = [];
   // String barbershopname;
   // String barbershopaddress;
@@ -33,6 +43,7 @@ Future<void> signout() async {
 }
 
 Future<Profile?> profile() async {
+
   var uid = FirebaseAuth.instance.currentUser?.uid;
   if (uid != null) {
     CollectionReference userRef = FirebaseFirestore.instance.collection("user");
@@ -85,7 +96,10 @@ setShopStatus(ShopInfo shop) {
    shopRef.doc(shop.docId).update({"is_open": shop.isOpen});
 }
 
+
+
 Future<UserCredential?> signInWithGoogle() async {
+
   // Trigger the authentication flow
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 

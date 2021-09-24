@@ -1,7 +1,10 @@
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ShopPageScreen extends StatefulWidget {
-  const ShopPageScreen({Key? key}) : super(key: key);
+
+
 
   @override
   _ShopPageScreenState createState() => _ShopPageScreenState();
@@ -10,23 +13,29 @@ class ShopPageScreen extends StatefulWidget {
 class _ShopPageScreenState extends State<ShopPageScreen> {
   @override
   Widget build(BuildContext context) {
+    var dp =FirebaseAuth.instance.currentUser!.photoURL;
     return Scaffold(
+        appBar: AppBar(
+          title: Text("Shop Details"),
+        ),
         body: ListView(
-      children: [
-        Row(
           children: [
-            Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Shop Name kumar thamil lets",style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold
-                  ),),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 60,
+                  backgroundImage: NetworkImage(dp!),
                 ),
-            ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 48.0),
+                  child: Text("Shop Name"),
+                )
+              ],
+            )
           ],
         ),
-      ],
-    ));
+    );
   }
 }

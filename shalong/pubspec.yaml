@@ -46,7 +46,8 @@ dependencies:
   flare_flutter: ^3.0.2
   apple_maps_flutter: ^1.0.1
   pull_to_refresh: ^2.0.0
-
+  avatar_view: ^1.0.1
+  
 
 
 dev_dependencies:
