@@ -1,10 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
-INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
-MERGED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
+ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-47:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-47:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-47:12
+INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-47:12
+MERGED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-47:12
 MERGED from [:firebase_auth] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:cloud_firestore] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
@@ -81,11 +81,11 @@ INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalon
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-47:12
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-46:12
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:1-47:12
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -102,7 +102,7 @@ ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/a
 	android:name
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:5:22-82
 application
-ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:6:4-45:18
+ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:6:4-46:18
 MERGED from [:firebase_auth] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_auth] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19

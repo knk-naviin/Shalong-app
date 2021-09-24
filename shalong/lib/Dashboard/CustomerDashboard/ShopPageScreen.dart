@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 class ShopPageScreen extends StatefulWidget {
   const ShopPageScreen({Key? key}) : super(key: key);
@@ -9,18 +8,25 @@ class ShopPageScreen extends StatefulWidget {
 }
 
 class _ShopPageScreenState extends State<ShopPageScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Shop Page"),
-      ),
-      body: ListView(
-        children: [
-          Text("wertyuiop")
-        ],
-      ),
-    );
+        body: ListView(
+      children: [
+        Row(
+          children: [
+            Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Shop Name kumar thamil lets",style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold
+                  ),),
+                ),
+            ),
+          ],
+        ),
+      ],
+    ));
   }
 }

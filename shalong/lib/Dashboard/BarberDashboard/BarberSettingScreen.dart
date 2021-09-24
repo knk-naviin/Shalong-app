@@ -57,10 +57,10 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
             backgroundColor: Colors.blue.shade50,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => AnimationScreen()),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => AnimationScreen()),
+            // );
           },
           child: Row(
             children: [

@@ -114,9 +114,9 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                 child: Center(
                   heightFactor: 1,
                   child: TextFormField(
-                    // onTap: () {
-                    //   Navigator.push(context, MaterialPageRoute(builder: (builder) => MapScreen()));
-                    // },
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (builder) => MapScreen()));
+                    },
                     onSaved: (value) {
                       // location = value!;
                     },

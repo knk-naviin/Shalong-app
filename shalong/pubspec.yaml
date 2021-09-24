@@ -44,6 +44,7 @@ dependencies:
   google_maps_flutter: ^2.0.8
   time_range: ^1.0.0
   flare_flutter: ^3.0.2
+  apple_maps_flutter: ^1.0.1
 
 
 

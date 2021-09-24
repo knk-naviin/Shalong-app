@@ -37,12 +37,6 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Barber Screen"),
-          centerTitle: true,
-          backgroundColor: Colors.blue,
-
-        ),
         bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: true,
           items: [

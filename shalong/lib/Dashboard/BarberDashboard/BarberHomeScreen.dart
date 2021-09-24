@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class BarberHomeScreen extends StatefulWidget {
   const BarberHomeScreen({Key? key}) : super(key: key);
 
@@ -10,13 +9,21 @@ class BarberHomeScreen extends StatefulWidget {
 }
 
 class _BarberHomeScreenState extends State<BarberHomeScreen> {
-
   bool ShopOpen = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
+    return Scaffold(
+      body: ListView(
         children: [
+          Center(
+            child: Text(
+             'Home',
+             style: TextStyle(
+                 fontSize: 18.0,
+                 fontWeight: FontWeight.bold),
+                ),
+          ),
+
           Padding(
               padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
               child: Row(
@@ -25,7 +32,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                   Text(
                     'Is Shop is Open ?',
                     style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Expanded(
                       child: CupertinoSwitch(
@@ -37,8 +44,8 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                                 builder: (BuildContext context) {
                                   // return object of type Dialog
                                   return AlertDialog(
-                                    title:  Text("Pick Shop Opening Time"),
-                                  actions: [],
+                                    title:  Text("WelCome"),
+                                    actions: [],
                                   );
                                 },
                               );
@@ -48,7 +55,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                                 builder: (BuildContext context) {
                                   // return object of type Dialog
                                   return AlertDialog(
-                                    title:  Text("ThankYou "),
+                                    title:  Text("ThankYou"),
                                     actions: [
 
                                     ],
@@ -62,134 +69,15 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                           }))
                 ],
               )),
-          Divider(
-            color: Colors.grey,
-          ),
           Visibility(
               visible: ShopOpen,
-              child: Column(
-                children: [
-                  Card(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Time Slot For Customer',
-                          style:
-                          TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only( top: 8.0,left: 40),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("10 AM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("11 AM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("12 AM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("01 AM")
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only( top: 8.0,left: 40),
-                          child: Row(
-                            children: [
+            child: ListView(
+              children: [
+                Text("Shop is opened")
+              ],
+            )
+          ),
 
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("02 PM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("03 PM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("04 PM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("05 PM")
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only( top: 8.0,left: 40),
-                          child: Row(
-                            children: [
-
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("06 PM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("07 PM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("08 PM")
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: OutlinedButton(
-                                    onPressed: (){},
-                                    child: Text("09 PM")
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    )
-                  ),
-                ],
-              )
-          )
         ],
       ),
     );

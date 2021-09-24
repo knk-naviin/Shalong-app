@@ -5,6 +5,7 @@ import 'package:shalong/Dashboard/CustomerDashboard/CustomerSettingScreen.dart';
 
 
 import 'CustomerHomeScreen.dart';
+import 'ShopPageScreen.dart';
 
 class CustomerDashboardScreen extends StatefulWidget {
 
@@ -16,7 +17,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
   int _currentIndex = 0;
   static const List<Widget> _widgetOptions = [
     CustomerHomeScreen(),
-    Center(child: Text("Favorites",style: TextStyle(fontSize: 32),)),
+    ShopPageScreen(),
     Center(child: Text("Notifications",style: TextStyle(fontSize: 32),)),
     CustomerSettingScreen()
     ];
