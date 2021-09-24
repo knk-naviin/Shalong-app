@@ -31,7 +31,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
             "uid": uid,
             "name": aShop.name,
             "address": aShop.address,
-            "phone": aShop.phone
+            "phone": aShop.phone,
+            "is_open": aShop.isOpen
           });
           shopIds.add(shop.id);
         }
