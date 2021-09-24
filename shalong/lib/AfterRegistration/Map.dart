@@ -26,6 +26,7 @@ class _MapScreenState extends State<MapScreen> {
           backgroundColor: Colors.green[700],
         ),
         body: GoogleMap(
+
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
             target: _center,

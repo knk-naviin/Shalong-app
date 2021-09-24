@@ -45,6 +45,7 @@ dependencies:
   time_range: ^1.0.0
   flare_flutter: ^3.0.2
   apple_maps_flutter: ^1.0.1
+  pull_to_refresh: ^2.0.0
 
 
 

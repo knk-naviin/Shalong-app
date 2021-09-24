@@ -46,7 +46,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
         "is_barber": profile.isBarber,
         "shops": shopIds
       }).then((value) {
-        Navigator.of(context).pushReplacementNamed("/barberdashboardscreen");
+        Navigator.of(context).pushReplacementNamed("/launch");
       }).catchError((onError) {
         showDialog(
             context: context,
