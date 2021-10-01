@@ -12,6 +12,8 @@ MERGED from [:address_search_field] /Users/naveenkumar/Documents/Github/Shalong-
 MERGED from [:google_maps_flutter] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:geolocator_android] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:google_sign_in] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_sign_in/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-analytics-ktx:19.0.1] /Users/naveenkumar/.gradle/caches/transforms-3/36766ebd09fb38414614eaf34587609e/transformed/jetified-firebase-analytics-ktx-19.0.1/AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/75608b1fd16a4e126867b3cd42baaf81/transformed/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:2:1-21:12
@@ -210,9 +212,9 @@ ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/a
 	android:name
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:41:13-44
 meta-data#com.google.android.geo.API_KEY
-ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:43:8-44:69
+ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:43:8-44:33
 	android:value
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:44:12-67
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:44:12-31
 	android:name
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:43:19-64
 uses-sdk
@@ -233,6 +235,10 @@ MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Git
 MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/geolocator_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:google_sign_in] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_sign_in/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:google_sign_in] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_sign_in/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics-ktx:19.0.1] /Users/naveenkumar/.gradle/caches/transforms-3/36766ebd09fb38414614eaf34587609e/transformed/jetified-firebase-analytics-ktx-19.0.1/AndroidManifest.xml:5:5-44

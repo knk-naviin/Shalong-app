@@ -11,7 +11,6 @@ class CustomerAccountInfoScreen extends StatefulWidget {
 
 class MapScreenState extends State<CustomerAccountInfoScreen>
     with SingleTickerProviderStateMixin {
-
   bool isViewMode = true;
   late Profile? profileInfo;
   final FocusNode myFocusNode = FocusNode();
@@ -20,16 +19,26 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
   void initState() {
     super.initState();
     profile().then((value) => {
-      setState(() {profileInfo = value;})
-    });
-
+          setState(() {
+            profileInfo = value;
+          })
+        });
   }
 
   Future<void> updatedata() async {
     FirebaseFirestore Firestore = FirebaseFirestore.instance;
 
-    Firestore.collection("user").doc(profileInfo!.docId).update({"name": profileInfo!.name, "phone": profileInfo!.phone, "email": profileInfo!.email, "is_barber": true});
-    Firestore.collection("shop").doc(profileInfo!.docId).update({"name": profileInfo!.shops.first.name,"address":profileInfo!.shops.first.address,"phone":profileInfo!.shops.first.phone});
+    Firestore.collection("user").doc(profileInfo!.docId).update({
+      "name": profileInfo!.name,
+      "phone": profileInfo!.phone,
+      "email": profileInfo!.email,
+      "is_barber": true
+    });
+    Firestore.collection("shop").doc(profileInfo!.docId).update({
+      "name": profileInfo!.shops.first.name,
+      "address": profileInfo!.shops.first.address,
+      "phone": profileInfo!.shops.first.phone
+    });
   }
 
   @override
@@ -69,14 +78,15 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
                                     left: 25.0, right: 25.0, top: 25.0),
                                 child: new Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
-                                        new Text(
+                                        Text(
                                           'Personal Information',
                                           style: TextStyle(
                                               fontSize: 18.0,
@@ -102,7 +112,8 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -123,17 +134,17 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
                                   children: <Widget>[
                                     new Flexible(
                                       child: TextFormField(
-                                        validator: (value){
-                                          if(value == null){
+                                        validator: (value) {
+                                          if (value == null) {
                                             return "Enter Your Name";
                                           }
                                         },
-                                        onSaved: (value){
-                                          if( value != null){
+                                        onSaved: (value) {
+                                          if (value != null) {
                                             profileInfo!.name = value;
                                           }
                                         },
-                                        initialValue:  profileInfo?.name,
+                                        initialValue: profileInfo?.name,
                                         enabled: !isViewMode,
                                         autofocus: !isViewMode,
                                       ),
@@ -147,7 +158,8 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         Text(
@@ -168,7 +180,7 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
                                   children: <Widget>[
                                     new Flexible(
                                       child: new TextFormField(
-                                        initialValue:  profileInfo?.email,
+                                        initialValue: profileInfo?.email,
                                         enabled: false,
                                       ),
                                     ),
@@ -181,7 +193,8 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -194,7 +207,6 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
                                     ),
                                   ],
                                 )),
-
                             Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 2.0),
@@ -203,9 +215,8 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
                                   children: <Widget>[
                                     new Flexible(
                                       child: new TextFormField(
-                                          initialValue:  profileInfo?.phone,
-                                          enabled: false
-                                      ),
+                                          initialValue: profileInfo?.phone,
+                                          enabled: false),
                                     ),
                                   ],
                                 )),
@@ -230,7 +241,6 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
   }
 
   Widget _getActionButtons() {
-
     return Padding(
       padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 45.0),
       child: new Row(
@@ -242,18 +252,18 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
               padding: EdgeInsets.only(right: 10.0),
               child: Container(
                   child: new ElevatedButton(
-                    child:  Text("Save"),
-                    onPressed: () {
-                      if(formkey.currentState!.validate()){
-                        (formkey.currentState!.save());
-                        setState(() {
-                          updatedata();
-                          isViewMode = true;
-                          FocusScope.of(context).requestFocus(new FocusNode());
-                        });
-                      }
-                    },
-                  )),
+                child: Text("Save"),
+                onPressed: () {
+                  if (formkey.currentState!.validate()) {
+                    (formkey.currentState!.save());
+                    setState(() {
+                      updatedata();
+                      isViewMode = true;
+                      FocusScope.of(context).requestFocus(new FocusNode());
+                    });
+                  }
+                },
+              )),
             ),
             flex: 2,
           ),
@@ -261,18 +271,17 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
             child: Padding(
               padding: EdgeInsets.only(left: 10.0),
               child: Container(
-                  child:  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.red)
-                    ),
-                    child:  Text("Cancel"),
-                    onPressed: () {
-                      setState(() {
-                        isViewMode = true;
-                        FocusScope.of(context).requestFocus(new FocusNode());
-                      });
-                    },
-                  )),
+                  child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.red)),
+                child: Text("Cancel"),
+                onPressed: () {
+                  setState(() {
+                    isViewMode = true;
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                  });
+                },
+              )),
             ),
             flex: 2,
           ),

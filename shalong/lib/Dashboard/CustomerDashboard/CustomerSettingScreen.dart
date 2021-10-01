@@ -14,8 +14,10 @@ class CustomerSettingScreen extends StatefulWidget {
 }
 
 class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
+
   @override
   Widget build(BuildContext context) {
+
     return Container(
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       Padding(

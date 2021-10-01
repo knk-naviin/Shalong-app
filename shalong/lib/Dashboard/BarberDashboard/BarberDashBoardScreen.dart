@@ -37,6 +37,9 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Barber Screen"),
+      ),
         bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: true,
           items: [

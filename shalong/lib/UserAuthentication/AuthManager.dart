@@ -1,18 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 
 class ShopInfo {
-
   String docId;
   String name;
   String address;
   String phone;
   bool isOpen;
-  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen);
+  String shopratings;
+  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopratings);
 }
 
 
@@ -22,19 +20,13 @@ class Profile {
   String email;
   String phone;
   bool isBarber = false;
-  getProfile(){
-    var dp=FirebaseAuth.instance.currentUser!.photoURL;
-    if(dp !=null){
-      return Image.network(dp,height: 100 , width: 100,);
-    }else{
-      return Icon(Icons.account_circle,size: 100,);
-    }
-  }
+  String ratings;
+
   List<ShopInfo> shops = [];
   // String barbershopname;
   // String barbershopaddress;
   // String barberlocationurl;
-  Profile(this.docId, this.name, this.email, this.phone, this.isBarber, this.shops);
+  Profile(this.docId, this.name, this.email, this.phone, this.isBarber, this.shops,this.ratings);
 }
 
 Future<void> signout() async {
@@ -56,6 +48,7 @@ Future<Profile?> profile() async {
       var email = doc["email"];
       var phonenumber = doc["phone"];
       var isBarber = doc["is_barber"];
+      var ratings = doc["ratings"];
       var docId = doc.id;
       List<ShopInfo> shops = [];
 
@@ -64,10 +57,10 @@ Future<Profile?> profile() async {
       var docs = shopQueryInfo.docs;
       if (docs.length > 0) {
         for (doc in docs) {
-          shops.add(ShopInfo(doc.id, doc["name"], doc["address"], doc["phone"], doc["is_open"]));
+          shops.add(ShopInfo(doc.id, doc["name"], doc["address"], doc["phone"], doc["is_open"],doc["shopratings"]));
         }
       }
-      return Profile(docId, name, email, phonenumber, isBarber, shops);
+      return Profile(docId, name, email, phonenumber, isBarber, shops,ratings);
     }
   }
   return null;
@@ -84,8 +77,8 @@ Future<List<ShopInfo>?> fetchShops() async {
       var address = doc["address"] ?? "";
       var phonenumber = doc["phone"] ?? "";
       var isOpen = doc["is_open"];
-
-      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen));
+      var shopratings = doc["shopratings"];
+      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopratings));
     }
   }
   return shops;

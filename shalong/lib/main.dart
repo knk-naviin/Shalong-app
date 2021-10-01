@@ -53,7 +53,8 @@ class _ShalongAppState extends State<ShalongApp> {
                 ],
               ),);
             } else {
-              return Center(
+              return Padding(
+                padding: const EdgeInsets.only(top: 118.0),
                 child: SizedBox(
                   child: CircularProgressIndicator(),
                   width: 30,

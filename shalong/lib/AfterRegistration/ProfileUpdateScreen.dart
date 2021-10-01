@@ -18,42 +18,42 @@ class ProfileUpdateScreen extends StatefulWidget {
 
 class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  Profile profile = Profile("", "", "", "", false, []);
+  Profile profile = Profile("", "", "", "", false, [],"");
   var currentUser = FirebaseAuth.instance.currentUser!;
   CollectionReference userRef = FirebaseFirestore.instance.collection("user");
   CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
   Future<void> addUserToFirestore() async {
     var uid = currentUser.uid;
-      List<String> shopIds = [];
-      if (profile.isBarber) {
-        for (var aShop in profile.shops) {
-          var shop = await shopRef.add({
-            "uid": uid,
-            "name": aShop.name,
-            "address": aShop.address,
-            "phone": aShop.phone,
-            "is_open": aShop.isOpen
-          });
-          shopIds.add(shop.id);
-        }
+    List<String> shopIds = [];
+    if (profile.isBarber) {
+      for (var aShop in profile.shops) {
+        var shop = await shopRef.add({
+          "uid": uid,
+          "name": aShop.name,
+          "address": aShop.address,
+          "phone": aShop.phone,
+          "is_open": aShop.isOpen
+        });
+        shopIds.add(shop.id);
       }
+    }
 
-      return userRef.add({
-        "uid": uid,
-        "name": profile.name,
-        "email": profile.email,
-        "phone": profile.phone,
-        "is_barber": profile.isBarber,
-        "shops": shopIds
-      }).then((value) {
-        Navigator.of(context).pushReplacementNamed("/launch");
-      }).catchError((onError) {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(title: Text(onError.toString()));
-            });
-      });
+    return userRef.add({
+      "uid": uid,
+      "name": profile.name,
+      "email": profile.email,
+      "phone": profile.phone,
+      "is_barber": profile.isBarber,
+      "shops": shopIds
+    }).then((value) {
+      Navigator.of(context).pushReplacementNamed("/launch");
+    }).catchError((onError) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(title: Text(onError.toString()));
+          });
+    });
   }
 
   Widget shopsWidget() {
@@ -63,24 +63,36 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
         list.add(Card(
           elevation: 0.5,
           child: ListTile(
-            leading: Icon(Icons.home_outlined,size: 52,color: CupertinoColors.activeBlue,),
-            title:Text(aShop.name, style: TextStyle(fontWeight: FontWeight.w600,fontSize: 25),),
+            leading: Icon(
+              Icons.home_outlined,
+              size: 52,
+              color: CupertinoColors.activeBlue,
+            ),
+            title: Text(
+              aShop.name,
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+            ),
             subtitle: Text("Shop Contact"),
-            trailing: IconButton(icon: Icon(Icons.cancel),color: Colors.red,onPressed: (){
-              setState(() {
-                profile.shops.remove(aShop);
-              });
-            },),
+            trailing: IconButton(
+              icon: Icon(Icons.cancel),
+              color: Colors.red,
+              onPressed: () {
+                setState(() {
+                  profile.shops.remove(aShop);
+                });
+              },
+            ),
           ),
         ));
       }
       return Container(
           // color: Colors.red,
-          child: Column(children: list,));
+          child: Column(
+        children: list,
+      ));
     }
-     return Container();
+    return Container();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -91,52 +103,6 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
           title: Text("Profile Update Screen"),
           centerTitle: true,
           backgroundColor: CupertinoColors.systemBlue,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.exit_to_app_rounded),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (ctx) => Platform.isIOS
-                      ? CupertinoAlertDialog(
-                          content: Text("Are you sure want to Logout? \n" + ""),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text("Cancel")),
-                            TextButton(
-                                onPressed: () {
-                                  signout().then((value) =>
-                                      Navigator.of(context)
-                                          .pushReplacementNamed("/launch"));
-                                },
-                                child: Text("Logout")),
-                          ],
-                        )
-                      : AlertDialog(
-                          title: Text('Are you sure want to Logout?'),
-                          content: const Text('AlertDialog description'),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text("Cancel")),
-                            TextButton(
-                                onPressed: () {
-                                  signout().then((value) =>
-                                      Navigator.of(context)
-                                          .pushReplacementNamed("/launch"));
-                                },
-                                child: Text("Logout")),
-                          ],
-                        ),
-                );
-              },
-            )
-          ],
         ),
         body: Form(
           key: formkey,
@@ -262,7 +228,9 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                               if (profile.shops.length == 0) {
                                 ShopInfo shopInfo = await Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => BarberShopUpdatingScreen()),
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BarberShopUpdatingScreen()),
                                 );
                                 setState(() {
                                   profile.shops.add(shopInfo);
@@ -272,16 +240,21 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                                   context: context,
                                   builder: (ctx) => Platform.isIOS
                                       ? CupertinoAlertDialog(
-                                    title: Text("Sorry!",style: TextStyle(color: CupertinoColors.systemRed)),
-                                    content: Text("You can add only one shop at this moment"),
-                                  )
+                                          title: Text("Sorry!",
+                                              style: TextStyle(
+                                                  color: CupertinoColors
+                                                      .systemRed)),
+                                          content: Text(
+                                              "You can add only one shop at this moment"),
+                                        )
                                       : AlertDialog(
-                                    content: Text("You can add only one shop at this moment"),
-                                  ),
+                                          content: Text(
+                                              "You can add only one shop at this moment"),
+                                        ),
                                 );
                               }
                             },
-                              // icon: FaIcon(FontAwesomeIcons.file),
+                            // icon: FaIcon(FontAwesomeIcons.file),
                             child: Text("Add Shop Details"),
                           ),
                         ],
@@ -300,8 +273,19 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                   onPressed: () {
                     if (formkey.currentState!.validate()) {
                       (formkey.currentState!.save());
-                      addUserToFirestore();
-                     }
+                      if(profile.isBarber && profile.shops.length > 0 || profile.isBarber == false) {
+                        addUserToFirestore();
+                      }else{
+                        showDialog(
+                          context: context,
+                          builder: (context) => new AlertDialog(
+                            title: new Text('Alert'),
+                            content: Text(
+                                'Check Your Data'),
+                          ),
+                        );
+                      }
+                    }
                   },
                 ),
               ),

@@ -18,7 +18,7 @@ class BarberShopUpdatingScreen extends StatefulWidget {
 
 class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  ShopInfo shopInfo = ShopInfo("","","","", false);
+  ShopInfo shopInfo = ShopInfo("","","","", false,"");
 
   @override
   Widget build(BuildContext context) {
@@ -33,52 +33,6 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
           title: Text("Profile Update Screen"),
           centerTitle: true,
           backgroundColor: CupertinoColors.systemBlue,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.exit_to_app_rounded),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (ctx) => Platform.isIOS
-                      ? CupertinoAlertDialog(
-                          content: Text("Are you sure want to Logout? \n" + ""),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text("Cancel")),
-                            TextButton(
-                                onPressed: () {
-                                  signout().then((value) =>
-                                      Navigator.of(context)
-                                          .pushReplacementNamed("/launch"));
-                                },
-                                child: Text("Logout")),
-                          ],
-                        )
-                      : AlertDialog(
-                          title: Text('Are you sure want to Logout?'),
-                          content: const Text('AlertDialog description'),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text("Cancel")),
-                            TextButton(
-                                onPressed: () {
-                                  signout().then((value) =>
-                                      Navigator.of(context)
-                                          .pushReplacementNamed("/launch"));
-                                },
-                                child: Text("Logout")),
-                          ],
-                        ),
-                );
-              },
-            )
-          ],
         ),
         body: Form(
           key: formkey,
