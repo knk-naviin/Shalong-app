@@ -77,45 +77,50 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     }
     List<Widget> widgets = [];
     widgets.add(
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          onChanged: (value) {
-            setState(() {});
-          },
-          controller: editingController,
-          decoration: InputDecoration(
-              labelText: "Search",
-              hintText: "Search",
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)))),
-        ),
-      ),
-      /*  Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: CupertinoSearchTextField(
-        onChanged: (String value)
-        {
+     Column(
+       children: [
+         Container(
+           width: 440,
+           height: 200,
+           child: Stack(
+             children: [
+               new Container(
+                 width: 440,
+                 height: 180,
+                 decoration:  BoxDecoration(
+                     color: Colors.blue,
+                   borderRadius:  BorderRadius.only(
+                     bottomLeft: Radius.circular(36),
+                     bottomRight: Radius.circular(36),
+                   )
+                 ),
 
-          print(value);
-        }
-        /*{
-    shops.forEach((userDetail) {
-    if (userDetail.name.contains(value) ||
-    userDetail.name.contains(value)) shops.add(userDetail);
-    });
+               ),
+               Padding(
+                 padding: const EdgeInsets.only(top: 150.0),
+                 child: TextField(
 
-    setState(() {
+                   onChanged: (value) {
+                     setState(() {});
+                   },
+                   controller: editingController,
+                   decoration: InputDecoration(
+                     fillColor: Colors.red,
+                       labelText: "Search",
+                       hintText: "Search",
+                       prefixIcon: Icon(Icons.search),
+                       border: OutlineInputBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(12.0)))),
+                 ),
+               ),
+             ],
+           ),
+         ),
 
-    });
-    }*/,
-        onSubmitted: (String value) {
-          print('Submitted text: $value');
-        },
-    // backgroundColor: Colors.blue,
-      ),
-    )*/
+       ],
+     )
+
+
     );
     // for (var shop in shops) {
       widgets.add(
@@ -247,38 +252,19 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SmartRefresher(
-      enablePullDown: true,
-      enablePullUp: true,
-      header: WaterDropHeader(),
-      // footer: CustomFooter(
-      //   builder: (BuildContext context, LoadStatus mode) {
-      //     Widget body;
-      //     if (mode == LoadStatus.idle) {
-      //       body = Text("pull up load");
-      //     }
-      //     else if (mode == LoadStatus.loading) {
-      //       body = CupertinoActivityIndicator();
-      //     }
-      //     else if (mode == LoadStatus.failed) {
-      //       body = Text("Load Failed!Click retry!");
-      //     }
-      //     else if (mode == LoadStatus.canLoading) {
-      //       body = Text("release to load more");
-      //     }
-      //     else {
-      //       body = Text("No more Data");
-      //     }
-      //     return Container(
-      //       height: 55.0,
-      //       child: Center(child: body),
-      //     );
-      //   },
-      // ),
-      controller: _refreshController,
-      onRefresh: _onRefresh,
-      onLoading: _onRefresh,
-      child: shopList(shops),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+      ),
+      body: SmartRefresher(
+        enablePullDown: true,
+        enablePullUp: true,
+        header: WaterDropHeader(),
+        controller: _refreshController,
+        onRefresh: _onRefresh,
+        onLoading: _onRefresh,
+        child: shopList(shops),
+      ),
     );
   }
 

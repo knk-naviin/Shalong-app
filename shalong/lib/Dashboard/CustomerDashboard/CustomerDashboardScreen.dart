@@ -28,12 +28,12 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Customer Screen"),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-
-      ),
+      // appBar: AppBar(
+      //   title: Text("Customer Screen"),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.blue,
+      //
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
