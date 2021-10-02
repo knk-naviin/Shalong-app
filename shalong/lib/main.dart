@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:page_transition/page_transition.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,8 +18,7 @@ void main() {
       home: ShalongApp(),
       routes: <String, WidgetBuilder>{
         '/launch': (BuildContext context) => LaunchScreen(),
-        '/barberdashboardscreen': (BuildContext context) =>
-            BarberDashboardScreen(),
+        '/barberdashboardscreen': (BuildContext context) => BarberDashboardScreen(),
         '/profileupdatescreen': (BuildContext context) => ProfileUpdateScreen()
       }));
 }
@@ -38,6 +39,7 @@ class _ShalongAppState extends State<ShalongApp> {
           builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
             if (snapshot.hasData || snapshot.hasError) {
               return AnimatedSplashScreen(
+                pageTransitionType: PageTransitionType.leftToRight,
                   nextScreen: LaunchScreen(), splash: Stack(
                 children: [
                   Center(
@@ -51,7 +53,9 @@ class _ShalongAppState extends State<ShalongApp> {
                     child: Center(child: Text("We'll style while you smile!",style: TextStyle(fontSize: 17,color: Colors.red),)),
                   )
                 ],
-              ),);
+              ),
+
+              );
             } else {
               return Padding(
                 padding: const EdgeInsets.only(top: 118.0),

@@ -6,13 +6,13 @@ import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 class CustomerAccountInfoScreen extends StatefulWidget {
   @override
-  MapScreenState createState() => MapScreenState();
+  CustomerAccountInfoScreenState createState() => CustomerAccountInfoScreenState();
 }
 
-class MapScreenState extends State<CustomerAccountInfoScreen>
+class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
     with SingleTickerProviderStateMixin {
   bool isViewMode = true;
-  late Profile? profileInfo;
+  late Profile? profileInfo = null;
   final FocusNode myFocusNode = FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   @override
@@ -43,8 +43,8 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
 
   @override
   Widget build(BuildContext context) {
-    if (profile == null) {
-      return CircularProgressIndicator();
+    if (profileInfo == null) {
+      return Center(child: CircularProgressIndicator());
     }
 
     return new Scaffold(
@@ -302,9 +302,10 @@ class MapScreenState extends State<CustomerAccountInfoScreen>
         ),
       ),
       onTap: () {
-        setState(() {
-          isViewMode = false;
-        });
+        Navigator.pop(context);
+        // setState(() {
+        //   isViewMode = false;
+        // });
       },
     );
   }

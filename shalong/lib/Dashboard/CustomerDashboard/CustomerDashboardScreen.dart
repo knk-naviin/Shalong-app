@@ -15,7 +15,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
   int _currentIndex = 0;
   static const List<Widget> _widgetOptions = [
     CustomerHomeScreen(),
-    FavScreen(),
+    Text("favorites"),
     Center(child: Text("Notifications",style: TextStyle(fontSize: 32),)),
     CustomerSettingScreen()
     ];

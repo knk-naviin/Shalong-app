@@ -13,7 +13,8 @@ class CustomerHomeScreen extends StatefulWidget {
 
 class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   late List<ShopInfo>? shops = null;
-  bool _icon = false;
+  List<String> favorites = [];
+  // bool _icon = false;
   var searchText = "";
 
   RefreshController _refreshController =
@@ -68,7 +69,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               hintText: "Search",
               prefixIcon: Icon(Icons.search),
               border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)))),
         ),
       ),
       /*  Padding(
@@ -96,20 +97,18 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       ),
     )*/
     );
-    for (var shop in shops) {
+    // for (var shop in shops) {
       widgets.add(
-        Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          borderOnForeground: false,
-          child: Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: shops.length,
-                itemBuilder: (context, index) {
-                  if (editingController.text.isEmpty) {
-                    return ListTile(
+        Expanded(
+          child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: shops.length,
+              itemBuilder: (context, index) {
+                var shop = shops[index];
+                if (editingController.text.isEmpty) {
+                  return Card(
+                    borderOnForeground: true,
+                    child: ListTile(
                       onTap: () {
                         Navigator.push(
                           context,
@@ -165,14 +164,18 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                 autofocus: true,
                                 icon: Icon(
                                   // Icons.favorite_outline
-                                  _icon
+                                  favorites.contains(shop.docId)
                                       ? Icons.favorite
                                       : Icons.favorite_outline,
-                                  color: _icon ? Colors.blue : Colors.grey,
+                                  color: favorites.contains(shop.docId) ? Colors.blue : Colors.grey,
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    _icon = !_icon;
+                                    if (favorites.contains(shop.docId)) {
+                                      favorites.remove(shop.docId);
+                                    } else {
+                                      favorites.add(shop.docId);
+                                    }
                                   });
                                 },
                               ),
@@ -184,30 +187,30 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                           style: TextStyle(
                               color: shop.isOpen ? Colors.red : Colors.grey,
                               fontWeight: FontWeight.bold)),
-                    );
-                  } else if (shops[index]
-                          .name
-                          .toLowerCase()
-                          .contains(editingController.text) ||
-                      shops[index]
-                          .name
-                          .toLowerCase()
-                          .contains(editingController.text)) {
-                    return ListTile(
-                      title: Text('${shops[index].name} ${shops[index].name}'),
-                    );
-                  } else {
-                    return Container();
-                  }
-                }),
-          ),
+                    ),
+                  );
+                } else if (shops[index]
+                        .name
+                        .toLowerCase()
+                        .contains(editingController.text) ||
+                    shops[index]
+                        .name
+                        .toLowerCase()
+                        .contains(editingController.text)) {
+                  return ListTile(
+                    title: Text(shop.name),
+                  );
+                } else {
+                  return Container();
+                }
+              }),
         ),
         /**/
       );
       //);
-    }
+    // }
 
-    return ListView(children: widgets);
+    return Column(children: widgets,);
   }
 
   @override
