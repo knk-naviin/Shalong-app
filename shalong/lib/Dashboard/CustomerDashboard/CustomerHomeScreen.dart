@@ -1,5 +1,3 @@
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -15,14 +13,12 @@ class CustomerHomeScreen extends StatefulWidget {
 
 class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   late List<ShopInfo>? shops = null;
-
+  bool _icon = false;
   var searchText = "";
-
 
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   TextEditingController editingController = TextEditingController();
-
 
   void _onRefresh() async {
     // monitor network fetch
@@ -49,8 +45,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     super.initState();
   }
 
-   getratings(int ratingCount,int userCount) {
-
+  getratings(int ratingCount, int userCount) {
     return ratingCount / userCount;
   }
 
@@ -65,9 +60,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
         padding: const EdgeInsets.all(8.0),
         child: TextField(
           onChanged: (value) {
-            setState((
-
-                ) {});
+            setState(() {});
           },
           controller: editingController,
           decoration: InputDecoration(
@@ -104,14 +97,13 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     )*/
     );
     for (var shop in shops) {
-      var dp = FirebaseAuth.instance.currentUser!.photoURL;
       widgets.add(
-          Card(
+        Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
           borderOnForeground: false,
-          child:   Expanded(
+          child: Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: shops.length,
@@ -121,13 +113,13 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ShopPageScreen(
-                            shopname: shop.name,
-                            shopadd: shop.address,
-                            isopen: shop.isOpen,
-                            phoneno: shop.phone,
-
-                          )),
+                          MaterialPageRoute(
+                              builder: (context) => ShopPageScreen(
+                                    shopname: shop.name,
+                                    shopadd: shop.address,
+                                    isopen: shop.isOpen,
+                                    phoneno: shop.phone,
+                                  )),
                         );
                       },
                       title: Text(
@@ -143,12 +135,12 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Divider(),
-                          Text(shop.address,
+                          Text(
+                            shop.address,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: 2,
-                                wordSpacing: 2
-                            ),
+                                wordSpacing: 2),
                           ),
                           Divider(),
                           Row(
@@ -158,17 +150,34 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                   text: 'Ratings | ',
                                   style: DefaultTextStyle.of(context).style,
                                   children: <TextSpan>[
-                                    TextSpan(text: '${shop.shopratings}★', style: TextStyle(fontWeight: FontWeight.bold)),
+                                    TextSpan(
+                                        text: '${shop.shopratings}★',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                               ),
+                              SizedBox(
+                                width: 67,
+                              ),
+                              Text("Add to Favorites"),
                               IconButton(
-                                icon: Icon(Icons.favorite),
-                                onPressed: (){},
-                              )
+                                autofocus: true,
+                                icon: Icon(
+                                  // Icons.favorite_outline
+                                  _icon
+                                      ? Icons.favorite
+                                      : Icons.favorite_outline,
+                                  color: _icon ? Colors.blue : Colors.grey,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _icon = !_icon;
+                                  });
+                                },
+                              ),
                             ],
                           ),
-
                         ],
                       ),
                       trailing: Text(shop.isOpen ? "Open" : "Closed",
@@ -177,26 +186,24 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                               fontWeight: FontWeight.bold)),
                     );
                   } else if (shops[index]
-                      .name
-                      .toLowerCase()
-                      .contains(editingController.text) ||
+                          .name
+                          .toLowerCase()
+                          .contains(editingController.text) ||
                       shops[index]
                           .name
                           .toLowerCase()
                           .contains(editingController.text)) {
                     return ListTile(
-                      title:
-                      Text('${shops[index].name} ${shops[index].name}'),
+                      title: Text('${shops[index].name} ${shops[index].name}'),
                     );
                   } else {
                     return Container();
                   }
                 }),
           ),
-          ),
-          /**/
-
-          );
+        ),
+        /**/
+      );
       //);
     }
 
@@ -253,5 +260,3 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   // }
 
 }
-
-

@@ -118,10 +118,10 @@ late Profile? profileInfo;
                             Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 2.0),
-                                child: new Row(
+                                child:  Row(
                                   mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    new Flexible(
+                                  children: [
+                                     Flexible(
                                       child: TextFormField(
                                         validator: (value){
                                           if(value == null){
