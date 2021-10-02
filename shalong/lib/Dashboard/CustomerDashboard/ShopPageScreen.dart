@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class ShopPageScreen extends StatefulWidget {
-
   bool isopen;
   final shopname;
   final shopadd;
@@ -20,8 +19,6 @@ class ShopPageScreen extends StatefulWidget {
   _ShopPageScreenState createState() => _ShopPageScreenState();
 }
 
-
-
 Future<void> getratings() async {}
 
 class _ShopPageScreenState extends State<ShopPageScreen> {
@@ -34,20 +31,17 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    time=TimeOfDay.now();
+    time = TimeOfDay.now();
   }
 
   Future<Null> selectedTime(BuildContext context) async {
-    picked = (await showTimePicker(
-        context: context,
-        initialTime: time))!;
+    picked = (await showTimePicker(context: context, initialTime: time))!;
 
-    if(picked != null){
+    if (picked != null) {
       setState(() {
         time = picked;
       });
     }
-
   }
 
   @override
@@ -57,259 +51,551 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
         backgroundColor: Colors.blue,
         title: Text("Shop Details"),
       ),
-      body: IgnorePointer(
-        ignoringSemantics: true,
-        ignoring: widget.isopen?false:true,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.shopname,
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+      body: widget.isopen?Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.shopname,
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+                ),
+              ),
+              SizedBox(
+                width: 85,
+              ),
+              Text(
+                " ${widget.isopen ? "Open" : "Closed"}",
+                style: TextStyle(
+                    fontSize: 22,
+                    color: widget.isopen ? Colors.red : Colors.grey,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          Divider(),
+          Padding(
+              padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 1.0),
+              child: new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  new Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(
+                        'Address:',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
+                ],
+              )),
+          Padding(
+            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
+            child: Text(
+              widget.shopadd,
+              style: TextStyle(),
+            ),
+          ),
+          Divider(),
+          Padding(
+              padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+              child: new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  new Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(
+                        'Phone Number:',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              )),
+          Padding(
+            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
+            child: Text(
+              widget.phoneno,
+              style: TextStyle(),
+            ),
+          ),
+          Divider(),
+          Padding(
+              padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+              child: new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  new Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(
+                        'Book Slot:',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              )),
+          Padding(
+            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
+            child: Column(
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    selectedTime(context);
+                  },
+                  child: Text("Click Here"),
                 ),
-                SizedBox(
-                  width: 85,
-                ),
-                Text(
-                  " ${widget.isopen ? "Open" : "Closed"}",
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: widget.isopen ? Colors.red : Colors.grey,
-                      fontWeight: FontWeight.bold),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Time  "),
+                    Text(
+                      '${time.hourOfPeriod}:${time.minute} ${time.period}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
-            Divider(),
-            Padding(
-                padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 1.0),
-                child: new Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    new Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          'Address:',
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ],
-                )),
-            Padding(
-              padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
-              child: Text(
-                widget.shopadd,
-                style: TextStyle(),
-              ),
-            ),
-            Divider(),
-            Padding(
-                padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
-                child: new Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    new Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          'Phone Number:',
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ],
-                )),
-            Padding(
-              padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
-              child: Text(
-                widget.phoneno,
-                style: TextStyle(),
-              ),
-            ),
-            Divider(),
-            Padding(
-                padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
-                child: new Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    new Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          'Book Slot:',
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ],
-                )),
-            Padding(
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Center(child: Text("OR",style: TextStyle(
+          //     fontSize: 20,
+          //     fontWeight: FontWeight.bold
+          //   ),)),
+          // ),
+          Padding(
               padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
+              child: new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Text(
+                    'To Select Pre-Defined Time:',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Switch(
+                      value: isSwitched,
+                      onChanged: (value) {
+                        setState(() {
+                          isSwitched = value;
+                          print(isSwitched);
+                        });
+                      },
+                      activeTrackColor: Colors.blue,
+                      activeColor: Colors.white,
+                    ),
+                  ),
+                ],
+              )),
+          Padding(
+            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
+            child: Visibility(
+              visible: isSwitched,
               child: Column(
                 children: [
-              OutlinedButton(
-                onPressed: (){
-                  selectedTime(context);
-                },
-                child: Text("Click Here"),
-              ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Time  "),
-                      Text('${time.hourOfPeriod}:${time.minute} ${time.period}',
-                        style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),)
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("10:00 AM"))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("11:00 AM"))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("12:00 PM"))),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("01:00 PM"))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("02:00 PM"))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("03:00 PM"))),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("04:00 PM"))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("05:00 PM"))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("06:00 PM"))),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("07:00 PM"))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("08:00 PM"))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: OutlinedButton(
+                              onPressed: () {}, child: Text("09:00 PM"))),
                     ],
                   ),
                 ],
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Center(child: Text("OR",style: TextStyle(
-            //     fontSize: 20,
-            //     fontWeight: FontWeight.bold
-            //   ),)),
-            // ),
-            Padding(
-                padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
-                child: new Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Text(
-                      'To Select Pre-Defined Time:',
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Switch(
-                        value: isSwitched,
-                        onChanged: (value) {
-                          setState(() {
-                            isSwitched = value;
-                            print(isSwitched);
-                          });
-                        },
-                        activeTrackColor: Colors.blue,
-                        activeColor: Colors.white,
-                      ),
-                    ),
-                  ],
-                )),
-            Padding(
-              padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
-              child: Visibility(
-                visible: isSwitched,
-                child:  Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("10:00 AM"))),
-                        SizedBox(width: 12,),
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("11:00 AM"))),
-                        SizedBox(width: 12,),
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("12:00 PM"))),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("01:00 PM"))),
-                        SizedBox(width: 12,),
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("02:00 PM"))),
-                        SizedBox(width: 12,),
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("03:00 PM"))),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("04:00 PM"))),
-                        SizedBox(width: 12,),
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("05:00 PM"))),
-                        SizedBox(width: 12,),
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("06:00 PM"))),
-
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("07:00 PM"))),
-                        SizedBox(width: 12,),
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("08:00 PM"))),
-                        SizedBox(width: 12,),
-                        Expanded(
-                            child: OutlinedButton(
-                                onPressed: () {}, child: Text("09:00 PM"))),
-
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Divider(),
-            Padding(
-              padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
-              child: CupertinoButton(
-                  color: CupertinoColors.activeBlue.darkColor,
-                  child: Text("Book For Hair Cut"),
-                  onPressed: () {
+          ),
+          Divider(),
+          Padding(
+            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+            child: CupertinoButton(
+                color: CupertinoColors.activeBlue.darkColor,
+                child: Text("Book For Hair Cut"),
+                onPressed: () {
 // Navigator.push(
 //   context,
 //   MaterialPageRoute(builder: (context) => MyHomePage()),
 // );
-                  }),
-            )
-          ],
-        ),
+                }),
+          )
+        ],
+      )
+          :Stack(
+        children: [
+          IgnorePointer(
+            ignoringSemantics: true,
+            ignoring: widget.isopen ? false : true,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.shopname,
+                        style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 85,
+                    ),
+                    Text(
+                      " ${widget.isopen ? "Open" : "Closed"}",
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: widget.isopen ? Colors.red : Colors.grey,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Divider(),
+                Padding(
+                    padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 1.0),
+                    child: new Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        new Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Address:',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
+                  child: Text(
+                    widget.shopadd,
+                    style: TextStyle(),
+                  ),
+                ),
+                Divider(),
+                Padding(
+                    padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+                    child: new Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        new Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Phone Number:',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
+                  child: Text(
+                    widget.phoneno,
+                    style: TextStyle(),
+                  ),
+                ),
+                Divider(),
+                Padding(
+                    padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+                    child: new Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        new Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Book Slot:',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
+                  child: Column(
+                    children: [
+                      OutlinedButton(
+                        onPressed: () {
+                          selectedTime(context);
+                        },
+                        child: Text("Click Here"),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Time  "),
+                          Text(
+                            '${time.hourOfPeriod}:${time.minute} ${time.period}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: Center(child: Text("OR",style: TextStyle(
+                //     fontSize: 20,
+                //     fontWeight: FontWeight.bold
+                //   ),)),
+                // ),
+                Padding(
+                    padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
+                    child: new Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        Text(
+                          'To Select Pre-Defined Time:',
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Switch(
+                            value: isSwitched,
+                            onChanged: (value) {
+                              setState(() {
+                                isSwitched = value;
+                                print(isSwitched);
+                              });
+                            },
+                            activeTrackColor: Colors.blue,
+                            activeColor: Colors.white,
+                          ),
+                        ),
+                      ],
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 5.0),
+                  child: Visibility(
+                    visible: isSwitched,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("10:00 AM"))),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("11:00 AM"))),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("12:00 PM"))),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("01:00 PM"))),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("02:00 PM"))),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("03:00 PM"))),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("04:00 PM"))),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("05:00 PM"))),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("06:00 PM"))),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("07:00 PM"))),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("08:00 PM"))),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                                child: OutlinedButton(
+                                    onPressed: () {}, child: Text("09:00 PM"))),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Divider(),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+                  child: CupertinoButton(
+                      color: CupertinoColors.activeBlue.darkColor,
+                      child: Text("Book For Hair Cut"),
+                      onPressed: () {
+// Navigator.push(
+//   context,
+//   MaterialPageRoute(builder: (context) => MyHomePage()),
+// );
+                      }),
+                )
+              ],
+            ),
+          ),
+          Center(
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.black12,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 78.0),
+                child: Image.network("https://www.pngall.com/wp-content/uploads/4/Closed-Stamp-PNG.png"),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
-
 }
