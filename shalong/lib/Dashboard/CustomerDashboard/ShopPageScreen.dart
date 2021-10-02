@@ -58,7 +58,8 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
         title: Text("Shop Details"),
       ),
       body: IgnorePointer(
-        ignoring: widget.isopen?true:false,
+        ignoringSemantics: true,
+        ignoring: widget.isopen?false:true,
         child: Column(
           children: [
             Row(

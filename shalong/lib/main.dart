@@ -39,7 +39,7 @@ class _ShalongAppState extends State<ShalongApp> {
           builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
             if (snapshot.hasData || snapshot.hasError) {
               return AnimatedSplashScreen(
-                pageTransitionType: PageTransitionType.leftToRight,
+                pageTransitionType: PageTransitionType.rightToLeftWithFade,
                   nextScreen: LaunchScreen(), splash: Stack(
                 children: [
                   Center(
@@ -57,12 +57,23 @@ class _ShalongAppState extends State<ShalongApp> {
 
               );
             } else {
-              return Padding(
-                padding: const EdgeInsets.only(top: 118.0),
-                child: SizedBox(
-                  child: CircularProgressIndicator(),
-                  width: 30,
-                  height: 30,
+              return Scaffold(
+                backgroundColor: Colors.white70,
+                body: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Platform.isAndroid?CircularProgressIndicator(
+
+                        ):CupertinoActivityIndicator(
+                          animating: true,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Loading"),
+                        )
+                      ],
+                    )
                 ),
               );
             }
@@ -90,18 +101,24 @@ class _LaunchScreenState extends State<LaunchScreen> {
         future: profile(),
         builder: (BuildContext context, AsyncSnapshot<Profile?> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  child: Platform.isAndroid
-                      ? CircularProgressIndicator()
-                      : CupertinoActivityIndicator(),
-                  width: 30,
-                  height: 30,
-                ),
-              ],
+            return Scaffold(
+              backgroundColor: Colors.white70,
+              body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Platform.isAndroid?CircularProgressIndicator(
+
+                      ):CupertinoActivityIndicator(
+                        animating: true,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Loading"),
+                      )
+                    ],
+                  )
+              ),
             );
           } else if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {

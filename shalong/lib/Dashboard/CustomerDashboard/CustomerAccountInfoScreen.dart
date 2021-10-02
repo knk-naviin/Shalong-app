@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,7 +46,25 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
   @override
   Widget build(BuildContext context) {
     if (profileInfo == null) {
-      return Center(child: CircularProgressIndicator());
+      return Scaffold(
+        backgroundColor: Colors.white70,
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Platform.isAndroid?CircularProgressIndicator(
+
+                ):CupertinoActivityIndicator(
+                  animating: true,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Loading"),
+                )
+              ],
+            )
+        ),
+      );
     }
 
     return new Scaffold(

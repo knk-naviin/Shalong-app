@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -53,7 +55,25 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   Widget shopList(List<ShopInfo>? shops) {
     if (shops == null) {
       _onLoading();
-      return Center(child: CircularProgressIndicator());
+      return Center(child: Scaffold(
+        backgroundColor: Colors.white70,
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Platform.isAndroid?CircularProgressIndicator(
+
+                ):CupertinoActivityIndicator(
+                  animating: true,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Loading"),
+                )
+              ],
+            )
+        ),
+      ));
     }
     List<Widget> widgets = [];
     widgets.add(
@@ -198,6 +218,18 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                         .toLowerCase()
                         .contains(editingController.text)) {
                   return ListTile(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ShopPageScreen(
+                              shopname: shop.name,
+                              shopadd: shop.address,
+                              isopen: shop.isOpen,
+                              phoneno: shop.phone,
+                            )),
+                      );
+                    },
                     title: Text(shop.name),
                   );
                 } else {

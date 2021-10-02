@@ -125,16 +125,26 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
               ),
             ),
             _isLoading
-                ? Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: Colors.black.withOpacity(.5),
-                    child: Center(
-                        child: Platform.isAndroid
-                            ? CircularProgressIndicator()
-                            : CupertinoActivityIndicator(
-                                radius: 34,
-                              )))
+                ? Scaffold(
+              backgroundColor:  Colors.black.withOpacity(0.5),
+              body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Platform.isAndroid?CircularProgressIndicator(
+
+                      ):CupertinoActivityIndicator(
+                        radius: 30,
+                        animating: true,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Loading"),
+                      )
+                    ],
+                  )
+              ),
+            )
                 : Container()
           ],
         ),
