@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/ShopPageScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
@@ -182,15 +183,21 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               if (editingController.text.isEmpty) {
                 return Center(
                   child: Card(
+
+                    shadowColor: Colors.blue,
+                    semanticContainer: false,
+                    borderOnForeground: true,
+                    elevation: 1,
                     shape: RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(40), // if you need this
+                          BorderRadius.circular(28), // if you need this
                       side: BorderSide(
-                        color: Colors.grey.withOpacity(0.2),
+                        style: BorderStyle.solid,
+                        color: CupertinoColors.systemGrey.withOpacity(0.2),
                         width: 1,
                       ),
                     ),
-                    borderOnForeground: true,
+
                     child: ListTile(
                       onTap: () {
                         Navigator.push(
@@ -316,6 +323,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(

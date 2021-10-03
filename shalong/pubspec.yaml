@@ -48,7 +48,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   avatar_view: ^1.0.1
   flutter_rating_bar: ^4.0.0
-
+  bottom_navy_bar: ^6.0.0
 
   
 
