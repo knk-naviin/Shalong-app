@@ -95,30 +95,44 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                     ),
                     gradient: LinearGradient(
                         colors: [Colors.lightBlueAccent, Colors.blue])),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Column(
                   children: [
-                    Center(
-                      child: Text(
-                        "Hi '",
-                        style: TextStyle(
-                          fontSize: 23,
-                          color: Colors.white,
-                        ),
+                    Text(
+                      "Welcomes you",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: "fonts/TrajanPro.ttf",
+                          color: Colors.white),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 38.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              "Hi '",
+                              style: TextStyle(
+                                fontSize: 23,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Center(
+                            child: Text(
+                              name!,
+                              style: TextStyle(
+                                  fontSize: 23,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    Center(
-                      child: Text(
-                        name!,
-                        style: TextStyle(
-                            fontSize: 23,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -183,7 +197,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               if (editingController.text.isEmpty) {
                 return Center(
                   child: Card(
-
                     shadowColor: Colors.blue,
                     semanticContainer: false,
                     borderOnForeground: true,
@@ -197,7 +210,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                         width: 1,
                       ),
                     ),
-
                     child: ListTile(
                       onTap: () {
                         Navigator.push(
@@ -253,14 +265,13 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                               IconButton(
                                 autofocus: true,
                                 icon: Icon(
-                                  // Icons.favorite_outline
-                                  favorites.contains(shop.docId)
-                                      ? CupertinoIcons.heart_fill
-                                      : CupertinoIcons.heart,
-                                  color: favorites.contains(shop.docId)
-                                      ? CupertinoColors.systemBlue
-                                      :CupertinoColors.systemGrey
-                                ),
+                                    // Icons.favorite_outline
+                                    favorites.contains(shop.docId)
+                                        ? CupertinoIcons.heart_fill
+                                        : CupertinoIcons.heart,
+                                    color: favorites.contains(shop.docId)
+                                        ? CupertinoColors.systemBlue
+                                        : CupertinoColors.systemGrey),
                                 onPressed: () {
                                   setState(() {
                                     if (favorites.contains(shop.docId)) {
@@ -325,6 +336,11 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text(
+          "Shalong",
+          style: TextStyle(
+              fontSize: 51, fontFamily: "SourceCodePro", color: Colors.white),
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -349,6 +365,4 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       ),
     );
   }
-
-
 }

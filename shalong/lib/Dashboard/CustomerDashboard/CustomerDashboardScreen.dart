@@ -89,13 +89,13 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
       // ),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
-
+        curve: Curves.ease,
         showElevation: false, // use this to remove appBar's elevation
         onItemSelected: (index) => setState(() {
           _currentIndex = index;
           _pageController.animateToPage(index,
               duration: Duration(milliseconds: 300),
-              curve: Curves.ease
+            curve: Curves.ease,
           );
         }),
         items: [
@@ -107,14 +107,14 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
             activeColor: CupertinoColors.systemBlue,
           ),
           BottomNavyBarItem(
-              icon: Icon(CupertinoIcons.heart_fill,
+              icon: Icon(CupertinoIcons.heart,
                 color: CupertinoColors.systemBlue,
               ),
               title: Text('Favorites'),
               activeColor: CupertinoColors.systemBlue,
           ),
           BottomNavyBarItem(
-              icon: Icon(CupertinoIcons.bell_fill,
+              icon: Icon(CupertinoIcons.bell,
                 color: CupertinoColors.systemBlue,
               ),
               title: Text('Notification'),
