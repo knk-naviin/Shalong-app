@@ -69,12 +69,15 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
 
     return new Scaffold(
         appBar: AppBar(
-          title: Text('Account Information',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-                fontFamily: 'sans-serif-light',
-              )),
+          title: Text("Account Information"),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.lightBlueAccent, Colors.blue])),
+          ),
+          backgroundColor: Colors.blue,
+          elevation: 0,
+
         ),
         body: new Container(
           color: Colors.white,

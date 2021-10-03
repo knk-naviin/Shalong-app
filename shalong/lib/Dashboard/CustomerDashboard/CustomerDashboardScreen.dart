@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/CustomerSettingScreen.dart';
 import 'CustomerHomeScreen.dart';
 import 'FavoritesScreen.dart';
+import 'NotificationScreen.dart';
 
 class CustomerDashboardScreen extends StatefulWidget {
 
@@ -138,8 +139,8 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
           },
           children: <Widget>[
             CustomerHomeScreen(),
-            Text("favorites"),
-            Center(child: Text("Notifications",style: TextStyle(fontSize: 32),)),
+            FavoritesScreen(),
+            NotificationScreen(),
             CustomerSettingScreen()
           ],
         ),

@@ -1,16 +1,12 @@
-/// Flutter code sample for CupertinoPageScaffold
 
-// This example shows a [CupertinoPageScaffold] with a [ListView] as a [child].
-// The [CupertinoButton] is connected to a callback that increments a counter.
-// The [backgroundColor] can be changed.
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
-/// This is the main application widget.
+
+
 class RatingScreen extends StatelessWidget {
   const RatingScreen({Key? key}) : super(key: key);
 
@@ -43,7 +39,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: CupertinoPageScaffold(
           navigationBar: CupertinoNavigationBar(
-            leading: TextButton(
+            leading:
+            TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -54,6 +51,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onPressed: () {
                 if(formkey.currentState!.validate()){
                   (formkey.currentState!.save());
+                  Navigator.pop(context);
                 }
               },
               child: Text("Send"),
@@ -114,7 +112,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                               style: BorderStyle.solid
                           )
                       ),
-                      
+
                     maxLines: 5,
                       placeholder: "FeedBack(Optional)"
                   ),

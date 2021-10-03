@@ -2,6 +2,9 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/HelpScreen.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/RatingsScreenSettings.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/TermsConditionsScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 import 'CustomerAccountInfoScreen.dart';
@@ -19,6 +22,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Settings"),
           flexibleSpace: Container(
@@ -68,7 +72,12 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TermsConditionScreen()),
+            );
+          },
           child: Row(
             children: [
               FaIcon(FontAwesomeIcons.clipboard),
@@ -89,7 +98,12 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RatingsScreenSettings()),
+            );
+          },
           child: Row(
             children: [
               Icon(Icons.rate_review),
@@ -110,7 +124,12 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HelpScreen()),
+            );
+          },
           child: Row(
             children: [
               Icon(Icons.help),
@@ -121,27 +140,27 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
           ),
         ),
       ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            primary: Colors.blue,
-            padding: EdgeInsets.all(20),
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            backgroundColor: Colors.blue.shade50,
-          ),
-          onPressed: () {},
-          child: Row(
-            children: [
-              FaIcon(FontAwesomeIcons.facebookMessenger),
-              SizedBox(width: 20),
-              Expanded(child: Text("About")),
-              Icon(Icons.arrow_forward_ios),
-            ],
-          ),
-        ),
-      ),
+      // Padding(
+      //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      //   child: TextButton(
+      //     style: TextButton.styleFrom(
+      //       primary: Colors.blue,
+      //       padding: EdgeInsets.all(20),
+      //       shape:
+      //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      //       backgroundColor: Colors.blue.shade50,
+      //     ),
+      //     onPressed: () {},
+      //     child: Row(
+      //       children: [
+      //         FaIcon(FontAwesomeIcons.facebookMessenger),
+      //         SizedBox(width: 20),
+      //         Expanded(child: Text("About")),
+      //         Icon(Icons.arrow_forward_ios),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: TextButton(
