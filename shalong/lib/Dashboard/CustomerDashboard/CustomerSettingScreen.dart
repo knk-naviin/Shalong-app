@@ -18,8 +18,20 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Settings"),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.lightBlueAccent, Colors.blue])),
+          ),
+          backgroundColor: Colors.blue,
+          elevation: 0,
+
+        ),
+
+      body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: TextButton(
@@ -27,7 +39,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             primary: Colors.blue,
             padding: EdgeInsets.all(20),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
           onPressed: () {
@@ -53,7 +65,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             primary: Colors.blue,
             padding: EdgeInsets.all(20),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
           onPressed: () {},
@@ -74,7 +86,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             primary: Colors.blue,
             padding: EdgeInsets.all(20),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
           onPressed: () {},
@@ -95,7 +107,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             primary: Colors.blue,
             padding: EdgeInsets.all(20),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
           onPressed: () {},
@@ -116,7 +128,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             primary: Colors.blue,
             padding: EdgeInsets.all(20),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
           onPressed: () {},
@@ -137,7 +149,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             primary: Colors.blue,
             padding: EdgeInsets.all(20),
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             backgroundColor: Colors.blue.shade50,
           ),
           onPressed: () {
@@ -145,38 +157,38 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
               context: context,
               builder: (ctx) => Platform.isIOS
                   ? CupertinoAlertDialog(
-                      content: Text("Are you sure want to Logout? \n" + ""),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                            },
-                            child: Text("Cancel")),
-                        TextButton(
-                            onPressed: () {
-                              signout().then((value) => Navigator.of(context)
-                                  .pushReplacementNamed("/launch"));
-                            },
-                            child: Text("Logout")),
-                      ],
-                    )
+                content: Text("Are you sure want to Logout? \n" + ""),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: Text("Cancel")),
+                  TextButton(
+                      onPressed: () {
+                        signout().then((value) => Navigator.of(context)
+                            .pushReplacementNamed("/launch"));
+                      },
+                      child: Text("Logout")),
+                ],
+              )
                   : AlertDialog(
-                      title: Text('Are you sure want to Logout?'),
-                      content: const Text('AlertDialog description'),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                            },
-                            child: Text("Cancel")),
-                        TextButton(
-                            onPressed: () {
-                              signout().then((value) => Navigator.of(context)
-                                  .pushReplacementNamed("/launch"));
-                            },
-                            child: Text("Logout")),
-                      ],
-                    ),
+                title: Text('Are you sure want to Logout?'),
+                content: const Text('AlertDialog description'),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: Text("Cancel")),
+                  TextButton(
+                      onPressed: () {
+                        signout().then((value) => Navigator.of(context)
+                            .pushReplacementNamed("/launch"));
+                      },
+                      child: Text("Logout")),
+                ],
+              ),
             );
           },
           child: Row(
@@ -194,12 +206,18 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
       ),
       Text(
         "This App is Copyright© under YAASH School Of Technology",
-        style: TextStyle(color: CupertinoColors.systemGrey),
+        style: TextStyle(
+            fontSize: 10,
+            color: CupertinoColors.systemGrey),
       ),
       Text(
         "Version: 1.0.0",
-        style: TextStyle(color: CupertinoColors.systemGrey, fontSize: 21),
+        style: TextStyle(
+            color: CupertinoColors.systemGrey,
+            fontSize: 15
+        ),
       )
-    ]));
+    ]),
+    );
   }
 }

@@ -248,11 +248,11 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                 icon: Icon(
                                   // Icons.favorite_outline
                                   favorites.contains(shop.docId)
-                                      ? Icons.favorite
-                                      : Icons.favorite_outline,
+                                      ? CupertinoIcons.heart_fill
+                                      : CupertinoIcons.heart,
                                   color: favorites.contains(shop.docId)
-                                      ? Colors.blue
-                                      : Colors.grey,
+                                      ? CupertinoColors.systemBlue
+                                      :CupertinoColors.systemGrey
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -342,16 +342,5 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     );
   }
 
-  //   if (shops == null) {
-  //     fetchShops().then((value) => setState((){
-  //       if (value != null) {
-  //         shops = value;
-  //       }
-  //     }));
-  //     return Center(child: CircularProgressIndicator());
-  //   } else {
-  //     return shopList(shops!);
-  //   }
-  // }
 
 }

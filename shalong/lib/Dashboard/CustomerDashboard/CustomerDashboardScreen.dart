@@ -37,23 +37,23 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(CupertinoIcons.home),
             label: "Home",
             backgroundColor: Colors.blue
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
+              icon: Icon(CupertinoIcons.heart_fill),
               label: "Favorites",
               backgroundColor: Colors.blue
 
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_active),
+              icon: Icon(CupertinoIcons.bell_fill),
               label: "Notification",
               backgroundColor: Colors.blue
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
+              icon: Icon(CupertinoIcons.settings_solid),
               label: "Settings",
               backgroundColor: Colors.blue
           )
