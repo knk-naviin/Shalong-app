@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'RatingScreen.dart';
 
 class ShopPageScreen extends StatefulWidget {
   bool isopen;
@@ -89,7 +92,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                       Text(
                         'Address:',
                         style: TextStyle(
-                            decoration: TextDecoration.underline,
+                            // decoration: TextDecoration.underline,
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold),
                       ),
@@ -117,7 +120,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                       Text(
                         'Phone Number:',
                         style: TextStyle(
-                            decoration: TextDecoration.underline,
+                            //decoration: TextDecoration.underline,
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold),
                       ),
@@ -149,7 +152,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                               Text(
                                 'Book Slot:',
                                 style: TextStyle(
-                                    decoration: TextDecoration.underline,
+                                    // decoration: TextDecoration.underline,
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -198,7 +201,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                           Text(
                             'To Select Pre-Defined Time:',
                             style: TextStyle(
-                                decoration: TextDecoration.underline,
+                                // decoration: TextDecoration.underline,
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -329,6 +332,44 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
             ],
           ),
           Divider(),
+          Row(
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 1.0),
+                  child: new Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      new Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text(
+                            'Give Ratings:',
+                            style: TextStyle(
+                              // decoration: TextDecoration.underline,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(left: 138.0),
+                child: TextButton.icon(
+                  icon: Icon(Icons.rate_review),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RatingScreen()),
+                    );
+                  },
+                  label: Text("Ratings"),
+
+                ),
+              ),
+            ],
+          ),
           Padding(
             padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
             child: CupertinoButton(
@@ -341,6 +382,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
 // );
                 }),
           )
+
         ],
       )
           :Stack(
@@ -385,7 +427,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                             Text(
                               'Address:',
                               style: TextStyle(
-                                  decoration: TextDecoration.underline,
+                                  // decoration: TextDecoration.underline,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -413,7 +455,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                             Text(
                               'Phone Number:',
                               style: TextStyle(
-                                  decoration: TextDecoration.underline,
+                                  // decoration: TextDecoration.underline,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -445,7 +487,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                                     Text(
                                       'Book Slot:',
                                       style: TextStyle(
-                                          decoration: TextDecoration.underline,
+                                          // decoration: TextDecoration.underline,
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -494,7 +536,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                                 Text(
                                   'To Select Pre-Defined Time:',
                                   style: TextStyle(
-                                      decoration: TextDecoration.underline,
+                                      //decoration: TextDecoration.underline,
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -623,10 +665,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                       color: CupertinoColors.activeBlue.darkColor,
                       child: Text("Book For Hair Cut"),
                       onPressed: () {
-// Navigator.push(
-//   context,
-//   MaterialPageRoute(builder: (context) => MyHomePage()),
-// );
+
                       }),
                 )
               ],
