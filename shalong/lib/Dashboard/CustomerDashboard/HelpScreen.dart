@@ -13,7 +13,6 @@ class _HelpScreenState extends State<HelpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-
           title: Text("Help"),
           flexibleSpace: Container(
             decoration: BoxDecoration(
