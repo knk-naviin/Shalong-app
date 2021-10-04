@@ -77,7 +77,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       ));
     }
     List<Widget> widgets = [];
-    widgets.add(Column(
+    widgets.add(
+        Column(
       children: [
         Container(
           width: 440,

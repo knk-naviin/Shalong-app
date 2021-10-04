@@ -6,26 +6,31 @@ import 'package:flutter_html/flutter_html.dart';
 
 
 
-class TermsConditionScreen extends StatefulWidget {
-  const TermsConditionScreen({Key? key}) : super(key: key);
+class BarberPrivacyPolicyScreen extends StatefulWidget {
+  const BarberPrivacyPolicyScreen({Key? key}) : super(key: key);
 
   @override
-  _TermsConditionScreenState createState() => _TermsConditionScreenState();
+  _BarberPrivacyPolicyScreenState createState() => _BarberPrivacyPolicyScreenState();
 }
 
-class _TermsConditionScreenState extends State<TermsConditionScreen> {
+class _BarberPrivacyPolicyScreenState extends State<BarberPrivacyPolicyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-
-          title: Text("Privacy Policy"),
+          backgroundColor: Colors.white10,
+          title: Text(
+            "Policy",
+            style: TextStyle(
+                fontSize: 51, fontFamily: "SourceCodePro", color: Colors.white),
+          ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Colors.lightBlueAccent, Colors.blue])),
+                    colors: [Colors.grey, Colors.black26]
+                )
+            ),
           ),
-          backgroundColor: Colors.blue,
           elevation: 0,
 
         ),

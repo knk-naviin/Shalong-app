@@ -16,12 +16,6 @@ class CustomerDashboardScreen extends StatefulWidget {
 class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
   int _currentIndex = 0;
   late PageController _pageController;
-  // static const List<Widget> _widgetOptions = [
-  //   CustomerHomeScreen(),
-  //   Text("favorites"),
-  //   Center(child: Text("Notifications",style: TextStyle(fontSize: 32),)),
-  //   CustomerSettingScreen()
-  //   ];
   void _onItemTapped(int index) {
     setState(() {
       print(index);

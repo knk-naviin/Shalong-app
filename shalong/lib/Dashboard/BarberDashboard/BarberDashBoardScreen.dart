@@ -1,10 +1,9 @@
-
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/BarberDashboard/BarberSettingScreen.dart';
 
 import 'BarberHomeScreen.dart';
-
 
 class BarberDashboardScreen extends StatefulWidget {
   @override
@@ -13,20 +12,7 @@ class BarberDashboardScreen extends StatefulWidget {
 
 class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   int _currentIndex = 0;
-  static const List<Widget> _widgetOptions = [
-    BarberHomeScreen(),
-    Center(
-        child: Text(
-      "Favorites",
-      style: TextStyle(fontSize: 32),
-    )),
-    Center(
-        child: Text(
-      "Notifications",
-      style: TextStyle(fontSize: 32),
-    )),
-    BarberSettingScreen()
-  ];
+  late PageController _pageController;
   void _onItemTapped(int index) {
     setState(() {
       print(index);
@@ -35,36 +21,85 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Barber Screen"),
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _currentIndex,
+        curve: Curves.ease,
+        showElevation: false, // use this to remove appBar's elevation
+        onItemSelected: (index) => setState(() {
+          _currentIndex = index;
+          _pageController.animateToPage(
+            index,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.ease,
+          );
+        }),
+        items: [
+          BottomNavyBarItem(
+            icon: Icon(
+              CupertinoIcons.home,
+              color: CupertinoColors.separator,
+            ),
+            title: Text(
+              'Home',
+              style: TextStyle(color: Colors.black),
+            ),
+            activeColor: CupertinoColors.separator,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(
+              CupertinoIcons.heart,
+              color: CupertinoColors.separator,
+            ),
+            title: Text('Favorites', style: TextStyle(color: Colors.black)),
+            activeColor:CupertinoColors.separator,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(
+              CupertinoIcons.bell,
+              color: CupertinoColors.separator,
+            ),
+            title: Text('Notification', style: TextStyle(color: Colors.black)),
+            activeColor: CupertinoColors.separator,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(
+              CupertinoIcons.settings_solid,
+              color: CupertinoColors.separator,
+            ),
+            title: Text('Settings', style: TextStyle(color: Colors.black)),
+            activeColor: CupertinoColors.separator,
+          ),
+        ],
       ),
-        bottomNavigationBar: BottomNavigationBar(
-          showUnselectedLabels: true,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: "Home",
-                backgroundColor: Colors.blue),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: "Favorites",
-                backgroundColor: Colors.blue),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.notifications_active),
-                label: "Notification",
-                backgroundColor: Colors.blue),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: "Profile",
-                backgroundColor: Colors.blue)
+      // body: Container(child: _widgetOptions.elementAt(_currentIndex))
+      body: SizedBox.expand(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() => _currentIndex = index);
+          },
+          children: <Widget>[
+            BarberHomeScreen(),
+            Text("Favorites"),
+            Text("Notifications"),
+            BarberSettingScreen(),
           ],
-          currentIndex: _currentIndex,
-
-          onTap: _onItemTapped,
-          elevation: 5,
         ),
-        body: Container(child: _widgetOptions.elementAt(_currentIndex)));
+      ),
+    );
   }
 }

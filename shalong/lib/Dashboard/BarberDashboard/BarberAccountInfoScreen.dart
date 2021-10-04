@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +14,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
     with SingleTickerProviderStateMixin {
 
   bool isViewMode = true;
-late Profile? profileInfo;
+  late Profile? profileInfo = null;
   final FocusNode myFocusNode = FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   @override
@@ -34,18 +35,39 @@ late Profile? profileInfo;
 
   @override
   Widget build(BuildContext context) {
-    if (profile == null) {
-      return CircularProgressIndicator();
+    if (profileInfo == null) {
+      return Scaffold(
+        backgroundColor: Colors.white70,
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Platform.isAndroid?CircularProgressIndicator(
+
+                ):CupertinoActivityIndicator(
+                  animating: true,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Loading"),
+                )
+              ],
+            )
+        ),
+      );
     }
 
     return new Scaffold(
         appBar: AppBar(
-          title: Text('Account Information',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-                fontFamily: 'sans-serif-light',
-              )),
+          title: Text("Account Info"),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.grey, Colors.black26])),
+          ),
+          backgroundColor: Colors.white10,
+          elevation: 0,
+
         ),
         body: new Container(
           color: Colors.white,

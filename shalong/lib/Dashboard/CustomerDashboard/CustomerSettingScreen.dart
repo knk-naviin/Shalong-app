@@ -2,11 +2,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shalong/Dashboard/CustomerDashboard/HelpScreen.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/AboutScreen.dart';
+
 import 'package:shalong/Dashboard/CustomerDashboard/RatingsScreenSettings.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/TermsConditionsScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
-
 import 'CustomerAccountInfoScreen.dart';
 
 class CustomerSettingScreen extends StatefulWidget {
@@ -56,7 +56,9 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             children: [
               Icon(CupertinoIcons.profile_circled),
               SizedBox(width: 20),
-              Expanded(child: Text("Account Info")),
+              Expanded(child: Text("Account Info",style: TextStyle(
+                  color: Colors.black
+              ),)),
               Icon(Icons.arrow_forward_ios),
             ],
           ),
@@ -82,7 +84,9 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             children: [
               FaIcon(FontAwesomeIcons.clipboard),
               SizedBox(width: 20),
-              Expanded(child: Text("Terms & Conditions")),
+              Expanded(child: Text("Privacy Policy",style: TextStyle(
+                  color: Colors.black
+              ),)),
               Icon(Icons.arrow_forward_ios),
             ],
           ),
@@ -108,7 +112,9 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             children: [
               Icon(Icons.rate_review),
               SizedBox(width: 20),
-              Expanded(child: Text("Ratings")),
+              Expanded(child: Text("Ratings",style: TextStyle(
+                  color: Colors.black
+              ),)),
               Icon(Icons.arrow_forward_ios),
             ],
           ),
@@ -127,19 +133,49 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HelpScreen()),
+              MaterialPageRoute(builder: (context) => AboutScreen()),
             );
           },
           child: Row(
             children: [
-              Icon(Icons.help),
+              Icon(Icons.developer_board),
               SizedBox(width: 20),
-              Expanded(child: Text("Help")),
+              Expanded(child: Text("About",style: TextStyle(
+                color: Colors.black
+              ),)),
               Icon(Icons.arrow_forward_ios),
             ],
           ),
         ),
       ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        //   child: TextButton(
+        //     style: TextButton.styleFrom(
+        //       primary: Colors.blue,
+        //       padding: EdgeInsets.all(20),
+        //       shape:
+        //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        //       backgroundColor: Colors.blue.shade50,
+        //     ),
+        //     onPressed: () {
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(builder: (context) => HelpScreen()),
+        //       );
+        //     },
+        //     child: Row(
+        //       children: [
+        //         Icon(Icons.help),
+        //         SizedBox(width: 20),
+        //         Expanded(child: Text("Help",style: TextStyle(
+        //             color: Colors.black
+        //         ),)),
+        //         Icon(Icons.arrow_forward_ios),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       // Padding(
       //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       //   child: TextButton(
@@ -214,28 +250,15 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             children: [
               FaIcon(FontAwesomeIcons.signOutAlt),
               SizedBox(width: 20),
-              Expanded(child: Text("Logout")),
+              Expanded(child: Text("Logout",style: TextStyle(
+                  color: Colors.black
+              ),)),
               Icon(Icons.arrow_forward_ios),
             ],
           ),
         ),
       ),
-      Divider(
-        color: Colors.grey,
-      ),
-      Text(
-        "This App is Copyright© under YAASH School Of Technology",
-        style: TextStyle(
-            fontSize: 10,
-            color: CupertinoColors.systemGrey),
-      ),
-      Text(
-        "Version: 1.0.0",
-        style: TextStyle(
-            color: CupertinoColors.systemGrey,
-            fontSize: 15
-        ),
-      )
+
     ]),
     );
   }
