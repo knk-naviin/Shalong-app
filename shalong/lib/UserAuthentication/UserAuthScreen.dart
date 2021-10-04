@@ -134,7 +134,7 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                       Platform.isAndroid?CircularProgressIndicator(
 
                       ):CupertinoActivityIndicator(
-                        radius: 30,
+                        // radius: 15,
                         animating: true,
                       ),
                       Padding(

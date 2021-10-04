@@ -59,14 +59,14 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
             ),
             activeColor: CupertinoColors.separator,
           ),
-          BottomNavyBarItem(
-            icon: Icon(
-              CupertinoIcons.heart,
-              color: CupertinoColors.separator,
-            ),
-            title: Text('Favorites', style: TextStyle(color: Colors.black)),
-            activeColor:CupertinoColors.separator,
-          ),
+          // BottomNavyBarItem(
+          //   icon: Icon(
+          //     CupertinoIcons.heart,
+          //     color: CupertinoColors.separator,
+          //   ),
+          //   title: Text('Favorites', style: TextStyle(color: Colors.black)),
+          //   activeColor:CupertinoColors.separator,
+          // ),
           BottomNavyBarItem(
             icon: Icon(
               CupertinoIcons.bell,
@@ -94,8 +94,20 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
           },
           children: <Widget>[
             BarberHomeScreen(),
-            Text("Favorites"),
-            Text("Notifications"),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: Text("Notification",style: TextStyle(fontSize: 32),)),
+                    Icon(Icons.notifications_active,size: 32,color: CupertinoColors.systemYellow,)
+                  ],),
+                Text("Coming Soon",style: TextStyle(
+                    color: CupertinoColors.systemGrey
+                ),)
+              ],
+            ),
             BarberSettingScreen(),
           ],
         ),

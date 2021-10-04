@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
@@ -33,7 +35,26 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
   @override
   Widget build(BuildContext context) {
     if (profileInfo == null) {
-      return Center(child: CircularProgressIndicator());
+      return Scaffold(
+        backgroundColor:  Colors.black.withOpacity(0.5),
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Platform.isAndroid?CircularProgressIndicator(
+
+                ):CupertinoActivityIndicator(
+                  // radius: 30,
+                  animating: true,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Loading"),
+                )
+              ],
+            )
+        ),
+      );
     } else {
       return Scaffold(
         backgroundColor: Colors.white,

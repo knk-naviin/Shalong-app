@@ -43,9 +43,10 @@ class MapScreenState extends State<BarberAccountInfoScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Platform.isAndroid?CircularProgressIndicator(
-
+                  color: Colors.black45,
                 ):CupertinoActivityIndicator(
                   animating: true,
+                  radius: 12,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
