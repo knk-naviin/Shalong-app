@@ -38,49 +38,96 @@ class _CustomerListState extends State<CustomerList> {
           //   ),
           // ),
           width: double.infinity,
-          height: 150,
-          child: ListTile(
-            title: Text("Customer Name",style: TextStyle(
-              fontSize: 20,
-                letterSpacing: 2,
-                wordSpacing: 2,
-              color: Colors.red,
-              fontWeight: FontWeight.bold
-            ),),
-            subtitle: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               Column(
-                 mainAxisAlignment: MainAxisAlignment.start,
-                 children: [
-                   Padding(
-                     padding: const EdgeInsets.all(8.0),
-                     child: Text("1234567890",style: TextStyle(
-                         fontSize: 20,
-                         letterSpacing: 2,
-                         wordSpacing: 2,
-                         fontStyle: FontStyle.normal,
-                         fontWeight: FontWeight.w400
-                     )),
-                   ),
-                   Text("shalong@gmail.com",style: TextStyle(
-                       fontSize: 20,
-                       letterSpacing: 2,
-                       wordSpacing: 2,
-                       fontStyle: FontStyle.normal,
-                       fontWeight: FontWeight.w400
-                   )),
+          height: 200,
+          child: Column(
 
-                 ],
-               ),
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Customer Name",style: TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 2,
+                        wordSpacing: 2,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold
+                    ),),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0,left: 8.0),
+                    child: Text("1234567890",style: TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 2,
+                        wordSpacing: 2,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w400
+                    )),
+                  ),
 
-             ],
-            ),
-            trailing: Icon(Icons.person,size: 50,
-              color: CupertinoColors.activeBlue,),
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0,right: 8.0,left: 8.0,bottom: 8.0),
+                    child: Text("shalong@gmail.com",style: TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 2,
+                        wordSpacing: 2,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w400
+                    )),
+                  ),
 
-          )
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0,left: 8.0),
+                    child: Text("Customer Waiting",style: TextStyle(
+                        fontSize: 22,
+                        letterSpacing: 6,
+                        wordSpacing: 4,
+                        color: CupertinoColors.white,
+                        backgroundColor: CupertinoColors.systemRed,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w400
+                    )),
+                  ),
+                ],
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MaterialButton(
+                        color: CupertinoColors.systemBlue,
+                        onPressed: (){},
+                        child: Text("Done!"),
+                      ),
+                      SizedBox(
+                        width: 50,
+                      ),
+                      MaterialButton(
+                        color: CupertinoColors.destructiveRed,
+                        onPressed: (){},
+                        child: Text("Cancel!"),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
 
+            ],
+          ),
       )
     ));
   }
