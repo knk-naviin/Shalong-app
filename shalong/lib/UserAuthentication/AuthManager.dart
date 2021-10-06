@@ -10,8 +10,9 @@ class ShopInfo {
   String address;
   String phone;
   bool isOpen;
+  bool shopbusy;
   String shopratings;
-  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopratings);
+  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopratings,this.shopbusy);
 }
 
 
@@ -63,7 +64,7 @@ Future<Profile?> profile() async {
       var docs = shopQueryInfo.docs;
       if (docs.length > 0) {
         for (doc in docs) {
-          shops.add(ShopInfo(doc.id, doc["name"], doc["address"], doc["phone"], doc["is_open"],doc["shopratings"]));
+          shops.add(ShopInfo(doc.id, doc["name"], doc["address"], doc["phone"], doc["is_open"],doc["shopratings"],doc["shop_busy"]));
         }
       }
       return Profile(docId, name, email, phonenumber, isBarber, shops,ratings);
@@ -83,8 +84,9 @@ Future<List<ShopInfo>?> fetchShops() async {
       var address = doc["address"] ?? "";
       var phonenumber = doc["phone"] ?? "";
       var isOpen = doc["is_open"];
+      var shopbusy = doc["shop_busy"];
       var shopratings = doc["shopratings"];
-      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopratings));
+      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopratings,shopbusy));
     }
   }
   return shops;
@@ -93,6 +95,7 @@ Future<List<ShopInfo>?> fetchShops() async {
 setShopStatus(ShopInfo shop) {
   CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
    shopRef.doc(shop.docId).update({"is_open": shop.isOpen});
+  shopRef.doc(shop.docId).update({"shop_busy": shop.shopbusy});
 }
 
 

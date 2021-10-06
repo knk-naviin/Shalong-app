@@ -17,7 +17,7 @@ class BarberShopUpdatingScreen extends StatefulWidget {
 
 class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  ShopInfo shopInfo = ShopInfo("","","","", false,"");
+  ShopInfo shopInfo = ShopInfo("","","","", false,"",true);
 
   @override
   Widget build(BuildContext context) {

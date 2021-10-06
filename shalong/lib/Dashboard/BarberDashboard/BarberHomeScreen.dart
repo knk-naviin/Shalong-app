@@ -15,36 +15,40 @@ class BarberHomeScreen extends StatefulWidget {
 
 class _BarberHomeScreenState extends State<BarberHomeScreen> {
   Profile? profileInfo;
-  bool shopOpen = false;
+  bool ShopBusy = false;
+  bool shopOpen = true;
   TextEditingController editingController = TextEditingController();
 
   void updateShopStatus() {
     var shop = profileInfo!.shops.first;
     shop.isOpen = shopOpen;
+    shop.shopbusy = ShopBusy;
     setShopStatus(shop);
   }
 
   void initState() {
     super.initState();
     profile().then((value) => {
-          setState(() {
-            shopOpen = value!.shops.first.isOpen;
-            profileInfo = value;
-          })
-        });
+      setState(() {
+        shopOpen = value!.shops.first.isOpen;
+        ShopBusy = value.shops.first.shopbusy;
+        profileInfo = value;
+      })
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     if (profileInfo == null) {
       return Scaffold(
-        backgroundColor:  Colors.black.withOpacity(0.5),
+        backgroundColor: Colors.black.withOpacity(0.5),
         body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Platform.isAndroid?CircularProgressIndicator(
-                ):CupertinoActivityIndicator(
+                Platform.isAndroid
+                    ? CircularProgressIndicator()
+                    : CupertinoActivityIndicator(
                   animating: true,
                 ),
                 Padding(
@@ -52,8 +56,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                   child: Text("Loading"),
                 )
               ],
-            )
-        ),
+            )),
       );
     } else {
       return Scaffold(
@@ -67,10 +70,8 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
           ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.grey, Colors.black26]
-                )
-            ),
+                gradient:
+                LinearGradient(colors: [Colors.grey, Colors.black26])),
           ),
           elevation: 0,
           leading: IconButton(
@@ -88,7 +89,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                 height: 200,
                 child: Stack(
                   children: [
-                     Container(
+                    Container(
                       width: 440,
                       height: 180,
                       decoration: BoxDecoration(
@@ -97,8 +98,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                             bottomRight: Radius.circular(36),
                           ),
                           gradient: LinearGradient(
-                              colors: [
-                                Colors.grey, Colors.black26])),
+                              colors: [Colors.grey, Colors.black26])),
                       child: Column(
                         children: [
                           Text(
@@ -174,10 +174,12 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                                         value: shopOpen,
                                         onChanged: (bool value) {
                                           setState(() {
-                                            shopOpen = value;
+                                              shopOpen = value;
+
                                           });
                                           var shop = profileInfo!.shops.first;
                                           shop.isOpen = shopOpen;
+
                                           setShopStatus(shop);
                                         }))
                               ],
@@ -185,10 +187,60 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 18.0,left: 8.0,right: 8.0),
-                child: CustomerList(),
-              ),
+              Visibility(
+                visible: shopOpen,
+                child: Padding(
+                  padding:
+                  const EdgeInsets.only(top: 18.0, left: 8.0, right: 8.0),
+                  // child: CustomerList(),
+                  //   child: Column(
+                  //     children: [
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: [
+                  //           Text("Are You Busy?",style: TextStyle(
+                  //             fontSize: 25,
+                  //             fontWeight: FontWeight.bold
+                  //           ),),
+                  //           CupertinoSwitch(
+                  //             value: ShopBusy,
+                  //               onChanged: (bool value) {
+                  //                 setState(() {
+                  //                   ShopBusy = value;
+                  //                 });
+                  //                 var shop = profileInfo!.shops.first;
+                  //                 shop.shopbusy = ShopBusy;
+                  //                 setShopStatus(shop);
+                  //               }
+                  //           )
+                  //         ],
+                  //       )
+                  //     ],
+                  //   ),
+                  child: Card(
+                    child: ListTile(
+                      subtitle: Text(
+                          "PLease Notify to your customer, that you are busy or not"),
+                      title: Text(
+                        "Are You Busy?",
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                      trailing: CupertinoSwitch(
+                          activeColor: CupertinoColors.destructiveRed,
+                          value: ShopBusy,
+                          onChanged: (bool value) {
+                            setState(() {
+                              ShopBusy = value;
+                            });
+                            var shop = profileInfo!.shops.first;
+                            shop.shopbusy = ShopBusy;
+                            setShopStatus(shop);
+                          }),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
