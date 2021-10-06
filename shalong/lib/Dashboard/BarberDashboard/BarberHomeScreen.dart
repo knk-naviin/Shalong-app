@@ -16,7 +16,7 @@ class BarberHomeScreen extends StatefulWidget {
 class _BarberHomeScreenState extends State<BarberHomeScreen> {
   Profile? profileInfo;
   bool ShopBusy = false;
-  bool shopOpen = true;
+  bool shopOpen = false;
   TextEditingController editingController = TextEditingController();
 
   void updateShopStatus() {
@@ -29,12 +29,12 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
   void initState() {
     super.initState();
     profile().then((value) => {
-      setState(() {
-        shopOpen = value!.shops.first.isOpen;
-        ShopBusy = value.shops.first.shopbusy;
-        profileInfo = value;
-      })
-    });
+          setState(() {
+            shopOpen = value!.shops.first.isOpen;
+            ShopBusy = value.shops.first.shopbusy;
+            profileInfo = value;
+          })
+        });
   }
 
   @override
@@ -44,19 +44,19 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
         backgroundColor: Colors.black.withOpacity(0.5),
         body: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Platform.isAndroid
-                    ? CircularProgressIndicator()
-                    : CupertinoActivityIndicator(
-                  animating: true,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Loading"),
-                )
-              ],
-            )),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Platform.isAndroid
+                ? CircularProgressIndicator()
+                : CupertinoActivityIndicator(
+                    animating: true,
+                  ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Loading"),
+            )
+          ],
+        )),
       );
     } else {
       return Scaffold(
@@ -71,7 +71,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient:
-                LinearGradient(colors: [Colors.grey, Colors.black26])),
+                    LinearGradient(colors: [Colors.grey, Colors.black26])),
           ),
           elevation: 0,
           leading: IconButton(
@@ -174,12 +174,36 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                                         value: shopOpen,
                                         onChanged: (bool value) {
                                           setState(() {
+                                            if (ShopBusy == true) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      title: Center(
+                                                        child: Text(
+                                                          "Alert!",
+                                                          style: TextStyle(
+                                                              color: CupertinoColors
+                                                                  .destructiveRed),
+                                                        ),
+                                                      ),
+                                                      content: Text(
+                                                        "Please Ensure that you are busy",
+                                                        style: TextStyle(
+                                                            color:
+                                                                CupertinoColors
+                                                                    .systemGrey),
+                                                      ),
+                                                    );
+                                                  });
+                                            } else {
                                               shopOpen = value;
-
+                                            }
                                           });
                                           var shop = profileInfo!.shops.first;
                                           shop.isOpen = shopOpen;
-
+                                          // shop.shopbusy = ShopBusy;
                                           setShopStatus(shop);
                                         }))
                               ],
@@ -191,7 +215,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                 visible: shopOpen,
                 child: Padding(
                   padding:
-                  const EdgeInsets.only(top: 18.0, left: 8.0, right: 8.0),
+                      const EdgeInsets.only(top: 18.0, left: 8.0, right: 8.0),
                   // child: CustomerList(),
                   //   child: Column(
                   //     children: [

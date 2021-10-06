@@ -64,7 +64,16 @@ Future<Profile?> profile() async {
       var docs = shopQueryInfo.docs;
       if (docs.length > 0) {
         for (doc in docs) {
-          shops.add(ShopInfo(doc.id, doc["name"], doc["address"], doc["phone"], doc["is_open"],doc["shopratings"],doc["shop_busy"]));
+          shops.add(ShopInfo(
+              doc.id, 
+              doc["name"],
+              doc["address"],
+              doc["phone"],
+              doc["is_open"],
+              doc["shopratings"],
+              doc["shop_busy"]
+          )
+          );
         }
       }
       return Profile(docId, name, email, phonenumber, isBarber, shops,ratings);
