@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/BarberDashboard/BarberSettingScreen.dart';
 
 import 'BarberHomeScreen.dart';
+import 'BarberNotification.dart';
 
 class BarberDashboardScreen extends StatefulWidget {
   @override
@@ -11,12 +12,12 @@ class BarberDashboardScreen extends StatefulWidget {
 }
 
 class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
-  int _currentIndex = 0;
+  int currentIndex = 0;
   late PageController _pageController;
   void _onItemTapped(int index) {
     setState(() {
       print(index);
-      _currentIndex = index;
+      currentIndex = index;
     });
   }
 
@@ -36,11 +37,11 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _currentIndex,
+        selectedIndex: currentIndex,
         curve: Curves.ease,
         showElevation: false, // use this to remove appBar's elevation
         onItemSelected: (index) => setState(() {
-          _currentIndex = index;
+          currentIndex = index;
           _pageController.animateToPage(
             index,
             duration: Duration(milliseconds: 300),
@@ -90,24 +91,13 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
         child: PageView(
           controller: _pageController,
           onPageChanged: (index) {
-            setState(() => _currentIndex = index);
+            setState(() => currentIndex = index);
           },
           children: <Widget>[
-            BarberHomeScreen(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(child: Text("Notification",style: TextStyle(fontSize: 32),)),
-                    Icon(Icons.notifications_active,size: 32,color: CupertinoColors.systemYellow,)
-                  ],),
-                Text("Coming Soon",style: TextStyle(
-                    color: CupertinoColors.systemGrey
-                ),)
-              ],
+            BarberHomeScreen(
+              currentIndex
             ),
+            BarberNotificationScreen(),
             BarberSettingScreen(),
           ],
         ),

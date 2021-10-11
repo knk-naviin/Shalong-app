@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shalong/UserAuthentication/PhoneVerificationScreen.dart';
 import 'AuthManager.dart';
@@ -91,64 +92,66 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        body: Stack(
-          children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 25.0),
-                    child: Text(
-                      "Welcome To ShalonG",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 38,
-                          ),
-                    ),
-                  ),
-                  CupertinoButton(
-                    child: Text("Phone Verfication"),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => PhoneVerificationScreen()),
-                      );
-                    },
-                    color: CupertinoColors.systemBlue,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: gSignInButton(),
-                  )
-                ],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: Image.asset("images/haircutting.webp")
               ),
-            ),
-            _isLoading
-                ? Scaffold(
-              backgroundColor:  Colors.black.withOpacity(0.5),
-              body: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Platform.isAndroid?CircularProgressIndicator(
-
-                      ):CupertinoActivityIndicator(
-                        // radius: 15,
-                        animating: true,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Loading"),
-                      )
-                    ],
-                  )
+              Padding(
+                  padding: const EdgeInsets.only(top: 0),
+                  child: Text("ShalonG",style: TextStyle(
+                    fontFamily: "SourceCodePro",
+                    fontSize: 75,
+                    letterSpacing: 5,
+                    fontWeight: FontWeight.bold,
+                    // decorationThickness: 2
+                  ),)
               ),
-            )
-                : Container()
-          ],
+              CupertinoButton(
+                child: Text("Phone Verfication"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PhoneVerificationScreen()),
+                  );
+                },
+                color: CupertinoColors.systemBlue,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: gSignInButton(),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 }
+//
+//
+// _isLoading
+// ? Scaffold(
+// backgroundColor:  Colors.black.withOpacity(0.5),
+// body: Center(
+// child: Column(
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: [
+// Platform.isAndroid?CircularProgressIndicator(
+//
+// ):CupertinoActivityIndicator(
+// // radius: 15,
+// animating: true,
+// ),
+// Padding(
+// padding: const EdgeInsets.all(8.0),
+// child: Text("Loading"),
+// )
+// ],
+// )
+// ),
+// )
+// : Container()

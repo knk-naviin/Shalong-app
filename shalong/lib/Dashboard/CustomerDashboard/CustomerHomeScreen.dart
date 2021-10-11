@@ -252,7 +252,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                   style: DefaultTextStyle.of(context).style,
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: '${shop.shopratings}★',
+                                        text: '2.5★',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold)),
                                   ],

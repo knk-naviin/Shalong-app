@@ -9,6 +9,7 @@ import 'package:shalong/Dashboard/CustomerDashboard/CustomerDashboardScreen.dart
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'AfterRegistration/ProfileUpdateScreen.dart';
 import 'Dashboard/BarberDashboard/BarberDashBoardScreen.dart';
+import 'StartingScreen/StartingScreen.dart';
 import 'UserAuthentication/UserAuthScreen.dart';
 
 void main() {
@@ -18,7 +19,8 @@ void main() {
       routes: <String, WidgetBuilder>{
         '/launch': (BuildContext context) => LaunchScreen(),
         '/barberdashboardscreen': (BuildContext context) => BarberDashboardScreen(),
-        '/profileupdatescreen': (BuildContext context) => ProfileUpdateScreen()
+        '/profileupdatescreen': (BuildContext context) => ProfileUpdateScreen(),
+        '/userauthscreen': (BuildContext context) => UserAuthScreen()
       }));
 }
 
@@ -39,7 +41,7 @@ class _ShalongAppState extends State<ShalongApp> {
             if (snapshot.hasData || snapshot.hasError) {
               return AnimatedSplashScreen(
                 pageTransitionType: PageTransitionType.rightToLeftWithFade,
-                  nextScreen: LaunchScreen(), splash: Stack(
+                  nextScreen: StartingScreen(), splash: Stack(
                 children: [
                   Center(
                     child: Text(

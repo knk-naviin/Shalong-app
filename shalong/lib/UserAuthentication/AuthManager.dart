@@ -11,8 +11,8 @@ class ShopInfo {
   String phone;
   bool isOpen;
   bool shopbusy;
-  String shopratings;
-  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopratings,this.shopbusy);
+
+  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopbusy);
 }
 
 
@@ -22,13 +22,12 @@ class Profile {
   String email;
   String phone;
   bool isBarber = false;
-  String ratings;
 
   List<ShopInfo> shops = [];
   // String barbershopname;
   // String barbershopaddress;
   // String barberlocationurl;
-  Profile(this.docId, this.name, this.email, this.phone, this.isBarber, this.shops,this.ratings);
+  Profile(this.docId, this.name, this.email, this.phone, this.isBarber, this.shops,);
 }
 
 Future<void> signout() async {
@@ -55,7 +54,6 @@ Future<Profile?> profile() async {
       var email = doc["email"];
       var phonenumber = doc["phone"];
       var isBarber = doc["is_barber"];
-      var ratings = doc["ratings"];
       var docId = doc.id;
       List<ShopInfo> shops = [];
 
@@ -65,18 +63,17 @@ Future<Profile?> profile() async {
       if (docs.length > 0) {
         for (doc in docs) {
           shops.add(ShopInfo(
-              doc.id, 
+              doc.id,
               doc["name"],
               doc["address"],
               doc["phone"],
               doc["is_open"],
-              doc["shopratings"],
               doc["shop_busy"]
           )
           );
         }
       }
-      return Profile(docId, name, email, phonenumber, isBarber, shops,ratings);
+      return Profile(docId, name, email, phonenumber, isBarber, shops,);
     }
   }
   return null;
@@ -94,8 +91,7 @@ Future<List<ShopInfo>?> fetchShops() async {
       var phonenumber = doc["phone"] ?? "";
       var isOpen = doc["is_open"];
       var shopbusy = doc["shop_busy"];
-      var shopratings = doc["shopratings"];
-      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopratings,shopbusy));
+      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopbusy));
     }
   }
   return shops;
