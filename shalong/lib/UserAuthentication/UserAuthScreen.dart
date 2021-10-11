@@ -101,14 +101,42 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                 child: Image.asset("images/haircutting.webp")
               ),
               Padding(
-                  padding: const EdgeInsets.only(top: 0),
-                  child: Text("ShalonG",style: TextStyle(
-                    fontFamily: "SourceCodePro",
-                    fontSize: 75,
-                    letterSpacing: 5,
-                    fontWeight: FontWeight.bold,
-                    // decorationThickness: 2
-                  ),)
+                  padding: const EdgeInsets.only(top: 0,bottom: 0),
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 80.0),
+                        child: Text("We'll style while you smile!",style: TextStyle(
+                            color: Colors.amber,
+                            fontSize: 22
+                        ),),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: 'Shalon',
+                          style: TextStyle(
+                            fontFamily: "Bunya-Regular_PERSONAL",
+                            color: Colors.black,
+                            fontSize: 80
+                          ),
+                          children: const <TextSpan>[
+                            TextSpan(text: 'g',style: TextStyle(
+                                fontFamily: "Bunya-Regular_PERSONAL",
+                                color: CupertinoColors.systemRed,
+                                fontSize: 90
+                            ))
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  // child: Text("Shalon",style: TextStyle(
+                  //   fontFamily: "SourceCodePro",
+                  //   fontSize: 75,
+                  //   letterSpacing: 5,
+                  //   fontWeight: FontWeight.bold,
+                  //   // decorationThickness: 2
+                  // ),)
               ),
               CupertinoButton(
                 child: Text("Phone Verfication"),
