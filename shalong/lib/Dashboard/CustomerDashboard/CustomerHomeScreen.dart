@@ -216,10 +216,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => ShopPageScreen(
-                                    shopname: shop.name,
-                                    shopadd: shop.address,
-                                    isopen: shop.isOpen,
-                                    phoneno: shop.phone,
+                                   shop
                                   )),
                         );
                       },
@@ -307,10 +304,11 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ShopPageScreen(
-                                shopname: shop.name,
-                                shopadd: shop.address,
-                                isopen: shop.isOpen,
-                                phoneno: shop.phone,
+                                // shopname: shop.name,
+                                // shopadd: shop.address,
+                                // isopen: shop.isOpen,
+                                // phoneno: shop.phone,
+                            shop
                               )),
                     );
                   },

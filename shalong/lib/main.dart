@@ -18,7 +18,8 @@ void main() {
       home: ShalongApp(),
       routes: <String, WidgetBuilder>{
         '/launch': (BuildContext context) => LaunchScreen(),
-        '/barberdashboardscreen': (BuildContext context) => BarberDashboardScreen(),
+        '/barberdashboardscreen': (BuildContext context) =>
+            BarberDashboardScreen(),
         '/profileupdatescreen': (BuildContext context) => ProfileUpdateScreen(),
         '/userauthscreen': (BuildContext context) => UserAuthScreen()
       }));
@@ -41,41 +42,54 @@ class _ShalongAppState extends State<ShalongApp> {
             if (snapshot.hasData || snapshot.hasError) {
               return AnimatedSplashScreen(
                 pageTransitionType: PageTransitionType.rightToLeftWithFade,
-                  nextScreen: StartingScreen(), splash: Stack(
-                children: [
-                  Center(
-                    child: Text(
-                      "Shalong",
-                      style: TextStyle(fontFamily: "SourceCodePro", fontSize: 60),
+                nextScreen: LaunchScreen(),
+                splash: Stack(
+                  children: [
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 80.0),
+                    //   child: Text(
+                    //     "We'll style while you smile!",
+                    //     style: TextStyle(color: Colors.black, fontSize: 22),
+                    //   ),
+                    // ),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Shalon',
+                        style: TextStyle(
+                            fontFamily: "Bunya-Regular_PERSONAL",
+                            color: Colors.black,
+                            fontSize: 60),
+                        children: const <TextSpan>[
+                          TextSpan(
+                              text: 'g',
+                              style: TextStyle(
+                                  fontFamily: "Bunya-Regular_PERSONAL",
+                                  color: CupertinoColors.systemRed,
+                                  fontSize: 70))
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 60.0,right: 25),
-                    child: Center(child: Text("We'll style while you smile!",style: TextStyle(fontSize: 17,color: Colors.red),)),
-                  )
-                ],
-              ),
-
+                  ],
+                )
               );
             } else {
               return Scaffold(
                 backgroundColor: Colors.white70,
                 body: Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Platform.isAndroid?CircularProgressIndicator(
-
-                        ):CupertinoActivityIndicator(
-                          animating: true,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Loading"),
-                        )
-                      ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Platform.isAndroid
+                        ? CircularProgressIndicator()
+                        : CupertinoActivityIndicator(
+                            animating: true,
+                          ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Loading"),
                     )
-                ),
+                  ],
+                )),
               );
             }
           }),
@@ -106,20 +120,19 @@ class _LaunchScreenState extends State<LaunchScreen> {
               backgroundColor: Colors.white70,
               body: Center(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Platform.isAndroid?CircularProgressIndicator(
-
-                      ):CupertinoActivityIndicator(
-                        animating: true,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Loading"),
-                      )
-                    ],
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Platform.isAndroid
+                      ? CircularProgressIndicator()
+                      : CupertinoActivityIndicator(
+                          animating: true,
+                        ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Loading"),
                   )
-              ),
+                ],
+              )),
             );
           } else if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {

@@ -2,21 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 import 'RatingScreen.dart';
 
 class ShopPageScreen extends StatefulWidget {
-  bool isopen;
-  final shopname;
-  final shopadd;
-  final phoneno;
-  final ShopRatings;
+  // bool isopen;
+  // final shopname;
+  // final shopadd;
+  // final phoneno;
+  // final ShopRatings;
+  // ShopPageScreen(
+  //     {this.shopname,
+  //     this.shopadd,
+  //     this.phoneno,
+  //     required this.isopen,
+  //     this.ShopRatings});
+  ShopInfo shopInfo;
   ShopPageScreen(
-      {this.shopname,
-      this.shopadd,
-      this.phoneno,
-      required this.isopen,
-      this.ShopRatings});
+      this.shopInfo
+      );
 
   @override
   _ShopPageScreenState createState() => _ShopPageScreenState();
@@ -54,7 +59,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
         backgroundColor: Colors.blue,
         title: Text("Shop Details"),
       ),
-      body: widget.isopen?Column(
+      body: widget.shopInfo.isOpen?Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -62,7 +67,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  widget.shopname,
+                  widget.shopInfo.name,
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
                 ),
               ),
@@ -70,10 +75,10 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                 width: 85,
               ),
               Text(
-                " ${widget.isopen ? "Open" : "Closed"}",
+                " ${widget.shopInfo.isOpen ? "Open" : "Closed"}",
                 style: TextStyle(
                     fontSize: 22,
-                    color: widget.isopen ? Colors.red : Colors.grey,
+                    color: widget.shopInfo.isOpen ? Colors.red : Colors.grey,
                     fontWeight: FontWeight.bold),
               ),
             ],
@@ -102,7 +107,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
           Padding(
             padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
             child: Text(
-              widget.shopadd,
+              widget.shopInfo.address,
               style: TextStyle(),
             ),
           ),
@@ -130,7 +135,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
           Padding(
             padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
             child: Text(
-              widget.phoneno,
+              widget.shopInfo.phone,
               style: TextStyle(),
             ),
           ),
@@ -360,7 +365,9 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                   onPressed: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RatingScreen()),
+                      MaterialPageRoute(builder: (context) => RatingScreen(
+                        widget.shopInfo
+                      )),
                     );
                   },
                   label: Text("Ratings"),
@@ -388,7 +395,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
         children: [
           IgnorePointer(
             ignoringSemantics: true,
-            ignoring: widget.isopen ? false : true,
+            ignoring: widget.shopInfo.isOpen ? false : true,
             child: Column(
               children: [
                 Row(
@@ -397,7 +404,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        widget.shopname,
+                        widget.shopInfo.name,
                         style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -405,10 +412,10 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                       width: 85,
                     ),
                     Text(
-                      " ${widget.isopen ? "Open" : "Closed"}",
+                      " ${widget.shopInfo.isOpen ? "Open" : "Closed"}",
                       style: TextStyle(
                           fontSize: 22,
-                          color: widget.isopen ? Colors.red : Colors.grey,
+                          color: widget.shopInfo.isOpen ? Colors.red : Colors.grey,
                           fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -437,7 +444,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                 Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
                   child: Text(
-                    widget.shopadd,
+                    widget.shopInfo.address,
                     style: TextStyle(),
                   ),
                 ),
@@ -465,7 +472,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                 Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
                   child: Text(
-                    widget.phoneno,
+                    widget.shopInfo.phone,
                     style: TextStyle(),
                   ),
                 ),

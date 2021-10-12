@@ -1,8 +1,19 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+
+class Rating {
+  String review;
+  Float value;
+  String uid;
+  DateTime date;
+
+  Rating(this.uid,this.review,this.value,this.date);
+}
 
 class ShopInfo {
   String docId;
@@ -11,8 +22,9 @@ class ShopInfo {
   String phone;
   bool isOpen;
   bool shopbusy;
+  List<Rating> ratings;
 
-  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopbusy);
+  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopbusy,this.ratings);
 }
 
 
@@ -62,13 +74,20 @@ Future<Profile?> profile() async {
       var docs = shopQueryInfo.docs;
       if (docs.length > 0) {
         for (doc in docs) {
-          shops.add(ShopInfo(
+          List<Rating> ratings = [];
+          for (var ratingDoc in doc["ratings"]) {
+            Timestamp date =  ratingDoc["date"];
+            ratings.add(Rating(ratingDoc["uid"], ratingDoc["review"], ratingDoc["value"], date.toDate()));
+          }
+
+            shops.add(ShopInfo(
               doc.id,
               doc["name"],
               doc["address"],
               doc["phone"],
               doc["is_open"],
-              doc["shop_busy"]
+              doc["shop_busy"],
+              ratings
           )
           );
         }
@@ -86,12 +105,17 @@ Future<List<ShopInfo>?> fetchShops() async {
   List<ShopInfo> shops = [];
   if (docs.length > 0) {
     for (var doc in docs) {
+      List<Rating> ratings = [];
+      for (var ratingDoc in doc["ratings"]) {
+        Timestamp date =  ratingDoc["date"];
+        ratings.add(Rating(ratingDoc["uid"], ratingDoc["review"], ratingDoc["value"], date.toDate()));
+      }
       var name = doc["name"] ?? "";
       var address = doc["address"] ?? "";
       var phonenumber = doc["phone"] ?? "";
       var isOpen = doc["is_open"];
       var shopbusy = doc["shop_busy"];
-      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopbusy));
+      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopbusy, ratings));
     }
   }
   return shops;
