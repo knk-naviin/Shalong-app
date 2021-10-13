@@ -105,7 +105,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => RatingsScreenSettings()),
+              MaterialPageRoute(builder: (context) => InAppReviewExampleApp()),
             );
           },
           child: Row(

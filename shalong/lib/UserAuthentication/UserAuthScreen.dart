@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -26,7 +25,7 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
         width: 200,
         height: 45,
         child: OutlinedButton(
-          onPressed: (){},
+          onPressed: () {},
           child: Row(
             children: [
               FaIcon(
@@ -102,34 +101,32 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                   //   // decorationThickness: 2
                   // ),)
                 ),
-            _isLoading
-                ? Scaffold(
-              backgroundColor:  Colors.black.withOpacity(0.5),
-              body: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Platform.isAndroid?CircularProgressIndicator(
-
-                      ):CupertinoActivityIndicator(
+                _isLoading
+                    ? Scaffold(
+                        backgroundColor: Colors.black.withOpacity(0.5),
+                        body: Center(
+                            child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Platform.isAndroid
+                                ? CircularProgressIndicator()
+                                : CupertinoActivityIndicator(
 // radius: 15,
-                        animating: true,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Loading"),
+                                    animating: true,
+                                  ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Loading"),
+                            )
+                          ],
+                        )),
                       )
-                    ],
-                  )
-              ),
-            )
-                : Container(),
+                    : Container(),
                 Padding(
                   padding: const EdgeInsets.only(top: 68.0),
                   child: Container(
                     child: Column(
                       children: [
-
                         SizedBox(
                           width: 230,
                           height: 50,
@@ -148,44 +145,43 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                           width: 130,
                           height: 40,
                           child: OutlinedButton.icon(
-                                onPressed: () async {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
+                              onPressed: () async {
+                                setState(() {
+                                  _isLoading = true;
+                                });
 
-                                  signInWithGoogle().then((value) {
-                                    if (value == null) {
-                                      setState(() {
-                                        _isLoading = false;
-                                      });
-                                    } else {
-                                      profile().then((value) {
-                                        setState(() {
-                                          _isLoading = false;
-                                        });
-                                        if (value == null) {
-                                          Navigator.of(context)
-                                              .pushReplacementNamed("/profileupdatescreen");
-                                        } else {
-                                          Navigator.of(context).pushReplacementNamed("/launch");
-                                        }
-                                      });
-                                    }
-                                  }).catchError((onError) {
+                                signInWithGoogle().then((value) {
+                                  if (value == null) {
                                     setState(() {
                                       _isLoading = false;
                                     });
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(title: Text(onError.toString()));
-                                        });
+                                  } else {
+                                    profile().then((value) {
+                                      setState(() {
+                                        _isLoading = false;
+                                      });
+                                      if (value == null) {
+                                        Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                "/profileupdatescreen");
+                                      } else {
+                                        Navigator.of(context)
+                                            .pushReplacementNamed("/launch");
+                                      }
+                                    });
+                                  }
+                                }).catchError((onError) {
+                                  setState(() {
+                                    _isLoading = false;
                                   });
-                                },
-
-
-      
-
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                            title: Text(onError.toString()));
+                                      });
+                                });
+                              },
                               icon: FaIcon(
                                 FontAwesomeIcons.google,
                                 color: CupertinoColors.systemRed,
@@ -204,6 +200,3 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
     );
   }
 }
-//
-//
-

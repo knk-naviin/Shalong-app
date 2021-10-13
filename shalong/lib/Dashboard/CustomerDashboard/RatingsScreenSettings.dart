@@ -1,126 +1,86 @@
+import 'dart:io';
 
-
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 
 
+enum Availability { loading, available, unavailable }
 
-class RatingsScreenSettings extends StatelessWidget {
-  const RatingsScreenSettings({Key? key}) : super(key: key);
+class InAppReviewExampleApp extends StatefulWidget {
+  @override
+  _InAppReviewExampleAppState createState() => _InAppReviewExampleAppState();
+}
 
+class _InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
+  final InAppReview _inAppReview = InAppReview.instance;
 
+  String _appStoreId = '';
+  String _microsoftStoreId = '';
+  Availability _availability = Availability.loading;
 
   @override
-  Widget build(BuildContext context) {
-    return const CupertinoApp(
-      debugShowCheckedModeBanner: false,
-      home: MyStatefulWidget(),
-    );
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+      try {
+        final isAvailable = await _inAppReview.isAvailable();
+
+        setState(() {
+          // This plugin cannot be tested on Android by installing your app
+          // locally. See https://github.com/britannio/in_app_review#testing for
+          // more information.
+          _availability = isAvailable && !Platform.isAndroid
+              ? Availability.available
+              : Availability.unavailable;
+        });
+      } catch (e) {
+        setState(() => _availability = Availability.unavailable);
+      }
+    });
   }
-}
 
-/// This is the stateful widget that the main application instantiates.
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+  void _setAppStoreId(String id) => _appStoreId = id;
 
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
+  void _setMicrosoftStoreId(String id) => _microsoftStoreId = id;
 
-/// This is the private State class that goes with MyStatefulWidget.
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  Future<void> _requestReview() => _inAppReview.requestReview();
 
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  Future<void> _openStoreListing() => _inAppReview.openStoreListing(
+    appStoreId: _appStoreId,
+    microsoftStoreId: _microsoftStoreId,
+  );
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: CupertinoPageScaffold(
-          navigationBar: CupertinoNavigationBar(
-            leading:
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text("Cancel"),
+    final status = describeEnum(_availability);
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('In App Review Example')),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('In App Review status: $status'),
+            TextField(
+              onChanged: _setAppStoreId,
+              decoration: InputDecoration(hintText: 'App Store ID'),
             ),
-            middle: Text("Write a Review"),
-            trailing: TextButton(
-              onPressed: () {
-                if(formkey.currentState!.validate()){
-                  (formkey.currentState!.save());
-                  Navigator.pop(context);
-                }
-              },
-              child: Text("Send"),
+            TextField(
+              onChanged: _setMicrosoftStoreId,
+              decoration: InputDecoration(hintText: 'Microsoft Store ID'),
             ),
-          ),
-          child: Form(
-            key: formkey,
-            child: ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: RatingBar.builder(
-                      initialRating: 3,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder: (context, _) => Icon(
-                        CupertinoIcons.star_fill,
-                        color: CupertinoColors.systemBlue,
-                      ),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
-                    ),
-                  ),
-                ),
-                Center(child: Text("Tap a Star to Rate")),
-
-                Padding(
-                  padding: const EdgeInsets.only(right: 12.0,top: 25),
-                  child: CupertinoTextFormFieldRow(
-                      validator: (value){
-                        if(value!.isEmpty){
-                          return "Enter Review";
-                        }
-                      },
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: CupertinoColors.systemGrey,
-                              style: BorderStyle.solid
-                          )
-                      ),
-                      // maxLines: 1,
-                      placeholder: "One Line Review"
-                  ),
-                ),
-
-
-                Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
-                  child: CupertinoTextFormFieldRow(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: CupertinoColors.systemGrey,
-                              style: BorderStyle.solid
-                          )
-                      ),
-
-                      maxLines: 5,
-                      placeholder: "FeedBack(Optional)"
-                  ),
-                ),
-                Divider()
-              ],
+            ElevatedButton(
+              onPressed: _requestReview,
+              child: Text('Request Review'),
             ),
-          )
+            ElevatedButton(
+              onPressed: _openStoreListing,
+              child: Text('Open Store Listing'),
+            ),
+          ],
+        ),
       ),
     );
   }

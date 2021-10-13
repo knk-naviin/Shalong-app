@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -19,8 +20,10 @@ class ShopPageScreen extends StatefulWidget {
   //     required this.isopen,
   //     this.ShopRatings});
   ShopInfo shopInfo;
+  List<Rating> ratings;
   ShopPageScreen(
-      this.shopInfo
+      this.shopInfo,
+      this.ratings
       );
 
   @override
@@ -50,6 +53,12 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
         time = picked;
       });
     }
+  }
+
+  Rating? myRating() {
+    List<Rating>? ratings = widget.ratings.where((element) => element.uid == FirebaseAuth.instance.currentUser?.uid).toList();
+
+    return ratings.length > 0 ? ratings.first : null;
   }
 
   @override
@@ -365,8 +374,8 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                   onPressed: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RatingScreen(
-                        widget.shopInfo
+                      MaterialPageRoute(builder: (context) => RatingScreen(widget.shopInfo,myRating()
+
                       )),
                     );
                   },

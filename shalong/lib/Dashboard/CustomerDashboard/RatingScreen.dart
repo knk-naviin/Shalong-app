@@ -1,19 +1,31 @@
+import 'dart:ffi';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 class RatingScreen extends StatefulWidget {
-   ShopInfo shopInfo;
-  RatingScreen(
-      this.shopInfo
-      );
+  ShopInfo shopInfo;
+  Rating? rating;
+  RatingScreen(this.shopInfo, this.rating);
   @override
-  _RatingScreenState createState() => _RatingScreenState();
+  _RatingScreenState createState() {
+  if (rating == null) {
+    rating = rating = Rating("", FirebaseAuth.instance.currentUser?.uid ?? "", shopInfo.docId, "", 0, DateTime.now(), "");
+  }
+    return _RatingScreenState(rating!, false);
+  }
 }
 
 class _RatingScreenState extends State<RatingScreen> {
+  Rating rating;
+  bool isUpdate;
+  _RatingScreenState(this.rating, this.isUpdate);
+
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +53,8 @@ class _RatingScreenState extends State<RatingScreen> {
             onPressed: () {
               if (formkey.currentState!.validate()) {
                 (formkey.currentState!.save());
-                Navigator.pop(context);
+                // Navigator.pop(context);
+                submitReview(rating);
               }
             },
           )
@@ -55,7 +68,7 @@ class _RatingScreenState extends State<RatingScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: RatingBar.builder(
-                  initialRating: 3,
+                  initialRating: rating.value.toDouble(),
                   minRating: 1,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
@@ -65,8 +78,9 @@ class _RatingScreenState extends State<RatingScreen> {
                     CupertinoIcons.star_fill,
                     color: CupertinoColors.systemBlue,
                   ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
+                  glow: false,
+                  onRatingUpdate: (ratingValue) {
+                    rating.value = ratingValue.toInt();
                   },
                 ),
               ),
@@ -75,6 +89,9 @@ class _RatingScreenState extends State<RatingScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 12.0, top: 25),
               child: CupertinoTextFormFieldRow(
+                  onSaved: (value) {
+                    rating.review = value!;
+                  },
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter Review";
@@ -90,6 +107,9 @@ class _RatingScreenState extends State<RatingScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 12.0),
               child: CupertinoTextFormFieldRow(
+                  onSaved: (value) {
+                    rating.feedback = value!;
+                  },
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: CupertinoColors.systemGrey,

@@ -52,6 +52,7 @@ dependencies:
   flutter_html: ^2.1.4
   flip_card: ^0.5.0
   carousel_slider: ^4.0.0
+  in_app_review: ^2.0.3
 
 
 

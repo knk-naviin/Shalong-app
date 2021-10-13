@@ -16,6 +16,7 @@ class CustomerHomeScreen extends StatefulWidget {
 
 class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   late List<ShopInfo>? shops = null;
+  late Map<String,List<Rating>>? ratings = null;
   List<String> favorites = [];
   // bool _icon = false;
   var searchText = "";
@@ -26,22 +27,27 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
 
   void _onRefresh() async {
     // monitor network fetch
-    fetchShops().then((value) {
-      setState(() {
-        shops = value;
-      });
-      _refreshController.refreshCompleted();
-    });
+    loadData(true);
     // if failed,use refreshFailed()
   }
 
-  void _onLoading() async {
-    fetchShops().then((value) {
+  void loadData(bool isRefresh) async {
+    shopTuple().then((value) {
       setState(() {
-        shops = value;
+        shops = value.first as List<ShopInfo>;
+        ratings = value.last as Map<String, List<Rating>>;
       });
-      _refreshController.loadComplete();
+      if (isRefresh) {
+        _refreshController.refreshCompleted();
+      } else {
+        _refreshController.loadComplete();
+      }
     });
+
+  }
+
+  void _onLoading() async {
+    loadData(false);
   }
 
   @override
@@ -49,9 +55,28 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     super.initState();
   }
 
+
+
   getratings(int ratingCount, int userCount) {
     return ratingCount / userCount;
   }
+
+  List<Rating> ratingsForShopId(String shopId) {
+    return ratings?[shopId] ?? [];
+  }
+
+  double averageRatingForShopId(String shopId) {
+    var ratings = ratingsForShopId(shopId);
+    var average = 0.0;
+
+    for (var rating in ratings) {
+      average += rating.value;
+    }
+    average /= ratings.length;
+
+    return average;
+  }
+
 
   Widget shopList(List<ShopInfo>? shops) {
     if (shops == null) {
@@ -216,8 +241,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => ShopPageScreen(
-                                   shop
-                                  )),
+                                   shop, ratingsForShopId(shop.docId))),
                         );
                       },
                       title: Text(
@@ -249,7 +273,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                   style: DefaultTextStyle.of(context).style,
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: '2.5★',
+                                        text: averageRatingForShopId(shop.docId).toString(),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold)),
                                   ],
@@ -304,11 +328,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ShopPageScreen(
-                                // shopname: shop.name,
-                                // shopadd: shop.address,
-                                // isopen: shop.isOpen,
-                                // phoneno: shop.phone,
-                            shop
+                            shop, ratingsForShopId(shop.docId)
                               )),
                     );
                   },

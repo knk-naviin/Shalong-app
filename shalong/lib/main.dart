@@ -138,7 +138,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
               snapshot.hasData) {
             var profile = snapshot.data;
             if (profile == null) {
-              return ProfileUpdateScreen();
+              return StartingScreen();
             } else if (profile.isBarber) {
               return BarberDashboardScreen();
             } else {

@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,12 +6,25 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 
 class Rating {
-  String review;
-  Float value;
+  String docId;
+  String shopId;
   String uid;
+  String review;
+  int value;
+  String feedback;
   DateTime date;
 
-  Rating(this.uid,this.review,this.value,this.date);
+  Rating(this.docId, this.uid, this.shopId, this.review, this.value, this.date, this.feedback);
+
+ Map<String, Object> jsonRef() {
+   return {"uid": uid, "shop_id": shopId, "review": review, "value": value, "date": date,"feedback":feedback};
+ }
+
+ static Rating object(QueryDocumentSnapshot doc) {
+   // var value = doc["value"] as double;
+   return Rating(doc.id, doc["uid"], doc["shop_id"], doc["review"], doc["value"], doc["date"].toDate(), doc["feedback"]);
+ }
+
 }
 
 class ShopInfo {
@@ -22,9 +34,8 @@ class ShopInfo {
   String phone;
   bool isOpen;
   bool shopbusy;
-  List<Rating> ratings;
 
-  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopbusy,this.ratings);
+  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopbusy);
 }
 
 
@@ -74,11 +85,11 @@ Future<Profile?> profile() async {
       var docs = shopQueryInfo.docs;
       if (docs.length > 0) {
         for (doc in docs) {
-          List<Rating> ratings = [];
-          for (var ratingDoc in doc["ratings"]) {
-            Timestamp date =  ratingDoc["date"];
-            ratings.add(Rating(ratingDoc["uid"], ratingDoc["review"], ratingDoc["value"], date.toDate()));
-          }
+          // List<Rating> ratings = [];
+          // for (var ratingDoc in doc["ratings"]) {
+          //   Timestamp date =  ratingDoc["date"];
+          //   ratings.add(Rating(ratingDoc["uid"], ratingDoc["review"], ratingDoc["value"], date.toDate(),ratingDoc["feedback"]));
+          // }
 
             shops.add(ShopInfo(
               doc.id,
@@ -87,7 +98,6 @@ Future<Profile?> profile() async {
               doc["phone"],
               doc["is_open"],
               doc["shop_busy"],
-              ratings
           )
           );
         }
@@ -98,6 +108,52 @@ Future<Profile?> profile() async {
   return null;
 }
 
+Future<List<Rating>?> fetchRatings() async {
+  CollectionReference ratingInfo = FirebaseFirestore.instance.collection("rating");
+  var ratingQueryInfo = (await ratingInfo.get());
+  var docs = ratingQueryInfo.docs;
+  List<Rating> ratings = [];
+  if (docs.length > 0) {
+    for (var doc in docs) {
+        ratings.add(Rating.object(doc));
+    }
+      return ratings;
+  }
+}
+
+// final Map<String, int> someMap = {
+//   "a": 1,
+//   "b": 2,
+// };
+
+Future<Map<String, List<Rating>>> ratingMap() async {
+  Map<String, List<Rating>> map = {};
+  var ratings = await fetchRatings();
+  if (ratings != null) {
+    for (var rating in ratings) {
+      if ([rating.shopId] != null) {
+        map[rating.shopId] = ratings.where((element) => element.shopId == rating.shopId).toList();
+      }
+    }
+  }
+
+return map;
+}
+
+Future<List<Object?>> shopTuple() async{
+  List list = [];
+  var shops = await fetchShops();
+  var ratings = await ratingMap();
+  if (shops == null)  {
+    shops = [];
+  }
+  list.add(shops);
+  list.add(ratings);
+  return list;
+}
+
+
+
 Future<List<ShopInfo>?> fetchShops() async {
   CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
   var shopQueryInfo = (await shopRef.get());
@@ -105,27 +161,40 @@ Future<List<ShopInfo>?> fetchShops() async {
   List<ShopInfo> shops = [];
   if (docs.length > 0) {
     for (var doc in docs) {
-      List<Rating> ratings = [];
-      for (var ratingDoc in doc["ratings"]) {
-        Timestamp date =  ratingDoc["date"];
-        ratings.add(Rating(ratingDoc["uid"], ratingDoc["review"], ratingDoc["value"], date.toDate()));
-      }
+      // List<Rating> ratings = [];
+      // for (var ratingDoc in doc["ratings"]) {
+      //   Timestamp date =  ratingDoc["date"];
+      //   ratings.add(Rating(ratingDoc["uid"], ratingDoc["review"], ratingDoc["value"], date.toDate(),ratingDoc["feedback"]));
+      //   ratings.add(Rating());
+      // }
       var name = doc["name"] ?? "";
       var address = doc["address"] ?? "";
       var phonenumber = doc["phone"] ?? "";
       var isOpen = doc["is_open"];
       var shopbusy = doc["shop_busy"];
-      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopbusy, ratings));
+      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopbusy));
     }
   }
   return shops;
 }
 
+
+
 setShopStatus(ShopInfo shop) {
   CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
-   shopRef.doc(shop.docId).update({"is_open": shop.isOpen});
-  shopRef.doc(shop.docId).update({"shop_busy": shop.shopbusy});
+   shopRef.doc(shop.docId).update({"is_open": shop.isOpen, "shop_busy": shop.shopbusy});
 }
+
+submitReview(Rating rating) {
+  CollectionReference ratingRef = FirebaseFirestore.instance.collection(
+      "rating");
+  if (rating.docId == "") {
+    ratingRef.add(rating.jsonRef());
+  } else {
+    ratingRef.doc(rating.docId).update(rating.jsonRef());
+  }
+}
+
 
 
 

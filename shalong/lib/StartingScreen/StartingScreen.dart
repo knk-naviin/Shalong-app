@@ -38,57 +38,7 @@ class StartingScreen extends StatefulWidget {
 class _StartingScreenState extends State<StartingScreen> {
   CarouselController buttonCarouselController = CarouselController();
 
-  // List<Widget> imageSliders() {
-  //   return robot
-  //       .map((item) =>
-  //       GestureDetector(
-  //         onTap: () =>
-  //             Navigator.of(context).pushReplacementNamed('/userauthscreen'),
-  //         child: new Container(
-  //           child: Container(
-  //             margin: EdgeInsets.all(5.0),
-  //             child: ClipRRect(
-  //                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
-  //                 child: Stack(
-  //                   alignment: Alignment.center,
-  //                   children: <Widget>[
-  //                     Image.asset(
-  //                         item["image"], fit: BoxFit.cover, width: 700.0),
-  //                     Positioned(
-  //                       bottom: 0.0,
-  //                       // left: 0.0,
-  //                       // right: 0.0,
-  //                       child: Container(
-  //                         decoration: BoxDecoration(
-  //                           gradient: LinearGradient(
-  //                             colors: [
-  //                               Color.fromARGB(0, 0, 0, 0),
-  //                               Color.fromARGB(0, 0, 0, 0)
-  //                             ],
-  //                             begin: Alignment.bottomCenter,
-  //                             end: Alignment.topCenter,
-  //                           ),
-  //                         ),
-  //                         padding: EdgeInsets.symmetric(
-  //                             vertical: 10.0, horizontal: 10.0),
-  //                         child: Text(
-  //                           '${item["name"]}',
-  //                           // '${nameList[imgList.indexOf(item)]}',
-  //                           style: TextStyle(
-  //                             color: Colors.black,
-  //                             fontSize: 20.0,
-  //                             fontWeight: FontWeight.bold,
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 )),
-  //           ),
-  //         ),
-  //       ))
-  //       .toList();
-  // }
+
 
     @override
     Widget build(BuildContext context) {
