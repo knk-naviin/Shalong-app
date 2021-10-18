@@ -33,7 +33,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
           "address": aShop.address,
           "phone": aShop.phone,
           "is_open": aShop.isOpen,
-          "shop_busy": aShop.shopbusy
+          "shop_busy": aShop.shopbusy,
+          "barber_break": aShop.barberBreak
         });
         shopIds.add(shop.id);
       }
