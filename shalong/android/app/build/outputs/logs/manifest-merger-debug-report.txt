@@ -13,10 +13,12 @@ MERGED from [:address_search_field] /Users/naveenkumar/Documents/Github/Shalong-
 MERGED from [:google_maps_flutter] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:in_app_review] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/in_app_review/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:wakelock] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:webview_flutter_android] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/webview_flutter_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:video_player] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
 MERGED from [:google_sign_in] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_sign_in/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-analytics-ktx:19.0.1] /Users/naveenkumar/.gradle/caches/transforms-3/36766ebd09fb38414614eaf34587609e/transformed/jetified-firebase-analytics-ktx-19.0.1/AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/75608b1fd16a4e126867b3cd42baaf81/transformed/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:2:1-21:12
@@ -82,13 +84,14 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/naveenkumar/.g
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/3b0208f5b07e41c03f11649cb60b337c/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/aa009157f9395f3abf5a192f216bbbc7/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/d0b282c14c660cbf3a3b0bae42fa21a0/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:2:1-23:12
 MERGED from [io.grpc:grpc-android:1.28.0] /Users/naveenkumar/.gradle/caches/transforms-3/da41332fa1a877a032cba05ccb1a079f/transformed/jetified-grpc-android-1.28.0/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/e9b84d56670c6c6320c09b35e81c1c51/transformed/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
 INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-8:12
 INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-8:12
 INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml:1:1-8:12
 	package
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:2:5-34
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:2:5-32
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml
 	android:versionName
@@ -121,6 +124,8 @@ MERGED from [:firebase_auth] /Users/naveenkumar/Documents/Github/Shalong-app/Sha
 MERGED from [:firebase_auth] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
+MERGED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
 MERGED from [com.google.firebase:firebase-analytics-ktx:19.0.1] /Users/naveenkumar/.gradle/caches/transforms-3/36766ebd09fb38414614eaf34587609e/transformed/jetified-firebase-analytics-ktx-19.0.1/AndroidManifest.xml:7:5-15:19
 MERGED from [com.google.firebase:firebase-analytics-ktx:19.0.1] /Users/naveenkumar/.gradle/caches/transforms-3/36766ebd09fb38414614eaf34587609e/transformed/jetified-firebase-analytics-ktx-19.0.1/AndroidManifest.xml:7:5-15:19
 MERGED from [com.google.firebase:firebase-common-ktx:20.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/75608b1fd16a4e126867b3cd42baaf81/transformed/jetified-firebase-common-ktx-20.0.0/AndroidManifest.xml:11:5-19:19
@@ -173,13 +178,15 @@ MERGED from [androidx.core:core:1.1.0] /Users/naveenkumar/.gradle/caches/transfo
 MERGED from [androidx.core:core:1.1.0] /Users/naveenkumar/.gradle/caches/transforms-3/c6e922d1aa14006f968010e062c57c9e/transformed/core-1.1.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/naveenkumar/.gradle/caches/transforms-3/c0708642e0a1ff4a0a8d23a8b01c1823/transformed/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/naveenkumar/.gradle/caches/transforms-3/c0708642e0a1ff4a0a8d23a8b01c1823/transformed/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:10:3-21:17
+MERGED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:10:3-21:17
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] /Users/naveenkumar/.gradle/caches/transforms-3/c6e922d1aa14006f968010e062c57c9e/transformed/core-1.1.0/AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:7:9-32
 	android:icon
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:8:9-43
-activity#com.example.shalong.MainActivity
+		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:8:9-45
+activity#com.yaash.shalong.MainActivity
 ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:9:9-37:20
 	android:launchMode
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:11:13-43
@@ -247,6 +254,8 @@ MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Git
 MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:in_app_review] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/in_app_review/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:in_app_review] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/in_app_review/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:wakelock] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -255,6 +264,8 @@ MERGED from [:webview_flutter_android] /Users/naveenkumar/Documents/Github/Shalo
 MERGED from [:webview_flutter_android] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/webview_flutter_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:video_player] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:video_player] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:google_sign_in] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_sign_in/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:google_sign_in] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_sign_in/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics-ktx:19.0.1] /Users/naveenkumar/.gradle/caches/transforms-3/36766ebd09fb38414614eaf34587609e/transformed/jetified-firebase-analytics-ktx-19.0.1/AndroidManifest.xml:5:5-44
@@ -385,6 +396,8 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/naveenkumar/.gradl
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/aa009157f9395f3abf5a192f216bbbc7/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/d0b282c14c660cbf3a3b0bae42fa21a0/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/d0b282c14c660cbf3a3b0bae42fa21a0/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:4:3-70
+MERGED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:4:3-70
 MERGED from [io.grpc:grpc-android:1.28.0] /Users/naveenkumar/.gradle/caches/transforms-3/da41332fa1a877a032cba05ccb1a079f/transformed/jetified-grpc-android-1.28.0/AndroidManifest.xml:7:5-9:41
 MERGED from [io.grpc:grpc-android:1.28.0] /Users/naveenkumar/.gradle/caches/transforms-3/da41332fa1a877a032cba05ccb1a079f/transformed/jetified-grpc-android-1.28.0/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /Users/naveenkumar/.gradle/caches/transforms-3/e9b84d56670c6c6320c09b35e81c1c51/transformed/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:7:5-9:41
@@ -465,6 +478,14 @@ ADDED from [:firebase_core] /Users/naveenkumar/Documents/Github/Shalong-app/Shal
 		ADDED from [:firebase_core] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_core] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-124
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
 meta-data#com.google.firebase.components:com.google.firebase.analytics.ktx.FirebaseAnalyticsKtxRegistrar
 ADDED from [com.google.firebase:firebase-analytics-ktx:19.0.1] /Users/naveenkumar/.gradle/caches/transforms-3/36766ebd09fb38414614eaf34587609e/transformed/jetified-firebase-analytics-ktx-19.0.1/AndroidManifest.xml:11:13-13:85
 	android:value
@@ -685,3 +706,55 @@ ADDED from [com.google.android.gms:play-services-basement:17.1.0] /Users/naveenk
 		ADDED from [com.google.android.gms:play-services-basement:17.1.0] /Users/naveenkumar/.gradle/caches/transforms-3/f04c967f58d7c732ca2ed3f672fc8737/transformed/jetified-play-services-basement-17.1.0/AndroidManifest.xml:25:13-66
 	android:name
 		ADDED from [com.google.android.gms:play-services-basement:17.1.0] /Users/naveenkumar/.gradle/caches/transforms-3/f04c967f58d7c732ca2ed3f672fc8737/transformed/jetified-play-services-basement-17.1.0/AndroidManifest.xml:24:13-58
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:8:3-74
+	android:name
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:8:20-72
+activity#com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity
+ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:12:5-271
+	android:process
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:12:152-203
+	android:enabled
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:12:103-126
+	android:stateNotNeeded
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:12:240-269
+	android:launchMode
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:12:204-239
+	android:exported
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:12:127-151
+	android:name
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:12:15-102
+activity#com.google.android.play.core.common.PlayCoreDialogWrapperActivity
+ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:13:5-226
+	android:enabled
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:13:96-119
+	android:stateNotNeeded
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:13:145-174
+	android:exported
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:13:120-144
+	android:theme
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:13:175-224
+	android:name
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:13:15-95
+service#com.google.android.play.core.assetpacks.AssetPackExtractionService
+ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:16:5-18:15
+	android:enabled
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:16:96-119
+	android:exported
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:16:120-143
+	android:name
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:16:14-95
+meta-data#com.google.android.play.core.assetpacks.versionCode
+ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:17:7-108
+	android:value
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:17:85-106
+	android:name
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:17:18-84
+service#com.google.android.play.core.assetpacks.ExtractionForegroundService
+ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:19:5-147
+	android:enabled
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:19:97-120
+	android:exported
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:19:121-145
+	android:name
+		ADDED from [com.google.android.play:core:1.10.0] /Users/naveenkumar/.gradle/caches/transforms-3/9efcc1e3cb95fdf324741987e3b12bb5/transformed/jetified-core-1.10.0/AndroidManifest.xml:19:14-96

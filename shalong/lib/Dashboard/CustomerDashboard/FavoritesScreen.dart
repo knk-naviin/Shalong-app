@@ -14,7 +14,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-
         title: Text("Favorites"),
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -23,9 +22,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         ),
         backgroundColor: Colors.blue,
         elevation: 0,
-
       ),
-      body:  Center(child: Text("Favorites",style: TextStyle(fontSize: 32),)),
+      body: Center(
+          child: Text(
+        "Favorites",
+        style: TextStyle(fontSize: 32),
+      )),
     );
   }
 }

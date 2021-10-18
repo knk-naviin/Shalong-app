@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -57,7 +58,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
         ),
       );
     }
-
+    var photo = FirebaseAuth.instance.currentUser!.photoURL;
     return new Scaffold(
         appBar: AppBar(
           title: Text("Account Info"),
@@ -79,6 +80,12 @@ class MapScreenState extends State<BarberAccountInfoScreen>
               children: <Widget>[
                 Column(
                   children: <Widget>[
+                    Center(
+                      child: CircleAvatar(
+                          radius: 70,
+                          backgroundImage: NetworkImage(photo!)
+                      ),
+                    ),
                     Container(
                       color: Color(0xffFFFFFF),
                       child: Padding(

@@ -1,12 +1,16 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:getwidget/components/list_tile/gf_list_tile.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/ShopPageScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
+
+import 'CustomerAccountInfoScreen.dart';
 
 class CustomerHomeScreen extends StatefulWidget {
   const CustomerHomeScreen({Key? key}) : super(key: key);
@@ -16,8 +20,8 @@ class CustomerHomeScreen extends StatefulWidget {
 
 class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   late List<ShopInfo>? shops = null;
-  late Map<String,List<Rating>>? ratings = null;
-  List<String> favorites = [];
+  late Map<String, List<Rating>>? ratings = null;
+  late Map<String, List<Favorite>>? favorites = null;
   // bool _icon = false;
   var searchText = "";
   var name = FirebaseAuth.instance.currentUser!.displayName;
@@ -35,7 +39,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     shopTuple().then((value) {
       setState(() {
         shops = value.first as List<ShopInfo>;
-        ratings = value.last as Map<String, List<Rating>>;
+        ratings = value[1] as Map<String, List<Rating>>;
+        favorites = value[2] as Map<String, List<Favorite>>;
       });
       if (isRefresh) {
         _refreshController.refreshCompleted();
@@ -43,7 +48,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
         _refreshController.loadComplete();
       }
     });
-
   }
 
   void _onLoading() async {
@@ -55,8 +59,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     super.initState();
   }
 
-
-
   getratings(int ratingCount, int userCount) {
     return ratingCount / userCount;
   }
@@ -64,19 +66,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   List<Rating> ratingsForShopId(String shopId) {
     return ratings?[shopId] ?? [];
   }
-
-  double averageRatingForShopId(String shopId) {
-    var ratings = ratingsForShopId(shopId);
-    var average = 0.0;
-
-    for (var rating in ratings) {
-      average += rating.value;
-    }
-    average /= ratings.length;
-
-    return average;
-  }
-
 
   Widget shopList(List<ShopInfo>? shops) {
     if (shops == null) {
@@ -102,116 +91,115 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       ));
     }
     List<Widget> widgets = [];
-    widgets.add(
-        Column(
-      children: [
-        Container(
-          width: 440,
-          height: 200,
-          child: Stack(
-            children: [
-              new Container(
-                width: 440,
-                height: 180,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(36),
-                      bottomRight: Radius.circular(36),
-                    ),
-                    gradient: LinearGradient(
-                        colors: [Colors.lightBlueAccent, Colors.blue])),
-                child: Column(
-                  children: [
-                    Text(
-                      "Welcomes you",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: "fonts/TrajanPro.ttf",
-                          color: Colors.white),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 38.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: Text(
-                              "Hi '",
-                              style: TextStyle(
-                                fontSize: 23,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Center(
-                            child: Text(
-                              name!,
-                              style: TextStyle(
+    widgets.add(GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 200,
+            child: Stack(
+              children: [
+                new Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(36),
+                        bottomRight: Radius.circular(36),
+                      ),
+                      gradient: LinearGradient(
+                          colors: [Colors.lightBlueAccent, Colors.blue])),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Welcomes you",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: "fonts/TrajanPro.ttf",
+                            color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 38.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                "Hi '",
+                                style: TextStyle(
                                   fontSize: 23,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                                ),
+                              ),
                             ),
-                          )
-                        ],
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Center(
+                              child: Text(
+                                name!,
+                                style: TextStyle(
+                                    fontSize: 23,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.0),
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    height: 54,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                              offset: Offset(0, 10),
-                              blurRadius: 50,
-                              color: Colors.blue.withOpacity(0.23))
-                        ]),
-                    child: TextField(
-                      onChanged: (value) {
-                        setState(() {});
-                      },
-                      controller: editingController,
-                      decoration: InputDecoration(
-                          // suffixIcon: Icon(Icons.search,color: Colors.blue,),
-                          hintText: "Search",
-                          hintStyle: TextStyle(color: Colors.blue),
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none),
-                    ),
-                  ))
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 150.0),
-              //   child: TextField(
-              //
-
-              //
-              //     decoration: InputDecoration(
-              //       fillColor: Colors.red,
-              //         labelText: "Search",
-              //
-              //         prefixIcon: Icon(Icons.search),
-              //         border: OutlineInputBorder(
-              //             borderRadius: BorderRadius.all(Radius.circular(12.0)))),
-              //   ),
-              // ),
-            ],
+                Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      height: 54,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                                offset: Offset(0, 10),
+                                blurRadius: 50,
+                                color: Colors.blue.withOpacity(0.23))
+                          ]),
+                      child: TextField(
+                        onChanged: (value) {
+                          setState(() {});
+                        },
+                        controller: editingController,
+                        decoration: InputDecoration(
+                            // suffixIcon: Icon(Icons.search,color: Colors.blue,),
+                            hintText: "Search",
+                            hintStyle: TextStyle(color: Colors.blue),
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none),
+                      ),
+                    )),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ));
     // for (var shop in shops) {
+    var dp = FirebaseAuth.instance.currentUser!.photoURL;
+    // widgets.add(SmartRefresher(
+    //   enablePullDown: true,
+    //   enablePullUp: true,
+    //   header: WaterDropHeader(
+    //     waterDropColor: CupertinoColors.activeBlue,
+    //   ),
+    //   controller: _refreshController,
+    //   onRefresh: _onRefresh,
+    //   onLoading: _onRefresh,
+    //   child: shopList(shops),
+    // ));
     widgets.add(
       Expanded(
         child: ListView.builder(
@@ -221,102 +209,226 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               var shop = shops[index];
               if (editingController.text.isEmpty) {
                 return Center(
-                  child: Card(
-                    shadowColor: Colors.blue,
-                    semanticContainer: false,
-                    borderOnForeground: true,
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(28), // if you need this
-                      side: BorderSide(
-                        style: BorderStyle.solid,
-                        color: CupertinoColors.systemGrey.withOpacity(0.2),
-                        width: 1,
-                      ),
-                    ),
-                    child: ListTile(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ShopPageScreen(
-                                   shop, ratingsForShopId(shop.docId))),
+                                  shop, ratingsForShopId(shop.docId))),
                         );
                       },
-                      title: Text(
-                        shop.name,
-                        style: TextStyle(
-                          letterSpacing: 2,
-                          wordSpacing: 2,
-                          fontSize: 21,
-                          fontWeight: FontWeight.bold,
+                      child: Card(
+                        shadowColor: Colors.blue,
+                        semanticContainer: false,
+                        borderOnForeground: true,
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(10), // if you need this
+                          side: BorderSide(
+                            style: BorderStyle.solid,
+                            color: CupertinoColors.systemGrey.withOpacity(0.2),
+                            width: 1,
+                          ),
                         ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0,
+                                  right: 8.0,
+                                  top: 8.0,
+                                  bottom: 8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    shop.name,
+                                    style: TextStyle(
+                                      letterSpacing: 3,
+                                      wordSpacing: 2,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 20.0, right: 8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(shop.isOpen ? "Open" : "Closed",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: shop.isOpen
+                                              ? Colors.red
+                                              : Colors.grey,
+                                          fontWeight: FontWeight.bold)),
+                                ],
+                              ),
+                            ),
+                            Divider(),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 8.0, left: 20, right: 8),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    shop.address,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 2,
+                                        wordSpacing: 2),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Divider(),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 8.0, left: 20, right: 8),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      text: 'Ratings | ',
+                                      style: DefaultTextStyle.of(context).style,
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: averageRatingFrom(
+                                                    ratingsForShopId(
+                                                        shop.docId))
+                                                .toString(),
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 130.0),
+                                    child: Text(
+                                      "Add to Favorites",
+                                      style: TextStyle(
+                                          color: favorites?[shop.docId] == null ? CupertinoColors.systemGrey : CupertinoColors.activeBlue
+                                               ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: IconButton(
+                                      autofocus: true,
+                                      icon: Icon(
+                                          // Icons.favorite_outline
+                                          favorites?[shop.docId] == null
+                                              ? CupertinoIcons.heart
+                                              : CupertinoIcons.heart_fill,
+                                          color: favorites?[shop.docId] == null ? CupertinoColors.systemGrey : CupertinoColors.activeBlue),
+                                      onPressed: () {
+                                        setState(() {
+                                          if (favorites?[shop.docId] == null) {
+                                            setFavorite(shop);
+                                            // favorites.remove(shop.docId);
+                                          } else {
+                                            removeFavorite(shop);
+                                            // favorites.add(shop.docId);
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+
+                        // child: GFListTile(
+                        //
+                        //   avatar: Image.network("dp"),
+                        //   subTitleText: shop.address,
+                        //   title: Text(
+                        //     shop.name,
+                        //     style: TextStyle(
+                        //       letterSpacing: 3,
+                        //       wordSpacing: 2,
+                        //       fontSize: 25,
+                        //       fontWeight: FontWeight.bold,
+                        //     ),
+                        //   ),
+                        //   icon: Text(shop.isOpen ? "Open" : "Closed",
+                        //       style: TextStyle(
+                        //           fontSize: 15,
+                        //           color: shop.isOpen ? Colors.red : Colors.grey,
+                        //           fontWeight: FontWeight.bold)),
+                        //   description: Row(
+                        //     children: [
+                        //       RichText(
+                        //         text: TextSpan(
+                        //           text: 'Ratings | ',
+                        //           style: DefaultTextStyle.of(context).style,
+                        //           children: <TextSpan>[
+                        //             TextSpan(
+                        //                 text: averageRatingForShopId(
+                        //                     ratingsForShopId(shop.docId))
+                        //                     .toString() + "⋆",
+                        //                 style: TextStyle(
+                        //                     color: Colors.blue,
+                        //                     fontWeight: FontWeight.bold)),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //       // Padding(
+                        //       //   padding: const EdgeInsets.only(left: 130.0),
+                        //       //   child: Text(
+                        //       //     "Add to Favorites",
+                        //       //     style: TextStyle(
+                        //       //         color: favorites.contains(shop.docId)
+                        //       //             ? CupertinoColors.activeBlue
+                        //       //             : CupertinoColors.systemGrey),
+                        //       //   ),
+                        //       // ),
+                        //       // IconButton(
+                        //       //   autofocus: true,
+                        //       //   icon: Icon(
+                        //       //       // Icons.favorite_outline
+                        //       //       favorites.contains(shop.docId)
+                        //       //           ? CupertinoIcons.heart_fill
+                        //       //           : CupertinoIcons.heart,
+                        //       //       color: favorites.contains(shop.docId)
+                        //       //           ? CupertinoColors.systemBlue
+                        //       //           : CupertinoColors.systemGrey),
+                        //       //   onPressed: () {
+                        //       //     setState(() {
+                        //       //       if (favorites.contains(shop.docId)) {
+                        //       //         favorites.remove(shop.docId);
+                        //       //       } else {
+                        //       //         favorites.add(shop.docId);
+                        //       //       }
+                        //       //     });
+                        //       //   },
+                        //       // ),
+                        //     ],
+                        //   ),
+                        // ),
                       ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(),
-                          Text(
-                            shop.address,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 2,
-                                wordSpacing: 2),
-                          ),
-                          Divider(),
-                          Row(
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  text: 'Ratings | ',
-                                  style: DefaultTextStyle.of(context).style,
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: averageRatingForShopId(shop.docId).toString(),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                width: 67,
-                              ),
-                              Text("Add to Favorites"),
-                              IconButton(
-                                autofocus: true,
-                                icon: Icon(
-                                    // Icons.favorite_outline
-                                    favorites.contains(shop.docId)
-                                        ? CupertinoIcons.heart_fill
-                                        : CupertinoIcons.heart,
-                                    color: favorites.contains(shop.docId)
-                                        ? CupertinoColors.systemBlue
-                                        : CupertinoColors.systemGrey),
-                                onPressed: () {
-                                  setState(() {
-                                    if (favorites.contains(shop.docId)) {
-                                      favorites.remove(shop.docId);
-                                    } else {
-                                      favorites.add(shop.docId);
-                                    }
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      trailing: Text(shop.isOpen ? "Open" : "Closed",
-                          style: TextStyle(
-                              color: shop.isOpen ? Colors.red : Colors.grey,
-                              fontWeight: FontWeight.bold)),
                     ),
                   ),
                 );
               } else if (shops[index]
                       .name
-                      .toLowerCase()
+                      .toUpperCase()
                       .contains(editingController.text) ||
                   shops[index]
                       .name
@@ -328,22 +440,34 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ShopPageScreen(
-                            shop, ratingsForShopId(shop.docId)
-                              )),
+                              shop, ratingsForShopId(shop.docId))),
                     );
                   },
                   title: Text(shop.name),
+                  trailing: Text(shop.isOpen ? "Open" : "Closed",
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: shop.isOpen ? Colors.red : Colors.grey,
+                          fontWeight: FontWeight.bold)),
                 );
               } else {
                 return Container();
               }
             }),
       ),
-      /**/
     );
-    //);
-    // }
-
+    // widgets.add(
+    //   SmartRefresher(
+    //   enablePullDown: true,
+    //   enablePullUp: true,
+    //   header: WaterDropHeader(
+    //     waterDropColor: CupertinoColors.activeBlue,
+    //   ),
+    //   controller: _refreshController,
+    //   onRefresh: _onRefresh,
+    //   onLoading: _onRefresh,
+    //   child: shopList(shops),
+    // ),);
     return Column(
       children: widgets,
     );
@@ -351,35 +475,56 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          "Shalong",
-          style: TextStyle(
-              fontSize: 51, fontFamily: "SourceCodePro", color: Colors.white),
+    var photo = FirebaseAuth.instance.currentUser!.photoURL;
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Text(
+            "Shalong",
+            style: TextStyle(
+                fontSize: 51, fontFamily: "SourceCodePro", color: Colors.white),
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.lightBlueAccent, Colors.blue])),
+          ),
+          backgroundColor: Colors.blue,
+          elevation: 0,
+          // leading: Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child:
+          // ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CustomerAccountInfoScreen()),
+                  );
+                },
+                child: CircleAvatar(
+                    radius: 20, backgroundImage: NetworkImage(photo!)),
+              ),
+            ),
+          ],
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Colors.lightBlueAccent, Colors.blue])),
-        ),
-        backgroundColor: Colors.blue,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.widgets),
-          onPressed: () {},
-          color: Colors.white,
-        ),
-      ),
-      body: SmartRefresher(
-        enablePullDown: true,
-        enablePullUp: true,
-        header: WaterDropHeader(),
-        controller: _refreshController,
-        onRefresh: _onRefresh,
-        onLoading: _onRefresh,
-        child: shopList(shops),
+        body: SmartRefresher(
+          enablePullDown: true,
+          enablePullUp: true,
+          header: WaterDropHeader(
+            waterDropColor: CupertinoColors.activeBlue,
+          ),
+          controller: _refreshController,
+          onRefresh: _onRefresh,
+          onLoading: _onRefresh,
+          child: shopList(shops),
+        )
       ),
     );
   }

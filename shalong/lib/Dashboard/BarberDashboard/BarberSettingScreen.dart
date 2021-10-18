@@ -32,231 +32,234 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
 
       ),
 
-      body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.blue,
-              padding: EdgeInsets.all(20),
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              backgroundColor: Colors.grey.shade50,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => BarberAccountInfoScreen()),
-              );
-            },
-            child: Row(
-              children: [
-                Icon(CupertinoIcons.profile_circled,color: Colors.black),
-                SizedBox(width: 20),
-                Expanded(child: Text("Account Info",style: TextStyle(
-                    color: Colors.black
-                ),)),
-                Icon(Icons.arrow_forward_ios,color: Colors.black),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.blue,
-              padding: EdgeInsets.all(20),
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              backgroundColor: Colors.grey.shade50,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => BarberPrivacyPolicyScreen()),
-              );
-            },
-            child: Row(
-              children: [
-                FaIcon(FontAwesomeIcons.clipboard,color: Colors.black),
-                SizedBox(width: 20),
-                Expanded(child: Text("Privacy Policy",style: TextStyle(
-                    color: Colors.black
-                ),)),
-                Icon(Icons.arrow_forward_ios,color: Colors.black),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start, children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.blue,
+                padding: EdgeInsets.all(20),
+                shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                backgroundColor: Colors.grey.shade50,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BarberAccountInfoScreen()),
+                );
+              },
+              child: Row(
+                children: [
+                  Icon(CupertinoIcons.profile_circled,color: Colors.black),
+                  SizedBox(width: 20),
+                  Expanded(child: Text("Account Info",style: TextStyle(
+                      color: Colors.black
+                  ),)),
+                  Icon(Icons.arrow_forward_ios,color: Colors.black),
+                ],
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.blue,
-              padding: EdgeInsets.all(20),
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              backgroundColor: Colors.grey.shade50,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InAppReviewExampleApp()),
-              );
-            },
-            child: Row(
-              children: [
-                Icon(Icons.rate_review,color: Colors.black),
-                SizedBox(width: 20),
-                Expanded(child: Text("Ratings",style: TextStyle(
-                    color: Colors.black
-                ),)),
-                Icon(Icons.arrow_forward_ios,color: Colors.black,),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.blue,
-              padding: EdgeInsets.all(20),
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              backgroundColor: Colors.grey.shade50,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => BarberAboutScreen()),
-              );
-            },
-            child: Row(
-              children: [
-                Icon(Icons.developer_board,color: Colors.black),
-                SizedBox(width: 20),
-                Expanded(child: Text("About",style: TextStyle(
-                    color: Colors.black
-                ),)),
-                Icon(Icons.arrow_forward_ios,color: Colors.black),
-              ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.blue,
+                padding: EdgeInsets.all(20),
+                shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                backgroundColor: Colors.grey.shade50,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BarberPrivacyPolicyScreen()),
+                );
+              },
+              child: Row(
+                children: [
+                  FaIcon(FontAwesomeIcons.clipboard,color: Colors.black),
+                  SizedBox(width: 20),
+                  Expanded(child: Text("Privacy Policy",style: TextStyle(
+                      color: Colors.black
+                  ),)),
+                  Icon(Icons.arrow_forward_ios,color: Colors.black),
+                ],
+              ),
             ),
           ),
-        ),
-        // Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        //   child: TextButton(
-        //     style: TextButton.styleFrom(
-        //       primary: Colors.blue,
-        //       padding: EdgeInsets.all(20),
-        //       shape:
-        //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        //       backgroundColor: Colors.blue.shade50,
-        //     ),
-        //     onPressed: () {
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(builder: (context) => HelpScreen()),
-        //       );
-        //     },
-        //     child: Row(
-        //       children: [
-        //         Icon(Icons.help),
-        //         SizedBox(width: 20),
-        //         Expanded(child: Text("Help",style: TextStyle(
-        //             color: Colors.black
-        //         ),)),
-        //         Icon(Icons.arrow_forward_ios),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        // Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        //   child: TextButton(
-        //     style: TextButton.styleFrom(
-        //       primary: Colors.blue,
-        //       padding: EdgeInsets.all(20),
-        //       shape:
-        //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        //       backgroundColor: Colors.blue.shade50,
-        //     ),
-        //     onPressed: () {},
-        //     child: Row(
-        //       children: [
-        //         FaIcon(FontAwesomeIcons.facebookMessenger),
-        //         SizedBox(width: 20),
-        //         Expanded(child: Text("About")),
-        //         Icon(Icons.arrow_forward_ios),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.blue,
-              padding: EdgeInsets.all(20),
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              backgroundColor: Colors.grey.shade50,
-            ),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (ctx) => Platform.isIOS
-                    ? CupertinoAlertDialog(
-                  content: Text("Are you sure want to Logout? \n" + ""),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Cancel")),
-                    TextButton(
-                        onPressed: () {
-                          signout().then((value) => Navigator.of(context)
-                              .pushReplacementNamed("/launch"));
-                        },
-                        child: Text("Logout")),
-                  ],
-                )
-                    : AlertDialog(
-                  title: Text('Are you sure want to Logout?'),
-                  content: const Text('AlertDialog description'),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Cancel")),
-                    TextButton(
-                        onPressed: () {
-                          signout().then((value) => Navigator.of(context)
-                              .pushReplacementNamed("/launch"));
-                        },
-                        child: Text("Logout")),
-                  ],
-                ),
-              );
-            },
-            child: Row(
-              children: [
-                FaIcon(FontAwesomeIcons.signOutAlt,color: Colors.black),
-                SizedBox(width: 20),
-                Expanded(child: Text("Logout",style: TextStyle(
-                    color: Colors.black
-                ),)),
-                Icon(Icons.arrow_forward_ios,color: Colors.black),
-              ],
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          //   child: TextButton(
+          //     style: TextButton.styleFrom(
+          //       primary: Colors.blue,
+          //       padding: EdgeInsets.all(20),
+          //       shape:
+          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          //       backgroundColor: Colors.grey.shade50,
+          //     ),
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => InAppReviewExampleApp()),
+          //       );
+          //     },
+          //     child: Row(
+          //       children: [
+          //         Icon(Icons.rate_review,color: Colors.black),
+          //         SizedBox(width: 20),
+          //         Expanded(child: Text("Ratings",style: TextStyle(
+          //             color: Colors.black
+          //         ),)),
+          //         Icon(Icons.arrow_forward_ios,color: Colors.black,),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.blue,
+                padding: EdgeInsets.all(20),
+                shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                backgroundColor: Colors.grey.shade50,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BarberAboutScreen()),
+                );
+              },
+              child: Row(
+                children: [
+                  Icon(Icons.developer_board,color: Colors.black),
+                  SizedBox(width: 20),
+                  Expanded(child: Text("About",style: TextStyle(
+                      color: Colors.black
+                  ),)),
+                  Icon(Icons.arrow_forward_ios,color: Colors.black),
+                ],
+              ),
             ),
           ),
-        ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          //   child: TextButton(
+          //     style: TextButton.styleFrom(
+          //       primary: Colors.blue,
+          //       padding: EdgeInsets.all(20),
+          //       shape:
+          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          //       backgroundColor: Colors.blue.shade50,
+          //     ),
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => HelpScreen()),
+          //       );
+          //     },
+          //     child: Row(
+          //       children: [
+          //         Icon(Icons.help),
+          //         SizedBox(width: 20),
+          //         Expanded(child: Text("Help",style: TextStyle(
+          //             color: Colors.black
+          //         ),)),
+          //         Icon(Icons.arrow_forward_ios),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          //   child: TextButton(
+          //     style: TextButton.styleFrom(
+          //       primary: Colors.blue,
+          //       padding: EdgeInsets.all(20),
+          //       shape:
+          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          //       backgroundColor: Colors.blue.shade50,
+          //     ),
+          //     onPressed: () {},
+          //     child: Row(
+          //       children: [
+          //         FaIcon(FontAwesomeIcons.facebookMessenger),
+          //         SizedBox(width: 20),
+          //         Expanded(child: Text("About")),
+          //         Icon(Icons.arrow_forward_ios),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.blue,
+                padding: EdgeInsets.all(20),
+                shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                backgroundColor: Colors.grey.shade50,
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => Platform.isIOS
+                      ? CupertinoAlertDialog(
+                    content: Text("Are you sure want to Logout? \n" + ""),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(ctx).pop();
+                          },
+                          child: Text("Cancel")),
+                      TextButton(
+                          onPressed: () {
+                            signout().then((value) => Navigator.of(context)
+                                .pushReplacementNamed("/launch"));
+                          },
+                          child: Text("Logout")),
+                    ],
+                  )
+                      : AlertDialog(
+                    title: Text('Are you sure want to Logout?'),
+                    content: const Text('AlertDialog description'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(ctx).pop();
+                          },
+                          child: Text("Cancel")),
+                      TextButton(
+                          onPressed: () {
+                            signout().then((value) => Navigator.of(context)
+                                .pushReplacementNamed("/launch"));
+                          },
+                          child: Text("Logout")),
+                    ],
+                  ),
+                );
+              },
+              child: Row(
+                children: [
+                  FaIcon(FontAwesomeIcons.signOutAlt,color: Colors.black),
+                  SizedBox(width: 20),
+                  Expanded(child: Text("Logout",style: TextStyle(
+                      color: Colors.black
+                  ),)),
+                  Icon(Icons.arrow_forward_ios,color: Colors.black),
+                ],
+              ),
+            ),
+          ),
 
-      ]),
+        ]),
+      ),
     );
   }
 }

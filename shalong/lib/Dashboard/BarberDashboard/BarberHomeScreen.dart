@@ -1,17 +1,15 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shalong/Dashboard/BarberDashboard/BarberDashBoardScreen.dart';
+import 'package:shalong/Dashboard/BarberDashboard/BarberAccountInfoScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
-
-import 'CustomerList.dart';
 
 class BarberHomeScreen extends StatefulWidget {
   final Index;
-  const BarberHomeScreen(this.Index,{Key? key}) : super(key: key);
-
+  const BarberHomeScreen(this.Index, {Key? key}) : super(key: key);
 
   @override
   _BarberHomeScreenState createState() => _BarberHomeScreenState();
@@ -22,8 +20,8 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
 
   bool ShopBusy = false;
   bool shopOpen = false;
-  TextEditingController editingController = TextEditingController();
-
+  bool Barberbreak = false;
+  // TextEditingController editingController = TextEditingController();
 
   void updateShopStatus() {
     var shop = profileInfo!.shops.first;
@@ -32,6 +30,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
     setShopStatus(shop);
   }
 
+  var photo = FirebaseAuth.instance.currentUser!.photoURL;
   void initState() {
     super.initState();
     profile().then((value) => {
@@ -81,45 +80,22 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                     LinearGradient(colors: [Colors.grey, Colors.black26])),
           ),
           elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.widgets),
-            onPressed: () {
-               print(BarberDashboardScreen());
-              showGeneralDialog(
-                  // barrierColor: Colors.black.withOpacity(0.5),
-                  transitionBuilder: (context, a1, a2, widget) {
-                    return Transform.scale(
-                      scale: a1.value,
-                      child: Opacity(
-                        opacity: a1.value,
-                        child: AlertDialog(
-                          shape: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0)),
-                          title: Center(
-                            child: Text(
-                              'Stay Tuned!',
-                              style: TextStyle(
-                                  color: CupertinoColors.destructiveRed),
-                            ),
-                          ),
-                          content: Text(
-                            "Advanced Option Coming Soon",
-                            style: TextStyle(color: CupertinoColors.systemGrey),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                  transitionDuration: Duration(milliseconds: 200),
-                  barrierDismissible: true,
-                  barrierLabel: '',
-                  context: context,
-                  pageBuilder: (context, animation1, animation2) {
-                    return Text("");
-                  });
-            },
-            color: Colors.white,
-          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BarberAccountInfoScreen()),
+                  );
+                },
+                child: CircleAvatar(
+                    radius: 20, backgroundImage: NetworkImage(photo!)),
+              ),
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -131,8 +107,8 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                 child: Stack(
                   children: [
                     Container(
-                      width: 440,
-                      height: 180,
+                      width: double.infinity,
+                      height: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(36),
@@ -201,202 +177,122 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text(
-                                  shopOpen == false
-                                      ? " Open Up Your Shop Here "
-                                      : "Close Up Your Shop Here ",
-                                  style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  width: 50,
-                                ),
                                 Expanded(
-                                    child: CupertinoSwitch(
-                                        value: shopOpen,
-                                        onChanged: (bool value) {
-                                          setState(() {
-                                            shopOpen = value;
-                                            if (shopOpen == false) {
-                                              cardKey.currentState!
-                                                  .toggleCard();
-                                            } else if (shopOpen == true) {
-                                              cardKey.currentState!
-                                                  .toggleCard();
-                                            }
-                                            if (ShopBusy == true) {
-                                              setState(() {
-                                                ShopBusy = false;
-                                              });
-                                              // showDialog(
-                                              //     context: context,
-                                              //     builder:
-                                              //         (BuildContext context) {
-                                              //       return AlertDialog(
-                                              //         title: Center(
-                                              //           child: Text(
-                                              //             "Alert!",
-                                              //             style: TextStyle(
-                                              //                 color: CupertinoColors
-                                              //                     .destructiveRed),
-                                              //           ),
-                                              //         ),
-                                              //         content: Text(
-                                              //           "You Cant Close the shop at this moment",
-                                              //           style: TextStyle(
-                                              //               color:
-                                              //                   CupertinoColors
-                                              //                       .systemGrey),
-                                              //         ),
-                                              //       );
-                                              //     });
-                                            }
-                                          });
-                                          var shop = profileInfo!.shops.first;
-                                          shop.isOpen = shopOpen;
-                                          shop.shopbusy = ShopBusy;
-                                          setShopStatus(shop);
-                                        }))
+                                  flex: 5,
+                                  child: Text(
+                                    shopOpen == false
+                                        ? " Open Your Shop "
+                                        : "Close Your Shop ",
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                // SizedBox(
+                                //   width: 50,
+                                // ),
+                                Expanded(
+                                  child: CupertinoSwitch(
+                                      value: shopOpen,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          shopOpen = value;
+                                          if (ShopBusy == false &&
+                                              Barberbreak == false) {
+                                            setState(() {
+                                              Barberbreak = true;
+                                            });
+                                          }
+                                        });
+                                        var shop = profileInfo!.shops.first;
+                                        shop.isOpen = shopOpen;
+                                        shop.shopbusy = ShopBusy;
+                                        shop.barberBreak = Barberbreak;
+                                        setShopStatus(shop);
+                                      }),
+                                )
                               ],
                             ))),
                   ],
                 ),
               ),
-              FlipCard(
-                  direction: FlipDirection.HORIZONTAL,
-                  key: cardKey,
-                  flipOnTouch: false,
-                  front: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                          height: 532,
-                          color: Colors.red,
-                          child: Image.asset(
-                            "images/shutterimage.jpeg",
-                            fit: BoxFit.cover,
-                          )),
-                      Center(
-                        child: Image.network(
-                          "https://www.pngall.com/wp-content/uploads/4/Sorry-We-Are-Closed-Transparent.png",
-                          width: 250,
-                          fit: BoxFit.fill,
-                        ),
-                      )
-                    ],
-                  ),
-                  back: Padding(
+              SizedBox(
+                height: 10,
+              ),
+              Visibility(
+                  visible: shopOpen,
+                  child: Padding(
                     padding: const EdgeInsets.only(bottom: 250.0),
                     child: Column(children: [
-                      Card(
-                        child: ListTile(
-                          subtitle: Text(
-                              "PLease Notify to your customer, that you are busy or not"),
-                          title: Text(
-                            "Are You Busy?",
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          child: ListTile(
+                            subtitle: Text(
+                                "PLease Notify to your customer, that you are busy or not"),
+                            title: Text(
+                              "Are You Busy?",
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                            trailing: CupertinoSwitch(
+                                activeColor: CupertinoColors.destructiveRed,
+                                value: ShopBusy,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    ShopBusy = value;
+                                  });
+                                  var shop = profileInfo!.shops.first;
+                                  shop.shopbusy = ShopBusy;
+                                  shop.barberBreak = Barberbreak;
+                                  setShopStatus(shop);
+                                }),
                           ),
-                          trailing: CupertinoSwitch(
-                              activeColor: CupertinoColors.destructiveRed,
-                              value: ShopBusy,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  ShopBusy = value;
-                                });
-                                var shop = profileInfo!.shops.first;
-                                shop.shopbusy = ShopBusy;
-                                setShopStatus(shop);
-                              }),
                         ),
                       ),
-                      // Card(
-                      //   child: ListTile(
-                      //     subtitle: Text(
-                      //         "PLease Notify to your customer, you are in interval or not"),
-                      //     title: Text(
-                      //       "Are You Busy?",
-                      //       style: TextStyle(
-                      //           fontSize: 25, fontWeight: FontWeight.bold),
-                      //     ),
-                      //     trailing: CupertinoSwitch(
-                      //         activeColor: CupertinoColors.destructiveRed,
-                      //         value: ShopBusy,
-                      //         onChanged: (bool value) {
-                      //           setState(() {
-                      //             ShopBusy = value;
-                      //           });
-                      //           var shop = profileInfo!.shops.first;
-                      //           shop.shopbusy = ShopBusy;
-                      //           setShopStatus(shop);
-                      //         }),
-                      //   ),
-                      // ),
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 68.0),
-                          child: Visibility(
-                              visible: ShopBusy,
-                              child: Image.asset("images/barberbusy.jpg")),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                        child: Card(
+                          child: ListTile(
+                            subtitle: Text(
+                                "PLease Notify to your customer,  that you are in break"),
+                            title: Text(
+                              "You want break?",
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                            trailing: CupertinoSwitch(
+                                activeColor: CupertinoColors.destructiveRed,
+                                value: Barberbreak,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    Barberbreak = value;
+                                  });
+                                  var shop = profileInfo!.shops.first;
+                                  shop.barberBreak = Barberbreak;
+                                  shop.shopbusy = ShopBusy;
+                                  setShopStatus(shop);
+                                }),
+                          ),
                         ),
-                      )
+                      ),
+                      Visibility(
+                          visible: ShopBusy,
+                          child: Image.asset(
+                            "images/barberbusy.jpeg",
+                            width: 350,
+                          )),
+                      Visibility(
+                          visible: Barberbreak,
+                          child: Image.network(
+                            "https://media.istockphoto.com/vectors/coffee-break-icon-in-comic-style-clock-with-tea-cup-cartoon-vector-vector-id1220277783?k=20&m=1220277783&s=612x612&w=0&h=z5lWteYVHK5wN9TOAdoN5QZgv2bfH0qc8ivjxe7hozw=",
+                            width: 350,
+                          ))
                     ]),
-                  )),
-              // Visibility(
-              //   visible: shopOpen,
-              //   child: Padding(
-              //     padding:
-              //         const EdgeInsets.only(top: 18.0, left: 8.0, right: 8.0),
-              // child: CustomerList(),
-              //   child: Column(
-              //     children: [
-              //       Row(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         children: [
-              //           Text("Are You Busy?",style: TextStyle(
-              //             fontSize: 25,
-              //             fontWeight: FontWeight.bold
-              //           ),),
-              //           CupertinoSwitch(
-              //             value: ShopBusy,
-              //               onChanged: (bool value) {
-              //                 setState(() {
-              //                   ShopBusy = value;
-              //                 });
-              //                 var shop = profileInfo!.shops.first;
-              //                 shop.shopbusy = ShopBusy;
-              //                 setShopStatus(shop);
-              //               }
-              //           )
-              //         ],
-              //       )
-              //     ],
-              //   ),
-              // child: Card(
-              //   child: ListTile(
-              //     subtitle: Text(
-              //         "PLease Notify to your customer, that you are busy or not"),
-              //     title: Text(
-              //       "Are You Busy?",
-              //       style: TextStyle(
-              //           fontSize: 25, fontWeight: FontWeight.bold),
-              //     ),
-              //     trailing: CupertinoSwitch(
-              //         activeColor: CupertinoColors.destructiveRed,
-              //         value: ShopBusy,
-              //         onChanged: (bool value) {
-              //           setState(() {
-              //             ShopBusy = value;
-              //           });
-              //           var shop = profileInfo!.shops.first;
-              //           shop.shopbusy = ShopBusy;
-              //           setShopStatus(shop);
-              //         }),
-              //   ),
-              // ),
-              //),
-              // )
+                  ))
             ],
           ),
         ),

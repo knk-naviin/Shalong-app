@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">59614233225-rs88uc375ho88ccj8ptbgserlltuhc91.apps.googleusercontent.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">59614233225</string>
-    <string name="google_api_key" translatable="false">AIzaSyBpPNBfxQTZvvr1inHFhlcktRPrTbp9Efs</string>
-    <string name="google_app_id" translatable="false">1:59614233225:android:83ca3d56078444c539fc58</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBpPNBfxQTZvvr1inHFhlcktRPrTbp9Efs</string>
-    <string name="google_storage_bucket" translatable="false">shalong-4b19b.appspot.com</string>
-    <string name="project_id" translatable="false">shalong-4b19b</string>
+    <string name="default_web_client_id" translatable="false">287386333635-j9p6mb9octb4s8gcaqv98o3tepb0u0m0.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">287386333635</string>
+    <string name="google_api_key" translatable="false">AIzaSyC8lpsWG_Mz1h1trx6XDdX_Mm5Ti1e1RYI</string>
+    <string name="google_app_id" translatable="false">1:287386333635:android:34b7bf2b5d49c6308e8d76</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC8lpsWG_Mz1h1trx6XDdX_Mm5Ti1e1RYI</string>
+    <string name="google_storage_bucket" translatable="false">shalong-4a203.appspot.com</string>
+    <string name="project_id" translatable="false">shalong-4a203</string>
 </resources>

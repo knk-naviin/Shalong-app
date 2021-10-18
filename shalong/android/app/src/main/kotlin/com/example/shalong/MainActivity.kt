@@ -1,4 +1,4 @@
-package com.example.shalong
+package com.yaash.shalong
 
 import io.flutter.embedding.android.FlutterActivity
 

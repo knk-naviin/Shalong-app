@@ -1,4 +1,4 @@
-com.example.shalong
+com.yaash.shalong
 attr alpha
 attr ambientEnabled
 attr buttonSize
@@ -114,6 +114,7 @@ drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_launcher
 drawable launch_background
 drawable notification_action_background
 drawable notification_bg
@@ -271,6 +272,7 @@ style TextAppearance_Compat_Notification_Info
 style TextAppearance_Compat_Notification_Line2
 style TextAppearance_Compat_Notification_Time
 style TextAppearance_Compat_Notification_Title
+style Theme_PlayCore_Transparent
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
 style Widget_Support_CoordinatorLayout

@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-
-
 class TermsConditionScreen extends StatefulWidget {
   const TermsConditionScreen({Key? key}) : super(key: key);
 
@@ -18,7 +16,6 @@ class _TermsConditionScreenState extends State<TermsConditionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-
           title: Text("Privacy Policy"),
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -27,18 +24,17 @@ class _TermsConditionScreenState extends State<TermsConditionScreen> {
           ),
           backgroundColor: Colors.blue,
           elevation: 0,
-
         ),
-        body:  SingleChildScrollView(
+        body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
               Divider(),
               Center(
-                child: Text("Privacy Policy",style: TextStyle(
-                  fontSize: 42,
-                  fontWeight: FontWeight.w900
-                ),),
+                child: Text(
+                  "Privacy Policy",
+                  style: TextStyle(fontSize: 42, fontWeight: FontWeight.w900),
+                ),
               ),
               Divider(),
               Center(
@@ -122,7 +118,6 @@ class _TermsConditionScreenState extends State<TermsConditionScreen> {
               Text("© 2021 Yash School of technology")
             ],
           ),
-        )
-    );
+        ));
   }
 }

@@ -1,10 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
-
 
 class BarberShopUpdatingScreen extends StatefulWidget {
   // const BarberShopUpdatingScreen({Key? key}) : super(key: key);
@@ -17,11 +15,18 @@ class BarberShopUpdatingScreen extends StatefulWidget {
 
 class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  ShopInfo shopInfo = ShopInfo("","","","", false,true,);
+  ShopInfo shopInfo = ShopInfo(
+    "",
+    "",
+    "",
+    "",
+    false,
+    true,
+    false
+  );
 
   @override
   Widget build(BuildContext context) {
-
     if (widget.shopInfo != null) {
       shopInfo = widget.shopInfo!;
     }
@@ -35,12 +40,11 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
         ),
         body: Form(
           key: formkey,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: SizedBox(
-                  width: 400,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -60,15 +64,11 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                         )),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 100,
-                width: 400,
-                child: Center(
-                  heightFactor: 1,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     onTap: () {
-                    // > MapScreen()));
+                      // > MapScreen()));
                     },
                     onSaved: (value) {
                       // location = value!;
@@ -93,12 +93,8 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                         )),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 140,
-                width: 400,
-                child: Center(
-                  heightFactor: 1,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     onSaved: (value) {
                       shopInfo.phone = value!;
@@ -126,12 +122,8 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                         )),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 140,
-                width: 400,
-                child: Center(
-                  heightFactor: 1,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     maxLines: 140,
                     minLines: 1,
@@ -157,20 +149,20 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                         )),
                   ),
                 ),
-              ),
-              SizedBox(
-                  width: 140,
-                  height: 55,
-                  child: ElevatedButton.icon(
-                      icon: FaIcon(FontAwesomeIcons.save),
-                      label: Text("Submit"),
-                      onPressed: () {
-                        if (formkey.currentState!.validate()) {
-                          (formkey.currentState!.save());
-                          Navigator.pop(context, shopInfo);
-                        }
-                      }))
-            ],
+                SizedBox(
+                    width: 140,
+                    height: 55,
+                    child: ElevatedButton.icon(
+                        icon: FaIcon(FontAwesomeIcons.save),
+                        label: Text("Submit"),
+                        onPressed: () {
+                          if (formkey.currentState!.validate()) {
+                            (formkey.currentState!.save());
+                            Navigator.pop(context, shopInfo);
+                          }
+                        }))
+              ],
+            ),
           ),
         ),
       ),

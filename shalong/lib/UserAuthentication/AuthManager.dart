@@ -1,9 +1,27 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+
+class Favorite {
+  String docId;
+  String shopId;
+  String uid;
+
+  Favorite(this.docId, this.uid, this.shopId);
+
+  Map<String, Object> favjsonRef() {
+    return {
+      "uid": uid,
+      "shop_id": shopId,
+    };
+  }
+  static Favorite object(QueryDocumentSnapshot doc) {
+    // var value = doc["value"] as double;
+    return Favorite(doc.id, doc["uid"], doc["shop_id"]);
+  }
+}
 
 class Rating {
   String docId;
@@ -14,17 +32,25 @@ class Rating {
   String feedback;
   DateTime date;
 
-  Rating(this.docId, this.uid, this.shopId, this.review, this.value, this.date, this.feedback);
+  Rating(this.docId, this.uid, this.shopId, this.review, this.value, this.date,
+      this.feedback);
 
- Map<String, Object> jsonRef() {
-   return {"uid": uid, "shop_id": shopId, "review": review, "value": value, "date": date,"feedback":feedback};
- }
+  Map<String, Object> jsonRef() {
+    return {
+      "uid": uid,
+      "shop_id": shopId,
+      "review": review,
+      "value": value,
+      "date": date,
+      "feedback": feedback
+    };
+  }
 
- static Rating object(QueryDocumentSnapshot doc) {
-   // var value = doc["value"] as double;
-   return Rating(doc.id, doc["uid"], doc["shop_id"], doc["review"], doc["value"], doc["date"].toDate(), doc["feedback"]);
- }
-
+  static Rating object(QueryDocumentSnapshot doc) {
+    // var value = doc["value"] as double;
+    return Rating(doc.id, doc["uid"], doc["shop_id"], doc["review"],
+        doc["value"], doc["date"].toDate(), doc["feedback"]);
+  }
 }
 
 class ShopInfo {
@@ -34,10 +60,11 @@ class ShopInfo {
   String phone;
   bool isOpen;
   bool shopbusy;
+  bool barberBreak;
 
-  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen ,this.shopbusy);
+  ShopInfo(this.docId, this.name, this.address, this.phone, this.isOpen,
+      this.shopbusy, this.barberBreak);
 }
-
 
 class Profile {
   String docId;
@@ -50,7 +77,14 @@ class Profile {
   // String barbershopname;
   // String barbershopaddress;
   // String barberlocationurl;
-  Profile(this.docId, this.name, this.email, this.phone, this.isBarber, this.shops,);
+  Profile(
+    this.docId,
+    this.name,
+    this.email,
+    this.phone,
+    this.isBarber,
+    this.shops,
+  );
 }
 
 Future<void> signout() async {
@@ -64,7 +98,6 @@ Future<Profile?> initalizeAppAndFetchProfile() async {
 }
 
 Future<Profile?> profile() async {
-
   var uid = FirebaseAuth.instance.currentUser?.uid;
   if (uid != null) {
     CollectionReference userRef = FirebaseFirestore.instance.collection("user");
@@ -80,7 +113,8 @@ Future<Profile?> profile() async {
       var docId = doc.id;
       List<ShopInfo> shops = [];
 
-      CollectionReference userRef = FirebaseFirestore.instance.collection("shop");
+      CollectionReference userRef =
+          FirebaseFirestore.instance.collection("shop");
       var shopQueryInfo = (await userRef.where("uid", isEqualTo: uid).get());
       var docs = shopQueryInfo.docs;
       if (docs.length > 0) {
@@ -91,33 +125,41 @@ Future<Profile?> profile() async {
           //   ratings.add(Rating(ratingDoc["uid"], ratingDoc["review"], ratingDoc["value"], date.toDate(),ratingDoc["feedback"]));
           // }
 
-            shops.add(ShopInfo(
-              doc.id,
-              doc["name"],
-              doc["address"],
-              doc["phone"],
-              doc["is_open"],
-              doc["shop_busy"],
-          )
-          );
+          shops.add(ShopInfo(
+            doc.id,
+            doc["name"],
+            doc["address"],
+            doc["phone"],
+            doc["is_open"],
+            doc["shop_busy"],
+            doc["barber_break"],
+          ));
         }
       }
-      return Profile(docId, name, email, phonenumber, isBarber, shops,);
+      return Profile(
+        docId,
+        name,
+        email,
+        phonenumber,
+        isBarber,
+        shops,
+      );
     }
   }
   return null;
 }
 
 Future<List<Rating>?> fetchRatings() async {
-  CollectionReference ratingInfo = FirebaseFirestore.instance.collection("rating");
+  CollectionReference ratingInfo =
+      FirebaseFirestore.instance.collection("rating");
   var ratingQueryInfo = (await ratingInfo.get());
   var docs = ratingQueryInfo.docs;
   List<Rating> ratings = [];
   if (docs.length > 0) {
     for (var doc in docs) {
-        ratings.add(Rating.object(doc));
+      ratings.add(Rating.object(doc));
     }
-      return ratings;
+    return ratings;
   }
 }
 
@@ -132,27 +174,30 @@ Future<Map<String, List<Rating>>> ratingMap() async {
   if (ratings != null) {
     for (var rating in ratings) {
       if ([rating.shopId] != null) {
-        map[rating.shopId] = ratings.where((element) => element.shopId == rating.shopId).toList();
+        map[rating.shopId] = ratings
+            .where((element) => element.shopId == rating.shopId)
+            .toList();
       }
     }
   }
 
-return map;
+  return map;
 }
 
-Future<List<Object?>> shopTuple() async{
+Future<List<Object?>> shopTuple() async {
   List list = [];
   var shops = await fetchShops();
-  var ratings = await ratingMap();
-  if (shops == null)  {
+  if (shops == null) {
     shops = [];
   }
   list.add(shops);
+  var ratings = await ratingMap();
   list.add(ratings);
+
+  var favorites = await favoriteMap();
+  list.add(favorites);
   return list;
 }
-
-
 
 Future<List<ShopInfo>?> fetchShops() async {
   CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
@@ -172,22 +217,26 @@ Future<List<ShopInfo>?> fetchShops() async {
       var phonenumber = doc["phone"] ?? "";
       var isOpen = doc["is_open"];
       var shopbusy = doc["shop_busy"];
-      shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,shopbusy));
+      var barberBreak = doc["barber_break"];
+      shops.add(ShopInfo(
+          doc.id, name, address, phonenumber, isOpen, shopbusy, barberBreak));
     }
   }
   return shops;
 }
 
-
-
 setShopStatus(ShopInfo shop) {
   CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
-   shopRef.doc(shop.docId).update({"is_open": shop.isOpen, "shop_busy": shop.shopbusy});
+  shopRef.doc(shop.docId).update({
+    "is_open": shop.isOpen,
+    "shop_busy": shop.shopbusy,
+    "barber_break": shop.barberBreak
+  });
 }
 
 submitReview(Rating rating) {
-  CollectionReference ratingRef = FirebaseFirestore.instance.collection(
-      "rating");
+  CollectionReference ratingRef =
+      FirebaseFirestore.instance.collection("rating");
   if (rating.docId == "") {
     ratingRef.add(rating.jsonRef());
   } else {
@@ -195,17 +244,13 @@ submitReview(Rating rating) {
   }
 }
 
-
-
-
 Future<UserCredential?> signInWithGoogle() async {
-
   // Trigger the authentication flow
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
   // Obtain the auth details from the request
   final GoogleSignInAuthentication? googleAuth =
-  await googleUser?.authentication;
+      await googleUser?.authentication;
   if (googleAuth != null) {
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -213,8 +258,78 @@ Future<UserCredential?> signInWithGoogle() async {
       idToken: googleAuth.idToken,
     );
     var userCredentials =
-    await FirebaseAuth.instance.signInWithCredential(credential);
+        await FirebaseAuth.instance.signInWithCredential(credential);
     // Once signed in, return the UserCredential
     return userCredentials;
   }
 }
+
+double averageRatingFrom(List<Rating> ratings) {
+  // var ratings = ratingsForShopId(=);
+  var average = 0.0;
+
+  for (var rating in ratings) {
+    average += rating.value;
+  }
+  average /= ratings.length;
+
+  return average;
+}
+
+Future<void> setFavorite(ShopInfo shopInfo) async {
+  var uid = FirebaseAuth.instance.currentUser?.uid;
+  if (uid != null) {
+    CollectionReference favoriteRef =
+        FirebaseFirestore.instance.collection("favorite");
+    await favoriteRef.doc().set({"shop_id": shopInfo.docId, "uid": uid});
+  }
+}
+
+Future<void> removeFavorite(ShopInfo shopInfo) async {
+  var uid = FirebaseAuth.instance.currentUser?.uid;
+  if (uid != null) {
+    CollectionReference favoriteRef =
+        FirebaseFirestore.instance.collection("favorite");
+    var query =
+        await favoriteRef.where({"shop_id": shopInfo.docId, "uid": uid}).get();
+    for (var doc in query.docs) {
+      await favoriteRef.doc(doc.id).delete();
+    }
+  }
+}
+
+
+
+Future<Map<String, List<Favorite>>> favoriteMap() async {
+  Map<String, List<Favorite>> map = {};
+  var favorites = await fetchFavorite();
+  if (favorites != null) {
+    for (var favorite in favorites) {
+      if ([favorite.shopId] != null) {
+        map[favorite.shopId] = favorites
+            .where((element) => element.shopId == favorite.shopId)
+            .toList();
+      }
+    }
+  }
+  return map;
+}
+
+Future<List<Favorite>?> fetchFavorite() async {
+  var uid = FirebaseAuth.instance.currentUser?.uid;
+  if (uid != null) {
+  CollectionReference favoriteRef = FirebaseFirestore.instance.collection("favorite");
+  var favoritesQueryInfo = (await favoriteRef.where("uid", isEqualTo: uid).get());
+  var docs = favoritesQueryInfo.docs;
+  List<Favorite> favorites = [];
+  if (docs.length > 0) {
+    for (var doc in docs) {
+      favorites.add(Favorite.object(doc));
+    }
+    return favorites;
+  }
+
+  }
+}
+
+

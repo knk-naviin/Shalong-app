@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,7 +8,8 @@ import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 class CustomerAccountInfoScreen extends StatefulWidget {
   @override
-  CustomerAccountInfoScreenState createState() => CustomerAccountInfoScreenState();
+  CustomerAccountInfoScreenState createState() =>
+      CustomerAccountInfoScreenState();
 }
 
 class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
@@ -49,23 +51,22 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
         backgroundColor: Colors.white70,
         body: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Platform.isAndroid?CircularProgressIndicator(
-
-                ):CupertinoActivityIndicator(
-                  animating: true,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Loading"),
-                )
-              ],
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Platform.isAndroid
+                ? CircularProgressIndicator()
+                : CupertinoActivityIndicator(
+                    animating: true,
+                  ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Loading"),
             )
-        ),
+          ],
+        )),
       );
     }
-
+    var photo = FirebaseAuth.instance.currentUser!.photoURL;
     return new Scaffold(
         appBar: AppBar(
           title: Text("Account Information"),
@@ -76,7 +77,6 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
           ),
           backgroundColor: Colors.blue,
           elevation: 0,
-
         ),
         body: new Container(
           color: Colors.white,
@@ -95,6 +95,11 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
+                            Center(
+                              child: CircleAvatar(
+                                  radius: 70,
+                                  backgroundImage: NetworkImage(photo!)),
+                            ),
                             Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 25.0),
@@ -324,10 +329,9 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
         ),
       ),
       onTap: () {
-        Navigator.pop(context);
-        // setState(() {
-        //   isViewMode = false;
-        // });
+        setState(() {
+          isViewMode = false;
+        });
       },
     );
   }

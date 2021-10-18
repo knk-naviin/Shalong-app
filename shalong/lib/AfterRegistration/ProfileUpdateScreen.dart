@@ -33,7 +33,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
           "address": aShop.address,
           "phone": aShop.phone,
           "is_open": aShop.isOpen,
-          "shop_busy":aShop.shopbusy
+          "shop_busy": aShop.shopbusy
         });
         shopIds.add(shop.id);
       }
@@ -105,16 +105,15 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
           centerTitle: true,
           backgroundColor: CupertinoColors.systemBlue,
         ),
-        body: Form(
-          key: formkey,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 100,
-                width: 400,
-                child: Center(
-                  heightFactor: 1,
-                  child: TextFormField(
+        body: SingleChildScrollView(
+          child: Form(
+            key: formkey,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0,left: 8,right: 8,bottom: 8),
+                  child: TextFormField
+                    (
                     initialValue: currentUser.displayName,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -136,13 +135,10 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                         )),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 100,
-                width: 400,
-                child: Center(
-                  heightFactor: 1,
-                  child: TextFormField(
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField
+                    (
                     initialValue: currentUser.email,
                     validator: (value) => EmailValidator.validate(value!)
                         ? null
@@ -162,12 +158,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                         )),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 100,
-                width: 400,
-                child: Center(
-                  heightFactor: 1,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     initialValue: currentUser.phoneNumber,
                     validator: (value) {
@@ -197,100 +189,100 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                         )),
                   ),
                 ),
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: SizedBox(child: Text("Are you barber?")),
-                  ),
-                  CupertinoSwitch(
-                      activeColor: CupertinoColors.systemBlue,
-                      value: profile.isBarber,
-                      onChanged: (bool value) {
-                        setState(() {
-                          profile.isBarber = value;
-                        });
-                      }),
-                ],
-              ),
-              Visibility(
-                  visible: profile.isBarber,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: SizedBox(child: Text("Shop Information")),
-                          ),
-                          CupertinoButton(
-                            onPressed: () async {
-                              if (profile.shops.length == 0) {
-                                ShopInfo shopInfo = await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          BarberShopUpdatingScreen()),
-                                );
-                                setState(() {
-                                  profile.shops.add(shopInfo);
-                                });
-                              } else {
-                                showDialog(
-                                  context: context,
-                                  builder: (ctx) => Platform.isIOS
-                                      ? CupertinoAlertDialog(
-                                          title: Text("Sorry!",
-                                              style: TextStyle(
-                                                  color: CupertinoColors
-                                                      .systemRed)),
-                                          content: Text(
-                                              "You can add only one shop at this moment"),
-                                        )
-                                      : AlertDialog(
-                                          content: Text(
-                                              "You can add only one shop at this moment"),
-                                        ),
-                                );
-                              }
-                            },
-                            // icon: FaIcon(FontAwesomeIcons.file),
-                            child: Text("Add Shop Details"),
-                          ),
-                        ],
-                      ),
-                      shopsWidget()
-                    ],
-                  )),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: CupertinoButton(
-                  child: Text(
-                    'Continue',
-                    style: TextStyle(fontSize: 23),
-                  ),
-                  color: CupertinoColors.systemBlue,
-                  onPressed: () {
-                    if (formkey.currentState!.validate()) {
-                      (formkey.currentState!.save());
-                      if(profile.isBarber && profile.shops.length > 0 || profile.isBarber == false) {
-                        addUserToFirestore();
-                      }else{
-                        showDialog(
-                          context: context,
-                          builder: (context) => new AlertDialog(
-                            title: new Text('Alert'),
-                            content: Text(
-                                'Check Your Data'),
-                          ),
-                        );
-                      }
-                    }
-                  },
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: SizedBox(child: Text("Are you barber?")),
+                    ),
+                    CupertinoSwitch(
+                        activeColor: CupertinoColors.systemBlue,
+                        value: profile.isBarber,
+                        onChanged: (bool value) {
+                          setState(() {
+                            profile.isBarber = value;
+                          });
+                        }),
+                  ],
                 ),
-              ),
-            ],
+                Visibility(
+                    visible: profile.isBarber,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: SizedBox(child: Text("Shop Information")),
+                            ),
+                            CupertinoButton(
+                              onPressed: () async {
+                                if (profile.shops.length == 0) {
+                                  ShopInfo shopInfo = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            BarberShopUpdatingScreen()),
+                                  );
+                                  setState(() {
+                                    profile.shops.add(shopInfo);
+                                  });
+                                } else {
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) => Platform.isIOS
+                                        ? CupertinoAlertDialog(
+                                            title: Text("Sorry!",
+                                                style: TextStyle(
+                                                    color: CupertinoColors
+                                                        .systemRed)),
+                                            content: Text(
+                                                "You can add only one shop at this moment"),
+                                          )
+                                        : AlertDialog(
+                                            content: Text(
+                                                "You can add only one shop at this moment"),
+                                          ),
+                                  );
+                                }
+                              },
+                              // icon: FaIcon(FontAwesomeIcons.file),
+                              child: Text("Add Shop Details"),
+                            ),
+                          ],
+                        ),
+                        shopsWidget()
+                      ],
+                    )),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: CupertinoButton(
+                    child: Text(
+                      'Continue',
+                      style: TextStyle(fontSize: 23),
+                    ),
+                    color: CupertinoColors.systemBlue,
+                    onPressed: () {
+                      if (formkey.currentState!.validate()) {
+                        (formkey.currentState!.save());
+                        if (profile.isBarber && profile.shops.length > 0 ||
+                            profile.isBarber == false) {
+                          addUserToFirestore();
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) => new AlertDialog(
+                              title: new Text('Alert'),
+                              content: Text('Check Your Data'),
+                            ),
+                          );
+                        }
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
