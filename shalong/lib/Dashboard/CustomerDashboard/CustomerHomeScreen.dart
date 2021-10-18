@@ -5,7 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:getwidget/components/list_tile/gf_list_tile.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/ShopPageScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
