@@ -43,6 +43,7 @@ dependencies:
   flutter_html: ^2.1.4
   carousel_slider: ^4.0.0
   in_app_review: ^2.0.3
+  url_launcher: ^6.0.12
 
 
 

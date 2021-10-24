@@ -13,17 +13,16 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Help"),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.lightBlueAccent, Colors.blue])),
-          ),
-          backgroundColor: Colors.blue,
-          elevation: 0,
-
+      appBar: AppBar(
+        title: Text("Help"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.lightBlueAccent, Colors.blue])),
         ),
+        backgroundColor: Colors.blue,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -99,18 +98,12 @@ class _AboutScreenState extends State<AboutScreen> {
             Divider(),
             Text(
               "This App is Copyright © 2021 Yash School of technology",
-              style: TextStyle(
-                  fontSize: 10,
-                  color: CupertinoColors.systemGrey),
+              style: TextStyle(fontSize: 10, color: CupertinoColors.systemGrey),
             ),
             Text(
-              "Version: 1.0.1",
-              style: TextStyle(
-                  color: CupertinoColors.systemGrey,
-                  fontSize: 12
-              ),
+              "Version: 2.0.0",
+              style: TextStyle(color: CupertinoColors.systemGrey, fontSize: 12),
             ),
-
           ],
         ),
       ),

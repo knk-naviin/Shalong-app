@@ -37,52 +37,6 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Customer Screen"),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.blue,
-      //
-      // ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: _currentIndex,
-      //   onTap: _onItemTapped,
-      //   elevation: 0,
-      //   showUnselectedLabels: true,
-      //   showSelectedLabels: true,
-      //   type: BottomNavigationBarType.shifting,
-      //   selectedItemColor: CupertinoColors.systemBlue,
-      //   unselectedItemColor: CupertinoColors.systemGrey,
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       label: "Home",
-      //         icon: Icon(CupertinoIcons.home,
-      //           color: CupertinoColors.systemBlue,
-      //         ),
-      //       backgroundColor: Colors.white
-      //     ),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(CupertinoIcons.heart_fill,
-      //           color: CupertinoColors.systemBlue,
-      //         ),
-      //         label: "Favorites",
-      //         backgroundColor: Colors.white
-      //     ),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(CupertinoIcons.bell_fill,
-      //           color: CupertinoColors.systemBlue,
-      //         ),
-      //         label: "Notification",
-      //         backgroundColor: Colors.white
-      //     ),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(CupertinoIcons.settings_solid,
-      //           color: CupertinoColors.systemBlue,
-      //         ),
-      //         label: "Settings",
-      //         backgroundColor: Colors.white
-      //     )
-      //   ],
-      // ),
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
         curve: Curves.ease,

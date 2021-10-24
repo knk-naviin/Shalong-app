@@ -236,17 +236,11 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20.0,
-                                  right: 8.0,
-                                  top: 8.0,
-                                  bottom: 8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
                                     shop.name,
                                     style: TextStyle(
                                       letterSpacing: 3,
@@ -255,25 +249,22 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20.0, right: 8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(shop.isOpen ? "Open" : "Closed",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: shop.isOpen
-                                              ? Colors.red
-                                              : Colors.grey,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 110.0),
+                                    child: Text(shop.isOpen ? "Open" : "Closed",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            color: shop.isOpen
+                                                ? Colors.red
+                                                : Colors.grey,
+                                            fontWeight: FontWeight.bold)),
+                                  )
+                                )
+                              ],
                             ),
                             Divider(),
                             Padding(
@@ -315,38 +306,51 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 130.0),
-                                    child: Text(
-                                      "Add to Favorites",
-                                      style: TextStyle(
-                                          color: favorites?[shop.docId] == null ? CupertinoColors.systemGrey : CupertinoColors.activeBlue
-                                               ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 100.0
+                                          ),
+                                          child: Text(
+                                            "Add to Favorites",
+                                            style: TextStyle(
+                                                color: favorites?[shop.docId] ==
+                                                        null
+                                                    ? CupertinoColors.systemGrey
+                                                    : CupertinoColors
+                                                        .activeBlue),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          autofocus: true,
+                                          icon: Icon(
+                                              // Icons.favorite_outline
+                                              favorites?[shop.docId] == null
+                                                  ? CupertinoIcons.heart
+                                                  : CupertinoIcons.heart_fill,
+                                              color: favorites?[shop.docId] ==
+                                                      null
+                                                  ? CupertinoColors.systemGrey
+                                                  : CupertinoColors.activeBlue),
+                                          onPressed: () {
+                                            setState(() {
+                                              if (favorites?[shop.docId] ==
+                                                  null) {
+                                                setFavorite(shop);
+                                                // favorites.remove(shop.docId);
+                                              } else {
+                                                removeFavorite(shop);
+                                                // favorites.add(shop.docId);
+                                              }
+                                            });
+                                          },
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
-                                    child: IconButton(
-                                      autofocus: true,
-                                      icon: Icon(
-                                          // Icons.favorite_outline
-                                          favorites?[shop.docId] == null
-                                              ? CupertinoIcons.heart
-                                              : CupertinoIcons.heart_fill,
-                                          color: favorites?[shop.docId] == null ? CupertinoColors.systemGrey : CupertinoColors.activeBlue),
-                                      onPressed: () {
-                                        setState(() {
-                                          if (favorites?[shop.docId] == null) {
-                                            setFavorite(shop);
-                                            // favorites.remove(shop.docId);
-                                          } else {
-                                            removeFavorite(shop);
-                                            // favorites.add(shop.docId);
-                                          }
-                                        });
-                                      },
-                                    ),
-                                  ),
+                                  )
                                 ],
                               ),
                             )
@@ -478,54 +482,55 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            "Shalong",
-            style: TextStyle(
-                fontSize: 51, fontFamily: "SourceCodePro", color: Colors.white),
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.lightBlueAccent, Colors.blue])),
-          ),
-          backgroundColor: Colors.blue,
-          elevation: 0,
-          // leading: Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child:
-          // ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CustomerAccountInfoScreen()),
-                  );
-                },
-                child: CircleAvatar(
-                    radius: 20, backgroundImage: NetworkImage(photo!)),
-              ),
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              "Shalong",
+              style: TextStyle(
+                  fontSize: 51,
+                  fontFamily: "SourceCodePro",
+                  color: Colors.white),
             ),
-          ],
-        ),
-        body: SmartRefresher(
-          enablePullDown: true,
-          enablePullUp: true,
-          header: WaterDropHeader(
-            waterDropColor: CupertinoColors.activeBlue,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.lightBlueAccent, Colors.blue])),
+            ),
+            backgroundColor: Colors.blue,
+            elevation: 0,
+            // leading: Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child:
+            // ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CustomerAccountInfoScreen()),
+                    );
+                  },
+                  child: CircleAvatar(
+                      radius: 20, backgroundImage: NetworkImage(photo!)),
+                ),
+              ),
+            ],
           ),
-          controller: _refreshController,
-          onRefresh: _onRefresh,
-          onLoading: _onRefresh,
-          child: shopList(shops),
-        )
-      ),
+          body: SmartRefresher(
+            enablePullDown: true,
+            enablePullUp: true,
+            header: WaterDropHeader(
+              waterDropColor: CupertinoColors.activeBlue,
+            ),
+            controller: _refreshController,
+            onRefresh: _onRefresh,
+            onLoading: _onRefresh,
+            child: shopList(shops),
+          )),
     );
   }
 }

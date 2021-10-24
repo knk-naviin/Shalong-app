@@ -1,8 +1,11 @@
 import 'dart:io';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'AuthManager.dart';
 
 class UserAuthScreen extends StatefulWidget {
@@ -13,17 +16,34 @@ class UserAuthScreen extends StatefulWidget {
 }
 
 class _UserAuthScreenState extends State<UserAuthScreen> {
-  bool _isLoading = true;
+  bool _isLoading = false;
+
+  CarouselController buttonCarouselController = CarouselController();
+  String _launchurl = 'https://privacyterms.io/view/fdigclPM-8YosmjKR-DnNCuL/';
+
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: true,
+        headers: <String, String>{'header_key': 'header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          //scrollDirection: Axis.vertical,
           child: Stack(
             children: [
+
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -31,124 +51,234 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset("images/haircutting.webp"),
                   ),
-                  RichText(
-                    text: TextSpan(
-                      text: 'Shalon',
-                      style: TextStyle(
-                          fontFamily: "Bunya-Regular_PERSONAL",
-                          color: Colors.black,
-                          letterSpacing: 3,
-                          fontSize: 60
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Welcome,",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      children: const <TextSpan>[
-                        TextSpan(
-                            text: 'g',
-                            style: TextStyle(
-                              letterSpacing: 2,
-                                fontFamily: "Bunya-Regular_PERSONAL",
-                                color: CupertinoColors.systemRed,
-                                fontSize: 70))
-                      ],
                     ),
                   ),
-                  // Text("Welcomes You",style: TextStyle(
-                  //   color: Colors.blue,
-                  //   fontSize: 18,
-                  //   letterSpacing: 2
-                  // ),),
                   Padding(
-                    padding: const EdgeInsets.only(top: 68.0),
+                    padding: const EdgeInsets.only(left: 35.0, top: 8),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Enter phone number to get otp",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      child: Column(
-                        children: [
-                          // SizedBox(
-                          //   width: 230,
-                          //   height: 50,
-                          //   child: OutlinedButton(
-                          //     onPressed: () {
-                          //       print("PHone");
-                          //     },
-                          //     child: Text("Phone Verfication"),
-                          //   ),
-                          // ),
-                          // Padding(
-                          //   padding: const EdgeInsets.all(8.0),
-                          //   child: Text("or"),
-                          // ),
-                          SizedBox(
-                            width: 130,
-                            height: 40,
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(CupertinoColors.systemBlue),
-                                elevation: MaterialStateProperty.all(0)
-                              ),
-                                onPressed: () async {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
+                      margin: EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      height: 54,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          // border: Border.all(
+                          //   style: BorderStyle.solid,
+                          //     color: CupertinoColors.secondaryLabel),
+                          boxShadow: [
+                            BoxShadow(
+                                offset: Offset(0, 0),
+                                blurRadius: 25,
+                                color: Colors.blue.withOpacity(0.23))
+                          ]),
+                      child: Center(
+                        child: TextField(
+                          onChanged: (value) {
+                            setState(() {});
+                          },
+                          // controller: editingController,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(CupertinoIcons.phone),
+                              // suffixIcon: Icon(Icons.search,color: Colors.blue,),
+                              hintText: "Phone Number",
+                              hintStyle: TextStyle(color: Colors.blue),
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        // margin: EdgeInsets.symmetric(horizontal: 20.0),
+                        // padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        height: 54,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: CupertinoColors.systemBlue,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: CupertinoButton(
+                            // color: Colors.white,
+                            onPressed: () {},
+                            child: Text(
+                              "Submit",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "-OR-",
+                        style: TextStyle(
+                            color: CupertinoColors.systemGrey,
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                    child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        height: 54,
+                        width: 290,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            // border: Border.all(
+                            //   style: BorderStyle.solid,
+                            //     color: CupertinoColors.secondaryLabel),
+                            boxShadow: [
+                              BoxShadow(
+                                  offset: Offset(0, 0),
+                                  blurRadius: 25,
+                                  color: Colors.blue.withOpacity(0.23))
+                            ]),
+                        child: Center(
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                                elevation: MaterialStateProperty.all(0),
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.white)),
+                            onPressed: () async {
+                              setState(() {
+                                _isLoading = true;
+                              });
 
-                                  signInWithGoogle().then((value) {
-                                    if (value == null) {
-                                      setState(() {
-                                        _isLoading = false;
-                                      });
-                                    } else {
-                                      profile().then((value) {
-                                        setState(() {
-                                          _isLoading = false;
-                                        });
-                                        if (value == null) {
-                                          Navigator.of(context)
-                                              .pushReplacementNamed(
-                                                  "/profileupdatescreen");
-                                        } else {
-                                          Navigator.of(context)
-                                              .pushReplacementNamed("/launch");
-                                        }
-                                      });
-                                    }
-                                  }).catchError((onError) {
+                              signInWithGoogle().then((value) {
+                                if (value == null) {
+                                  setState(() {
+                                    _isLoading = false;
+                                  });
+                                } else {
+                                  profile().then((value) {
                                     setState(() {
                                       _isLoading = false;
                                     });
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                              title: Text(onError.toString()));
-                                        });
+                                    if (value == null) {
+                                      Navigator.of(context)
+                                          .pushReplacementNamed(
+                                              "/profileupdatescreen");
+                                    } else {
+                                      Navigator.of(context)
+                                          .pushReplacementNamed("/launch");
+                                    }
                                   });
-                                },
-                               child: Text("Google Sign in"),
+                                }
+                              }).catchError((onError) {
+                                setState(() {
+                                  _isLoading = false;
+                                });
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                          title: Text(onError.toString()));
+                                    });
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset("images/Googlelogo.png"),
+                                Text(
+                                  "Sign in with google",
+                                  style: TextStyle(color: Colors.black),
+                                )
+                              ],
                             ),
-                          )
-                        ],
+                          ),
+                        )),
+                  ),
+                  Stack(
+                    children: [
+                      Center(
+                        child: Text(
+                          "By sign in your account,",
+                          style: TextStyle(
+                              fontSize: 12, color: CupertinoColors.systemGrey),
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "You are agreeing to our",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: CupertinoColors.systemGrey),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  _launchInBrowser(_launchurl);
+                                },
+                                child: Text(
+                                  "TERMS AND POLICY",
+                                  style: TextStyle(fontSize: 12),
+                                ))
+                          ],
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
-              _isLoading
-                  ? Scaffold(
-                      backgroundColor: Colors.black.withOpacity(0.5),
-                      body: Center(
-                          child: Column(
+              Padding(
+                padding: const EdgeInsets.only(top: 378.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: _isLoading
+                      ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Platform.isAndroid
                               ? CircularProgressIndicator()
                               : CupertinoActivityIndicator(
-                                  animating: true,
-                                ),
+                            animating: true,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text("Loading"),
                           )
                         ],
-                      )),
-                    )
-                  : Container(),
+                      )
+                      : Container(),
+                ),
+              ),
             ],
           ),
         ),

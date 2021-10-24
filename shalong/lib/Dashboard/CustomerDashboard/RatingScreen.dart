@@ -53,7 +53,7 @@ class _RatingScreenState extends State<RatingScreen> {
               onPressed: () {
                 if (formkey.currentState!.validate()) {
                   (formkey.currentState!.save());
-                  submitReview(rating);
+                  Navigator.of(context).pop();
                 }
               },
             )
@@ -101,7 +101,6 @@ class _RatingScreenState extends State<RatingScreen> {
                         border: Border.all(
                             color: CupertinoColors.systemGrey,
                             style: BorderStyle.solid)),
-// maxLines: 1,
                     placeholder: "One Line Review"),
               ),
               Padding(

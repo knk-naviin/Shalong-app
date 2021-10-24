@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shalong/Dashboard/BarberDashboard/BarberAboutScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'BarberAccountInfoScreen.dart';
-import 'BarberTermsConditionsScreen.dart';
+
 
 class BarberSettingScreen extends StatefulWidget {
   const BarberSettingScreen({Key? key}) : super(key: key);
@@ -15,6 +16,20 @@ class BarberSettingScreen extends StatefulWidget {
 }
 
 class _BarberSettingScreenState extends State<BarberSettingScreen> {
+  String _launchurl = 'https://privacyterms.io/view/fdigclPM-8YosmjKR-DnNCuL/';
+
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: true,
+        headers: <String, String>{'header_key': 'header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -73,10 +88,7 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
                 backgroundColor: Colors.grey.shade50,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BarberPrivacyPolicyScreen()),
-                );
+                _launchInBrowser(_launchurl);
               },
               child: Row(
                 children: [
