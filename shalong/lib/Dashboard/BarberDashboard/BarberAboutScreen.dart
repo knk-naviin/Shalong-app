@@ -104,7 +104,7 @@ class _BarberAboutScreenState extends State<BarberAboutScreen> {
                   color: CupertinoColors.systemGrey),
             ),
             Text(
-              "Version: 1.0.0",
+              "Version: 1.0.1",
               style: TextStyle(
                   color: CupertinoColors.systemGrey,
                   fontSize: 12

@@ -13,10 +13,10 @@ MERGED from [:address_search_field] /Users/naveenkumar/Documents/Github/Shalong-
 MERGED from [:google_maps_flutter] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:webview_flutter] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:in_app_review] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/in_app_review/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:wakelock] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
-MERGED from [:webview_flutter_android] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/webview_flutter_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:video_player] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
 MERGED from [:google_sign_in] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/google_sign_in/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -104,18 +104,6 @@ INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalon
 		INJECTED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:1:11-69
-uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:3:5-80
-	android:name
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:3:22-78
-uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:4:5-78
-	android:name
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:4:22-76
-uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
-ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:5:5-85
-	android:name
-		ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:5:22-82
 application
 ADDED from /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/android/app/src/main/AndroidManifest.xml:6:4-46:18
 MERGED from [:cloud_firestore] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-13:19
@@ -254,14 +242,14 @@ MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Git
 MERGED from [:flutter_plugin_android_lifecycle] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:in_app_review] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/in_app_review/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:in_app_review] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/in_app_review/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:wakelock] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:wakelock] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:webview_flutter_android] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/webview_flutter_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:webview_flutter_android] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/webview_flutter_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:video_player] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:video_player] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] /Users/naveenkumar/Documents/Github/Shalong-app/Shalong-app/shalong/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44

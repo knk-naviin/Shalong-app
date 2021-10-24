@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-
 class Favorite {
   String docId;
   String shopId;
@@ -17,6 +16,7 @@ class Favorite {
       "shop_id": shopId,
     };
   }
+
   static Favorite object(QueryDocumentSnapshot doc) {
     // var value = doc["value"] as double;
     return Favorite(doc.id, doc["uid"], doc["shop_id"]);
@@ -298,8 +298,6 @@ Future<void> removeFavorite(ShopInfo shopInfo) async {
   }
 }
 
-
-
 Future<Map<String, List<Favorite>>> favoriteMap() async {
   Map<String, List<Favorite>> map = {};
   var favorites = await fetchFavorite();
@@ -318,18 +316,17 @@ Future<Map<String, List<Favorite>>> favoriteMap() async {
 Future<List<Favorite>?> fetchFavorite() async {
   var uid = FirebaseAuth.instance.currentUser?.uid;
   if (uid != null) {
-  CollectionReference favoriteRef = FirebaseFirestore.instance.collection("favorite");
-  var favoritesQueryInfo = (await favoriteRef.where("uid", isEqualTo: uid).get());
-  var docs = favoritesQueryInfo.docs;
-  List<Favorite> favorites = [];
-  if (docs.length > 0) {
-    for (var doc in docs) {
-      favorites.add(Favorite.object(doc));
+    CollectionReference favoriteRef =
+        FirebaseFirestore.instance.collection("favorite");
+    var favoritesQueryInfo =
+        (await favoriteRef.where("uid", isEqualTo: uid).get());
+    var docs = favoritesQueryInfo.docs;
+    List<Favorite> favorites = [];
+    if (docs.length > 0) {
+      for (var doc in docs) {
+        favorites.add(Favorite.object(doc));
+      }
+      return favorites;
     }
-    return favorites;
-  }
-
   }
 }
-
-

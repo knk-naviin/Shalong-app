@@ -13,7 +13,8 @@ import 'StartingScreen/StartingScreen.dart';
 import 'UserAuthentication/UserAuthScreen.dart';
 
 void main() {
-  runApp(new MaterialApp(
+  runApp(
+      new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: ShalongApp(),
       routes: <String, WidgetBuilder>{
@@ -41,37 +42,39 @@ class _ShalongAppState extends State<ShalongApp> {
           builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
             if (snapshot.hasData || snapshot.hasError) {
               return AnimatedSplashScreen(
-                pageTransitionType: PageTransitionType.rightToLeftWithFade,
-                nextScreen: LaunchScreen(),
-                splash: Stack(
-                  children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 80.0),
-                    //   child: Text(
-                    //     "We'll style while you smile!",
-                    //     style: TextStyle(color: Colors.black, fontSize: 22),
-                    //   ),
-                    // ),
-                    RichText(
-                      text: TextSpan(
-                        text: 'Shalon',
-                        style: TextStyle(
-                            fontFamily: "Bunya-Regular_PERSONAL",
-                            color: Colors.black,
-                            fontSize: 60),
-                        children: const <TextSpan>[
-                          TextSpan(
-                              text: 'g',
-                              style: TextStyle(
-                                  fontFamily: "Bunya-Regular_PERSONAL",
-                                  color: CupertinoColors.systemRed,
-                                  fontSize: 70))
-                        ],
+                  pageTransitionType: PageTransitionType.fade,
+                  animationDuration:
+                      FirebaseAuth.instance.currentUser?.uid != null
+                          ? Duration(milliseconds: 200)
+                          : Duration(milliseconds: 1500),
+                  duration: FirebaseAuth.instance.currentUser?.uid != null
+                      ? 200
+                      : 500,
+                  splashIconSize: 500,
+                  nextScreen: LaunchScreen(),
+                  splash: Stack(
+                    children: [
+                      Center(
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'Shalon',
+                            style: TextStyle(
+                                fontFamily: "Bunya-Regular_PERSONAL",
+                                color: Colors.black,
+                                fontSize: 50),
+                            children: const <TextSpan>[
+                              TextSpan(
+                                  text: 'g',
+                                  style: TextStyle(
+                                      fontFamily: "Bunya-Regular_PERSONAL",
+                                      color: CupertinoColors.systemRed,
+                                      fontSize: 60))
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              );
+                    ],
+                  ));
             } else {
               return Scaffold(
                 backgroundColor: Colors.white70,

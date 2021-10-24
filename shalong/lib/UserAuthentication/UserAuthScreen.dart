@@ -87,7 +87,6 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                           //   padding: const EdgeInsets.all(8.0),
                           //   child: Text("or"),
                           // ),
-
                           SizedBox(
                             width: 130,
                             height: 40,

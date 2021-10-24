@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/BarberDashboard/BarberAccountInfoScreen.dart';
@@ -42,7 +41,6 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
         });
   }
 
-  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   @override
   Widget build(BuildContext context) {
     if (profileInfo == null) {

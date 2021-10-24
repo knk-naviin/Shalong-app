@@ -1,4 +1,4 @@
-import 'package:flip_card/flip_card.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,6 @@ class BarberNotificationScreen extends StatefulWidget {
 
 class _BarberNotificationScreenState extends State<BarberNotificationScreen> {
   @override
-  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
   Widget build(BuildContext context) {
     return Scaffold(
