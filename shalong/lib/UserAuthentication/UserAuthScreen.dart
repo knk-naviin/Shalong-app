@@ -28,46 +28,34 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                      padding: const EdgeInsets.only(top: 50),
-                      child: Image.asset("images/haircutting.webp")),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 0, bottom: 0),
-                    child: Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 80.0),
-                          child: Text(
-                            "We'll style while you smile!",
-                            style: TextStyle(color: Colors.black, fontSize: 22),
-                          ),
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            text: 'Shalon',
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset("images/haircutting.webp"),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Shalon',
+                      style: TextStyle(
+                          fontFamily: "Bunya-Regular_PERSONAL",
+                          color: Colors.black,
+                          letterSpacing: 3,
+                          fontSize: 60
+                      ),
+                      children: const <TextSpan>[
+                        TextSpan(
+                            text: 'g',
                             style: TextStyle(
+                              letterSpacing: 2,
                                 fontFamily: "Bunya-Regular_PERSONAL",
-                                color: Colors.black,
-                                fontSize: 80),
-                            children: const <TextSpan>[
-                              TextSpan(
-                                  text: 'g',
-                                  style: TextStyle(
-                                      fontFamily: "Bunya-Regular_PERSONAL",
-                                      color: CupertinoColors.systemRed,
-                                      fontSize: 90))
-                            ],
-                          ),
-                        ),
+                                color: CupertinoColors.systemRed,
+                                fontSize: 70))
                       ],
                     ),
-                    // child: Text("Shalon",style: TextStyle(
-                    //   fontFamily: "SourceCodePro",
-                    //   fontSize: 75,
-                    //   letterSpacing: 5,
-                    //   fontWeight: FontWeight.bold,
-                    //   // decorationThickness: 2
-                    // ),)
                   ),
+                  // Text("Welcomes You",style: TextStyle(
+                  //   color: Colors.blue,
+                  //   fontSize: 18,
+                  //   letterSpacing: 2
+                  // ),),
                   Padding(
                     padding: const EdgeInsets.only(top: 68.0),
                     child: Container(
@@ -90,7 +78,11 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                           SizedBox(
                             width: 130,
                             height: 40,
-                            child: OutlinedButton.icon(
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(CupertinoColors.systemBlue),
+                                elevation: MaterialStateProperty.all(0)
+                              ),
                                 onPressed: () async {
                                   setState(() {
                                     _isLoading = true;
@@ -128,11 +120,8 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                                         });
                                   });
                                 },
-                                icon: FaIcon(
-                                  FontAwesomeIcons.google,
-                                  color: CupertinoColors.systemRed,
-                                ),
-                                label: Text("Sign in")),
+                               child: Text("Google Sign in"),
+                            ),
                           )
                         ],
                       ),
