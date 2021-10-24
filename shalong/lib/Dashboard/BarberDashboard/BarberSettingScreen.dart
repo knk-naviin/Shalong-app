@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shalong/Dashboard/BarberDashboard/BarberAboutScreen.dart';
-import 'package:shalong/Dashboard/CustomerDashboard/RatingsScreenSettings.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'BarberAccountInfoScreen.dart';
 import 'BarberTermsConditionsScreen.dart';
@@ -29,7 +28,7 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
         ),
         backgroundColor: Colors.white10,
         elevation: 0,
-
+        centerTitle: true,
       ),
 
       body: SingleChildScrollView(
@@ -147,55 +146,7 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
               ),
             ),
           ),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          //   child: TextButton(
-          //     style: TextButton.styleFrom(
-          //       primary: Colors.blue,
-          //       padding: EdgeInsets.all(20),
-          //       shape:
-          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          //       backgroundColor: Colors.blue.shade50,
-          //     ),
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => HelpScreen()),
-          //       );
-          //     },
-          //     child: Row(
-          //       children: [
-          //         Icon(Icons.help),
-          //         SizedBox(width: 20),
-          //         Expanded(child: Text("Help",style: TextStyle(
-          //             color: Colors.black
-          //         ),)),
-          //         Icon(Icons.arrow_forward_ios),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          //   child: TextButton(
-          //     style: TextButton.styleFrom(
-          //       primary: Colors.blue,
-          //       padding: EdgeInsets.all(20),
-          //       shape:
-          //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          //       backgroundColor: Colors.blue.shade50,
-          //     ),
-          //     onPressed: () {},
-          //     child: Row(
-          //       children: [
-          //         FaIcon(FontAwesomeIcons.facebookMessenger),
-          //         SizedBox(width: 20),
-          //         Expanded(child: Text("About")),
-          //         Icon(Icons.arrow_forward_ios),
-          //       ],
-          //     ),
-          //   ),
-          // ),
+
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextButton(

@@ -66,8 +66,18 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "Shop Details",
+        
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.lightBlueAccent, Colors.blue])),
+        ),
         backgroundColor: Colors.blue,
-        title: Text("Shop Details"),
+        elevation: 0,
       ),
       body: widget.shopInfo.isOpen
           ? Column(

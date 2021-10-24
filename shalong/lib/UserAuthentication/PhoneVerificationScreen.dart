@@ -45,7 +45,8 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                 padding: const EdgeInsets.only(left: 40.0, top: 5, right: 40),
                 child: Text(
                   "This shalong app is available only for INDIA🇧🇴",
-                  style: TextStyle(fontSize: 18,color: CupertinoColors.systemRed),
+                  style:
+                      TextStyle(fontSize: 18, color: CupertinoColors.systemRed),
                 ),
               ),
               Padding(
@@ -54,32 +55,28 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                   width: 300,
                   child: TextFormField(
                     controller: TextEditingController(text: "1234567890"),
-
-                    style: TextStyle(
-                      fontSize: 26
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty){
+                    style: TextStyle(fontSize: 26),
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return "Please Enter Phone Number to Continue";
-                      }else if(value.length!=10){
+                      } else if (value.length != 10) {
                         return "Your Phone Number Must Contains 10 Digits";
                       }
                     },
-                    onSaved: (value){
-                      phone=value!;
+                    onSaved: (value) {
+                      phone = value!;
                     },
                     keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                     helperText: "Enter Phone Number"
-                    ),
+                    decoration:
+                        InputDecoration(helperText: "Enter Phone Number"),
                   ),
                 ),
               ),
               SizedBox(
                 width: 123,
                 child: ElevatedButton(
-                    onPressed: (){
-                      if(formKey.currentState!.validate()){
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
                         (formKey.currentState!.save());
                       }
                     },

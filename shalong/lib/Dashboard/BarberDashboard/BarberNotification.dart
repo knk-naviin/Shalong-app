@@ -20,10 +20,11 @@ class _BarberNotificationScreenState extends State<BarberNotificationScreen> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Colors.lightBlueAccent, Colors.blue])),
+                    colors: [Colors.grey, Colors.black26])),
           ),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.white10,
           elevation: 0,
+          centerTitle: true,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

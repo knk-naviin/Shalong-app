@@ -13,7 +13,7 @@ class UserAuthScreen extends StatefulWidget {
 }
 
 class _UserAuthScreenState extends State<UserAuthScreen> {
-  bool _isLoading = false;
+  bool _isLoading = true;
 
   @override
   Widget build(BuildContext context) {

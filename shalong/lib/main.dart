@@ -13,8 +13,7 @@ import 'StartingScreen/StartingScreen.dart';
 import 'UserAuthentication/UserAuthScreen.dart';
 
 void main() {
-  runApp(
-      new MaterialApp(
+  runApp(new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: ShalongApp(),
       routes: <String, WidgetBuilder>{

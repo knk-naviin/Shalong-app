@@ -125,7 +125,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                           children: [
                             Center(
                               child: Text(
-                                "Hi '",
+                                "Hi ",
                                 style: TextStyle(
                                   fontSize: 23,
                                   color: Colors.white,
@@ -480,6 +480,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          centerTitle: true,
           title: Text(
             "Shalong",
             style: TextStyle(

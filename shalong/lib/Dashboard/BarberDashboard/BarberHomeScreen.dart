@@ -66,6 +66,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          centerTitle: true,
           backgroundColor: Colors.white10,
           title: Text(
             "Shalong",

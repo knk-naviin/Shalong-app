@@ -95,37 +95,37 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.blue,
-                padding: EdgeInsets.all(20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                backgroundColor: Colors.blue.shade50,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => InAppReviewExampleApp()),
-                );
-              },
-              child: Row(
-                children: [
-                  Icon(Icons.rate_review),
-                  SizedBox(width: 20),
-                  Expanded(
-                      child: Text(
-                    "Ratings",
-                    style: TextStyle(color: Colors.black),
-                  )),
-                  Icon(Icons.arrow_forward_ios),
-                ],
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          //   child: TextButton(
+          //     style: TextButton.styleFrom(
+          //       primary: Colors.blue,
+          //       padding: EdgeInsets.all(20),
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(15)),
+          //       backgroundColor: Colors.blue.shade50,
+          //     ),
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //             builder: (context) => InAppReviewExampleApp()),
+          //       );
+          //     },
+          //     child: Row(
+          //       children: [
+          //         Icon(Icons.rate_review),
+          //         SizedBox(width: 20),
+          //         Expanded(
+          //             child: Text(
+          //           "Ratings",
+          //           style: TextStyle(color: Colors.black),
+          //         )),
+          //         Icon(Icons.arrow_forward_ios),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextButton(
