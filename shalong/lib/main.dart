@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/CustomerDashboardScreen.dart';
+import 'package:shalong/StartingScreen/main.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'AfterRegistration/ProfileUpdateScreen.dart';
 import 'Dashboard/BarberDashboard/BarberDashBoardScreen.dart';
@@ -112,7 +113,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
   Widget build(BuildContext context) {
     var uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) {
-      return UserAuthScreen();
+      return MyApp();
     } else {
       return FutureBuilder(
         future: profile(),
@@ -140,7 +141,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
               snapshot.hasData) {
             var profile = snapshot.data;
             if (profile == null) {
-              return StartingScreen();
+              return UserAuthScreen();
             } else if (profile.isBarber) {
               return BarberDashboardScreen();
             } else {

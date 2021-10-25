@@ -173,7 +173,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                     inputFormatters: [
                       new FilteringTextInputFormatter.allow(
                           new RegExp(r'^[0-9]*$')),
-                      new LengthLimitingTextInputFormatter(10)
+                      new LengthLimitingTextInputFormatter(13)
                     ],
                     onSaved: (value) {
                       profile.phone = value!;

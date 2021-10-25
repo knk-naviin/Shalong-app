@@ -1,12 +1,11 @@
 import 'dart:io';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'AuthManager.dart';
+import 'OTPScreen.dart';
 
 class UserAuthScreen extends StatefulWidget {
   const UserAuthScreen({Key? key}) : super(key: key);
@@ -17,8 +16,9 @@ class UserAuthScreen extends StatefulWidget {
 
 class _UserAuthScreenState extends State<UserAuthScreen> {
   bool _isLoading = false;
-
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   CarouselController buttonCarouselController = CarouselController();
+  TextEditingController _controller = TextEditingController();
   String _launchurl = 'https://privacyterms.io/view/fdigclPM-8YosmjKR-DnNCuL/';
 
   Future<void> _launchInBrowser(String url) async {
@@ -43,7 +43,6 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
         body: SingleChildScrollView(
           child: Stack(
             children: [
-
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -79,7 +78,7 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 20.0),
                       padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      height: 54,
+                      // height: 54,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -92,14 +91,55 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                                 blurRadius: 25,
                                 color: Colors.blue.withOpacity(0.23))
                           ]),
-                      child: Center(
-                        child: TextField(
-                          onChanged: (value) {
-                            setState(() {});
+                      child: Form(
+                        key: formkey,
+                        child: TextFormField(
+                          // maxLength: 10,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Alert!",
+                                        style: TextStyle(
+                                          color: CupertinoColors.systemRed,
+                                        ),
+                                      ),
+                                      content: Text("Enter Phone Number"),
+                                    );
+                                  });
+                            } else if (value.length != 10) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Alert!",
+                                        style: TextStyle(
+                                          color: CupertinoColors.systemRed,
+                                        ),
+                                      ),
+                                      content:
+                                          Text("Enter Correct Phone Number"),
+                                    );
+                                  });
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        OTPScreen(_controller.text)),
+                              );
+                            }
                           },
+                          controller: _controller,
+                          keyboardType: TextInputType.phone,
                           // controller: editingController,
                           decoration: InputDecoration(
                               prefixIcon: Icon(CupertinoIcons.phone),
+
                               // suffixIcon: Icon(Icons.search,color: Colors.blue,),
                               hintText: "Phone Number",
                               hintStyle: TextStyle(color: Colors.blue),
@@ -125,7 +165,11 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                         child: Center(
                           child: CupertinoButton(
                             // color: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              if (formkey.currentState!.validate()) {
+                                (formkey.currentState!.save());
+                              }
+                            },
                             child: Text(
                               "Submit",
                               style: TextStyle(color: Colors.white),
@@ -140,10 +184,11 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "-OR-",
+                        "-or-",
                         style: TextStyle(
+                            letterSpacing: 5,
                             color: CupertinoColors.systemGrey,
-                            // fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w100,
                             fontSize: 20),
                       ),
                     ),
@@ -263,19 +308,19 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                   alignment: Alignment.center,
                   child: _isLoading
                       ? Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Platform.isAndroid
-                              ? CircularProgressIndicator()
-                              : CupertinoActivityIndicator(
-                            animating: true,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Loading"),
-                          )
-                        ],
-                      )
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Platform.isAndroid
+                                ? CircularProgressIndicator()
+                                : CupertinoActivityIndicator(
+                                    animating: true,
+                                  ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Loading"),
+                            )
+                          ],
+                        )
                       : Container(),
                 ),
               ),
