@@ -46,7 +46,7 @@ class _AboutScreenState extends State<AboutScreen> {
         <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
         <div class="container">
           <h2>Rajesh T</h2>
-          <p class="title">CEO & Founder</p>
+          <p class="title">Architect</p>
           <p>Github Account - rajesht1989 </p>
           <p>rajesht1989@gmail.com</p>
           <p><button class="button">Contact</button></p>
@@ -101,7 +101,7 @@ class _AboutScreenState extends State<AboutScreen> {
               style: TextStyle(fontSize: 10, color: CupertinoColors.systemGrey),
             ),
             Text(
-              "Version: 2.0.0",
+              "Version: 2.0",
               style: TextStyle(color: CupertinoColors.systemGrey, fontSize: 12),
             ),
           ],

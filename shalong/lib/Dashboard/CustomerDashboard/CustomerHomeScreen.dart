@@ -1,14 +1,11 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/ShopPageScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
-
 import 'CustomerAccountInfoScreen.dart';
 
 class CustomerHomeScreen extends StatefulWidget {
@@ -38,6 +35,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     shopTuple().then((value) {
       setState(() {
         shops = value.first as List<ShopInfo>;
+        print("shopListSize " + shops!.length.toString());
+
         ratings = value[1] as Map<String, List<Rating>>;
         favorites = value[2] as Map<String, List<Favorite>>;
       });
@@ -81,10 +80,10 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                 : CupertinoActivityIndicator(
                     animating: true,
                   ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Loading"),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Text("Loading"),
+            // )
           ],
         )),
       ));
@@ -99,20 +98,20 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
             height: 200,
             child: Stack(
               children: [
-                new Container(
+                Container(
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(36),
-                        bottomRight: Radius.circular(36),
+                        bottomLeft: Radius.circular(5),
+                        bottomRight: Radius.circular(5),
                       ),
                       gradient: LinearGradient(
                           colors: [Colors.lightBlueAccent, Colors.blue])),
                   child: Column(
                     children: [
                       Text(
-                        "Welcomes you",
+                        "Welcome",
                         style: TextStyle(
                             fontSize: 20,
                             fontFamily: "fonts/TrajanPro.ttf",
@@ -151,35 +150,48 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                   ),
                 ),
                 Positioned(
-                    bottom: 0,
+                    bottom: 10,
                     left: 0,
                     right: 0,
                     child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20.0),
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      height: 54,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: Offset(0, 10),
-                                blurRadius: 50,
-                                color: Colors.blue.withOpacity(0.23))
-                          ]),
-                      child: TextField(
-                        onChanged: (value) {
-                          setState(() {});
-                        },
-                        controller: editingController,
-                        decoration: InputDecoration(
-                            // suffixIcon: Icon(Icons.search,color: Colors.blue,),
-                            hintText: "Search",
-                            hintStyle: TextStyle(color: Colors.blue),
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none),
-                      ),
-                    )),
+                        margin: EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        // height: 54,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  offset: Offset(0, 10),
+                                  blurRadius: 50,
+                                  color: Colors.blue.withOpacity(0.23))
+                            ]),
+                        // child: TextField(
+                        //   onChanged: (value) {
+                        //     setState(() {});
+                        //   },
+                        //   controller: editingController,
+                        //   decoration: InputDecoration(
+                        //       // suffixIcon: Icon(Icons.search,color: Colors.blue,),
+                        //       hintText: "Search",
+                        //       suffixIcon: Icon(
+                        //         Icons.cancel_outlined,
+                        //         color: Colors.red,
+                        //       ),
+                        //       hintStyle: TextStyle(color: Colors.blue),
+                        //       enabledBorder: InputBorder.none,
+                        //       focusedBorder: InputBorder.none),
+                        // ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: CupertinoSearchTextField(
+                            controller: editingController,
+                            backgroundColor: Colors.white,
+                            onChanged: (value) {
+                              setState(() {});
+                            },
+                          ),
+                        ))),
               ],
             ),
           ),
@@ -187,7 +199,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       ),
     ));
     // for (var shop in shops) {
-    var dp = FirebaseAuth.instance.currentUser!.photoURL;
     // widgets.add(SmartRefresher(
     //   enablePullDown: true,
     //   enablePullUp: true,
@@ -199,31 +210,40 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     //   onLoading: _onRefresh,
     //   child: shopList(shops),
     // ));
+
     widgets.add(
       Expanded(
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: shops.length,
-            itemBuilder: (context, index) {
-              var shop = shops[index];
-              if (editingController.text.isEmpty) {
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+        child: SmartRefresher(
+          enablePullDown: true,
+          enablePullUp: false,
+          header: WaterDropHeader(
+            waterDropColor: CupertinoColors.activeBlue,
+          ),
+          controller: _refreshController,
+          onRefresh: _onRefresh,
+          onLoading: _onRefresh,
+          child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: shops.length,
+              itemBuilder: (context, index) {
+                var shop = shops[index];
+                if (editingController.text.isEmpty) {
+                  return Center(
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ShopPageScreen(
-                                  shop, ratingsForShopId(shop.docId))),
+                                  shop, ratingsForShopId(shop.docId))
+                          ),
                         );
                       },
                       child: Card(
                         shadowColor: Colors.blue,
                         semanticContainer: false,
                         borderOnForeground: true,
-                        elevation: 1,
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(10), // if you need this
@@ -251,19 +271,19 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 110.0),
-                                    child: Text(shop.isOpen ? "Open" : "Closed",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: shop.isOpen
-                                                ? Colors.red
-                                                : Colors.grey,
-                                            fontWeight: FontWeight.bold)),
-                                  )
-                                )
+                                    alignment: Alignment.centerRight,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 110.0),
+                                      child: Text(
+                                          shop.isOpen ? "Open" : "Closed",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: shop.isOpen
+                                                  ? Colors.red
+                                                  : Colors.grey,
+                                              fontWeight: FontWeight.bold)),
+                                    ))
                               ],
                             ),
                             Divider(),
@@ -290,20 +310,22 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  RichText(
-                                    text: TextSpan(
-                                      text: 'Ratings | ',
-                                      style: DefaultTextStyle.of(context).style,
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text: averageRatingFrom(
-                                                    ratingsForShopId(
-                                                        shop.docId))
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.blue,
-                                                fontWeight: FontWeight.bold)),
-                                      ],
+                                  Expanded(
+                                    flex: 1,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text: 'Ratings | ',
+                                        style:
+                                            DefaultTextStyle.of(context).style,
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: averageRatingString(
+                                                  ratingsForShopId(shop.docId)),
+                                              style: TextStyle(
+                                                  color: Colors.blue,
+                                                  fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Align(
@@ -311,9 +333,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                     child: Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 100.0
-                                          ),
+                                          padding:
+                                              const EdgeInsets.only(left: 0.0),
                                           child: Text(
                                             "Add to Favorites",
                                             style: TextStyle(
@@ -340,9 +361,14 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                               if (favorites?[shop.docId] ==
                                                   null) {
                                                 setFavorite(shop);
+                                                favorites?[shop.docId] = [
+                                                  Favorite("docId", "uid",
+                                                      shop.docId)
+                                                ];
                                                 // favorites.remove(shop.docId);
                                               } else {
                                                 removeFavorite(shop);
+                                                favorites?.remove(shop.docId);
                                                 // favorites.add(shop.docId);
                                               }
                                             });
@@ -356,121 +382,40 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                             )
                           ],
                         ),
-
-                        // child: GFListTile(
-                        //
-                        //   avatar: Image.network("dp"),
-                        //   subTitleText: shop.address,
-                        //   title: Text(
-                        //     shop.name,
-                        //     style: TextStyle(
-                        //       letterSpacing: 3,
-                        //       wordSpacing: 2,
-                        //       fontSize: 25,
-                        //       fontWeight: FontWeight.bold,
-                        //     ),
-                        //   ),
-                        //   icon: Text(shop.isOpen ? "Open" : "Closed",
-                        //       style: TextStyle(
-                        //           fontSize: 15,
-                        //           color: shop.isOpen ? Colors.red : Colors.grey,
-                        //           fontWeight: FontWeight.bold)),
-                        //   description: Row(
-                        //     children: [
-                        //       RichText(
-                        //         text: TextSpan(
-                        //           text: 'Ratings | ',
-                        //           style: DefaultTextStyle.of(context).style,
-                        //           children: <TextSpan>[
-                        //             TextSpan(
-                        //                 text: averageRatingForShopId(
-                        //                     ratingsForShopId(shop.docId))
-                        //                     .toString() + "⋆",
-                        //                 style: TextStyle(
-                        //                     color: Colors.blue,
-                        //                     fontWeight: FontWeight.bold)),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //       // Padding(
-                        //       //   padding: const EdgeInsets.only(left: 130.0),
-                        //       //   child: Text(
-                        //       //     "Add to Favorites",
-                        //       //     style: TextStyle(
-                        //       //         color: favorites.contains(shop.docId)
-                        //       //             ? CupertinoColors.activeBlue
-                        //       //             : CupertinoColors.systemGrey),
-                        //       //   ),
-                        //       // ),
-                        //       // IconButton(
-                        //       //   autofocus: true,
-                        //       //   icon: Icon(
-                        //       //       // Icons.favorite_outline
-                        //       //       favorites.contains(shop.docId)
-                        //       //           ? CupertinoIcons.heart_fill
-                        //       //           : CupertinoIcons.heart,
-                        //       //       color: favorites.contains(shop.docId)
-                        //       //           ? CupertinoColors.systemBlue
-                        //       //           : CupertinoColors.systemGrey),
-                        //       //   onPressed: () {
-                        //       //     setState(() {
-                        //       //       if (favorites.contains(shop.docId)) {
-                        //       //         favorites.remove(shop.docId);
-                        //       //       } else {
-                        //       //         favorites.add(shop.docId);
-                        //       //       }
-                        //       //     });
-                        //       //   },
-                        //       // ),
-                        //     ],
-                        //   ),
-                        // ),
                       ),
                     ),
-                  ),
-                );
-              } else if (shops[index]
-                      .name
-                      .toUpperCase()
-                      .contains(editingController.text) ||
-                  shops[index]
-                      .name
-                      .toLowerCase()
-                      .contains(editingController.text)) {
-                return ListTile(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ShopPageScreen(
-                              shop, ratingsForShopId(shop.docId))),
-                    );
-                  },
-                  title: Text(shop.name),
-                  trailing: Text(shop.isOpen ? "Open" : "Closed",
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: shop.isOpen ? Colors.red : Colors.grey,
-                          fontWeight: FontWeight.bold)),
-                );
-              } else {
-                return Container();
-              }
-            }),
+                  );
+                } else if (shops[index]
+                        .name
+                        .toUpperCase()
+                        .contains(editingController.text) ||
+                    shops[index]
+                        .name
+                        .toLowerCase()
+                        .contains(editingController.text)) {
+                  return ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ShopPageScreen(
+                                shop, ratingsForShopId(shop.docId))),
+                      );
+                    },
+                    title: Text(shop.name),
+                    trailing: Text(shop.isOpen ? "Open" : "Closed",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: shop.isOpen ? Colors.red : Colors.grey,
+                            fontWeight: FontWeight.bold)),
+                  );
+                } else {
+                  return Container();
+                }
+              }),
+        ),
       ),
     );
-    // widgets.add(
-    //   SmartRefresher(
-    //   enablePullDown: true,
-    //   enablePullUp: true,
-    //   header: WaterDropHeader(
-    //     waterDropColor: CupertinoColors.activeBlue,
-    //   ),
-    //   controller: _refreshController,
-    //   onRefresh: _onRefresh,
-    //   onLoading: _onRefresh,
-    //   child: shopList(shops),
-    // ),);
     return Column(
       children: widgets,
     );
@@ -484,14 +429,41 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             centerTitle: true,
-            title: Text(
-              "Shalong",
-              style: TextStyle(
-                  fontSize: 51,
-                  fontFamily: "SourceCodePro",
-                  color: Colors.white),
-            ),
+            // title: Text(
+            //   "Shalong",
+            //   style: TextStyle(
+            //       fontSize: 51,
+            //       fontFamily: "SourceCodePro",
+            //       color: Colors.white),
+            // ),
+            // title: Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Center(
+            //       child: Text(
+            //         "Hi ",
+            //         style: TextStyle(
+            //           fontSize: 23,
+            //           color: Colors.white,
+            //         ),
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       width: 12,
+            //     ),
+            //     Center(
+            //       child: Text(
+            //         name!,
+            //         style: TextStyle(
+            //             fontSize: 23,
+            //             color: Colors.white,
+            //             fontWeight: FontWeight.bold),
+            //       ),
+            //     )
+            //   ],
+            // ),
             flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -520,7 +492,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               ),
             ],
           ),
-          body: SmartRefresher(
+          body: shopList(shops)
+          /*SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,
             header: WaterDropHeader(
@@ -530,7 +503,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
             onRefresh: _onRefresh,
             onLoading: _onRefresh,
             child: shopList(shops),
-          )),
+          )*/
+          ),
     );
   }
 }

@@ -110,15 +110,15 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                       height: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(36),
-                            bottomRight: Radius.circular(36),
+                            bottomLeft: Radius.circular(5),
+                            bottomRight: Radius.circular(5),
                           ),
                           gradient: LinearGradient(
                               colors: [Colors.grey, Colors.black26])),
                       child: Column(
                         children: [
                           Text(
-                            "Welcomes you",
+                            "Welcome",
                             style: TextStyle(
                                 fontSize: 20,
                                 fontFamily: "fonts/TrajanPro.ttf",
@@ -157,7 +157,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                       ),
                     ),
                     Positioned(
-                        bottom: 0,
+                        bottom: 10,
                         left: 0,
                         right: 0,
                         child: Container(

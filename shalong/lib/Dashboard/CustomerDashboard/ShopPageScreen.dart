@@ -83,7 +83,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
           ? Column(
               children: [
                 Row(
-                  // mainAxisAlignment: MainAxisAlignment.start,
+
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -98,7 +98,6 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                     // ),
                   ],
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

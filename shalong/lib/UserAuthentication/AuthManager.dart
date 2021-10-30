@@ -206,12 +206,6 @@ Future<List<ShopInfo>?> fetchShops() async {
   List<ShopInfo> shops = [];
   if (docs.length > 0) {
     for (var doc in docs) {
-      // List<Rating> ratings = [];
-      // for (var ratingDoc in doc["ratings"]) {
-      //   Timestamp date =  ratingDoc["date"];
-      //   ratings.add(Rating(ratingDoc["uid"], ratingDoc["review"], ratingDoc["value"], date.toDate(),ratingDoc["feedback"]));
-      //   ratings.add(Rating());
-      // }
       var name = doc["name"] ?? "";
       var address = doc["address"] ?? "";
       var phonenumber = doc["phone"] ?? "";
@@ -266,14 +260,21 @@ Future<UserCredential?> signInWithGoogle() async {
 
 double averageRatingFrom(List<Rating> ratings) {
   // var ratings = ratingsForShopId(=);
+  if (ratings.length == 0) {
+    return 0;
+  }
   var average = 0.0;
-
   for (var rating in ratings) {
     average += rating.value;
   }
   average /= ratings.length;
 
   return average;
+}
+
+String averageRatingString(List<Rating> ratings) {
+  var rating = averageRatingFrom(ratings);
+  return rating.toString();
 }
 
 Future<void> setFavorite(ShopInfo shopInfo) async {
@@ -290,8 +291,10 @@ Future<void> removeFavorite(ShopInfo shopInfo) async {
   if (uid != null) {
     CollectionReference favoriteRef =
         FirebaseFirestore.instance.collection("favorite");
-    var query =
-        await favoriteRef.where({"shop_id": shopInfo.docId, "uid": uid}).get();
+    var query = await favoriteRef
+        .where("shop_id", isEqualTo: shopInfo.docId)
+        .where("uid", isEqualTo: uid)
+        .get();
     for (var doc in query.docs) {
       await favoriteRef.doc(doc.id).delete();
     }
@@ -328,5 +331,34 @@ Future<List<Favorite>?> fetchFavorite() async {
       }
       return favorites;
     }
+  }
+}
+
+Future<List<ShopInfo>?> fetchShopsForFavorites() async {
+  var favorites = await fetchFavorite();
+  CollectionReference shopRef = FirebaseFirestore.instance.collection("shop");
+  var query = shopRef;
+  if (favorites != null) {
+    var shopQueryInfo = (await query.get());
+    var docs = shopQueryInfo.docs;
+    List<ShopInfo> shops = [];
+    if (docs.length > 0) {
+      for (var doc in docs) {
+        for (var favorite in favorites) {
+          if (favorite.shopId == doc.id) {
+            var name = doc["name"] ?? "";
+            var address = doc["address"] ?? "";
+            var phonenumber = doc["phone"] ?? "";
+            var isOpen = doc["is_open"];
+            var shopbusy = doc["shop_busy"];
+            var barberBreak = doc["barber_break"];
+            shops.add(ShopInfo(doc.id, name, address, phonenumber, isOpen,
+                shopbusy, barberBreak));
+            break;
+          }
+        }
+      }
+    }
+    return shops;
   }
 }

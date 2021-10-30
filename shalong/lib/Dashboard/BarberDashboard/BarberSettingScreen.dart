@@ -190,8 +190,7 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
                     ],
                   )
                       : AlertDialog(
-                    title: Text('Are you sure want to Logout?'),
-                    content: const Text('AlertDialog description'),
+                    content: Text('Are you sure want to Logout?'),
                     actions: [
                       TextButton(
                           onPressed: () {
@@ -201,7 +200,7 @@ class _BarberSettingScreenState extends State<BarberSettingScreen> {
                       TextButton(
                           onPressed: () {
                             signout().then((value) => Navigator.of(context)
-                                .pushReplacementNamed("/launch"));
+                                .pushReplacementNamed("/launchscreen"));
                           },
                           child: Text("Logout")),
                     ],

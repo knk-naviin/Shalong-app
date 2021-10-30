@@ -47,7 +47,7 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(top: 40.0),
                     child: Image.asset("images/haircutting.webp"),
                   ),
                   Padding(
@@ -63,136 +63,133 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 35.0, top: 8),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Enter phone number to get otp",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20.0),
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      // height: 54,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          // border: Border.all(
-                          //   style: BorderStyle.solid,
-                          //     color: CupertinoColors.secondaryLabel),
-                          boxShadow: [
-                            BoxShadow(
-                                offset: Offset(0, 0),
-                                blurRadius: 25,
-                                color: Colors.blue.withOpacity(0.23))
-                          ]),
-                      child: Form(
-                        key: formkey,
-                        child: TextFormField(
-                          // maxLength: 10,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text(
-                                        "Alert!",
-                                        style: TextStyle(
-                                          color: CupertinoColors.systemRed,
-                                        ),
-                                      ),
-                                      content: Text("Enter Phone Number"),
-                                    );
-                                  });
-                            } else if (value.length != 10) {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text(
-                                        "Alert!",
-                                        style: TextStyle(
-                                          color: CupertinoColors.systemRed,
-                                        ),
-                                      ),
-                                      content:
-                                          Text("Enter Correct Phone Number"),
-                                    );
-                                  });
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        OTPScreen(_controller.text)),
-                              );
-                            }
-                          },
-                          controller: _controller,
-                          keyboardType: TextInputType.phone,
-                          // controller: editingController,
-                          decoration: InputDecoration(
-                              prefixIcon: Icon(CupertinoIcons.phone),
-
-                              // suffixIcon: Icon(Icons.search,color: Colors.blue,),
-                              hintText: "Phone Number",
-                              hintStyle: TextStyle(color: Colors.blue),
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        // margin: EdgeInsets.symmetric(horizontal: 20.0),
-                        // padding: EdgeInsets.symmetric(horizontal: 20.0),
-                        height: 54,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          color: CupertinoColors.systemBlue,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: CupertinoButton(
-                            // color: Colors.white,
-                            onPressed: () {
-                              if (formkey.currentState!.validate()) {
-                                (formkey.currentState!.save());
-                              }
-                            },
-                            child: Text(
-                              "Submit",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "-or-",
-                        style: TextStyle(
-                            letterSpacing: 5,
-                            color: CupertinoColors.systemGrey,
-                            fontWeight: FontWeight.w100,
-                            fontSize: 20),
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 35.0, top: 8),
+                  //   child: Align(
+                  //     alignment: Alignment.centerLeft,
+                  //     child: Text(
+                  //       "Enter phone number to get otp",
+                  //       style: TextStyle(color: Colors.grey),
+                  //     ),
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Container(
+                  //     margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  //     padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  //     // height: 54,
+                  //     decoration: BoxDecoration(
+                  //         color: Colors.white,
+                  //         borderRadius: BorderRadius.circular(20),
+                  //         // border: Border.all(
+                  //         //   style: BorderStyle.solid,
+                  //         //     color: CupertinoColors.secondaryLabel),
+                  //         boxShadow: [
+                  //           BoxShadow(
+                  //               offset: Offset(0, 0),
+                  //               blurRadius: 25,
+                  //               color: Colors.blue.withOpacity(0.23))
+                  //         ]),
+                  //     child: Form(
+                  //       key: formkey,
+                  //       child: TextFormField(
+                  //         // maxLength: 10,
+                  //         validator: (value) {
+                  //           if (value!.isEmpty) {
+                  //             showDialog(
+                  //                 context: context,
+                  //                 builder: (BuildContext context) {
+                  //                   return AlertDialog(
+                  //                     title: Text(
+                  //                       "Alert!",
+                  //                       style: TextStyle(
+                  //                         color: CupertinoColors.systemRed,
+                  //                       ),
+                  //                     ),
+                  //                     content: Text("Enter Phone Number"),
+                  //                   );
+                  //                 });
+                  //           } else if (value.length != 10) {
+                  //             showDialog(
+                  //                 context: context,
+                  //                 builder: (BuildContext context) {
+                  //                   return AlertDialog(
+                  //                     title: Text(
+                  //                       "Alert!",
+                  //                       style: TextStyle(
+                  //                         color: CupertinoColors.systemRed,
+                  //                       ),
+                  //                     ),
+                  //                     content:
+                  //                         Text("Enter Correct Phone Number"),
+                  //                   );
+                  //                 });
+                  //           } else {
+                  //             Navigator.push(
+                  //               context,
+                  //               MaterialPageRoute(
+                  //                   builder: (context) =>
+                  //                       OTPScreen(_controller.text)),
+                  //             );
+                  //           }
+                  //         },
+                  //         controller: _controller,
+                  //         keyboardType: TextInputType.phone,
+                  //         // controller: editingController,
+                  //         decoration: InputDecoration(
+                  //             prefixIcon: Icon(CupertinoIcons.phone),
+                  //
+                  //             // suffixIcon: Icon(Icons.search,color: Colors.blue,),
+                  //             hintText: "Phone Number",
+                  //             hintStyle: TextStyle(color: Colors.blue),
+                  //             enabledBorder: InputBorder.none,
+                  //             focusedBorder: InputBorder.none),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 20.0),
+                  //   child: Align(
+                  //     alignment: Alignment.center,
+                  //     child: Container(
+                  //       // margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  //       // padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  //       height: 54,
+                  //       width: 200,
+                  //       decoration: BoxDecoration(
+                  //         color: CupertinoColors.systemBlue,
+                  //         borderRadius: BorderRadius.circular(10),
+                  //       ),
+                  //       child: Center(
+                  //         child: CupertinoButton(
+                  //           // color: Colors.white,
+                  //           onPressed: () {
+                  //             if (formkey.currentState!.validate()) {
+                  //               (formkey.currentState!.save());
+                  //             }
+                  //           },
+                  //           child: Text(
+                  //             "Submit",
+                  //             style: TextStyle(color: Colors.white),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // Align(
+                  //   alignment: Alignment.center,
+                  //   child: Text(
+                  //     "to Shalong",
+                  //     style: TextStyle(
+                  //         letterSpacing: 5,
+                  //         color: CupertinoColors.systemGrey,
+                  //         fontWeight: FontWeight.w100,
+                  //         fontSize: 20),
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0, bottom: 20),
                     child: Container(
@@ -201,17 +198,28 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                         height: 54,
                         width: 290,
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            // border: Border.all(
-                            //   style: BorderStyle.solid,
-                            //     color: CupertinoColors.secondaryLabel),
-                            boxShadow: [
-                              BoxShadow(
-                                  offset: Offset(0, 0),
-                                  blurRadius: 25,
-                                  color: Colors.blue.withOpacity(0.23))
-                            ]),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            style: BorderStyle.solid,
+                            color: Colors.grey.shade200,
+                          ),
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //       offset: Offset(0, 0),
+                          //       blurRadius: 20,
+                          //       color: Colors.blue.withOpacity(0.23))
+                          // ]
+                          // border: Border.all(
+                          //   style: BorderStyle.solid,
+                          //     color: CupertinoColors.secondaryLabel),
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //       offset: Offset(0, 0),
+                          //       blurRadius: 20,
+                          //       color: Colors.blue.withOpacity(0.23))
+                          // ]
+                        ),
                         child: Center(
                           child: ElevatedButton(
                             style: ButtonStyle(
@@ -239,7 +247,8 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                                               "/profileupdatescreen");
                                     } else {
                                       Navigator.of(context)
-                                          .pushReplacementNamed("/launch");
+                                          .pushReplacementNamed(
+                                              "/launchscreen");
                                     }
                                   });
                                 }
@@ -315,10 +324,10 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                                 : CupertinoActivityIndicator(
                                     animating: true,
                                   ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Loading"),
-                            )
+                            // Padding(
+                            //   padding: const EdgeInsets.all(8.0),
+                            //   child: Text("Loading"),
+                            // )
                           ],
                         )
                       : Container(),

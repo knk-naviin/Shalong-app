@@ -6,11 +6,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/CustomerDashboardScreen.dart';
-import 'package:shalong/StartingScreen/main.dart';
+import 'package:shalong/StartingScreen/screens/landing_page.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 import 'AfterRegistration/ProfileUpdateScreen.dart';
 import 'Dashboard/BarberDashboard/BarberDashBoardScreen.dart';
-import 'StartingScreen/StartingScreen.dart';
 import 'UserAuthentication/UserAuthScreen.dart';
 
 void main() {
@@ -18,7 +17,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       home: ShalongApp(),
       routes: <String, WidgetBuilder>{
-        '/launch': (BuildContext context) => LaunchScreen(),
+        '/launchscreen': (BuildContext context) => LaunchScreen(),
         '/barberdashboardscreen': (BuildContext context) =>
             BarberDashboardScreen(),
         '/profileupdatescreen': (BuildContext context) => ProfileUpdateScreen(),
@@ -87,10 +86,10 @@ class _ShalongAppState extends State<ShalongApp> {
                         : CupertinoActivityIndicator(
                             animating: true,
                           ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("Loading"),
-                    )
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: Text("Loading"),
+                    // )
                   ],
                 )),
               );
@@ -113,7 +112,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
   Widget build(BuildContext context) {
     var uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) {
-      return MyApp();
+      return UserAuthScreen();
     } else {
       return FutureBuilder(
         future: profile(),
@@ -130,10 +129,10 @@ class _LaunchScreenState extends State<LaunchScreen> {
                       : CupertinoActivityIndicator(
                           animating: true,
                         ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Loading"),
-                  )
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Text("Loading"),
+                  // )
                 ],
               )),
             );

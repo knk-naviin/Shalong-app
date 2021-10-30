@@ -39,7 +39,6 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
     return Scaffold(
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _currentIndex,
-        curve: Curves.ease,
         showElevation: false, // use this to remove appBar's elevation
         onItemSelected: (index) => setState(() {
           _currentIndex = index;
@@ -51,6 +50,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
         }),
         items: [
           BottomNavyBarItem(
+            textAlign: TextAlign.center,
             icon: Icon(
               CupertinoIcons.home,
               color: CupertinoColors.systemBlue,
@@ -59,6 +59,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
             activeColor: CupertinoColors.systemBlue,
           ),
           BottomNavyBarItem(
+            textAlign: TextAlign.center,
             icon: Icon(
               CupertinoIcons.heart,
               color: CupertinoColors.systemBlue,
@@ -67,6 +68,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
             activeColor: CupertinoColors.systemBlue,
           ),
           BottomNavyBarItem(
+            textAlign: TextAlign.center,
             icon: Icon(
               CupertinoIcons.bell,
               color: CupertinoColors.systemBlue,
@@ -75,6 +77,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
             activeColor: CupertinoColors.systemBlue,
           ),
           BottomNavyBarItem(
+            textAlign: TextAlign.center,
             icon: Icon(
               CupertinoIcons.settings_solid,
               color: CupertinoColors.systemBlue,

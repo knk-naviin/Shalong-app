@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shalong/StartingScreen/main.dart';
+
+import 'package:shalong/StartingScreen/screens/landing_page.dart';
+import 'package:shalong/UserAuthentication/UserAuthScreen.dart';
 
 
 class Home extends StatefulWidget {
@@ -22,7 +24,7 @@ class _HomeState extends State<Home> {
               await FirebaseAuth.instance.signOut();
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
+                  MaterialPageRoute(builder: (context) => UserAuthScreen()),
                       (route) => false);
             },
           )

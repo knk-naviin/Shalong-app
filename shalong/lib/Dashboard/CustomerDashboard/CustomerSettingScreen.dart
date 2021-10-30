@@ -181,7 +181,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
                                 onPressed: () {
                                   signout().then((value) =>
                                       Navigator.of(context)
-                                          .pushReplacementNamed("/launch"));
+                                          .pushReplacementNamed("/launchscreen"));
                                 },
                                 child: Text("Logout")),
                           ],
