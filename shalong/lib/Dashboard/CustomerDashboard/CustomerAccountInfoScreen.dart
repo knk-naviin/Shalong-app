@@ -30,17 +30,8 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
 
   Future<void> updatedata() async {
     FirebaseFirestore Firestore = FirebaseFirestore.instance;
-
     Firestore.collection("user").doc(profileInfo!.docId).update({
       "name": profileInfo!.name,
-      "phone": profileInfo!.phone,
-      "email": profileInfo!.email,
-      "is_barber": true
-    });
-    Firestore.collection("shop").doc(profileInfo!.docId).update({
-      "name": profileInfo!.shops.first.name,
-      "address": profileInfo!.shops.first.address,
-      "phone": profileInfo!.shops.first.phone
     });
   }
 
