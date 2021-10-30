@@ -101,7 +101,7 @@ class _AboutScreenState extends State<AboutScreen> {
               style: TextStyle(fontSize: 10, color: CupertinoColors.systemGrey),
             ),
             Text(
-              "Version: 2.0",
+              "Version: 2.1",
               style: TextStyle(color: CupertinoColors.systemGrey, fontSize: 12),
             ),
           ],

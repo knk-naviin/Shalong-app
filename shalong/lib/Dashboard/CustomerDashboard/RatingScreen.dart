@@ -31,94 +31,101 @@ class _RatingScreenState extends State<RatingScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("Rating Screen"),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.lightBlueAccent, Colors.blue])),
+      child: Flexible(
+        fit: FlexFit.loose,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Rating Screen"),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.lightBlueAccent, Colors.blue])),
+            ),
+            backgroundColor: Colors.blue,
+            elevation: 0,
+            leading: CloseButton(
+                color: Colors.white,
+                onPressed: () => Navigator.of(context).pop()),
+            actions: [
+              TextButton(
+                child: Text(
+                  "Send",
+                  style: TextStyle(color: CupertinoColors.white),
+                ),
+                onPressed: () {
+                  if (formkey.currentState!.validate()) {
+                    (formkey.currentState!.save());
+                    if (formkey.currentState!.validate()) {
+                      submitReview(rating);
+                      Navigator.pop(context);
+                    }
+                  }
+                },
+              )
+            ],
           ),
-          backgroundColor: Colors.blue,
-          elevation: 0,
-          leading: CloseButton(
-              color: Colors.white,
-              onPressed: () => Navigator.of(context).pop()),
-          actions: [
-            TextButton(
-              child: Text(
-                "Send",
-                style: TextStyle(color: CupertinoColors.white),
-              ),
-              onPressed: () {
-                if (formkey.currentState!.validate()) {
-                  (formkey.currentState!.save());
-                  Navigator.of(context).pop();
-                }
-              },
-            )
-          ],
-        ),
-        body: Form(
-          key: formkey,
-          child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: RatingBar.builder(
-                    initialRating: rating.value.toDouble(),
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: false,
-                    itemCount: 5,
-                    itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                    itemBuilder: (context, _) => Icon(
-                      CupertinoIcons.star_fill,
-                      color: CupertinoColors.systemBlue,
+          body: Form(
+            key: formkey,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: RatingBar.builder(
+                      initialRating: rating.value.toDouble(),
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: false,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => Icon(
+                        CupertinoIcons.star_fill,
+                        color: CupertinoColors.systemBlue,
+                      ),
+                      glow: false,
+                      onRatingUpdate: (ratingValue) {
+                        rating.value = ratingValue.toInt();
+                      },
                     ),
-                    glow: false,
-                    onRatingUpdate: (ratingValue) {
-                      rating.value = ratingValue.toInt();
-                    },
                   ),
                 ),
-              ),
-              Center(child: Text("Tap a Star to Rate")),
-              Padding(
-                padding: const EdgeInsets.only(right: 12.0, top: 25),
-                child: CupertinoTextFormFieldRow(
-                    initialValue: rating.review,
-                    onSaved: (value) {
-                      rating.review = value!;
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter Review";
-                      }
-                    },
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: CupertinoColors.systemGrey,
-                            style: BorderStyle.solid)),
-                    placeholder: "One Line Review"),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: CupertinoTextFormFieldRow(
-                    initialValue: rating.feedback,
-                    onSaved: (value) {
-                      rating.feedback = value!;
-                    },
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: CupertinoColors.systemGrey,
-                            style: BorderStyle.solid)),
-                    maxLines: 5,
-                    placeholder: "FeedBack(Optional)"),
-              ),
-              Divider()
-            ],
+                SizedBox(width: 230, child: Divider()),
+                Center(child: Text("Tap a Star to Rate")),
+                Padding(
+                  padding: const EdgeInsets.only(right: 12.0, top: 25),
+                  child: CupertinoTextFormFieldRow(
+                      initialValue: rating.review,
+                      onSaved: (value) {
+                        rating.review = value!;
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter Review";
+                        }
+                      },
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: CupertinoColors.systemGrey,
+                              style: BorderStyle.solid)),
+                      placeholder: "One Line Review"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: CupertinoTextFormFieldRow(
+                      initialValue: rating.feedback,
+                      onSaved: (value) {
+                        rating.feedback = value!;
+                      },
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: CupertinoColors.systemGrey,
+                              style: BorderStyle.solid)),
+                      maxLines: 5,
+                      placeholder: "FeedBack(Optional)"),
+                ),
+                Divider()
+              ],
+            ),
           ),
         ),
       ),

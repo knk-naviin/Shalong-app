@@ -69,7 +69,6 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
         centerTitle: true,
         title: Text(
           "Shop Details",
-        
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -83,7 +82,6 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
           ? Column(
               children: [
                 Row(
-
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -93,63 +91,156 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                             fontSize: 32, fontWeight: FontWeight.w600),
                       ),
                     ),
-                    // SizedBox(
-                    //   width: 85,
-                    // ),
+                    SizedBox(
+                      width: 85,
+                    ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     // Padding(
+                //     //   padding: const EdgeInsets.all(8.0),
+                //     //   child: Column(
+                //     //     children: [
+                //     //       Icon(Icons.circle,color: widget.shopInfo.isOpen ? Colors.red:Colors.grey,),
+                //     //       Text(
+                //     //         " ${widget.shopInfo.isOpen ? "Open" : "Closed"}",
+                //     //         style: TextStyle(
+                //     //            // fontSize: 22,
+                //     //             color:
+                //     //             widget.shopInfo.isOpen ? Colors.red : Colors.grey,
+                //     //             // fontWeight: FontWeight.bold
+                //     //         ),
+                //     //       ),
+                //     //     ],
+                //     //   ),
+                //     // ),
+                //     Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Column(
+                //         children: [
+                //           Icon(Icons.circle,color: widget.shopInfo.shopbusy ? Colors.blue : Colors.grey,),
+                //           Text(
+                //             " ${widget.shopInfo.shopbusy ? "Busy" : "Free"}",
+                //             style: TextStyle(
+                //               // fontSize: 22,
+                //               color: widget.shopInfo.shopbusy ? Colors.blue : Colors.grey,
+                //               // fontWeight: FontWeight.bold
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //     // Padding(
+                //     //   padding: const EdgeInsets.all(8.0),
+                //     //   child: Column(
+                //     //     children: [
+                //     //       Icon(Icons.circle,color: widget.shopInfo.barberBreak ?Colors.deepPurpleAccent : Colors.grey,),
+                //     //       Text(
+                //     //         " ${widget.shopInfo.barberBreak ? "onDuty" : 'Break'}",
+                //     //         style: TextStyle(
+                //     //           // fontSize: 22,
+                //     //           color: widget.shopInfo.barberBreak ?Colors.deepPurpleAccent : Colors.grey,
+                //     //           // fontWeight: FontWeight.bold
+                //     //         ),
+                //     //       ),
+                //     //     ],
+                //     //   ),
+                //     // ),
+                //   ],
+                // ),
+                Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Icon(Icons.circle,color: widget.shopInfo.isOpen ? Colors.red:Colors.grey,),
-                          Text(
-                            " ${widget.shopInfo.isOpen ? "Open" : "Closed"}",
-                            style: TextStyle(
-                               // fontSize: 22,
-                                color:
-                                widget.shopInfo.isOpen ? Colors.red : Colors.grey,
-                                // fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Icon(Icons.circle,color: widget.shopInfo.shopbusy ? Colors.blue : Colors.grey,),
-                          Text(
-                            " ${widget.shopInfo.shopbusy ? "Busy" : "Free"}",
-                            style: TextStyle(
-                              // fontSize: 22,
-                              color: widget.shopInfo.shopbusy ? Colors.blue : Colors.grey,
-                              // fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Icon(Icons.circle,color: widget.shopInfo.barberBreak ?Colors.deepPurpleAccent : Colors.grey,),
-                          Text(
-                            " ${widget.shopInfo.barberBreak ? "onDuty" : 'Break'}",
-                            style: TextStyle(
-                              // fontSize: 22,
-                              color: widget.shopInfo.barberBreak ?Colors.deepPurpleAccent : Colors.grey,
-                              // fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    Row(children: [
+                      Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Status of Barber:',
+                                style: TextStyle(
+                                    // decoration: TextDecoration.underline,
+                                    fontSize: 18.0,
+                                    color: CupertinoColors.systemGrey
+                                    //fontWeight: FontWeight.bold
+                                    ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.all(8.0),
+                              //   child: Column(
+                              //     children: [
+                              //       Icon(
+                              //         Icons.circle,
+                              //         color: widget.shopInfo.shopbusy
+                              //             ? Colors.blue
+                              //             : Colors.grey,
+                              //       ),
+                              //       Text(
+                              //         " ${widget.shopInfo.shopbusy ? "Busy" : "Free"}",
+                              //         style: TextStyle(
+                              //           // fontSize: 22,
+                              //           color: widget.shopInfo.shopbusy
+                              //               ? Colors.blue
+                              //               : Colors.grey,
+                              //           // fontWeight: FontWeight.bold
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    // Icon(
+                                    //   Icons.circle,
+                                    //   color: widget.shopInfo.shopbusy
+                                    //       ? Colors.blue
+                                    //       : Colors.grey,
+                                    // ),
+                                    // Text(
+                                    //   " ${widget.shopInfo.shopbusy ? "Busy" : "Free"}",
+                                    //   style: TextStyle(
+                                    //     // fontSize: 22,
+                                    //     color: widget.shopInfo.shopbusy
+                                    //         ? Colors.blue
+                                    //         : Colors.grey,
+                                    //     // fontWeight: FontWeight.bold
+                                    //   ),
+                                    // ),
+                                    Text(
+                                      (() {
+                                        if (widget.shopInfo.shopbusy == true) {
+                                          return "Barber is Busy Now";
+                                        } else if (widget
+                                                .shopInfo.barberBreak ==
+                                            true) {
+                                          return "Barber is rest now";
+                                        } else if (widget.shopInfo.shopbusy ==
+                                                false &&
+                                            widget.shopInfo.barberBreak ==
+                                                false) {
+                                          return "Shop is free now";
+                                        } else {
+                                          return "null";
+                                        }
+                                      })(),
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ))
+                    ])
                   ],
                 ),
                 Divider(),
@@ -170,12 +261,15 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                       SizedBox(
                         width: 20,
                       ),
-                      Text(
-                        widget.shopInfo.address,
-                        style: TextStyle(
+                      Expanded(
+                        child: Text(
+                          widget.shopInfo.address,
+                          style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
-                            fontWeight: FontWeight.w600),
+                            // fontWeight: FontWeight.w600
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -465,7 +559,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                   child: IgnorePointer(
                     child: RatingBar.builder(
                       initialRating:
-                      averageRatingFrom(widget.ratings).toDouble(),
+                          averageRatingFrom(widget.ratings).toDouble(),
                       minRating: 1,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
@@ -545,9 +639,22 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                             SizedBox(
                               width: 20,
                             ),
-                            Text(
-                              widget.shopInfo.address,
-                              style: TextStyle(fontSize: 18),
+                            // SizedBox(
+                            //   width: 220,
+                            //   child: TextFormField(
+                            //     maxLines: ,
+                            //     initialValue:  widget.shopInfo.address,
+                            //   ),
+                            // )
+                            Expanded(
+                              child: Text(
+                                widget.shopInfo.address,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  // fontWeight: FontWeight.w600
+                                ),
+                              ),
                             ),
                           ],
                         ),

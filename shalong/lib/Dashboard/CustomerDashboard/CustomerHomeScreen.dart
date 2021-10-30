@@ -260,13 +260,15 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    shop.name,
-                                    style: TextStyle(
-                                      letterSpacing: 3,
-                                      wordSpacing: 2,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
+                                  child: Expanded(
+                                    child: Text(
+                                      shop.name,
+                                      style: TextStyle(
+                                        letterSpacing: 3,
+                                        wordSpacing: 2,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -288,30 +290,25 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                             ),
                             Divider(),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8.0, left: 20, right: 8),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    shop.address,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 2,
-                                        wordSpacing: 2),
-                                  ),
-                                ],
+                              padding: const EdgeInsets.all(8.0),
+                              child: Expanded(
+                                child: Text(
+                                  shop.address,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: 2,
+                                      wordSpacing: 2),
+                                ),
                               ),
                             ),
                             Divider(),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8.0, left: 20, right: 8),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    flex: 1,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
                                     child: RichText(
                                       text: TextSpan(
                                         text: 'Ratings | ',
@@ -320,7 +317,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                         children: <TextSpan>[
                                           TextSpan(
                                               text: averageRatingString(
-                                                  ratingsForShopId(shop.docId)),
+                                                  ratingsForShopId(shop.docId)).substring(0,3),
                                               style: TextStyle(
                                                   color: Colors.blue,
                                                   fontWeight: FontWeight.bold)),
@@ -328,57 +325,57 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                       ),
                                     ),
                                   ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 0.0),
-                                          child: Text(
-                                            "Add to Favorites",
-                                            style: TextStyle(
-                                                color: favorites?[shop.docId] ==
-                                                        null
-                                                    ? CupertinoColors.systemGrey
-                                                    : CupertinoColors
-                                                        .activeBlue),
-                                          ),
-                                        ),
-                                        IconButton(
-                                          autofocus: true,
-                                          icon: Icon(
-                                              // Icons.favorite_outline
-                                              favorites?[shop.docId] == null
-                                                  ? CupertinoIcons.heart
-                                                  : CupertinoIcons.heart_fill,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 0.0),
+                                        child: Text(
+                                          "Add to Favorites",
+                                          style: TextStyle(
                                               color: favorites?[shop.docId] ==
                                                       null
                                                   ? CupertinoColors.systemGrey
-                                                  : CupertinoColors.activeBlue),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (favorites?[shop.docId] ==
-                                                  null) {
-                                                setFavorite(shop);
-                                                favorites?[shop.docId] = [
-                                                  Favorite("docId", "uid",
-                                                      shop.docId)
-                                                ];
-                                                // favorites.remove(shop.docId);
-                                              } else {
-                                                removeFavorite(shop);
-                                                favorites?.remove(shop.docId);
-                                                // favorites.add(shop.docId);
-                                              }
-                                            });
-                                          },
+                                                  : CupertinoColors
+                                                      .activeBlue),
                                         ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
+                                      ),
+                                      IconButton(
+                                        autofocus: true,
+                                        icon: Icon(
+                                            // Icons.favorite_outline
+                                            favorites?[shop.docId] == null
+                                                ? CupertinoIcons.heart
+                                                : CupertinoIcons.heart_fill,
+                                            color: favorites?[shop.docId] ==
+                                                    null
+                                                ? CupertinoColors.systemGrey
+                                                : CupertinoColors.activeBlue),
+                                        onPressed: () {
+                                          setState(() {
+                                            if (favorites?[shop.docId] ==
+                                                null) {
+                                              setFavorite(shop);
+                                              favorites?[shop.docId] = [
+                                                Favorite("docId", "uid",
+                                                    shop.docId)
+                                              ];
+                                              // favorites.remove(shop.docId);
+                                            } else {
+                                              removeFavorite(shop);
+                                              favorites?.remove(shop.docId);
+                                              // favorites.add(shop.docId);
+                                            }
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
                             )
                           ],
                         ),

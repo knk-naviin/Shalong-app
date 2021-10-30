@@ -54,9 +54,11 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
               CupertinoIcons.home,
               color: CupertinoColors.separator,
             ),
-            title: Text(
-              'Home',
-              style: TextStyle(color: Colors.black),
+            title: Center(
+              child: Text(
+                'Home',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             activeColor: CupertinoColors.separator,
           ),
@@ -73,7 +75,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
               CupertinoIcons.bell,
               color: CupertinoColors.separator,
             ),
-            title: Text('Notification', style: TextStyle(color: Colors.black)),
+            title: Center(child: Text('Notification', style: TextStyle(color: Colors.black))),
             activeColor: CupertinoColors.separator,
           ),
           BottomNavyBarItem(
@@ -81,7 +83,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
               CupertinoIcons.settings_solid,
               color: CupertinoColors.separator,
             ),
-            title: Text('Settings', style: TextStyle(color: Colors.black)),
+            title: Center(child: Text('Settings', style: TextStyle(color: Colors.black))),
             activeColor: CupertinoColors.separator,
           ),
         ],
