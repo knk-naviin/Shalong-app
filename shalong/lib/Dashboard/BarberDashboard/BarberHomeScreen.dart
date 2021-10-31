@@ -68,11 +68,6 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.white10,
-          title: Text(
-            "Shalong",
-            style: TextStyle(
-                fontSize: 51, fontFamily: "SourceCodePro", color: Colors.white),
-          ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient:

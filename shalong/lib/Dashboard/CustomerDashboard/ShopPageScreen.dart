@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shalong/Dashboard/CustomerDashboard/ReviewsScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 import 'RatingScreen.dart';
@@ -150,106 +151,55 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                 //     // ),
                 //   ],
                 // ),
-                Column(
+                Row(
+                  mainAxisSize: MainAxisSize.max,
                   children: [
-                    Row(children: [
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Status of Barber:',
-                                style: TextStyle(
-                                    // decoration: TextDecoration.underline,
-                                    fontSize: 18.0,
-                                    color: CupertinoColors.systemGrey
-                                    //fontWeight: FontWeight.bold
-                                    ),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              // Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Column(
-                              //     children: [
-                              //       Icon(
-                              //         Icons.circle,
-                              //         color: widget.shopInfo.shopbusy
-                              //             ? Colors.blue
-                              //             : Colors.grey,
-                              //       ),
-                              //       Text(
-                              //         " ${widget.shopInfo.shopbusy ? "Busy" : "Free"}",
-                              //         style: TextStyle(
-                              //           // fontSize: 22,
-                              //           color: widget.shopInfo.shopbusy
-                              //               ? Colors.blue
-                              //               : Colors.grey,
-                              //           // fontWeight: FontWeight.bold
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    // Icon(
-                                    //   Icons.circle,
-                                    //   color: widget.shopInfo.shopbusy
-                                    //       ? Colors.blue
-                                    //       : Colors.grey,
-                                    // ),
-                                    // Text(
-                                    //   " ${widget.shopInfo.shopbusy ? "Busy" : "Free"}",
-                                    //   style: TextStyle(
-                                    //     // fontSize: 22,
-                                    //     color: widget.shopInfo.shopbusy
-                                    //         ? Colors.blue
-                                    //         : Colors.grey,
-                                    //     // fontWeight: FontWeight.bold
-                                    //   ),
-                                    // ),
-                                    Text(
-                                      (() {
-                                        if (widget.shopInfo.shopbusy == true) {
-                                          return "Barber is Busy Now";
-                                        } else if (widget
-                                                .shopInfo.barberBreak ==
-                                            true) {
-                                          return "Barber is rest now";
-                                        } else if (widget.shopInfo.shopbusy ==
-                                                false &&
-                                            widget.shopInfo.barberBreak ==
-                                                false) {
-                                          return "Shop is free now";
-                                        } else {
-                                          return "null";
-                                        }
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ))
-                    ])
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Status of Barber:',
+                        style: TextStyle(
+                            // decoration: TextDecoration.underline,
+                            fontSize: 18.0,
+                            color: CupertinoColors.systemGrey
+                            //fontWeight: FontWeight.bold
+                            ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        (() {
+                          if (widget.shopInfo.shopbusy == true) {
+                            return "Barber is Busy Now";
+                          } else if (widget.shopInfo.barberBreak == true) {
+                            return "Barber is rest now";
+                          } else if (widget.shopInfo.shopbusy == false &&
+                              widget.shopInfo.barberBreak == false) {
+                            return "Shop is free now";
+                          } else {
+                            return "null";
+                          }
+                        })(),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Text(
                         'Address:',
                         style: TextStyle(
                             // decoration: TextDecoration.underline,
@@ -258,29 +208,28 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                             //fontWeight: FontWeight.bold
                             ),
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: Text(
-                          widget.shopInfo.address,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                            // fontWeight: FontWeight.w600
-                          ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        widget.shopInfo.address,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          // fontWeight: FontWeight.w600
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Phone:  ',
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Phone:',
                         style: TextStyle(
                             // decoration: TextDecoration.underline,
                             fontSize: 18.0,
@@ -288,18 +237,17 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                             //fontWeight: FontWeight.bold
                             ),
                       ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text(
+                    ),
+                    Expanded(
+                      child: Text(
                         widget.shopInfo.phone,
                         style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             fontWeight: FontWeight.w600),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 Divider(),
                 // Stack(
@@ -589,6 +537,42 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                                 builder: (context) =>
                                     RatingScreen(widget.shopInfo, myRating())));
                       }),
+                ),
+                Divider(),
+                Container(
+                  width: 350,
+                  child: Card(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Reviews",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ),
+                        Divider(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(widget.ratings.length > 0
+                              ? widget.ratings.first.review
+                              : "No rating yet"),
+                        ),
+                        CupertinoButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ReviewScreen(widget.ratings)),
+                            );
+                          },
+                          child: Text("Show All"),
+                        )
+                      ],
+                    ),
+                  ),
                 )
               ],
             )
@@ -625,61 +609,63 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                         ],
                       ),
                       Divider(),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
                               'Address:',
                               style: TextStyle(
                                   // decoration: TextDecoration.underline,
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 18.0,
+                                  color: CupertinoColors.systemGrey
+                                  //fontWeight: FontWeight.bold
+                                  ),
                             ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            // SizedBox(
-                            //   width: 220,
-                            //   child: TextFormField(
-                            //     maxLines: ,
-                            //     initialValue:  widget.shopInfo.address,
-                            //   ),
-                            // )
-                            Expanded(
-                              child: Text(
-                                widget.shopInfo.address,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  // fontWeight: FontWeight.w600
-                                ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              widget.shopInfo.address,
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                // fontWeight: FontWeight.w600
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Divider(),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Phone:  ',
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Phone:',
                               style: TextStyle(
                                   // decoration: TextDecoration.underline,
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 18.0,
+                                  color: CupertinoColors.systemGrey
+                                  //fontWeight: FontWeight.bold
+                                  ),
                             ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
+                          ),
+                          Expanded(
+                            child: Text(
                               widget.shopInfo.phone,
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Divider(),
                       // Stack(

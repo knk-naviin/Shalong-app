@@ -16,6 +16,7 @@ class _BarberNotificationScreenState extends State<BarberNotificationScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+
           title: Text("Notification"),
           flexibleSpace: Container(
             decoration: BoxDecoration(

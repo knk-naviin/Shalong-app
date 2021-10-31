@@ -14,6 +14,7 @@ class _BarberAboutScreenState extends State<BarberAboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text("Help"),
           flexibleSpace: Container(
             decoration: BoxDecoration(

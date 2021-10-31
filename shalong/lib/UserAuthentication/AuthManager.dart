@@ -163,11 +163,6 @@ Future<List<Rating>?> fetchRatings() async {
   }
 }
 
-// final Map<String, int> someMap = {
-//   "a": 1,
-//   "b": 2,
-// };
-
 Future<Map<String, List<Rating>>> ratingMap() async {
   Map<String, List<Rating>> map = {};
   var ratings = await fetchRatings();
@@ -360,5 +355,21 @@ Future<List<ShopInfo>?> fetchShopsForFavorites() async {
       }
     }
     return shops;
+  }
+}
+
+
+
+Future<List<Rating>?> fectchreviews() async {
+  CollectionReference ratingInfo =
+  FirebaseFirestore.instance.collection("rating");
+  var ratingQueryInfo = (await ratingInfo.get());
+  var docs = ratingQueryInfo.docs;
+  List<Rating> ratings = [];
+  if (docs.length > 0) {
+    for (var doc in docs) {
+      ratings.add(Rating.object(doc));
+    }
+    return ratings;
   }
 }

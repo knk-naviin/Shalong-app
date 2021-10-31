@@ -235,8 +235,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => ShopPageScreen(
-                                  shop, ratingsForShopId(shop.docId))
-                          ),
+                                  shop, ratingsForShopId(shop.docId))),
                         );
                       },
                       child: Card(
@@ -258,25 +257,21 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                           children: [
                             Row(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Expanded(
-                                    child: Text(
-                                      shop.name,
-                                      style: TextStyle(
-                                        letterSpacing: 3,
-                                        wordSpacing: 2,
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Expanded(
+                                  child: Text(
+                                    shop.name,
+                                    style: TextStyle(
+                                      letterSpacing: 3,
+                                      wordSpacing: 2,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                                Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 110.0),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Align(
+                                      alignment: Alignment.centerRight,
                                       child: Text(
                                           shop.isOpen ? "Open" : "Closed",
                                           style: TextStyle(
@@ -284,8 +279,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                               color: shop.isOpen
                                                   ? Colors.red
                                                   : Colors.grey,
-                                              fontWeight: FontWeight.bold)),
-                                    ))
+                                              fontWeight: FontWeight.bold))),
+                                )
                               ],
                             ),
                             Divider(),
@@ -317,7 +312,9 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                         children: <TextSpan>[
                                           TextSpan(
                                               text: averageRatingString(
-                                                  ratingsForShopId(shop.docId)).substring(0,3),
+                                                      ratingsForShopId(
+                                                          shop.docId))
+                                                  .substring(0, 3),
                                               style: TextStyle(
                                                   color: Colors.blue,
                                                   fontWeight: FontWeight.bold)),
@@ -339,8 +336,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                               color: favorites?[shop.docId] ==
                                                       null
                                                   ? CupertinoColors.systemGrey
-                                                  : CupertinoColors
-                                                      .activeBlue),
+                                                  : CupertinoColors.activeBlue),
                                         ),
                                       ),
                                       IconButton(
@@ -360,8 +356,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                                 null) {
                                               setFavorite(shop);
                                               favorites?[shop.docId] = [
-                                                Favorite("docId", "uid",
-                                                    shop.docId)
+                                                Favorite(
+                                                    "docId", "uid", shop.docId)
                                               ];
                                               // favorites.remove(shop.docId);
                                             } else {

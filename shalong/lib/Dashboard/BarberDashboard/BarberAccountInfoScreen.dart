@@ -61,6 +61,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
     var photo = FirebaseAuth.instance.currentUser!.photoURL;
     return new Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text("Account Info"),
           flexibleSpace: Container(
             decoration: BoxDecoration(

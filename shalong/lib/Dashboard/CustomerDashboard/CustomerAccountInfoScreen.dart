@@ -60,6 +60,7 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
     var photo = FirebaseAuth.instance.currentUser!.photoURL;
     return new Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text("Account Information"),
           flexibleSpace: Container(
             decoration: BoxDecoration(

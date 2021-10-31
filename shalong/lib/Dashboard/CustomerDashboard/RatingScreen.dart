@@ -35,6 +35,7 @@ class _RatingScreenState extends State<RatingScreen> {
         fit: FlexFit.loose,
         child: Scaffold(
           appBar: AppBar(
+            centerTitle: true,
             title: Text("Rating Screen"),
             flexibleSpace: Container(
               decoration: BoxDecoration(

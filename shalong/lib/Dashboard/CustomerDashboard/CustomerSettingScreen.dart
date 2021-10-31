@@ -34,6 +34,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        centerTitle: true,
         title: Text("Settings"),
         flexibleSpace: Container(
           decoration: BoxDecoration(
