@@ -66,6 +66,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -542,33 +543,53 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                 Container(
                   width: 350,
                   child: Card(
+                    // elevation: 0,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Reviews",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                        Align(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Reviews",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
                           ),
+                          alignment: Alignment.topCenter,
                         ),
                         Divider(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(widget.ratings.length > 0
+                                ? widget.ratings.first.review
+                                : "No rating yet",style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black
+                            ),),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
                           child: Text(widget.ratings.length > 0
-                              ? widget.ratings.first.review
+                              ? widget.ratings.first.feedback
                               : "No rating yet"),
                         ),
-                        CupertinoButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ReviewScreen(widget.ratings)),
-                            );
-                          },
-                          child: Text("Show All"),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: CupertinoButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ReviewScreen(widget.ratings)),
+                              );
+                            },
+                            child: Text("Show All"),
+                          ),
                         )
                       ],
                     ),

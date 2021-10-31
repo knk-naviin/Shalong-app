@@ -66,6 +66,47 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      scrollable: true,
+                      // titlePadding: EdgeInsetsGeometry.infinity,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      title: Center(
+                        child: Text(
+                          "Stay Tuned!",
+                          style: TextStyle(
+                              color: CupertinoColors.destructiveRed),
+                        ),
+                      ),
+                      content: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("FAQ ",style: TextStyle(
+                                fontWeight: FontWeight.bold
+                              ),),
+                              Text("with Customer")
+                            ],
+                          ),
+                          Text("Coming soon....",style: TextStyle(
+                              fontSize: 10,
+                              color: CupertinoColors.systemGrey
+                          ),)
+                        ],
+                      ),
+                    );
+                  });
+            },
+            icon: Icon(Icons.feedback),
+          ),
           centerTitle: true,
           backgroundColor: Colors.white10,
           flexibleSpace: Container(
@@ -97,7 +138,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
             children: [
               Container(
                 width: double.infinity,
-                height: 200,
+                height: 100,
                 child: Stack(
                   children: [
                     Container(
@@ -105,48 +146,37 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
                       height: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(5),
-                            bottomRight: Radius.circular(5),
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
                           ),
                           gradient: LinearGradient(
                               colors: [Colors.grey, Colors.black26])),
                       child: Column(
                         children: [
-                          Text(
-                            "Welcome",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: "fonts/TrajanPro.ttf",
-                                color: Colors.white),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 38.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Center(
-                                  child: Text(
-                                    "Hi ",
-                                    style: TextStyle(
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  "Hi ",
+                                  style: TextStyle(
+                                    fontSize: 23,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              
+                              Flexible(
+                                child: Text(
+                                  "${profileInfo!.name}",
+                                  style: TextStyle(
                                       fontSize: 23,
                                       color: Colors.white,
-                                    ),
-                                  ),
+                                      fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(
-                                  width: 12,
-                                ),
-                                Center(
-                                  child: Text(
-                                    "${profileInfo!.name}",
-                                    style: TextStyle(
-                                        fontSize: 23,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         ],
                       ),

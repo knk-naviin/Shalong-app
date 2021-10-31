@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/ShopPageScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
@@ -16,6 +17,7 @@ class CustomerHomeScreen extends StatefulWidget {
 
 class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   late List<ShopInfo>? shops = null;
+
   late Map<String, List<Rating>>? ratings = null;
   late Map<String, List<Favorite>>? favorites = null;
   // bool _icon = false;
@@ -95,7 +97,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
         children: [
           Container(
             width: double.infinity,
-            height: 200,
+            height: 100,
             child: Stack(
               children: [
                 Container(
@@ -103,48 +105,37 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                   height: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(5),
-                        bottomRight: Radius.circular(5),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
                       ),
                       gradient: LinearGradient(
                           colors: [Colors.lightBlueAccent, Colors.blue])),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        "Welcome",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "fonts/TrajanPro.ttf",
-                            color: Colors.white),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 38.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Text(
-                                "Hi ",
-                                style: TextStyle(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              "Hi ",
+                              style: TextStyle(
+                                fontSize: 23,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            flex: 6,
+                            child: Text(
+                              name!,
+                              style: TextStyle(
                                   fontSize: 23,
                                   color: Colors.white,
-                                ),
-                              ),
+                                  fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Center(
-                              child: Text(
-                                name!,
-                                style: TextStyle(
-                                    fontSize: 23,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     ],
                   ),
@@ -212,7 +203,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     // ));
 
     widgets.add(
-      Expanded(
+      Flexible(
         child: SmartRefresher(
           enablePullDown: true,
           enablePullUp: false,
@@ -422,41 +413,50 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            automaticallyImplyLeading: false,
+            leading: IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        scrollable: true,
+                        // titlePadding: EdgeInsetsGeometry.infinity,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        title: Center(
+                          child: Text(
+                            "Stay Tuned!",
+                            style: TextStyle(
+                                color: CupertinoColors.destructiveRed),
+                          ),
+                        ),
+                        content: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "FAQ ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text("with Barber")
+                              ],
+                            ),
+                            Text(
+                              "Coming soon....",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: CupertinoColors.systemGrey),
+                            )
+                          ],
+                        ),
+                      );
+                    });
+              },
+              icon: Icon(Icons.feedback),
+            ),
             centerTitle: true,
-            // title: Text(
-            //   "Shalong",
-            //   style: TextStyle(
-            //       fontSize: 51,
-            //       fontFamily: "SourceCodePro",
-            //       color: Colors.white),
-            // ),
-            // title: Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Center(
-            //       child: Text(
-            //         "Hi ",
-            //         style: TextStyle(
-            //           fontSize: 23,
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //     ),
-            //     SizedBox(
-            //       width: 12,
-            //     ),
-            //     Center(
-            //       child: Text(
-            //         name!,
-            //         style: TextStyle(
-            //             fontSize: 23,
-            //             color: Colors.white,
-            //             fontWeight: FontWeight.bold),
-            //       ),
-            //     )
-            //   ],
-            // ),
             flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -464,10 +464,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
             ),
             backgroundColor: Colors.blue,
             elevation: 0,
-            // leading: Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child:
-            // ),
             actions: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -485,19 +481,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
               ),
             ],
           ),
-          body: shopList(shops)
-          /*SmartRefresher(
-            enablePullDown: true,
-            enablePullUp: true,
-            header: WaterDropHeader(
-              waterDropColor: CupertinoColors.activeBlue,
-            ),
-            controller: _refreshController,
-            onRefresh: _onRefresh,
-            onLoading: _onRefresh,
-            child: shopList(shops),
-          )*/
-          ),
+          body: shopList(shops)),
     );
   }
 }
