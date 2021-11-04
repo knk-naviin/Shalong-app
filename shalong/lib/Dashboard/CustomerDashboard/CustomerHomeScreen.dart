@@ -203,7 +203,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
     // ));
 
     widgets.add(
-      Flexible(
+      Expanded(
         child: SmartRefresher(
           enablePullDown: true,
           enablePullUp: false,
@@ -277,14 +277,12 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                             Divider(),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Expanded(
-                                child: Text(
-                                  shop.address,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: 2,
-                                      wordSpacing: 2),
-                                ),
+                              child: Text(
+                                shop.address,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 2,
+                                    wordSpacing: 2),
                               ),
                             ),
                             Divider(),
