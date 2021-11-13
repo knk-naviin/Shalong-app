@@ -246,6 +246,14 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
                     )
                   ],
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CupertinoButton(
+                    color: CupertinoColors.destructiveRed,
+                    onPressed: (){},
+                    child: Text("Delete My Account"),
+                  ),
+                )
               ],
             ),
           ),

@@ -59,14 +59,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           ),
           child: ListTile(
             tileColor: Colors.grey.shade50,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ShopPageScreen(
-                        favorite, ratingsForShopId(favorite.docId))),
-              );
-            },
             title: Column(
               children: [
                 Row(
@@ -104,7 +96,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       }
       return ListView(children: list);
     }
-
   }
 
   @override

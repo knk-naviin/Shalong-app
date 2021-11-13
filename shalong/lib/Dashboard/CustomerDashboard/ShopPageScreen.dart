@@ -87,10 +87,12 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.shopInfo.name,
-                        style: TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.w600),
+                      child: Expanded(
+                        child: Text(
+                          widget.shopInfo.name,
+                          style: TextStyle(
+                              fontSize: 32, fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -98,60 +100,6 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                     ),
                   ],
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     // Padding(
-                //     //   padding: const EdgeInsets.all(8.0),
-                //     //   child: Column(
-                //     //     children: [
-                //     //       Icon(Icons.circle,color: widget.shopInfo.isOpen ? Colors.red:Colors.grey,),
-                //     //       Text(
-                //     //         " ${widget.shopInfo.isOpen ? "Open" : "Closed"}",
-                //     //         style: TextStyle(
-                //     //            // fontSize: 22,
-                //     //             color:
-                //     //             widget.shopInfo.isOpen ? Colors.red : Colors.grey,
-                //     //             // fontWeight: FontWeight.bold
-                //     //         ),
-                //     //       ),
-                //     //     ],
-                //     //   ),
-                //     // ),
-                //     Padding(
-                //       padding: const EdgeInsets.all(8.0),
-                //       child: Column(
-                //         children: [
-                //           Icon(Icons.circle,color: widget.shopInfo.shopbusy ? Colors.blue : Colors.grey,),
-                //           Text(
-                //             " ${widget.shopInfo.shopbusy ? "Busy" : "Free"}",
-                //             style: TextStyle(
-                //               // fontSize: 22,
-                //               color: widget.shopInfo.shopbusy ? Colors.blue : Colors.grey,
-                //               // fontWeight: FontWeight.bold
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //     // Padding(
-                //     //   padding: const EdgeInsets.all(8.0),
-                //     //   child: Column(
-                //     //     children: [
-                //     //       Icon(Icons.circle,color: widget.shopInfo.barberBreak ?Colors.deepPurpleAccent : Colors.grey,),
-                //     //       Text(
-                //     //         " ${widget.shopInfo.barberBreak ? "onDuty" : 'Break'}",
-                //     //         style: TextStyle(
-                //     //           // fontSize: 22,
-                //     //           color: widget.shopInfo.barberBreak ?Colors.deepPurpleAccent : Colors.grey,
-                //     //           // fontWeight: FontWeight.bold
-                //     //         ),
-                //     //       ),
-                //     //     ],
-                //     //   ),
-                //     // ),
-                //   ],
-                // ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -191,306 +139,64 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                     ),
                   ],
                 ),
-                Divider(),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        'Address:',
-                        style: TextStyle(
-                            // decoration: TextDecoration.underline,
-                            fontSize: 18.0,
-                            color: CupertinoColors.systemGrey
-                            //fontWeight: FontWeight.bold
-                            ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        widget.shopInfo.address,
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          // fontWeight: FontWeight.w600
+                // Divider(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          'Address:',
+                          style: TextStyle(
+                              // decoration: TextDecoration.underline,
+                              fontSize: 18.0,
+                              color: CupertinoColors.systemGrey
+                              //fontWeight: FontWeight.bold
+                              ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Divider(),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Phone:',
-                        style: TextStyle(
-                            // decoration: TextDecoration.underline,
-                            fontSize: 18.0,
-                            color: CupertinoColors.systemGrey
-                            //fontWeight: FontWeight.bold
-                            ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        widget.shopInfo.phone,
-                        style: TextStyle(
+                      Expanded(
+                        child: Text(
+                          widget.shopInfo.address,
+                          style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
-                            fontWeight: FontWeight.w600),
+                            // fontWeight: FontWeight.w600
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                Divider(),
-                // Stack(
-                //   children: [
-                //     Column(
-                //       children: [
-                //         Padding(
-                //             padding: EdgeInsets.only(
-                //                 left: 25.0, right: 25.0, top: 25.0),
-                //             child: new Row(
-                //               mainAxisSize: MainAxisSize.max,
-                //               children: <Widget>[
-                //                 new Column(
-                //                   mainAxisAlignment: MainAxisAlignment.start,
-                //                   mainAxisSize: MainAxisSize.min,
-                //                   children: <Widget>[
-                //                     Text(
-                //                       'Book Slot:',
-                //                       style: TextStyle(
-                //                           // decoration: TextDecoration.underline,
-                //                           fontSize: 16.0,
-                //                           fontWeight: FontWeight.bold),
-                //                     ),
-                //                   ],
-                //                 ),
-                //               ],
-                //             )),
-                //         Padding(
-                //           padding: const EdgeInsets.all(8.0),
-                //           child: Row(
-                //             children: [
-                //               Text(
-                //                 'Address:',
-                //                 style: TextStyle(
-                //                   // decoration: TextDecoration.underline,
-                //                     fontSize: 22.0,
-                //                     fontWeight: FontWeight.bold),
-                //               ),
-                //               SizedBox(
-                //                 width: 20,
-                //               ),
-                //               Text(
-                //                 widget.shopInfo.address,
-                //                 style: TextStyle(fontSize: 18),
-                //               ),
-                //             ],
-                //           ),
-                //         ),
-                //
-                //         Padding(
-                //             padding: EdgeInsets.only(
-                //                 left: 25.0, right: 25.0, top: 5.0),
-                //             child: new Row(
-                //               mainAxisSize: MainAxisSize.max,
-                //               children: <Widget>[
-                //                 Text(
-                //                   'To Select Pre-Defined Time:',
-                //                   style: TextStyle(
-                //                       // decoration: TextDecoration.underline,
-                //                       fontSize: 16.0,
-                //                       fontWeight: FontWeight.bold),
-                //                 ),
-                //                 Expanded(
-                //                   flex: 1,
-                //                   child: Switch(
-                //                     value: isSwitched,
-                //                     onChanged: (value) {
-                //                       setState(() {
-                //                         isSwitched = value;
-                //                         print(isSwitched);
-                //                       });
-                //                     },
-                //                     activeTrackColor: Colors.blue,
-                //                     activeColor: Colors.white,
-                //                   ),
-                //                 ),
-                //               ],
-                //             )),
-                //         Padding(
-                //           padding: EdgeInsets.only(
-                //               left: 25.0, right: 25.0, top: 5.0),
-                //           child: Visibility(
-                //             visible: isSwitched,
-                //             child: Column(
-                //               children: [
-                //                 Row(
-                //                   children: [
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("10:00 AM"))),
-                //                     SizedBox(
-                //                       width: 12,
-                //                     ),
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("11:00 AM"))),
-                //                     SizedBox(
-                //                       width: 12,
-                //                     ),
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("12:00 PM"))),
-                //                   ],
-                //                 ),
-                //                 Row(
-                //                   children: [
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("01:00 PM"))),
-                //                     SizedBox(
-                //                       width: 12,
-                //                     ),
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("02:00 PM"))),
-                //                     SizedBox(
-                //                       width: 12,
-                //                     ),
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("03:00 PM"))),
-                //                   ],
-                //                 ),
-                //                 Row(
-                //                   children: [
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("04:00 PM"))),
-                //                     SizedBox(
-                //                       width: 12,
-                //                     ),
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("05:00 PM"))),
-                //                     SizedBox(
-                //                       width: 12,
-                //                     ),
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("06:00 PM"))),
-                //                   ],
-                //                 ),
-                //                 Row(
-                //                   children: [
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("07:00 PM"))),
-                //                     SizedBox(
-                //                       width: 12,
-                //                     ),
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("08:00 PM"))),
-                //                     SizedBox(
-                //                       width: 12,
-                //                     ),
-                //                     Expanded(
-                //                         child: OutlinedButton(
-                //                             onPressed: () {},
-                //                             child: Text("09:00 PM"))),
-                //                   ],
-                //                 ),
-                //               ],
-                //             ),
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //     Container(
-                //       height: 210,
-                //       width: double.infinity,
-                //       color: Colors.white70,
-                //       child: Center(
-                //           child: Column(
-                //         children: [
-                //           Text(
-                //             "This Feature is ",
-                //             style: TextStyle(
-                //                 fontSize: 25, fontWeight: FontWeight.bold),
-                //           ),
-                //           Image.asset(
-                //             "images/comingsoon.png",
-                //             width: 210,
-                //             height: 150,
-                //           )
-                //         ],
-                //       )),
-                //     ),
-                //   ],
-                // ),
-
-                // Row(
-                //   children: [
-                //     Padding(
-                //         padding:
-                //             EdgeInsets.only(left: 25.0, right: 25.0, top: 1.0),
-                //         child: new Row(
-                //           mainAxisSize: MainAxisSize.max,
-                //           children: <Widget>[
-                //             new Column(
-                //               mainAxisAlignment: MainAxisAlignment.start,
-                //               mainAxisSize: MainAxisSize.min,
-                //               children: <Widget>[
-                //                 Text(
-                //                   'Give Ratings:',
-                //                   style: TextStyle(
-                //                       // decoration: TextDecoration.underline,
-                //                       fontSize: 16.0,
-                //                       fontWeight: FontWeight.bold),
-                //                 ),
-                //               ],
-                //             ),
-                //           ],
-                //         )),
-                //     Padding(
-                //       padding: const EdgeInsets.only(left: 138.0),
-                //       child: TextButton.icon(
-                //         icon: Icon(Icons.rate_review),
-                //         onPressed: () {
-                //           Navigator.push(
-                //             context,
-                //             MaterialPageRoute(
-                //                 builder: (context) =>
-                //                     RatingScreen(widget.shopInfo, myRating())),
-                //           );
-                //         },
-                //         label: Text("Ratings"),
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                // Divider(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Phone:',
+                          style: TextStyle(
+                              // decoration: TextDecoration.underline,
+                              fontSize: 18.0,
+                              color: CupertinoColors.systemGrey
+                              //fontWeight: FontWeight.bold
+                              ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          widget.shopInfo.phone,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
@@ -525,7 +231,7 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                     ),
                   ),
                 ),
-                Divider(),
+                // Divider(),
                 Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
                   child: CupertinoButton(
@@ -563,12 +269,13 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                           alignment: Alignment.center,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(widget.ratings.length > 0
-                                ? widget.ratings.first.review
-                                : "No rating yet",style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black
-                            ),),
+                            child: Text(
+                              widget.ratings.length > 0
+                                  ? widget.ratings.first.review
+                                  : "No rating yet",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
+                            ),
                           ),
                         ),
                         Align(
@@ -604,32 +311,18 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                   ignoring: widget.shopInfo.isOpen ? false : true,
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
                               widget.shopInfo.name,
                               style: TextStyle(
-                                  fontSize: 32, fontWeight: FontWeight.w600),
+                                  fontSize: 20, fontWeight: FontWeight.w600),
                             ),
-                          ),
-                          SizedBox(
-                            width: 85,
-                          ),
-                          Text(
-                            " ${widget.shopInfo.isOpen ? "Open" : "Closed"}",
-                            style: TextStyle(
-                                fontSize: 22,
-                                color: widget.shopInfo.isOpen
-                                    ? Colors.red
-                                    : Colors.grey,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Divider(),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -660,7 +353,6 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                           ),
                         ],
                       ),
-                      Divider(),
                       Row(
                         children: [
                           SizedBox(
@@ -688,211 +380,6 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                           ),
                         ],
                       ),
-                      Divider(),
-                      // Stack(
-                      //   children: [
-                      //     Column(
-                      //       children: [
-                      //         Padding(
-                      //             padding: EdgeInsets.only(
-                      //                 left: 25.0, right: 25.0, top: 25.0),
-                      //             child: new Row(
-                      //               mainAxisSize: MainAxisSize.max,
-                      //               children: <Widget>[
-                      //                 new Column(
-                      //                   mainAxisAlignment:
-                      //                       MainAxisAlignment.start,
-                      //                   mainAxisSize: MainAxisSize.min,
-                      //                   children: <Widget>[
-                      //                     Text(
-                      //                       'Book Slot:',
-                      //                       style: TextStyle(
-                      //                           // decoration: TextDecoration.underline,
-                      //                           fontSize: 16.0,
-                      //                           fontWeight: FontWeight.bold),
-                      //                     ),
-                      //                   ],
-                      //                 ),
-                      //               ],
-                      //             )),
-                      //         Padding(
-                      //           padding: EdgeInsets.only(
-                      //               left: 25.0, right: 25.0, top: 5.0),
-                      //           child: Column(
-                      //             children: [
-                      //               OutlinedButton(
-                      //                 onPressed: () {
-                      //                   selectedTime(context);
-                      //                 },
-                      //                 child: Text("Click Here"),
-                      //               ),
-                      //               Row(
-                      //                 mainAxisAlignment:
-                      //                     MainAxisAlignment.center,
-                      //                 children: [
-                      //                   Text("Time  "),
-                      //                   Text(
-                      //                     '${time.hourOfPeriod}:${time.minute} ${time.period}',
-                      //                     style: TextStyle(
-                      //                       fontWeight: FontWeight.bold,
-                      //                       fontSize: 15,
-                      //                     ),
-                      //                   )
-                      //                 ],
-                      //               ),
-                      //             ],
-                      //           ),
-                      //         ),
-                      //         // Padding(
-                      //         //   padding: const EdgeInsets.all(8.0),
-                      //         //   child: Center(child: Text("OR",style: TextStyle(
-                      //         //     fontSize: 20,
-                      //         //     fontWeight: FontWeight.bold
-                      //         //   ),)),
-                      //         // ),
-                      //         Padding(
-                      //             padding: EdgeInsets.only(
-                      //                 left: 25.0, right: 25.0, top: 5.0),
-                      //             child: new Row(
-                      //               mainAxisSize: MainAxisSize.max,
-                      //               children: <Widget>[
-                      //                 Text(
-                      //                   'To Select Pre-Defined Time:',
-                      //                   style: TextStyle(
-                      //                       //decoration: TextDecoration.underline,
-                      //                       fontSize: 16.0,
-                      //                       fontWeight: FontWeight.bold),
-                      //                 ),
-                      //                 Expanded(
-                      //                   flex: 1,
-                      //                   child: Switch(
-                      //                     value: isSwitched,
-                      //                     onChanged: (value) {
-                      //                       setState(() {
-                      //                         isSwitched = value;
-                      //                         print(isSwitched);
-                      //                       });
-                      //                     },
-                      //                     activeTrackColor: Colors.blue,
-                      //                     activeColor: Colors.white,
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             )),
-                      //         Padding(
-                      //           padding: EdgeInsets.only(
-                      //               left: 25.0, right: 25.0, top: 5.0),
-                      //           child: Visibility(
-                      //             visible: isSwitched,
-                      //             child: Column(
-                      //               children: [
-                      //                 Row(
-                      //                   children: [
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("10:00 AM"))),
-                      //                     SizedBox(
-                      //                       width: 12,
-                      //                     ),
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("11:00 AM"))),
-                      //                     SizedBox(
-                      //                       width: 12,
-                      //                     ),
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("12:00 PM"))),
-                      //                   ],
-                      //                 ),
-                      //                 Row(
-                      //                   children: [
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("01:00 PM"))),
-                      //                     SizedBox(
-                      //                       width: 12,
-                      //                     ),
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("02:00 PM"))),
-                      //                     SizedBox(
-                      //                       width: 12,
-                      //                     ),
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("03:00 PM"))),
-                      //                   ],
-                      //                 ),
-                      //                 Row(
-                      //                   children: [
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("04:00 PM"))),
-                      //                     SizedBox(
-                      //                       width: 12,
-                      //                     ),
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("05:00 PM"))),
-                      //                     SizedBox(
-                      //                       width: 12,
-                      //                     ),
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("06:00 PM"))),
-                      //                   ],
-                      //                 ),
-                      //                 Row(
-                      //                   children: [
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("07:00 PM"))),
-                      //                     SizedBox(
-                      //                       width: 12,
-                      //                     ),
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("08:00 PM"))),
-                      //                     SizedBox(
-                      //                       width: 12,
-                      //                     ),
-                      //                     Expanded(
-                      //                         child: OutlinedButton(
-                      //                             onPressed: () {},
-                      //                             child: Text("09:00 PM"))),
-                      //                   ],
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //     // Container(
-                      //     //   height: 210,
-                      //     //   width: double.infinity,
-                      //     //   color: Colors.white70,
-                      //     //   child: Center(
-                      //     //       child: Image.asset(
-                      //     //     "images/comingsoon.png",
-                      //     //     width: 210,
-                      //     //     height: 150,
-                      //     //   )),
-                      //     // ),
-                      //   ],
-                      // ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -924,7 +411,6 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                           ),
                         ),
                       ),
-                      Divider(),
                       Padding(
                         padding:
                             EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
@@ -938,6 +424,63 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                                       builder: (context) => RatingScreen(
                                           widget.shopInfo, myRating())));
                             }),
+                      ),
+                      Container(
+                        width: 350,
+                        child: Card(
+                          // elevation: 0,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Reviews",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                alignment: Alignment.topCenter,
+                              ),
+                              Divider(),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    widget.ratings.length > 0
+                                        ? widget.ratings.first.review
+                                        : "No rating yet",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.black),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: Text(widget.ratings.length > 0
+                                    ? widget.ratings.first.feedback
+                                    : "No rating yet"),
+                              ),
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: CupertinoButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ReviewScreen(widget.ratings)),
+                                    );
+                                  },
+                                  child: Text("Show All"),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       )
                     ],
                   ),

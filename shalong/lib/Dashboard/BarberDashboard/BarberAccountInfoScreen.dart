@@ -13,7 +13,6 @@ class BarberAccountInfoScreen extends StatefulWidget {
 
 class MapScreenState extends State<BarberAccountInfoScreen>
     with SingleTickerProviderStateMixin {
-
   bool isViewMode = true;
   late Profile? profileInfo = null;
   final FocusNode myFocusNode = FocusNode();
@@ -22,16 +21,26 @@ class MapScreenState extends State<BarberAccountInfoScreen>
   void initState() {
     super.initState();
     profile().then((value) => {
-    setState(() {profileInfo = value;})
-    });
-
+          setState(() {
+            profileInfo = value;
+          })
+        });
   }
 
   Future<void> updatedata() async {
     FirebaseFirestore Firestore = FirebaseFirestore.instance;
 
-    Firestore.collection("user").doc(profileInfo!.docId).update({"name": profileInfo!.name, "phone": profileInfo!.phone, "email": profileInfo!.email, "is_barber": true});
-    Firestore.collection("shop").doc(profileInfo!.docId).update({"name": profileInfo!.shops.first.name,"address":profileInfo!.shops.first.address,"phone":profileInfo!.shops.first.phone});
+    Firestore.collection("user").doc(profileInfo!.docId).update({
+      "name": profileInfo!.name,
+      "phone": profileInfo!.phone,
+      "email": profileInfo!.email,
+      "is_barber": true
+    });
+    Firestore.collection("shop").doc(profileInfo!.docId).update({
+      "name": profileInfo!.shops.first.name,
+      "address": profileInfo!.shops.first.address,
+      "phone": profileInfo!.shops.first.phone
+    });
   }
 
   @override
@@ -41,21 +50,22 @@ class MapScreenState extends State<BarberAccountInfoScreen>
         backgroundColor: Colors.white70,
         body: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Platform.isAndroid?CircularProgressIndicator(
-                  color: Colors.black45,
-                ):CupertinoActivityIndicator(
-                  animating: true,
-                  radius: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Loading"),
-                )
-              ],
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Platform.isAndroid
+                ? CircularProgressIndicator(
+                    color: Colors.black45,
+                  )
+                : CupertinoActivityIndicator(
+                    animating: true,
+                    radius: 12,
+                  ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Loading"),
             )
-        ),
+          ],
+        )),
       );
     }
     var photo = FirebaseAuth.instance.currentUser!.photoURL;
@@ -65,12 +75,11 @@ class MapScreenState extends State<BarberAccountInfoScreen>
           title: Text("Account Info"),
           flexibleSpace: Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.grey, Colors.black26])),
+                gradient:
+                    LinearGradient(colors: [Colors.grey, Colors.black26])),
           ),
           backgroundColor: Colors.white10,
           elevation: 0,
-
         ),
         body: new Container(
           color: Colors.white,
@@ -83,9 +92,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                   children: <Widget>[
                     Center(
                       child: CircleAvatar(
-                          radius: 70,
-                          backgroundImage: NetworkImage(photo!)
-                      ),
+                          radius: 70, backgroundImage: NetworkImage(photo!)),
                     ),
                     Container(
                       color: Color(0xffFFFFFF),
@@ -104,7 +111,8 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -133,7 +141,8 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -149,22 +158,22 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                             Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 2.0),
-                                child:  Row(
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                     Flexible(
+                                    Flexible(
                                       child: TextFormField(
-                                        validator: (value){
-                                          if(value == null){
+                                        validator: (value) {
+                                          if (value == null) {
                                             return "Enter Your Name";
                                           }
                                         },
-                                        onSaved: (value){
-                                         if( value != null){
-                                           profileInfo!.name = value;
-                                         }
+                                        onSaved: (value) {
+                                          if (value != null) {
+                                            profileInfo!.name = value;
+                                          }
                                         },
-                                        initialValue:  profileInfo?.name,
+                                        initialValue: profileInfo?.name,
                                         enabled: !isViewMode,
                                         autofocus: !isViewMode,
                                       ),
@@ -178,10 +187,11 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
-                                         Text(
+                                        Text(
                                           'Email ID',
                                           style: TextStyle(
                                               fontSize: 16.0,
@@ -199,7 +209,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                   children: <Widget>[
                                     new Flexible(
                                       child: new TextFormField(
-                                        initialValue:  profileInfo?.email,
+                                        initialValue: profileInfo?.email,
                                         enabled: false,
                                       ),
                                     ),
@@ -212,7 +222,8 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     new Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -225,7 +236,6 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                     ),
                                   ],
                                 )),
-
                             Padding(
                                 padding: EdgeInsets.only(
                                     left: 25.0, right: 25.0, top: 2.0),
@@ -234,9 +244,8 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                   children: <Widget>[
                                     new Flexible(
                                       child: new TextFormField(
-                                        initialValue:  profileInfo?.phone,
-                                        enabled: false
-                                      ),
+                                          initialValue: profileInfo?.phone,
+                                          enabled: false),
                                     ),
                                   ],
                                 )),
@@ -249,7 +258,8 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
@@ -282,17 +292,19 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                 child: Flexible(
                                   child: Padding(
                                     padding: EdgeInsets.only(right: 10.0),
-                                    child:  TextFormField(validator: (value){
-                                      if(value == null){
-                                        return "Enter Your Shop Name";
-                                      }
-                                    },
-                                      onSaved: (value){
-                                        if( value != null){
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return "Enter Your Shop Name";
+                                        }
+                                      },
+                                      onSaved: (value) {
+                                        if (value != null) {
                                           profileInfo!.shops.first.name = value;
                                         }
                                       },
-                                      initialValue: profileInfo?.shops.first.name,
+                                      initialValue:
+                                          profileInfo?.shops.first.name,
                                       enabled: !isViewMode,
                                     ),
                                   ),
@@ -318,17 +330,20 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                 child: Flexible(
                                   child: Padding(
                                     padding: EdgeInsets.only(right: 10.0),
-                                    child:  TextFormField(validator: (value){
-                                      if(value == null){
-                                        return "Enter Your Shop PhoneNumber";
-                                      }
-                                    },
-                                      onSaved: (value){
-                                        if( value != null){
-                                          profileInfo!.shops.first.phone = value;
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return "Enter Your Shop PhoneNumber";
                                         }
                                       },
-                                      initialValue: profileInfo?.shops.first.name,
+                                      onSaved: (value) {
+                                        if (value != null) {
+                                          profileInfo!.shops.first.phone =
+                                              value;
+                                        }
+                                      },
+                                      initialValue:
+                                          profileInfo?.shops.first.name,
                                       enabled: !isViewMode,
                                     ),
                                   ),
@@ -354,19 +369,21 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                 child: Flexible(
                                   child: Padding(
                                     padding: EdgeInsets.only(right: 10.0),
-                                    child:  TextFormField(
-                                      validator: (value){
-                                        if(value == null){
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        if (value == null) {
                                           return "Enter Your Address";
                                         }
                                       },
-                                      onSaved: (value){
-                                        if( value != null){
-                                          profileInfo!.shops.first.address = value;
+                                      onSaved: (value) {
+                                        if (value != null) {
+                                          profileInfo!.shops.first.address =
+                                              value;
                                         }
                                       },
                                       maxLines: 2,
-                                      initialValue: profileInfo?.shops.first.address,
+                                      initialValue:
+                                          profileInfo?.shops.first.address,
                                       enabled: !isViewMode,
                                     ),
                                   ),
@@ -393,7 +410,6 @@ class MapScreenState extends State<BarberAccountInfoScreen>
   }
 
   Widget _getActionButtons() {
-
     return Padding(
       padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 45.0),
       child: new Row(
@@ -404,10 +420,10 @@ class MapScreenState extends State<BarberAccountInfoScreen>
             child: Padding(
               padding: EdgeInsets.only(right: 10.0),
               child: Container(
-                  child: new ElevatedButton(
-                child:  Text("Save"),
+                  child: ElevatedButton(
+                child: Text("Save"),
                 onPressed: () {
-                  if(formkey.currentState!.validate()){
+                  if (formkey.currentState!.validate()) {
                     (formkey.currentState!.save());
                     setState(() {
                       updatedata();
@@ -415,7 +431,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                       FocusScope.of(context).requestFocus(new FocusNode());
                     });
                   }
-                  },
+                },
               )),
             ),
             flex: 2,
@@ -424,11 +440,10 @@ class MapScreenState extends State<BarberAccountInfoScreen>
             child: Padding(
               padding: EdgeInsets.only(left: 10.0),
               child: Container(
-                  child:  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.red)
-                    ),
-                child:  Text("Cancel"),
+                  child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.red)),
+                child: Text("Cancel"),
                 onPressed: () {
                   setState(() {
                     isViewMode = true;
