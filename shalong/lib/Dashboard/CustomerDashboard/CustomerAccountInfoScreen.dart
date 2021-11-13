@@ -246,14 +246,28 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
                     )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CupertinoButton(
-                    color: CupertinoColors.destructiveRed,
-                    onPressed: (){},
-                    child: Text("Delete My Account"),
-                  ),
-                )
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: CupertinoButton(
+                //     color: CupertinoColors.destructiveRed,
+                //     onPressed: () {
+                //       deletedata()
+                //           .then((value) => {
+                //                 Navigator.of(context)
+                //                     .pushReplacementNamed("/launchscreen")
+                //               })
+                //           .catchError((onError) {
+                //         showDialog(
+                //             context: context,
+                //             builder: (BuildContext context) {
+                //               return AlertDialog(
+                //                   title: Text(onError.toString()));
+                //             });
+                //       });
+                //     },
+                //     child: Text("Delete My Account"),
+                //   ),
+                // )
               ],
             ),
           ),
