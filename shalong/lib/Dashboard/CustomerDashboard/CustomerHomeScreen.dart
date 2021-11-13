@@ -246,35 +246,31 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    shop.name,
-                                    style: TextStyle(
-                                      letterSpacing: 3,
-                                      wordSpacing: 2,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      shop.name,
+                                      style: TextStyle(
+                                        letterSpacing: 3,
+                                        wordSpacing: 2,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                          shop.isOpen ? "Open" : "Closed",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: shop.isOpen
-                                                  ? Colors.red
-                                                  : Colors.grey,
-                                              fontWeight: FontWeight.bold))),
-                                )
-                              ],
+                                  Text(shop.isOpen ? "Open" : "Closed",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: shop.isOpen
+                                              ? Colors.red
+                                              : Colors.grey,
+                                          fontWeight: FontWeight.bold))
+                                ],
+                              ),
                             ),
-                            Divider(),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -285,9 +281,8 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                     wordSpacing: 2),
                               ),
                             ),
-                            Divider(),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              // mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Expanded(
                                   flex: 1,
@@ -312,53 +307,46 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                     ),
                                   ),
                                 ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 0.0),
-                                        child: Text(
-                                          "Add to Favorites",
-                                          style: TextStyle(
-                                              color: favorites?[shop.docId] ==
-                                                      null
-                                                  ? CupertinoColors.systemGrey
-                                                  : CupertinoColors.activeBlue),
-                                        ),
-                                      ),
-                                      IconButton(
-                                        autofocus: true,
-                                        icon: Icon(
-                                            // Icons.favorite_outline
-                                            favorites?[shop.docId] == null
-                                                ? CupertinoIcons.heart
-                                                : CupertinoIcons.heart_fill,
-                                            color: favorites?[shop.docId] ==
-                                                    null
-                                                ? CupertinoColors.systemGrey
-                                                : CupertinoColors.activeBlue),
-                                        onPressed: () {
-                                          setState(() {
-                                            if (favorites?[shop.docId] ==
-                                                null) {
-                                              setFavorite(shop);
-                                              favorites?[shop.docId] = [
-                                                Favorite(
-                                                    "docId", "uid", shop.docId)
-                                              ];
-                                              // favorites.remove(shop.docId);
-                                            } else {
-                                              removeFavorite(shop);
-                                              favorites?.remove(shop.docId);
-                                              // favorites.add(shop.docId);
-                                            }
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Add to Favorites",
+                                      style: TextStyle(
+                                          color: favorites?[shop.docId] ==
+                                                  null
+                                              ? CupertinoColors.systemGrey
+                                              : CupertinoColors.activeBlue),
+                                    ),
+                                    IconButton(
+                                      autofocus: true,
+                                      icon: Icon(
+                                          // Icons.favorite_outline
+                                          favorites?[shop.docId] == null
+                                              ? CupertinoIcons.heart
+                                              : CupertinoIcons.heart_fill,
+                                          color: favorites?[shop.docId] ==
+                                                  null
+                                              ? CupertinoColors.systemGrey
+                                              : CupertinoColors.activeBlue),
+                                      onPressed: () {
+                                        setState(() {
+                                          if (favorites?[shop.docId] ==
+                                              null) {
+                                            setFavorite(shop);
+                                            favorites?[shop.docId] = [
+                                              Favorite(
+                                                  "docId", "uid", shop.docId)
+                                            ];
+                                            // favorites.remove(shop.docId);
+                                          } else {
+                                            removeFavorite(shop);
+                                            favorites?.remove(shop.docId);
+                                            // favorites.add(shop.docId);
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  ],
                                 )
                               ],
                             )
