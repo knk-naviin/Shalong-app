@@ -85,7 +85,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
           color: Colors.white,
           child: Form(
             key: formkey,
-            child: new ListView(
+            child:  ListView(
               scrollDirection: Axis.vertical,
               children: <Widget>[
                 Column(
@@ -94,304 +94,264 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                       child: CircleAvatar(
                           radius: 70, backgroundImage: NetworkImage(photo!)),
                     ),
-                    Container(
-                      color: Color(0xffFFFFFF),
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 25.0),
-                        child: new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: new Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        new Text(
-                                          'Personal Information',
-                                          style: TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        isViewMode
-                                            ? _getEditIcon()
-                                            : new Container(),
-                                      ],
-                                    )
-                                  ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: new Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    new Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        new Text(
-                                          'Name',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 2.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Flexible(
-                                      child: TextFormField(
-                                        validator: (value) {
-                                          if (value == null) {
-                                            return "Enter Your Name";
-                                          }
-                                        },
-                                        onSaved: (value) {
-                                          if (value != null) {
-                                            profileInfo!.name = value;
-                                          }
-                                        },
-                                        initialValue: profileInfo?.name,
-                                        enabled: !isViewMode,
-                                        autofocus: !isViewMode,
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 25.0),
+                      child:  Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      new Text(
+                                        'Personal Information',
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: new Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    new Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        Text(
-                                          'Email ID',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 2.0),
-                                child: new Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    new Flexible(
-                                      child: new TextFormField(
-                                        initialValue: profileInfo?.email,
-                                        enabled: false,
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      isViewMode
+                                          ? _getEditIcon()
+                                          : new Container(),
+                                    ],
+                                  )
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child:  Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                   Text(
+                                    'Name',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  TextFormField(
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return "Enter Your Name";
+                                      }
+                                    },
+                                    onSaved: (value) {
+                                      if (value != null) {
+                                        profileInfo!.name = value;
+                                      }
+                                    },
+                                    initialValue: profileInfo?.name,
+                                    enabled: !isViewMode,
+                                    autofocus: !isViewMode,
+                                  ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: new Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  new Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Text(
+                                        'Email ID',
+                                        style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: new Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    new Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        new Text(
-                                          'Mobile',
-                                          style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 2.0),
-                                child: new Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    new Flexible(
-                                      child: new TextFormField(
-                                          initialValue: profileInfo?.phone,
-                                          enabled: false),
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: new Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        new Text(
-                                          'Shop Information',
-                                          style: TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: Expanded(
-                                  child: Container(
-                                    child: new Text(
-                                      'Shop Name',
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                    ],
                                   ),
-                                  flex: 2,
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 2.0),
-                                child: Flexible(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(right: 10.0),
-                                    child: TextFormField(
-                                      validator: (value) {
-                                        if (value == null) {
-                                          return "Enter Your Shop Name";
-                                        }
-                                      },
-                                      onSaved: (value) {
-                                        if (value != null) {
-                                          profileInfo!.shops.first.name = value;
-                                        }
-                                      },
-                                      initialValue:
-                                          profileInfo?.shops.first.name,
-                                      enabled: !isViewMode,
-                                    ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: new Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  new TextFormField(
+                                    initialValue: profileInfo?.email,
+                                    enabled: false,
                                   ),
-                                  flex: 2,
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: Expanded(
-                                  child: Container(
-                                    child: new Text(
-                                      'Shop Phonenumber',
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: new Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  new Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      new Text(
+                                        'Mobile',
+                                        style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
-                                  flex: 2,
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 2.0),
-                                child: Flexible(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(right: 10.0),
-                                    child: TextFormField(
-                                      validator: (value) {
-                                        if (value == null) {
-                                          return "Enter Your Shop PhoneNumber";
-                                        }
-                                      },
-                                      onSaved: (value) {
-                                        if (value != null) {
-                                          profileInfo!.shops.first.phone =
-                                              value;
-                                        }
-                                      },
-                                      initialValue:
-                                          profileInfo?.shops.first.name,
-                                      enabled: !isViewMode,
-                                    ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: new Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  new TextFormField(
+                                      initialValue: profileInfo?.phone,
+                                      enabled: false),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: new Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      new Text(
+                                        'Shop Information',
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
-                                  flex: 2,
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 25.0),
-                                child: Expanded(
-                                  child: Container(
-                                    child: new Text(
-                                      'Shop address',
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  flex: 2,
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 25.0, right: 25.0, top: 2.0),
-                                child: Flexible(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(right: 10.0),
-                                    child: TextFormField(
-                                      validator: (value) {
-                                        if (value == null) {
-                                          return "Enter Your Address";
-                                        }
-                                      },
-                                      onSaved: (value) {
-                                        if (value != null) {
-                                          profileInfo!.shops.first.address =
-                                              value;
-                                        }
-                                      },
-                                      maxLines: 2,
-                                      initialValue:
-                                          profileInfo?.shops.first.address,
-                                      enabled: !isViewMode,
-                                    ),
-                                  ),
-                                  flex: 2,
-                                )),
-                            !isViewMode ? _getActionButtons() : new Container(),
-                          ],
-                        ),
+                                ],
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: new Text(
+                                'Shop Name',
+                                style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 10.0),
+                                child: TextFormField(
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return "Enter Your Shop Name";
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    if (value != null) {
+                                      profileInfo!.shops.first.name = value;
+                                    }
+                                  },
+                                  initialValue:
+                                      profileInfo?.shops.first.name,
+                                  enabled: !isViewMode,
+                                ),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: new Text(
+                                'Shop Phonenumber',
+                                style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 10.0),
+                                child: TextFormField(
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return "Enter Your Shop PhoneNumber";
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    if (value != null) {
+                                      profileInfo!.shops.first.phone =
+                                          value;
+                                    }
+                                  },
+                                  initialValue:
+                                      profileInfo?.shops.first.name,
+                                  enabled: !isViewMode,
+                                ),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 25.0),
+                              child: new Text(
+                                'Shop address',
+                                style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: 25.0, right: 25.0, top: 2.0),
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 10.0),
+                                child: TextFormField(
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return "Enter Your Address";
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    if (value != null) {
+                                      profileInfo!.shops.first.address =
+                                          value;
+                                    }
+                                  },
+                                  maxLines: 2,
+                                  initialValue:
+                                      profileInfo?.shops.first.address,
+                                  enabled: !isViewMode,
+                                ),
+                              )),
+                          !isViewMode ? _getActionButtons() : new Container(),
+                        ],
                       ),
                     )
                   ],

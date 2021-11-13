@@ -87,16 +87,11 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Expanded(
-                        child: Text(
-                          widget.shopInfo.name,
-                          style: TextStyle(
-                              fontSize: 32, fontWeight: FontWeight.w600),
-                        ),
+                      child: Text(
+                        widget.shopInfo.name,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600),
                       ),
-                    ),
-                    SizedBox(
-                      width: 85,
                     ),
                   ],
                 ),
