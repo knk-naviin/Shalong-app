@@ -80,11 +80,7 @@ class _ShalongAppState extends State<ShalongApp> {
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Platform.isAndroid
-                        ? CircularProgressIndicator()
-                        : CupertinoActivityIndicator(
-                            animating: true,
-                          ),
+ CircularProgressIndicator()
                     // Padding(
                     //   padding: const EdgeInsets.all(8.0),
                     //   child: Text("Loading"),
@@ -123,15 +119,8 @@ class _LaunchScreenState extends State<LaunchScreen> {
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Platform.isAndroid
-                      ? CircularProgressIndicator()
-                      : CupertinoActivityIndicator(
-                          animating: true,
-                        ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Text("Loading"),
-                  // )
+                      CircularProgressIndicator()
+
                 ],
               )),
             );
