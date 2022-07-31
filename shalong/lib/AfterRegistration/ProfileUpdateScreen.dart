@@ -10,7 +10,7 @@ import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 class ProfileUpdateScreen extends StatefulWidget {
   Profile? profile;
-  ProfileUpdateScreen({this.profile = null});
+  ProfileUpdateScreen({this.profile});
 
   @override
   _ProfileUpdateScreenState createState() => _ProfileUpdateScreenState();
@@ -120,6 +120,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                       if (value!.isEmpty) {
                         return "Enter Your Name";
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       profile.name = value!;
@@ -169,6 +170,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                       } else if (value.length != 10) {
                         return "Enter Valid Phone Number";
                       }
+                      return null;
                     },
                     inputFormatters: [
                       new FilteringTextInputFormatter.allow(

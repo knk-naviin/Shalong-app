@@ -2,10 +2,8 @@ import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'AuthManager.dart';
-import 'OTPScreen.dart';
 
 class UserAuthScreen extends StatefulWidget {
   const UserAuthScreen({Key? key}) : super(key: key);

@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 // import 'package:shalong/StartingScreen/ui_view/slider_layout_view.dart';
 //
 //

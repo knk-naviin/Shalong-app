@@ -100,6 +100,7 @@ class _RatingScreenState extends State<RatingScreen> {
                       if (value!.isEmpty) {
                         return "Enter Review";
                       }
+                      return null;
                     },
                     decoration: BoxDecoration(
 

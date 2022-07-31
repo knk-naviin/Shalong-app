@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/ReviewsScreen.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
@@ -47,11 +45,9 @@ class _ShopPageScreenState extends State<ShopPageScreen> {
   Future<Null> selectedTime(BuildContext context) async {
     picked = (await showTimePicker(context: context, initialTime: time))!;
 
-    if (picked != null) {
-      setState(() {
-        time = picked;
-      });
-    }
+    setState(() {
+      time = picked;
+    });
   }
 
   Rating? myRating() {

@@ -15,7 +15,7 @@ class CustomerAccountInfoScreen extends StatefulWidget {
 class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
     with SingleTickerProviderStateMixin {
   bool isViewMode = true;
-  late Profile? profileInfo = null;
+  late Profile? profileInfo;
   final FocusNode myFocusNode = FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   @override
@@ -157,6 +157,7 @@ class CustomerAccountInfoScreenState extends State<CustomerAccountInfoScreen>
                                           if (value == null) {
                                             return "Enter Your Name";
                                           }
+                                          return null;
                                         },
                                         onSaved: (value) {
                                           if (value != null) {

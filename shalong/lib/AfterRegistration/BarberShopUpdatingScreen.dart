@@ -6,8 +6,8 @@ import 'package:shalong/UserAuthentication/AuthManager.dart';
 
 class BarberShopUpdatingScreen extends StatefulWidget {
   // const BarberShopUpdatingScreen({Key? key}) : super(key: key);
-  ShopInfo? shopInfo = null;
-  BarberShopUpdatingScreen({this.shopInfo = null});
+  ShopInfo? shopInfo;
+  BarberShopUpdatingScreen({this.shopInfo});
   @override
   _BarberShopUpdatingScreenState createState() =>
       _BarberShopUpdatingScreenState();
@@ -50,6 +50,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                       if (value!.isEmpty) {
                         return "Enter Shop Name";
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       shopInfo.name = value!;
@@ -80,6 +81,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                           'https://www.google.co.in/maps/place/') {
                         return "Enter Correct URL";
                       }
+                      return null;
                     },
                     keyboardType: TextInputType.url,
                     scrollPhysics: ScrollPhysics(),
@@ -103,6 +105,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                       if (value!.isEmpty) {
                         return "Enter Shop contact number";
                       }
+                      return null;
                     },
                     inputFormatters: [
                       new FilteringTextInputFormatter.allow(
@@ -134,6 +137,7 @@ class _BarberShopUpdatingScreenState extends State<BarberShopUpdatingScreen> {
                       if (value!.isEmpty) {
                         return "Enter Shop Address";
                       }
+                      return null;
                     },
                     keyboardType: TextInputType.multiline,
                     autocorrect: false,

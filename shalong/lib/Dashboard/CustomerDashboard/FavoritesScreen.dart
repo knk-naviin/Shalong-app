@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shalong/UserAuthentication/AuthManager.dart';
 
-import 'ShopPageScreen.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({Key? key}) : super(key: key);
@@ -12,9 +11,9 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
-  late List<ShopInfo>? favorites = null;
-  late Map<String, List<Rating>>? ratings = null;
-  late List<ShopInfo>? shops = null;
+  late List<ShopInfo>? favorites;
+  late Map<String, List<Rating>>? ratings;
+  late List<ShopInfo>? shops;
 
   getratings(int ratingCount, int userCount) {
     return ratingCount / userCount;

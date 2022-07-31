@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:shalong/StartingScreen/constants/constants.dart';
 
 

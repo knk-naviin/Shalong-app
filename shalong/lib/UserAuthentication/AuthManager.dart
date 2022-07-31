@@ -161,6 +161,7 @@ Future<List<Rating>?> fetchRatings() async {
     }
     return ratings;
   }
+  return null;
 }
 
 Future<Map<String, List<Rating>>> ratingMap() async {
@@ -168,11 +169,9 @@ Future<Map<String, List<Rating>>> ratingMap() async {
   var ratings = await fetchRatings();
   if (ratings != null) {
     for (var rating in ratings) {
-      if ([rating.shopId] != null) {
-        map[rating.shopId] = ratings
-            .where((element) => element.shopId == rating.shopId)
-            .toList();
-      }
+      map[rating.shopId] = ratings
+          .where((element) => element.shopId == rating.shopId)
+          .toList();
     }
   }
 
@@ -251,6 +250,7 @@ Future<UserCredential?> signInWithGoogle() async {
     // Once signed in, return the UserCredential
     return userCredentials;
   }
+  return null;
 }
 
 double averageRatingFrom(List<Rating> ratings) {
@@ -301,11 +301,9 @@ Future<Map<String, List<Favorite>>> favoriteMap() async {
   var favorites = await fetchFavorite();
   if (favorites != null) {
     for (var favorite in favorites) {
-      if ([favorite.shopId] != null) {
-        map[favorite.shopId] = favorites
-            .where((element) => element.shopId == favorite.shopId)
-            .toList();
-      }
+      map[favorite.shopId] = favorites
+          .where((element) => element.shopId == favorite.shopId)
+          .toList();
     }
   }
   return map;
@@ -327,6 +325,7 @@ Future<List<Favorite>?> fetchFavorite() async {
       return favorites;
     }
   }
+  return null;
 }
 
 Future<List<ShopInfo>?> fetchShopsForFavorites() async {
@@ -356,6 +355,7 @@ Future<List<ShopInfo>?> fetchShopsForFavorites() async {
     }
     return shops;
   }
+  return null;
 }
 
 
@@ -372,4 +372,5 @@ Future<List<Rating>?> fectchreviews() async {
     }
     return ratings;
   }
+  return null;
 }

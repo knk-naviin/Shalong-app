@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shalong/Dashboard/CustomerDashboard/ShopPageScreen.dart';
@@ -16,10 +15,10 @@ class CustomerHomeScreen extends StatefulWidget {
 }
 
 class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
-  late List<ShopInfo>? shops = null;
+  late List<ShopInfo>? shops;
 
-  late Map<String, List<Rating>>? ratings = null;
-  late Map<String, List<Favorite>>? favorites = null;
+  late Map<String, List<Rating>>? ratings;
+  late Map<String, List<Favorite>>? favorites;
   // bool _icon = false;
   var searchText = "";
   var name = FirebaseAuth.instance.currentUser!.displayName;

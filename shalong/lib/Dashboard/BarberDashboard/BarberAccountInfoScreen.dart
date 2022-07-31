@@ -14,7 +14,7 @@ class BarberAccountInfoScreen extends StatefulWidget {
 class MapScreenState extends State<BarberAccountInfoScreen>
     with SingleTickerProviderStateMixin {
   bool isViewMode = true;
-  late Profile? profileInfo = null;
+  late Profile? profileInfo;
   final FocusNode myFocusNode = FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   @override
@@ -157,6 +157,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                       if (value == null) {
                                         return "Enter Your Name";
                                       }
+                                      return null;
                                     },
                                     onSaved: (value) {
                                       if (value != null) {
@@ -276,6 +277,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                     if (value == null) {
                                       return "Enter Your Shop Name";
                                     }
+                                    return null;
                                   },
                                   onSaved: (value) {
                                     if (value != null) {
@@ -306,6 +308,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                     if (value == null) {
                                       return "Enter Your Shop PhoneNumber";
                                     }
+                                    return null;
                                   },
                                   onSaved: (value) {
                                     if (value != null) {
@@ -337,6 +340,7 @@ class MapScreenState extends State<BarberAccountInfoScreen>
                                     if (value == null) {
                                       return "Enter Your Address";
                                     }
+                                    return null;
                                   },
                                   onSaved: (value) {
                                     if (value != null) {
