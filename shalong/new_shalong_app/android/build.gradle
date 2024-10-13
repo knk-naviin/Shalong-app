@@ -1,0 +1,30 @@
+buildscript {
+    ext.kotlin_version = '1.7.10' // Ensure this matches your Kotlin version
+    repositories {
+        google()
+        mavenCentral() // Use mavenCentral instead of jcenter as jcenter is deprecated
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.1' // AGP version 8.2.1 is fine
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Matches Kotlin version
+        classpath 'com.google.gms:google-services:4.3.10' // Firebase plugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

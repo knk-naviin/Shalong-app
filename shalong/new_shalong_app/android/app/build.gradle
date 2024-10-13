@@ -1,0 +1,51 @@
+plugins {
+    id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.new_shalong_app"
+    compileSdk = 34 // Ensure consistent compile SDK version
+
+    ndkVersion = flutter.ndkVersion // Ensure this references Flutter NDK version
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.new_shalong_app"
+        minSdk = 23 // Set minSdk to 23 to avoid issues with Firebase
+        targetSdk = 33// Ensure this aligns with Flutter target SDK
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        multiDexEnabled = true // Add this to ensure multidex is enabled for larger apps
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.." // Flutter SDK path
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation "androidx.core:core-ktx:1.10.1"
+    implementation 'androidx.multidex:multidex:2.0.1' // Ensure multidex is properly referenced
+}

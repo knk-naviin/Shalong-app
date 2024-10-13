@@ -50,8 +50,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.blue,
-                padding: EdgeInsets.all(20),
+                foregroundColor: Colors.blue, padding: EdgeInsets.all(20),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 backgroundColor: Colors.blue.shade50,
@@ -81,8 +80,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.blue,
-                padding: EdgeInsets.all(20),
+                foregroundColor: Colors.blue, padding: EdgeInsets.all(20),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 backgroundColor: Colors.blue.shade50,
@@ -109,8 +107,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.blue,
-                padding: EdgeInsets.all(20),
+                foregroundColor: Colors.blue, padding: EdgeInsets.all(20),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 backgroundColor: Colors.blue.shade50,
@@ -140,8 +137,7 @@ class _CustomerSettingScreenState extends State<CustomerSettingScreen> {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextButton(
               style: TextButton.styleFrom(
-                primary: Colors.blue,
-                padding: EdgeInsets.all(20),
+                foregroundColor: Colors.blue, padding: EdgeInsets.all(20),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 backgroundColor: Colors.blue.shade50,

@@ -15,7 +15,7 @@ class UserAuthScreen extends StatefulWidget {
 class _UserAuthScreenState extends State<UserAuthScreen> {
   bool _isLoading = false;
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  CarouselController buttonCarouselController = CarouselController();
+  // CarouselController buttonCarouselController = CarouselController();
   TextEditingController _controller = TextEditingController();
   String _launchurl = 'https://privacyterms.io/view/fdigclPM-8YosmjKR-DnNCuL/';
 

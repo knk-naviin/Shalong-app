@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "287386333635",
+    "project_id": "shalong-4a203",
+    "storage_bucket": "shalong-4a203.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287386333635:android:b1315fdbbc6f919b8e8d76",
+        "android_client_info": {
+          "package_name": "com.a.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287386333635-j9p6mb9octb4s8gcaqv98o3tepb0u0m0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8lpsWG_Mz1h1trx6XDdX_Mm5Ti1e1RYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287386333635-j9p6mb9octb4s8gcaqv98o3tepb0u0m0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "287386333635-docmlqusnr6t3nedi97llc2n6394nk90.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.newShalongApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287386333635:android:34b7bf2b5d49c6308e8d76",
+        "android_client_info": {
+          "package_name": "com.yaash.shalong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287386333635-hp75q0lb33e7bd9kr5j8spsam36q55ln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yaash.shalong",
+            "certificate_hash": "3a650c9a679f98a34105952a93e3b703c4d76e9b"
+          }
+        },
+        {
+          "client_id": "287386333635-ihvvgk5ua5fr39mgmfe2eudcv9frvqqu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yaash.shalong",
+            "certificate_hash": "d8530df018fb58daf5c9bc0768398328afb3c3ba"
+          }
+        },
+        {
+          "client_id": "287386333635-tul8vco1cfjmfrm4a9p4ap912ckl3dpi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yaash.shalong",
+            "certificate_hash": "c106a8a249493a8bf6c0df1c890ab8818c454e51"
+          }
+        },
+        {
+          "client_id": "287386333635-j9p6mb9octb4s8gcaqv98o3tepb0u0m0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8lpsWG_Mz1h1trx6XDdX_Mm5Ti1e1RYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287386333635-j9p6mb9octb4s8gcaqv98o3tepb0u0m0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "287386333635-docmlqusnr6t3nedi97llc2n6394nk90.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.newShalongApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
